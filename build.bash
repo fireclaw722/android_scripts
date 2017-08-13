@@ -1,12 +1,14 @@
 #!/bin/bash
 
+# Variables
 device=
 todate='date +%Y%m%d'
+
 
 bdevice() {
 	# Ensure proper starting location
 	cd ~/lineage
-		
+
 	# Breakfast
         breakfast $device
 
@@ -15,7 +17,7 @@ bdevice() {
 	
 	# Move to ~/build
 	cp ~/lineage/out/target/product/$device/lineage-14.1*.zip ~/build/$device/lineageOMS-14.1-$todate-$device.zip
-	
+
 	# Generate hashes
 	# sha256
 	sha256sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha256
@@ -23,7 +25,6 @@ bdevice() {
 	sha1sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha1
 	# md5
 	md5sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.md5
-
         # Move back to original directory
         cd ~/lineage
 }
@@ -42,13 +43,14 @@ setupenv() {
 cd /home/builder/lineage
 
 if [ $# -gt 0 ]; then
-
         # Parse Args
         case $1 in
                 addison|athene|victara)
                         device=$1
                         shift
+
                         setupenv
+
                         bdevice
                         ;;
                 help|-h|--help)
@@ -72,7 +74,6 @@ if [ $# -gt 0 ]; then
                 *)
                         echo "Codename not available for build. Available devices are:"
                         echo "'all','athene','oneplus3','victara'"
-
         esac
 else
         echo "Please use a codename for the device you wish to build."
