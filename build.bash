@@ -11,21 +11,18 @@ bdevice() {
         breakfast $device
 
         # Run build
-	mka target-files-package dist
-		
-	# Sign Build
-	~/lineage/build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs ~/lineage/out/dist/*-target_files-*.zip ~/lineage/signed-target_files.zip
+	brunch $device
 	
-	# Generate .zip file
-	~/lineage/build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true ~/lineage/signed-target_files.zip ~/build/lineageOMS-14.1-$todate-$device.zip
+	# Move to ~/build
+	cp ~/lineage/out/target/product/$device/lineage-14.1*.zip ~/build/$device/lineageOMS-14.1-$todate-$device.zip
 	
 	# Generate hashes
 	# sha256
-	sha256sum ~/build/lineageOMS-14.1-$todate-$device.zip > ~/build/lineageOMS-14.1-$todate-$device.zip.sha256
+	sha256sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha256
 	# sha1
-	sha1sum ~/build/lineageOMS-14.1-$todate-$device.zip > ~/build/lineageOMS-14.1-$todate-$device.zip.sha1
+	sha1sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha1
 	# md5
-	md5sum ~/build/lineageOMS-14.1-$todate-$device.zip > ~/build/lineageOMS-14.1-$todate-$device.zip.md5
+	md5sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.md5
 
         # Move back to original directory
         cd ~/lineage
