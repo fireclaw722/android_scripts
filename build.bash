@@ -52,14 +52,6 @@ if [ $# -gt 0 ]; then
 
 			bdevice
 			;;
-		help|-h|--help)
-			echo "Please use a codename for the device you wish to build."
-			echo ""
-			echo "Available devices are:"
-			echo "'addison','athene','victara','all'**"
-			echo ""
-			echo "**'all' will build all available devices!"
-			;;
 		all)
 			setupenv
 
@@ -71,6 +63,14 @@ if [ $# -gt 0 ]; then
 
 			device=victara
 			bdevice
+			;;
+		help|-h|--help)
+			echo "Please use a codename for the device you wish to build."
+			echo ""
+			echo "Available devices are:"
+			echo "'addison','athene','victara','all'**"
+			echo ""
+			echo "**'all' will build all available devices!"
 			;;
 		*)
 			echo "Codename not available for build."
