@@ -2,7 +2,6 @@
 
 # Variables
 device=
-todate='date +%Y%m%d'
 
 
 bdevice() {
@@ -16,15 +15,15 @@ bdevice() {
 	brunch $device
 	
 	# Move to ~/build
-	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/lineageOMS-14.1-$todate-$device.zip
+	mv ~/lineage/out/target/product/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip
 
 	# Generate hashes
 	# sha256
-	sha256sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha256
+	sha256sum ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip.sha256
 	# sha1
-	sha1sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha1
+	sha1sum ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip.sha1
 	# md5
-	md5sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.md5
+	md5sum ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/lineageOMS-14.1-$(date +%Y%m%d)-$device.zip.md5
 	# Move back to original directory
 	cd ~/lineage
 }
