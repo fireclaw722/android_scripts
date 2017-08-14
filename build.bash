@@ -10,13 +10,13 @@ bdevice() {
 	cd ~/lineage
 
 	# Breakfast
-        breakfast $device
+	breakfast $device
 
-        # Run build
+	# Run build
 	brunch $device
 	
 	# Move to ~/build
-	cp ~/lineage/out/target/product/$device/lineage-14.1*.zip ~/build/$device/lineageOMS-14.1-$todate-$device.zip
+	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/lineageOMS-14.1-$todate-$device.zip
 
 	# Generate hashes
 	# sha256
@@ -25,16 +25,16 @@ bdevice() {
 	sha1sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.sha1
 	# md5
 	md5sum ~/build/$device/lineageOMS-14.1-$todate-$device.zip > ~/build/$device/lineageOMS-14.1-$todate-$device.zip.md5
-        # Move back to original directory
-        cd ~/lineage
+	# Move back to original directory
+	cd ~/lineage
 }
 
 setupenv() {
-        # Sync new changes
-        repo sync
+	# Sync new changes
+	repo sync
 
-        # Setup build environment
-        . build/envsetup.sh
+	# Setup build environment
+	. build/envsetup.sh
 	export USE_CCACHE=1
 	prebuilts/misc/linux-x86/ccache/ccache -M 100G
 	export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
@@ -43,38 +43,41 @@ setupenv() {
 cd /home/builder/lineage
 
 if [ $# -gt 0 ]; then
-        # Parse Args
-        case $1 in
-                addison|athene|victara)
-                        device=$1
-                        shift
+	# Parse Args
+	case $1 in
+		addison|athene|victara)
+			device=$1
+			shift
 
-                        setupenv
+			setupenv
 
-                        bdevice
-                        ;;
-                help|-h|--help)
-                        echo "Please use a codename for the device you wish to build."
-                        echo "Available devices are:"
-                        echo "'addison','athene','victara','all'**"
-                        echo "**'all' will build all available devices!"
-                        ;;
-                all)
-                        setupenv
+			bdevice
+			;;
+		help|-h|--help)
+			echo "Please use a codename for the device you wish to build."
+			echo ""
+			echo "Available devices are:"
+			echo "'addison','athene','victara','all'**"
+			echo ""
+			echo "**'all' will build all available devices!"
+			;;
+		all)
+			setupenv
 
-                        device=addison
-                        bdevice
+			device=addison
+			bdevice
 
-                        device=athene
-                        bdevice
+			device=athene
+			bdevice
 
-                        device=victara
-                        bdevice
-                        ;;
-                *)
-                        echo "Codename not available for build. Available devices are:"
-                        echo "'all','athene','oneplus3','victara'"
-        esac
+			device=victara
+			bdevice
+			;;
+		*)
+			echo "Codename not available for build."
+			echo ""
+			build help
+	esac
 else
         echo "Please use a codename for the device you wish to build."
 fi
