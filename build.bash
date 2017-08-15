@@ -51,8 +51,7 @@ cd /home/builder/lineage
 if [ $# -gt 0 ]; then
 	# Parse Args
 	case $1 in
-		#addison|athene|victara)
-		athene|victara)
+		addison|athene|oneplus3|victara)
 			device=$1
 			
 			shift
@@ -64,10 +63,13 @@ if [ $# -gt 0 ]; then
 		all)
 			setupenv
 
-			#device=addison
-			#bdevice
+			device=addison
+			bdevice
 
 			device=athene
+			bdevice
+
+			device=oneplus3
 			bdevice
 
 			device=victara
