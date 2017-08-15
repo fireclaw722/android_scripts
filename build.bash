@@ -3,7 +3,6 @@
 # Variables
 device=
 
-
 bdevice() {
 	# Ensure proper starting location
 	cd ~/lineage
@@ -13,7 +12,7 @@ bdevice() {
 
 	# Run build
 	brunch $device
-	
+
 	# Move to ~/build
 	mv ~/lineage/out/target/product/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip
 
@@ -24,9 +23,12 @@ bdevice() {
 	sha1sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha1
 	# md5
 	md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5
+
 	# Move back to original directory
 	cd ~/lineage
 }
+
+
 
 setupenv() {
 	# Sync new changes
@@ -34,9 +36,11 @@ setupenv() {
 
 	# Setup build environment
 	. build/envsetup.sh
+
 	export USE_CCACHE=1
 	prebuilts/misc/linux-x86/ccache/ccache -M 100G
 	export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
+
 }
 
 cd /home/builder/lineage
@@ -46,6 +50,7 @@ if [ $# -gt 0 ]; then
 	case $1 in
 		addison|athene|victara)
 			device=$1
+			
 			shift
 
 			setupenv
@@ -80,3 +85,4 @@ if [ $# -gt 0 ]; then
 else
         echo "Please use a codename for the device you wish to build."
 fi
+
