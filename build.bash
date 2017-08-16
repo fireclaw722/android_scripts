@@ -8,13 +8,13 @@ bdevice() {
 	cd ~/lineage
 
 	# Breakfast
-	breakfast $device > ~/$device-$(date +%Y%m%d).log
+	breakfast $device > ~/log/$device-$(date +%Y%m%d).log
 
 	# Run build
-	brunch $device > ~/$device-$(date +%Y%m%d).log
+	brunch $device > ~/log/$device-$(date +%Y%m%d).log
 
 	# Move to ~/build
-	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/$device-$(date +%Y%m%d).log
+	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/log/$device-$(date +%Y%m%d).log
 	
 	if [ -e ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip ]; then
 		# Remove old hash and lineage_ota
@@ -38,7 +38,7 @@ bdevice() {
 
 setupenv() {
 	# Sync new changes
-	repo sync > ~/0-repo_sync-$(date +%Y%m%d).log
+	repo sync > ~/log/0-repo_sync-$(date +%Y%m%d).log
 
 	# Setup build environment
 	. build/envsetup.sh 
