@@ -15,17 +15,20 @@ bdevice() {
 
 	# Move to ~/build
 	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/$device-$(date +%Y%m%d).log
-	# Remove old hash and lineage_ota
-	rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum
-	rm ~/lineage/out/target/product/$device/lineage_$device-*.zip
+	
+	if [ -e ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip ]; then
+		# Remove old hash and lineage_ota
+		rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum
+		rm ~/lineage/out/target/product/$device/lineage_$device-*.zip
 
-	# Generate hashes
-	# sha256
-	sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
-	# sha1
-	sha1sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha1sum
-	# md5
-	md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+		# Generate hashes
+		# sha256
+		sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
+		# sha1
+		sha1sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha1sum
+		# md5
+		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+	fi
 
 	# Move back to original directory
 	cd ~/lineage
