@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Lawnchair launcher -->
+	<project path="packages/apps/Lawnchair" name="Deletescape-Media/Lawnchair" remote="github" revision="alpha" />
+
+    <!-- FDroid -->
+	<remote name="fdroid" fetch="https://gitlab.com/fdroid/" />
+	<project path="packages/apps/FDroidPrivilegedExtension"
+           name="privileged-extension.git" remote="fdroid"
+           revision="master" />
+</manifest>
