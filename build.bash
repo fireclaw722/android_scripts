@@ -8,13 +8,13 @@ bdevice() {
 	cd ~/lineage
 
 	# Breakfast
-	breakfast $device
+	breakfast $device > ~/$device-$(date +%Y%m%d).log
 
 	# Run build
-	brunch $device
+	brunch $device > ~/$device-$(date +%Y%m%d).log
 
 	# Move to ~/build
-	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip
+	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/$device-$(date +%Y%m%d).log
 	# Remove old hash and lineage_ota
 	rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum
 	rm ~/lineage/out/target/product/$device/lineage_$device-*.zip
@@ -35,10 +35,10 @@ bdevice() {
 
 setupenv() {
 	# Sync new changes
-	repo sync
+	repo sync > ~/0-repo_sync-$(date +%Y%m%d).log
 
 	# Setup build environment
-	. build/envsetup.sh
+	. build/envsetup.sh 
 
 	export USE_CCACHE=1
 	prebuilts/misc/linux-x86/ccache/ccache -M 100G
