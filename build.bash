@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version 0.1
+version=0.1
 
 bdevice() {
 	# Ensure proper starting location
@@ -86,6 +86,9 @@ if [ $# -gt 0 ]; then
 			echo "'addison','athene','victara','all'**"
 			echo ""
 			echo "**'all' will build all available devices!"
+			;;
+		version|-v|--version)
+			echo "Version: "$version
 			;;
 		*)
 			echo "Codename not available for build."
