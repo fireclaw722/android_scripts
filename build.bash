@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.1
+version=0.2
 
 bdevice() {
 	# Ensure proper starting location
@@ -25,8 +25,6 @@ bdevice() {
 		# Generate hashes
 		# sha256
 		sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum 2>> ~/log/$device-$(date +%Y%m%d).log
-		# sha1
-		sha1sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha1sum 2>> ~/log/$device-$(date +%Y%m%d).log
 		# md5
 		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum 2>> ~/log/$device-$(date +%Y%m%d).log
 	fi
