@@ -8,26 +8,26 @@ bdevice() {
 	cd ~/lineage
 
 	# Breakfast
-	breakfast $device > ~/log/$device-$(date +%Y%m%d).log
+	breakfast $device >> ~/log/$device-$(date +%Y%m%d).log 2>&1
 
 	# Run build
-	brunch $device > ~/log/$device-$(date +%Y%m%d).log
+	brunch $device >> ~/log/$device-$(date +%Y%m%d).log 2>&1
 
 	# Move to ~/build
-	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/log/$device-$(date +%Y%m%d).log
+	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/log/$device-$(date +%Y%m%d).log 2>&1
 	
 	if [ -e ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip ]; then
 		# Remove old hash and lineage_ota
-		rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum
-		rm ~/lineage/out/target/product/$device/lineage_$device-*.zip
+		rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum >> ~/log/$device-$(date +%Y%m%d).log 2>&1
+		rm ~/lineage/out/target/product/$device/lineage_$device-*.zip >> ~/log/$device-$(date +%Y%m%d).log 2>&1
 
 		# Generate hashes
 		# sha256
-		sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
+		sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum 2>> ~/log/$device-$(date +%Y%m%d).log
 		# sha1
-		sha1sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha1sum
+		sha1sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha1sum 2>> ~/log/$device-$(date +%Y%m%d).log
 		# md5
-		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip > ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum 2>> ~/log/$device-$(date +%Y%m%d).log
 	fi
 
 	# Move back to original directory
