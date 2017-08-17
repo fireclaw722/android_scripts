@@ -2,6 +2,7 @@
 
 # Variables
 device=
+version 0.1
 
 bdevice() {
 	# Ensure proper starting location
