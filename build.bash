@@ -5,9 +5,6 @@ device=
 version=0.3
 
 bdevice() {
-	# Ensure proper starting location
-	cd ~/lineage
-
 	# Breakfast
 	breakfast $device
 
@@ -28,12 +25,7 @@ bdevice() {
 		# md5
 		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum
 	fi
-
-	# Move back to original directory
-	cd ~/lineage
 }
-
-
 
 setupenv() {
 	# Sync new changes
