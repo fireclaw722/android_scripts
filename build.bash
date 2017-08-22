@@ -31,6 +31,12 @@ setupenv() {
 	# Sync new changes
 	repo sync
 
+	# MicroG Signature Spoofing
+	wget -O ~/'Downloads/GmsCore-android_frameworks_base-N.patch' 'https://raw.githubusercontent.com/microg/android_packages_apps_GmsCore/master/patches/android_frameworks_base-N.patch' && cd ~/'lineage' && patch -N --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/'Downloads/GmsCore-android_frameworks_base-N.patch' && rm -f ~/'Downloads/GmsCore-android_frameworks_base-N.patch' && sync
+
+	# Location providers outside of /system
+	wget -O ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' 'https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch' && cd ~/'lineage' && patch -N --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' && rm -f ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' && sync
+
 	# Setup build environment
 	. build/envsetup.sh 
 
