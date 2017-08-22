@@ -2,31 +2,31 @@
 
 # Variables
 device=
-version=0.2
+version=0.3
 
 bdevice() {
 	# Ensure proper starting location
 	cd ~/lineage
 
 	# Breakfast
-	breakfast $device >> ~/log/$device-$(date +%Y%m%d).log 2>&1
+	breakfast $device
 
 	# Run build
-	brunch $device >> ~/log/$device-$(date +%Y%m%d).log 2>&1
+	brunch $device
 
 	# Move to ~/build
-	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/log/$device-$(date +%Y%m%d).log 2>&1
+	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip
 	
 	if [ -e ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip ]; then
 		# Remove old hash and lineage_ota
-		rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum >> ~/log/$device-$(date +%Y%m%d).log 2>&1
-		rm ~/lineage/out/target/product/$device/lineage_$device-*.zip >> ~/log/$device-$(date +%Y%m%d).log 2>&1
+		rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum
+		rm ~/lineage/out/target/product/$device/lineage_$device-*.zip
 
 		# Generate hashes
 		# sha256
-		sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum 2>> ~/log/$device-$(date +%Y%m%d).log
+		sha256sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
 		# md5
-		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum 2>> ~/log/$device-$(date +%Y%m%d).log
+		md5sum ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/LOS_OMS-14.1-$(date +%Y%m%d)-$device.zip.md5sum
 	fi
 
 	# Move back to original directory
@@ -37,7 +37,7 @@ bdevice() {
 
 setupenv() {
 	# Sync new changes
-	repo sync > ~/log/0-repo_sync-$(date +%Y%m%d).log
+	repo sync
 
 	# Setup build environment
 	. build/envsetup.sh 
