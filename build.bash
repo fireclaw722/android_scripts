@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.6
+version=0.7
 
 bdevice() {
 	# Breakfast
@@ -34,8 +34,10 @@ setupenv() {
 	# Setup build environment
 	. build/envsetup.sh 
 
-	export USE_CCACHE=1
-	prebuilts/misc/linux-x86/ccache/ccache -M 100G
+	# No CCACHE
+	export USE_CCACHE=0
+	unset 'CCACHE_DISABLE' && export 'CCACHE_DISABLE=1'
+
 	export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 
 }
