@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.7
+version=0.8
 
 bdevice() {
 	# Breakfast
