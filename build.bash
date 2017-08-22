@@ -63,9 +63,6 @@ if [ $# -gt 0 ]; then
 			device=athene
 			bdevice
 
-			device=oneplus3
-			bdevice
-
 			device=victara
 			bdevice
 			;;
