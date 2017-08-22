@@ -40,7 +40,7 @@ setupenv() {
 
 }
 
-cd /home/builder/lineage
+cd ~/lineage
 
 if [ $# -gt 0 ]; then
 	# Parse Args
@@ -88,4 +88,3 @@ if [ $# -gt 0 ]; then
 else
         echo "Please use a codename for the device you wish to build."
 fi
-
