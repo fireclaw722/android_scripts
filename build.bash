@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.9
+version=0.10
 
 bdevice() {
 	# Breakfast
@@ -32,10 +32,34 @@ setupenv() {
 	repo sync
 
 	# MicroG Signature Spoofing
-	#wget -O ~/Downloads/GmsCore-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_GmsCore/master/patches/android_frameworks_base-N.patch && cd ~/lineage && patch -N --no-backup-if-mismatch --strip=1 --directory='frameworks/base' < ~/Downloads/GmsCore-android_frameworks_base-N.patch && rm -f ~/Downloads/GmsCore-android_frameworks_base-N.patch && sync
+	wget -O ~/Downloads/GmsCore-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_GmsCore/master/patches/android_frameworks_base-N.patch && cd ~/lineage && patch -N --no-backup-if-mismatch --strip=1 --directory='frameworks/base' < ~/Downloads/GmsCore-android_frameworks_base-N.patch && rm -f ~/Downloads/GmsCore-android_frameworks_base-N.patch && sync
 
 	# Location providers outside of /system
-	#wget -O ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch && cd ~/lineage && patch -N --no-backup-if-mismatch --strip=1 --directory=frameworks/base < ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch && rm -f ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch && sync
+	wget -O ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch && cd ~/lineage && patch -N --no-backup-if-mismatch --strip=1 --directory=frameworks/base < ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch && rm -f ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch && sync
+
+	# Setup Substratum
+	cd lineage/frameworks/base/
+	git pull https://github.com/LineageOMS/android_frameworks_base cm-14.1
+	cd ~/lineage/frameworks/native/
+	git pull https://github.com/LineageOMS/android_frameworks_native cm-14.1
+	cd ~/lineage/packages/apps/Contacts/
+	git pull https://github.com/LineageOMS/android_packages_apps_Contacts cm-14.1
+	cd ~/lineage/packages/ContactsCommon/
+	git pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon cm-14.1
+	cd ~/lineage/packages/Dialer/
+	git pull https://github.com/LineageOMS/android_packages_apps_Dialer cm-14.1
+	cd ~/lineage/packages/ExactCalculator/
+	git pull https://github.com/LineageOMS/android_packages_apps_ExactCalculator cm-14.1
+	cd ~/lineage/packages/PackageInstaller/
+	git pull https://github.com/LineageOMS/android_packages_apps_PackageInstaller cm-14.1
+	cd ~/lineage/packages/PhoneCommon/
+	git pull https://github.com/LineageOMS/android_packages_apps_PhoneCommon cm-14.1
+	cd ~/lineage/packages/Settings/
+	git pull https://github.com/LineageOMS/android_packages_apps_Settings cm-14.1
+	cd ~/lineage/system/sepolicy/
+	git pull https://github.com/LineageOMS/android_system_sepolicy cm-14.1
+	cd ~/lineage/vendor/cm/
+	git pull https://github.com/LineageOMS/android_vendor_cm cm-14.1
 
 	# Setup build environment
 	. build/envsetup.sh 
