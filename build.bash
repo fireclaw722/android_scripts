@@ -78,9 +78,7 @@ if [ $# -gt 0 ]; then
 			echo "Please use a codename for the device you wish to build."
 			echo ""
 			echo "Available devices are:"
-			echo "'addison','athene','victara','all'**"
-			echo ""
-			echo "**'all' will build all available devices!"
+			echo "'addison','athene','oneplus3','victara'"
 			;;
 		version|-v|--version)
 			echo "Version: "$version
