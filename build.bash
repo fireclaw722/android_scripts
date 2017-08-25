@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.10.1
+version=0.10.2
 
 bdevice() {
 	cd ~/lineage
@@ -48,17 +48,17 @@ setupenv() {
 	git pull https://github.com/LineageOMS/android_frameworks_native cm-14.1
 	cd ~/lineage/packages/apps/Contacts/
 	git pull https://github.com/LineageOMS/android_packages_apps_Contacts cm-14.1
-	cd ~/lineage/packages/ContactsCommon/
+	cd ~/lineage/packages/apps/ContactsCommon/
 	git pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon cm-14.1
-	cd ~/lineage/packages/Dialer/
+	cd ~/lineage/packages/apps/Dialer/
 	git pull https://github.com/LineageOMS/android_packages_apps_Dialer cm-14.1
-	cd ~/lineage/packages/ExactCalculator/
+	cd ~/lineage/packages/apps/ExactCalculator/
 	git pull https://github.com/LineageOMS/android_packages_apps_ExactCalculator cm-14.1
-	cd ~/lineage/packages/PackageInstaller/
+	cd ~/lineage/packages/apps/PackageInstaller/
 	git pull https://github.com/LineageOMS/android_packages_apps_PackageInstaller cm-14.1
-	cd ~/lineage/packages/PhoneCommon/
+	cd ~/lineage/packages/apps/PhoneCommon/
 	git pull https://github.com/LineageOMS/android_packages_apps_PhoneCommon cm-14.1
-	cd ~/lineage/packages/Settings/
+	cd ~/lineage/packages/apps/Settings/
 	git pull https://github.com/LineageOMS/android_packages_apps_Settings cm-14.1
 	cd ~/lineage/system/sepolicy/
 	git pull https://github.com/LineageOMS/android_system_sepolicy cm-14.1
