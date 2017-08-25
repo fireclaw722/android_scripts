@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.8.2
+version=0.9
 
 bdevice() {
 	# Breakfast
@@ -60,15 +60,6 @@ if [ $# -gt 0 ]; then
 
 			setupenv
 
-			bdevice
-			;;
-		all)
-			setupenv
-
-			device=athene
-			bdevice
-
-			device=victara
 			bdevice
 			;;
 		help|-h|--help)
