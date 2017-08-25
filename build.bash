@@ -2,9 +2,11 @@
 
 # Variables
 device=
-version=0.10
+version=0.10.1
 
 bdevice() {
+	cd ~/lineage
+
 	# Breakfast
 	breakfast $device
 
@@ -28,6 +30,8 @@ bdevice() {
 }
 
 setupenv() {
+	cd ~/lineage 
+
 	# Sync new changes
 	repo sync
 
@@ -61,6 +65,8 @@ setupenv() {
 	cd ~/lineage/vendor/cm/
 	git pull https://github.com/LineageOMS/android_vendor_cm cm-14.1
 
+	cd ~/lineage 
+
 	# Setup build environment
 	. build/envsetup.sh 
 
@@ -71,8 +77,6 @@ setupenv() {
 	export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 
 }
-
-cd ~/lineage
 
 if [ $# -gt 0 ]; then
 	# Parse Args
