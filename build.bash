@@ -65,9 +65,6 @@ if [ $# -gt 0 ]; then
 		all)
 			setupenv
 
-			device=addison
-			bdevice
-
 			device=athene
 			bdevice
 
