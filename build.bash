@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.10.3_6
+version=0.10.4
 
 bdevice() {
 	cd ~/lineage
