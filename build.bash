@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.10.2
+version=0.10.3_4
 
 bdevice() {
 	cd ~/lineage
@@ -32,6 +32,8 @@ bdevice() {
 setupenv() {
 	cd ~/lineage 
 
+	make clobber
+
 	# Sync new changes
 	repo sync
 
@@ -40,30 +42,6 @@ setupenv() {
 
 	# Location providers outside of /system
 	wget -O ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch && cd ~/lineage && patch -N --no-backup-if-mismatch --strip=1 --directory=frameworks/base < ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch && rm -f ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch && sync
-
-	# Setup Substratum
-	cd lineage/frameworks/base/
-	git pull https://github.com/LineageOMS/android_frameworks_base cm-14.1
-	cd ~/lineage/frameworks/native/
-	git pull https://github.com/LineageOMS/android_frameworks_native cm-14.1
-	cd ~/lineage/packages/apps/Contacts/
-	git pull https://github.com/LineageOMS/android_packages_apps_Contacts cm-14.1
-	cd ~/lineage/packages/apps/ContactsCommon/
-	git pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon cm-14.1
-	cd ~/lineage/packages/apps/Dialer/
-	git pull https://github.com/LineageOMS/android_packages_apps_Dialer cm-14.1
-	cd ~/lineage/packages/apps/ExactCalculator/
-	git pull https://github.com/LineageOMS/android_packages_apps_ExactCalculator cm-14.1
-	cd ~/lineage/packages/apps/PackageInstaller/
-	git pull https://github.com/LineageOMS/android_packages_apps_PackageInstaller cm-14.1
-	cd ~/lineage/packages/apps/PhoneCommon/
-	git pull https://github.com/LineageOMS/android_packages_apps_PhoneCommon cm-14.1
-	cd ~/lineage/packages/apps/Settings/
-	git pull https://github.com/LineageOMS/android_packages_apps_Settings cm-14.1
-	cd ~/lineage/system/sepolicy/
-	git pull https://github.com/LineageOMS/android_system_sepolicy cm-14.1
-	cd ~/lineage/vendor/cm/
-	git pull https://github.com/LineageOMS/android_vendor_cm cm-14.1
 
 	cd ~/lineage 
 
