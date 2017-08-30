@@ -15,6 +15,7 @@ bdevice() {
 
 	# Move to ~/build
 	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
+	mv ~/lineage/out/target/product/$device/recovery.img ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img
 	
 	if [ -e ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip ]; then
 		# Remove old hash and lineage_ota
@@ -26,6 +27,14 @@ bdevice() {
 		sha256sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
 		# md5
 		md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+	fi
+
+	if [ -e ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img ]; then
+		# Generate hashes
+		# sha256
+		sha256sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.sha256sum
+		# md5
+		md5sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.md5sum
 	fi
 }
 
