@@ -2,20 +2,30 @@
 
 # Variables
 device=
-version=0.11
+version=0.13
 
 bdevice() {
 	cd ~/lineage
 
 	# Breakfast
-	breakfast $device
+	if breakfast lineage_$device-user ; then
+		# Run build
+		if mka target-files-package dist ; then
+			# Sign Build
+			./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip
 
-	# Run build
-	brunch $device
+			# Package OTA-zip
+			./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip
+		else
+			echo "$device-user build failed. Try userdebug or check log for solution."
+		fi
+	else
+		echo "Breakfast failed for $device."
+	fi
 
 	# Move to ~/build
-	mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
-	mv ~/lineage/out/target/product/$device/recovery.img ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img
+	#mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
+	#mv ~/lineage/out/target/product/$device/recovery.img ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img
 	
 	if [ -e ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip ]; then
 		# Remove old hash and lineage_ota
