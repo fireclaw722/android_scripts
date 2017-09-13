@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.13
+version=0.13.1
 
 bdevice() {
 	cd ~/lineage
@@ -16,27 +16,20 @@ bdevice() {
 
 			# Package OTA-zip
 			./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip
+
+			# Move OTA to ~/build
+			mv ~/lineage/signed-ota_update.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
+
+			# Generate hashes
+			# sha256
+			sha256sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
+			# md5
+			md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
 		else
-			echo "$device-user build failed. Try userdebug or check log for solution."
+			echo "$device-user build failed. Try userdebug?"
 		fi
 	else
 		echo "Breakfast failed for $device."
-	fi
-
-	# Move to ~/build
-	#mv ~/lineage/out/target/product/$device/lineage-14.1-*.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
-	#mv ~/lineage/out/target/product/$device/recovery.img ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img
-	
-	if [ -e ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip ]; then
-		# Remove old hash and lineage_ota
-		rm ~/lineage/out/target/product/$device/lineage-14.1-*.zip.md5sum
-		rm ~/lineage/out/target/product/$device/lineage_$device-*.zip
-
-		# Generate hashes
-		# sha256
-		sha256sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
-		# md5
-		md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
 	fi
 
 	if [ -e ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img ]; then
