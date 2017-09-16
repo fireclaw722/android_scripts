@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.13.1
+version=0.14
 
 bdevice() {
 	cd ~/lineage
@@ -20,24 +20,18 @@ bdevice() {
 			# Move OTA to ~/build
 			mv ~/lineage/signed-ota_update.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
 
-			# Generate hashes
-			# sha256
-			sha256sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.sha256sum
-			# md5
+			# Generate md5 hashes
+			# ota-zip
 			md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+			# recovery
+			md5sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.md5sum
+
+			ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip
 		else
 			echo "$device-user build failed. Try userdebug?"
 		fi
 	else
 		echo "Breakfast failed for $device."
-	fi
-
-	if [ -e ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img ]; then
-		# Generate hashes
-		# sha256
-		sha256sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.sha256sum
-		# md5
-		md5sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.md5sum
 	fi
 }
 
