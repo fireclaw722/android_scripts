@@ -46,7 +46,7 @@ setupenv() {
 	repo sync
 
 	# Setup build environment
-	. build/envsetup.sh 
+	source build/envsetup.sh 
 
 	# No CCACHE
 	export USE_CCACHE=0
