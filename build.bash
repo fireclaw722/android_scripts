@@ -24,10 +24,6 @@ bdevice() {
 			if [ -e ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip ] ; then
 				# ota-zip
 				md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
-				
-				# For Updater
-				ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip
-				ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
 			fi
 			if [ -e ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img ] ; then
 				# recovery
