@@ -21,14 +21,18 @@ bdevice() {
 			mv ~/lineage/signed-ota_update.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
 
 			# Generate md5 hashes
-			# ota-zip
-			md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
-			# recovery
-			md5sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.md5sum
-
-			# For Updater
-			ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip
-			ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+			if [ -e ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip ] ; then
+				# ota-zip
+				md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+				
+				# For Updater
+				ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip
+				ln -s ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum /var/www/html/LineageOTA/builds/full/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+			fi
+			if [ -e ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img ] ; then
+				# recovery
+				md5sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.md5sum
+			fi
 		else
 			echo "$device-user build failed. Try userdebug?"
 		fi
