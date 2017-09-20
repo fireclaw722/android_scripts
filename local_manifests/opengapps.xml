@@ -6,7 +6,4 @@
 	<!-- arm64 depends on arm -->
 	<project path="opengapps/vendor/opengapps/sources/arm" name="arm" clone-depth="1" revision="master" remote="github" />
 	<project path="opengapps/vendor/opengapps/sources/arm64" name="arm64" clone-depth="1" revision="master" remote="github" />
-
-	<project path="opengapps/vendor/opengapps/sources/x86" name="x86" clone-depth="1" revision="master" remote="github" />
-	<project path="opengapps/vendor/opengapps/sources/x86_64" name="x86_64" clone-depth="1" revision="master" remote="github" />
 </manifest>
