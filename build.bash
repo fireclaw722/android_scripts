@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.14.4
+version=0.14.5
 
 bdevice() {
 	cd ~/lineage
@@ -18,17 +18,17 @@ bdevice() {
 			./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip
 
 			# Move OTA to ~/build
-			mv ~/lineage/signed-ota_update.zip ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip
+			mv ~/lineage/signed-ota_update.zip ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip
 
 			# Generate md5 hashes
-			if [ -e ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip ] ; then
+			if [ -e ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip ] ; then
 				# ota-zip
-				md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
+				md5sum ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip.md5sum
 			fi
 			
 			# save recovery
 			unzip -j signed-target_files.zip IMAGES/recovery.img
-			mv recovery.img ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img
+			mv recovery.img ~/build/$device/recovery-$(date +%Y%m%d)-$device.img
 		else
 			echo "$device-user build failed. Try userdebug?"
 		fi

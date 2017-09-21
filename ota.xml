@@ -2,7 +2,7 @@
 <SlimOTA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ota.xsd">
     <Stable>
         <addison>
-            <Filename>lineage-14.1-20170915-addison.zip</Filename>
+            <Filename>14.1-20170915-addison.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -17,7 +17,7 @@
                 description="Download Google's Apps">https://opengapps.org/</GappsUrl>
         </addison>
         <athene>
-            <Filename>lineage-14.1-20170915-athene.zip</Filename>
+            <Filename>14.1-20170921-athene.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -32,7 +32,7 @@
                 description="Download Google's Apps">https://opengapps.org/</GappsUrl>
         </athene>
         <victara>
-            <Filename>lineage-14.1-20170915-victara.zip</Filename>
+            <Filename>14.1-20170915-victara.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -45,6 +45,6 @@
                 id="gapps"
                 title="Gapps"
                 description="Download Google's Apps">https://opengapps.org/</GappsUrl>
-        </addison>
+        </victara>
     </Stable>
 </SlimOTA>
