@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.14.3
+version=0.14.4
 
 bdevice() {
 	cd ~/lineage
@@ -25,10 +25,10 @@ bdevice() {
 				# ota-zip
 				md5sum ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/lineage-14.1-$(date +%Y%m%d)-$device.zip.md5sum
 			fi
-			if [ -e ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img ] ; then
-				# recovery
-				md5sum ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img >> ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img.md5sum
-			fi
+			
+			# save recovery
+			unzip -j signed-target_files.zip IMAGES/recovery.img
+			mv recovery.img ~/build/$device/lineage-recovery-$(date +%Y%m%d)-$device.img
 		else
 			echo "$device-user build failed. Try userdebug?"
 		fi
