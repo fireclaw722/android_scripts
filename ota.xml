@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SlimOTA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ota.xsd">
+    <Stable>
+        <addison>
+            <Filename>lineage-14.1-20170915-addison.zip</Filename>
+            <RomUrl
+                id="rom"
+                title="Rom"
+                description="Download ROM">https://rctest.nt.jwolfweb.net/builds/addison/</RomUrl>
+            <ChangelogUrl
+                id="changelog"
+                title="Changelog"
+                description="Lineage Changelog">https://download.lineageos.org/addison/changes/</ChangelogUrl>
+            <GappsUrl
+                id="gapps"
+                title="Gapps"
+                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
+        </addison>
+        <athene>
+            <Filename>lineage-14.1-20170915-athene.zip</Filename>
+            <RomUrl
+                id="rom"
+                title="Rom"
+                description="Download ROM">https://rctest.nt.jwolfweb.net/builds/athene/</RomUrl>
+            <ChangelogUrl
+                id="changelog"
+                title="Changelog"
+                description="Lineage Changelog">https://download.lineageos.org/athene/changes/</ChangelogUrl>
+            <GappsUrl
+                id="gapps"
+                title="Gapps"
+                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
+        </athene>
+        <victara>
+            <Filename>lineage-14.1-20170915-victara.zip</Filename>
+            <RomUrl
+                id="rom"
+                title="Rom"
+                description="Download ROM">https://rctest.nt.jwolfweb.net/builds/victara/</RomUrl>
+            <ChangelogUrl
+                id="changelog"
+                title="Changelog"
+                description="Lineage Changelog">https://download.lineageos.org/athene/changes/</ChangelogUrl>
+            <GappsUrl
+                id="gapps"
+                title="Gapps"
+                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
+        </addison>
+    </Stable>
+</SlimOTA>

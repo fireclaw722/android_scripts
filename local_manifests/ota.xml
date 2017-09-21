@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project name="EmotionOS/packages_apps_EmotionOTA" path="packages/apps/OTA" remote="github" revision="nougat" />
+</manifest>
