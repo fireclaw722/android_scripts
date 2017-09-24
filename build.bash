@@ -29,6 +29,9 @@ bdevice() {
 			# save recovery
 			unzip -j signed-target_files.zip IMAGES/recovery.img
 			mv recovery.img ~/build/$device/recovery-$(date +%Y%m%d)-$device.img
+
+			# save signed-images
+			mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device.zip
 		else
 			echo "$device-user build failed. Try userdebug?"
 		fi
