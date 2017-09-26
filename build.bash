@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.15
+version=0.15.1
 
 bdevice() {
 	cd ~/lineage
@@ -49,28 +49,25 @@ setupenv() {
 	repo sync
 
 	# Add SafetyNet Commits
-	case $device in
-		addison)
-			cd ~/lineage/kernel/motorola/msm8953
-			git fetch https://github.com/franciscofranco/one_plus_3T
-			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-			;;
-		athene)
-			cd ~/lineage/kernel/motorola/msm8952
-			git fetch https://github.com/franciscofranco/one_plus_3T
-			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-			;;
-		oneplus3)
-			cd ~/lineage/kernel/oneplus/msm8996
-			git fetch https://github.com/franciscofranco/one_plus_3T
-			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-			;;
-	esac
+	# addison
+	cd ~/lineage/kernel/motorola/msm8953
+	git fetch https://github.com/franciscofranco/one_plus_3T
+	git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+
+	# athene
+	cd ~/lineage/kernel/motorola/msm8952
+	git fetch https://github.com/franciscofranco/one_plus_3T
+	git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+	
+	# oneplus3
+	cd ~/lineage/kernel/oneplus/msm8996
+	git fetch https://github.com/franciscofranco/one_plus_3T
+	git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+	
+	cd ~/lineage
 
 	## Add UnifiedNlp patch
 	wget -O ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' 'https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch' && cd ~/lineage && patch --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' && rm -f ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' && sync
-
-	cd ~/lineage
 
 	# Setup build environment
 	source build/envsetup.sh 
