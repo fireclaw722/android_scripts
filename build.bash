@@ -67,6 +67,9 @@ setupenv() {
 			;;
 	esac
 
+	## Add UnifiedNlp patch
+	wget -O ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' 'https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch' && cd ~/lineage && patch --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' && rm -f ~/'Downloads/UnifiedNlp-android_frameworks_base-N.patch' && sync
+
 	cd ~/lineage
 
 	# Setup build environment
