@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.15.2
+version=0.16
 
 bdevice() {
 	cd ~/lineage
@@ -32,6 +32,11 @@ bdevice() {
 
 			# save signed-images
 			mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
+
+			# update ota.xml
+			sed -r s/14.1-[0-9]*-$device.zip/14.1-$(date +%Y%m%d)-$device.zip/ ~/build/ota.xml >ota.xml
+			mv ~/build/ota.xml ~/build/ota.xml.old
+			mv ota.xml ~/build/ota.xml
 		else
 			echo "$device-user build failed. Try userdebug?"
 		fi
