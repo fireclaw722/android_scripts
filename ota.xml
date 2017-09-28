@@ -2,7 +2,7 @@
 <SlimOTA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ota.xsd">
     <Stable>
         <addison>
-            <Filename>14.1-20170921-addison.zip</Filename>
+            <Filename>14.1-20170926-addison.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -11,13 +11,9 @@
                 id="changelog"
                 title="Changelog"
                 description="Lineage Changelog">https://download.lineageos.org/addison/changes/</ChangelogUrl>
-            <GappsUrl
-                id="gapps"
-                title="Gapps"
-                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
         </addison>
         <athene>
-            <Filename>14.1-20170921-athene.zip</Filename>
+            <Filename>14.1-20170927-athene.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -26,13 +22,9 @@
                 id="changelog"
                 title="Changelog"
                 description="Lineage Changelog">https://download.lineageos.org/athene/changes/</ChangelogUrl>
-            <GappsUrl
-                id="gapps"
-                title="Gapps"
-                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
         </athene>
         <oneplus3>
-            <Filename>14.1-20170921-oneplus3.zip</Filename>
+            <Filename>14.1-20170927-oneplus3.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -41,13 +33,9 @@
                 id="changelog"
                 title="Changelog"
                 description="Lineage Changelog">https://download.lineageos.org/oneplus3/changes/</ChangelogUrl>
-            <GappsUrl
-                id="gapps"
-                title="Gapps"
-                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
         </oneplus3>
         <victara>
-            <Filename>14.1-20170921-victara.zip</Filename>
+            <Filename>14.1-20170926-victara.zip</Filename>
             <RomUrl
                 id="rom"
                 title="Rom"
@@ -56,10 +44,6 @@
                 id="changelog"
                 title="Changelog"
                 description="Lineage Changelog">https://download.lineageos.org/athene/changes/</ChangelogUrl>
-            <GappsUrl
-                id="gapps"
-                title="Gapps"
-                description="Download Google's Apps">https://opengapps.org/</GappsUrl>
         </victara>
     </Stable>
 </SlimOTA>
