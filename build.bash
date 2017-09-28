@@ -2,47 +2,52 @@
 
 # Variables
 device=
-version=0.16
+version=0.15.2
 
 bdevice() {
 	cd ~/lineage
 
 	# Breakfast
-	if breakfast lineage_$device-user ; then
-		# Run build
-		if mka target-files-package dist ; then
-			# Sign Build
-			./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip
-
-			# Package OTA-zip
-			./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip
-
-			# Move OTA to ~/build
-			mv ~/lineage/signed-ota_update.zip ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip
-
-			# Generate md5 hashes
-			if [ -e ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip ] ; then
-				# ota-zip
-				md5sum ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip.md5sum
-			fi
-			
-			# save recovery
-			unzip -j signed-target_files.zip IMAGES/recovery.img
-			mv recovery.img ~/build/$device/recovery-$(date +%Y%m%d)-$device.img
-
-			# save signed-images
-			mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
-
-			# update ota.xml
-			sed -r s/14.1-[0-9]*-$device.zip/14.1-$(date +%Y%m%d)-$device.zip/ ~/build/ota.xml >ota.xml
-			mv ~/build/ota.xml ~/build/ota.xml.old
-			mv ota.xml ~/build/ota.xml
-		else
-			echo "$device-user build failed. Try userdebug?"
-		fi
-	else
+	if ! breakfast lineage_$device-user ; then
 		echo "Breakfast failed for $device."
+		exit
 	fi
+	# Run build
+	if ! mka target-files-package dist ; then
+		echo "$device-user build failed. Try userdebug?"
+		exit
+	fi
+	# Sign Build
+	if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip ; then
+		echo "Signing failed."
+		exit
+	fi
+
+	# Package OTA-zip
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
+		echo "Creating OTA .zip failed"
+		exit
+	fi
+
+	# Move OTA to ~/build
+	mv ~/lineage/signed-ota_update.zip ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip
+
+	if [ -e ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip ] ; then
+		# Generate md5 hashes
+		md5sum ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip.md5sum
+	fi
+	
+	# save recovery
+	unzip -j signed-target_files.zip IMAGES/recovery.img
+	mv recovery.img ~/build/$device/recovery-$(date +%Y%m%d)-$device.img
+
+	# save signed-images
+	mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
+
+	# update ota.xml
+	sed -r s/14.1-[0-9]*-$device.zip/14.1-$(date +%Y%m%d)-$device.zip/ ~/build/ota.xml >ota.xml
+	mv ~/build/ota.xml ~/build/ota.xml.old
+	mv ota.xml ~/build/ota.xml
 }
 
 setupenv() {
