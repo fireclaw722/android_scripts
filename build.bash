@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.16
+version=0.16.1
 
 bdevice() {
 	cd ~/lineage
@@ -86,7 +86,7 @@ setupenv() {
 	# Sync new changes
 	repo sync
 
-
+	setuppatches
 
 	# Setup build environment
 	source build/envsetup.sh 
