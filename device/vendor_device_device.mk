@@ -11,4 +11,6 @@ PRODUCT_PACKAGES += \
 
 GAPPS_FORCE_DIALER_OVERRIDES := true
 
+GAPPS_BYPASS_PACKAGE_OVERRIDES := Music2
+
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
