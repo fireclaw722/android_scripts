@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.18
+version=0.18.1
 
 bdevice() {
 	cd ~/lineage
@@ -114,7 +114,7 @@ if [ $# -gt 0 ]; then
 			echo "Please use a codename for the device you wish to build."
 			echo ""
 			echo "Available devices are:"
-			echo "'addison','athene','oneplus3','victara'"
+			echo "'addison','athene','victara'"
 			;;
 		version|-v|--version)
 			echo "Version: "$version
