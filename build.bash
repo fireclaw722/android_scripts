@@ -101,7 +101,7 @@ setupenv() {
 if [ $# -gt 0 ]; then
 	# Parse Args
 	case $1 in
-		addison|athene|oneplus3|victara)
+		addison|athene|victara)
 			device=$1
 			
 			shift
