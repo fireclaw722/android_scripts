@@ -37,6 +37,10 @@ bdevice() {
 		md5sum ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip.md5sum
 	fi
 	
+	# save recovery
+	#unzip -j signed-target_files.zip IMAGES/recovery.img
+	#mv recovery.img ~/build/$device/recovery-$(date +%Y%m%d)-$device.img
+
 	# save signed-images
 	mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
 
