@@ -96,7 +96,6 @@ setupenv() {
 	unset 'CCACHE_DISABLE' && export 'CCACHE_DISABLE=1'
 
 	export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
-
 }
 
 if [ $# -gt 0 ]; then
