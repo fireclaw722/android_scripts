@@ -32,12 +32,20 @@ bdevice() {
 	# Move OTA to ~/build
 	mv ~/lineage/signed-ota_update.zip ~/build/updater/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	
-	# save recovery
-	#unzip -j signed-target_files.zip IMAGES/recovery.img
-	#mv recovery.img ~/build/$device/recovery-$(date +%Y%m%d)-$device.img
-
 	# save signed-images
 	mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
+	unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/boot.img IMAGES/recovery.img IMAGES/recovery-two-step.img IMAGES/system.img IMAGES/system.map
+	# zip .img's
+	mkdir $(date +%Y%m%d)
+	mv boot.img $(date +%Y%m%d)/boot.img
+	mv recovery.img $(date +%Y%m%d)/recovery.img
+	mv recovery-two-step.img $(date +%Y%m%d)/recovery-two-step.img
+	mv system.img $(date +%Y%m%d)/system.img
+	mv system.map $(date +%Y%m%d)/system.map
+	# remove unneeded files
+	if zip ~/build/images/$device/lineage-14.1-$(date +%Y%m%d)-factory_imgs.zip $(date +%Y%m%d)/* ; then
+		rm -rf $(date +%Y%m%d)/
+	fi
 }
 
 setuppatches() {
