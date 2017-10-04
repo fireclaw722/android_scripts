@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.20
+version=0.20.1
 
 bdevice() {
 	cd ~/lineage
@@ -43,7 +43,7 @@ bdevice() {
 	mv system.img $(date +%Y%m%d)/system.img
 	mv system.map $(date +%Y%m%d)/system.map
 	# remove unneeded files
-	if zip ~/build/images/$device/lineage-14.1-$(date +%Y%m%d)-factory_imgs.zip $(date +%Y%m%d)/* ; then
+	if zip ~/build/images/$device/lineage-14.1-$(date +%Y%m%d)-factory_imgs-$device.zip $(date +%Y%m%d)/* ; then
 		rm -rf $(date +%Y%m%d)/
 	fi
 }
