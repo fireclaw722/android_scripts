@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.18.1
+version=0.19
 
 bdevice() {
 	cd ~/lineage
@@ -30,12 +30,7 @@ bdevice() {
 	fi
 
 	# Move OTA to ~/build
-	mv ~/lineage/signed-ota_update.zip ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip
-
-	if [ -e ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip ] ; then
-		# Generate md5 hashes
-		md5sum ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip >> ~/build/$device/14.1-$(date +%Y%m%d)-$device.zip.md5sum
-	fi
+	mv ~/lineage/signed-ota_update.zip ~/build/updater/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	
 	# save recovery
 	#unzip -j signed-target_files.zip IMAGES/recovery.img
@@ -43,11 +38,6 @@ bdevice() {
 
 	# save signed-images
 	mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
-
-	# update ota.xml
-	sed -r s/14.1-[0-9]*-$device.zip/14.1-$(date +%Y%m%d)-$device.zip/ ~/build/ota.xml >ota.xml
-	mv ~/build/ota.xml ~/build/ota.xml.old
-	mv ota.xml ~/build/ota.xml
 }
 
 setuppatches() {
