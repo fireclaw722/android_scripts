@@ -2,7 +2,7 @@
 
 # Variables
 device=
-version=0.20.1
+version=0.20.2
 
 bdevice() {
 	cd ~/lineage
@@ -30,7 +30,7 @@ bdevice() {
 	fi
 
 	# Move OTA to ~/build
-	mv ~/lineage/signed-ota_update.zip ~/build/updater/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+	mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	
 	# save signed-images
 	mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
