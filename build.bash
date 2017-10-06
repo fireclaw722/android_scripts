@@ -104,6 +104,36 @@ if [ $# -gt 0 ]; then
 			
 			shift
 
+			cd ~/lineage/vendor/cm/config
+			cp common.mk.unofficial common.mk
+			cd ~/lineage
+
+			setupenv
+
+			bdevice
+			;;
+		addison-stable|athene-stable|victara-stable)
+			device=$1
+			
+			shift
+
+			cd ~/lineage/vendor/cm/config
+			cp common.mk.stable common.mk
+			cd ~/lineage
+
+			setupenv
+
+			bdevice
+			;;
+		addison-nightly|athene-nightly|victara-nightly)
+			device=$1
+			
+			shift
+
+			cd ~/lineage/vendor/cm/config
+			cp common.mk.nightly common.mk
+			cd ~/lineage
+
 			setupenv
 
 			bdevice
