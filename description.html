@@ -1,0 +1,308 @@
+<html lang="en-us">
+<head>
+    <title>Builds Description</title>
+    <link href="https://rctest.nt.jwolfweb.net/reset.css" type="text/css" rel="stylesheet" />
+    <style>
+        /************************** Main Attributes **************************/
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            min-width: 500px;
+        }
+
+        h2 {
+            font-size:1.5em;
+            color:#444;
+            text-align: center;
+        }
+
+        h3 {
+            font-size:1.25em;
+            margin-top:.25em;
+            margin-bottom:.75em;
+            text-align: center;
+        }
+
+        p {
+            word-wrap: break-word;
+        }
+
+        a, a:link, a:visited {
+            font-weight:700;
+            text-decoration:none;
+            color:#554242;
+        }
+
+        a:active, a:hover, a:focus {
+            color:#eee;
+            opacity:.9;
+        }
+
+        sup {
+            vertical-align: super;
+            font-size: 0.55em;
+        }
+
+        /**** body Div ****/
+        #bodyContent {
+            width:80%;
+            background-color:#ddd;
+            padding-top: 1%;
+            margin-top: 2em;margin-bottom: 2em;
+            margin-left:10%;
+            float:left;
+
+            border-radius:20px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        /************************** Header **************************/
+
+
+        /**** Title/Logo ****/
+        h1 {
+            text-align:center;
+            font-size: 2em;
+            margin: 1em 20%;
+            padding: .25em 0px;
+            color: #6dc15f;
+            border-top: 1px #000 solid;
+            border-bottom: 1px #000 solid;
+        }
+
+        /******** Navigation ********/
+        .headerNav {
+            padding: .25em 1em;
+            margin: 5px 0px;
+            font-size: 1.5em;
+        }
+
+            .headerNav ul {
+                list-style:none;
+                padding:0px;
+                margin:0px;
+            }
+
+            .headerNav li {
+                display:inline;
+            }
+
+            .headerNav a:link, .headerNav a:visited {
+                padding: 0 .75em;
+                margin: 0 2px;
+                border-radius:5px;
+                border:solid 2px #333;
+            }
+
+            .headerNav a:active, .headerNav a:hover, .headerNav a:focus {
+                background-color:#333;
+            }
+
+        /**** Link Styles for Current Page Links ****/
+        a.CurrentLink:link, a.CurrentLink:visited {
+            background-color: #eee;
+        }
+
+        a.CurrentLink:active, a.CurrentLink:hover, a.CurrentLink:focus {
+            color: #eee;
+            background-color: #111;
+            opacity: 1;
+        }
+
+        /**** Main Nav ****/
+        #headMainNav {
+            background-color:#5595e0;
+        }
+
+        #headMainNav a.CurrentLink:link, #headMainNav a.CurrentLink:visited {
+            background-color: #b1ceef;
+        }
+
+        /**** Page-Specific Nav ****/
+        #headPageNav {
+            text-align:right;
+            background-color:#6dc15f;
+        }
+
+        #headPageNav a.CurrentLink:link, #headPageNav a.CurrentLink:visited {
+            background-color: #b3e0ab;
+        }
+
+        /************************** Content **************************/
+
+        /**** Main Content ****/
+        #content {
+            width:100%;
+            float:left;
+        }
+
+            #content div {
+                padding:1%;
+            }
+
+        /**** Seperate Divs, within #content ****/
+        .midContent {
+            float:left;
+            width:90%;
+            padding:10px 5%;
+        }
+
+            .midContent a, .midContent a:link, .midContent a:visited {
+                font-weight:normal;
+                color:#5595e0;
+            }
+
+            .midContent a:active, .midContent a:hover, .midContent a:focus {
+                color:#1f3145;
+                text-decoration:underline;
+                background:none;
+            }
+
+            .midContent p {
+                word-wrap: break-word;
+                margin-top: 10px;
+            }
+
+        .midContentSep {
+            float:left;
+            width:48%;
+            padding:10px 1%;
+        }
+            .midContentSep a, .midContentSep a:link, .midContentSep a:visited {
+                font-weight:normal;
+                color:#5595e0;
+            }
+
+            .midContentSep a:active, .midContentSep a:hover, .midContentSep a:focus {
+                color:#1f3145;
+                text-decoration:underline;
+                background:none;
+            }
+
+            .midContentSep p {
+                word-wrap: break-word;
+                margin-top: 10px;
+            }
+
+        footer {
+            width:100%;
+            float:left;
+            text-align: center;
+            color:#eee;
+            background-color:#2f2f2f;
+            padding: 1em 0px;
+
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+            footer p {
+                font-size:.9em;
+                float: left;
+                width: 40%;
+                margin: 0px 5%;
+                padding-top: .25em;
+                /*border-top: solid #ddd 1px;*/
+            }
+
+                footer p strong {
+                    display: block;
+                    font-weight: bold;
+                    padding-left: 5px;
+                    margin-bottom: 5px;
+
+                    border-right: 5px solid #ddd;
+                    border-left: 5px solid #ddd;
+                    border-bottom: 1px solid #ddd;
+                    border-top: 1px solid #ddd;
+                }
+
+            footer a, footer a:link, footer a:visited {
+                font-weight:normal;
+                background-color: none;
+                color:#5595e0;
+            }
+
+            footer a:active, footer a:hover, footer a:focus {
+                color:#ddd;
+                background-color: none;
+                text-decoration: underline;
+            }
+    </style>
+
+    <!-- Google Analytics -->
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70073602-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-70073602-2');
+    </script>
+
+</head>
+
+<body>
+    <div id="bodyContent">
+        <header>
+            <h1>Place for AOSP and LineageOS builds</h1>
+        </header>
+        
+        <section id="content">
+            <article class="midContent">
+                <h2>Devices</h2>
+                <p>
+                    There are currently only 3 different devices being built. Others can be added, upon request, but I will not have the physical device for <em>any</em> sort of testing. This means I will not even know if the build boots. 
+                </p>
+            </article>
+            <article class="midContentSep">
+                <h3>Available devices:</h3>
+                <ul style="list-style:square;padding-left:2em;margin-left:20%;">
+                    <li>Addison (Moto Z Play)</li>
+                    <li>Athene (Moto G<sup>4</sup>/G<sup>4</sup> Plus)</li>
+                    <li>Victara (Moto X<sup>2</sup>)</li>
+                </ul>
+            </article>
+            <article class="midContentSep">
+                <h3>Untested Devices:</h3>
+                <ul style="list-style:square;padding-left:2em;margin-left:20%;">
+                    <li>None</li>
+                </ul>
+            </article>
+            <article class="midContent">
+                    <h2>Downloads and Updates</h2>
+                </article>
+            <article class="midContentSep">
+                <h3>Downloads</h3>
+                <p>
+                    All Downloads are located under <a href="https://rctest.nt.jwolfweb.net/builds/">/builds/</a>.
+                </p>
+                <p>
+                    Files under <a href="https://rctest.nt.jwolfweb.net/builds/images/">/images/</a> are only for testing purposes. They include the system, recovery, and boot images for flashing with fastboot, and aren't needed to use these builds.
+                </p>
+                <p>
+                    Files under <a href="https://rctest.nt.jwolfweb.net/builds/updater/">/updater/</a> include .zip files that can be flashed in a compatible recovery, such as TWRP. It is recommended that you do a clean flash when coming from a different ROM or Stock. This means to wipe data <em>and</em> Internal Storage
+                </p>
+            </article>
+            <article class="midContentSep">
+                <h3>Updates</h3>
+                <p>
+                    These builds use LineageOS's built in updater application, and on the server-side uses this PHP <a href="https://github.com/julianxhokaxhiu/LineageOTA">LineageOTA </a> application. This means OTA updates work just like standard LineageOS.
+                </p>
+            </article>
+            <article class="midContentSep">
+                <h3>Update Channels</h3>
+                <p>There are two different update channels: STABLE and UNOFFICIAL.</p>
+                <p>
+                    The STABLE builds will be built after the monthly security patches are merged into LineageOS's official repos. This usually happpens near the beginning of the month.
+                </p>
+                <p>
+                    The UNOFFICIAL is the regular update channel, and will be built at an irregular interval. Essentially, whenever I notice an interesting change get merged, or whenever I make a change to test, I will build an UNOFFICIAL version. 
+                </p>
+            </article>
+        </section>
+        <footer></footer>
+    </div>
+</body>
