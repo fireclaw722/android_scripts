@@ -6,6 +6,7 @@ PRODUCT_PACKAGES += \
     GoogleDialer \
     Maps \
     Photos \
+    Velvet \
     Wallet
 
 GAPPS_FORCE_DIALER_OVERRIDES := true
