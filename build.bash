@@ -2,7 +2,8 @@
 
 # Variables
 device=
-version=0.21
+stable=0
+version=0.21.1
 
 bdevice() {
 	cd ~/lineage
@@ -28,23 +29,25 @@ bdevice() {
 		echo "Creating OTA .zip failed"
 		exit
 	fi
-
-	# Move OTA to ~/build
-	mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	
-	# save signed-images
-	mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
-	unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/boot.img IMAGES/recovery.img IMAGES/recovery-two-step.img IMAGES/system.img IMAGES/system.map
-	# zip .img's
-	mkdir $(date +%Y%m%d)
-	mv boot.img $(date +%Y%m%d)/boot.img
-	mv recovery.img $(date +%Y%m%d)/recovery.img
-	mv recovery-two-step.img $(date +%Y%m%d)/recovery-two-step.img
-	mv system.img $(date +%Y%m%d)/system.img
-	mv system.map $(date +%Y%m%d)/system.map
-	# remove unneeded files
-	if zip ~/build/images/$device/lineage-14.1-$(date +%Y%m%d)-factory_imgs-$device.zip $(date +%Y%m%d)/* ; then
-		rm -rf $(date +%Y%m%d)/
+	if [ $stable=1 ] ; then
+		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+		# save signed-images
+		mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
+		unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/boot.img IMAGES/recovery.img IMAGES/recovery-two-step.img IMAGES/system.img IMAGES/system.map
+		# zip .img's
+		mkdir $(date +%Y%m%d)
+		mv boot.img $(date +%Y%m%d)/boot.img
+		mv recovery.img $(date +%Y%m%d)/recovery.img
+		mv recovery-two-step.img $(date +%Y%m%d)/recovery-two-step.img
+		mv system.img $(date +%Y%m%d)/system.img
+		mv system.map $(date +%Y%m%d)/system.map
+		# remove unneeded files
+		if zip ~/build/images/$device/lineage-14.1-$(date +%Y%m%d)-factory_imgs-$device.zip $(date +%Y%m%d)/* ; then
+			rm -rf $(date +%Y%m%d)/
+		fi
+	else
+		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	fi
 }
 
@@ -135,6 +138,8 @@ if [ $# -gt 0 ]; then
 			cd ~/lineage/vendor/cm/config
 			cp common.mk.stable common.mk
 			cd ~/lineage
+
+			stable=1
 
 			setupenv
 
