@@ -102,7 +102,7 @@ setupenv() {
 if [ $# -gt 0 ]; then
 	# Parse Args
 	case $1 in
-		addison|athene|victara)
+		addison|athene|oneplus3|victara)
 			device=$1
 			
 			shift
@@ -115,7 +115,7 @@ if [ $# -gt 0 ]; then
 
 			bdevice
 			;;
-		addison-stable|athene-stable|victara-stable)
+		addison-stable|athene-stable|oneplus3-stable|victara-stable)
 			case $1 in
 				addison-stable)
 					device=addison
@@ -149,7 +149,7 @@ if [ $# -gt 0 ]; then
 			echo "Please use a codename for the device you wish to build."
 			echo ""
 			echo "Available devices are:"
-			echo "'addison','athene','victara'"
+			echo "'addison','athene','oneplus3','victara'"
 			;;
 		version|-v|--version)
 			echo "Version: "$version
