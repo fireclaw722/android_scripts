@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.21.3
+version=0.21.4
 
 bdevice() {
 	cd ~/lineage
@@ -32,20 +32,10 @@ bdevice() {
 	
 	if [ $stable -eq 1 ] ; then
 		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
-		# save signed-images
+		# save signed recovery
 		mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
-		unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/boot.img IMAGES/recovery.img IMAGES/recovery-two-step.img IMAGES/system.img IMAGES/system.map
-		# zip .img's
-		mkdir $(date +%Y%m%d)
-		mv boot.img $(date +%Y%m%d)/boot.img
-		mv recovery.img $(date +%Y%m%d)/recovery.img
-		mv recovery-two-step.img $(date +%Y%m%d)/recovery-two-step.img
-		mv system.img $(date +%Y%m%d)/system.img
-		mv system.map $(date +%Y%m%d)/system.map
-		# remove unneeded files
-		if zip ~/build/images/$device/lineage-14.1-$(date +%Y%m%d)-factory_imgs-$device.zip $(date +%Y%m%d)/* ; then
-			rm -rf $(date +%Y%m%d)/
-		fi
+		unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/recovery.img 
+		mv recovery.img ~/build/images/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
 	else
 		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	fi
