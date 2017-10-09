@@ -117,7 +117,7 @@ if [ $# -gt 0 ]; then
 					device=athene
 					shift
 					;;
-				onplus3-stable)
+				oneplus3-stable)
 					device=oneplus3
 					shift
 					;;
