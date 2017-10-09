@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.21.1
+version=0.21.3
 
 bdevice() {
 	cd ~/lineage
@@ -30,7 +30,7 @@ bdevice() {
 		exit
 	fi
 	
-	if [ $stable=1 ] ; then
+	if [ $stable -eq 1 ] ; then
 		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 		# save signed-images
 		mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
@@ -110,6 +110,8 @@ if [ $# -gt 0 ]; then
 			cd ~/lineage/vendor/cm/config
 			cp common.mk.unofficial common.mk
 			cd ~/lineage
+
+			stable=0
 
 			setupenv
 
