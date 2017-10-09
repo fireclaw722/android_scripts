@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.21.4
+version=0.21.5
 
 bdevice() {
 	cd ~/lineage
@@ -115,6 +115,10 @@ if [ $# -gt 0 ]; then
 					;;
 				athene-stable)
 					device=athene
+					shift
+					;;
+				onplus3-stable)
+					device=oneplus3
 					shift
 					;;
 				victara-stable)
