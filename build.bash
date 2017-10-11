@@ -32,8 +32,10 @@ bdevice() {
 	
 	if [ $stable -eq 1 ] ; then
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-files-for-delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 	else
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-files-for-delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	fi
 }
 
