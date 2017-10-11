@@ -32,10 +32,6 @@ bdevice() {
 	
 	if [ $stable -eq 1 ] ; then
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
-		# save signed recovery
-		mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
-		unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/recovery.img 
-		mv recovery.img ~/build/images/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
 	else
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	fi
