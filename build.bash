@@ -3,10 +3,10 @@
 # Variables
 device=
 stable=0
-version=0.21.5
+version=0.22
 
 bdevice() {
-	cd ~/lineage
+	cd ~/android/lineage/cm-14.1
 
 	# Breakfast
 	if ! breakfast lineage_$device-user ; then
@@ -31,13 +31,13 @@ bdevice() {
 	fi
 	
 	if [ $stable -eq 1 ] ; then
-		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 		# save signed recovery
 		mv signed-target_files.zip ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip
 		unzip -j ~/build/images/14.1-$(date +%Y%m%d)-$device-factory_imgs.zip IMAGES/recovery.img 
 		mv recovery.img ~/build/images/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
 	else
-		mv ~/lineage/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	fi
 }
 
@@ -45,23 +45,23 @@ setuppatches() {
 	# Add SafetyNet Patches
 	case $device in
 		addison)
-			cd ~/lineage/kernel/motorola/msm8953
+			cd ~/android/lineage/cm-14.1/kernel/motorola/msm8953
 			git fetch https://github.com/franciscofranco/one_plus_3T
 			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 		athene)
-			cd ~/lineage/kernel/motorola/msm8952
+			cd ~/android/lineage/cm-14.1/kernel/motorola/msm8952
 			git fetch https://github.com/franciscofranco/one_plus_3T
 			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 		oneplus3)
-			cd ~/lineage/kernel/oneplus/msm8996
+			cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
 			git fetch https://github.com/franciscofranco/one_plus_3T
 			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 	esac	
 	
-	cd ~/lineage
+	cd ~/android/lineage/cm-14.1
 
 	## Add UnifiedNlp patch
 	wget -O ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch
@@ -70,7 +70,7 @@ setuppatches() {
 }
 
 setupenv() {
-	cd ~/lineage 
+	cd ~/android/lineage/cm-14.1 
 
 	make clobber
 
@@ -97,9 +97,9 @@ if [ $# -gt 0 ]; then
 			
 			shift
 
-			cd ~/lineage/vendor/cm/config
+			cd ~/android/lineage/cm-14.1/vendor/cm/config
 			cp common.mk.unofficial common.mk
-			cd ~/lineage
+			cd ~/android/lineage/cm-14.1
 
 			stable=0
 
@@ -131,9 +131,9 @@ if [ $# -gt 0 ]; then
 					;;
 			esac
 
-			cd ~/lineage/vendor/cm/config
+			cd ~/android/lineage/cm-14.1/vendor/cm/config
 			cp common.mk.stable common.mk
-			cd ~/lineage
+			cd ~/android/lineage/cm-14.1
 
 			stable=1
 
