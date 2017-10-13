@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.22.1
+version=0.22.2
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -32,7 +32,7 @@ bdevice() {
 	
 	if [ $stable -eq 1 ] ; then
 		# Save Full OTA
-		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 
 		# Build Delta/Incremental OTA
 		if ./build/tools/releasetools/ota_from_target_files -i ~/build/target-delta/lineage-14.1-*-STABLE-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip ; then
@@ -46,7 +46,7 @@ bdevice() {
 		fi
 	else
 		# Save Full OTA
-		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/updater/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 		
 		# Build Delta/Incremental OTA
 		if ./build/tools/releasetools/ota_from_target_files -i ~/build/target-delta/lineage-14.1-*-UNOFFICIAL-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip ; then
