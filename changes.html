@@ -1,0 +1,425 @@
+<html lang="en-us">
+<head>
+    <title>Build Changelog</title>
+    <link href="https://rctest.nt.jwolfweb.net/reset.css" type="text/css" rel="stylesheet" />
+    <style>
+        /************************** Main Attributes **************************/
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            min-width: 500px;
+        }
+
+        h2 {
+            font-size:1.5em;
+            color:#444;
+            text-align: center;
+            font-weight:bold;
+        }
+
+        h3 {
+            font-size:1.25em;
+            margin-top:.25em;
+            margin-bottom:.75em;
+            text-align: center;
+        }
+
+        p {
+            word-wrap: break-word;
+        }
+
+        a, a:link, a:visited {
+            font-weight:700;
+            text-decoration:none;
+            color:#554242;
+        }
+
+        a:active, a:hover, a:focus {
+            color:#eee;
+            opacity:.9;
+        }
+
+        sup {
+            vertical-align: super;
+            font-size: 0.55em;
+        }
+
+        /**** body Div ****/
+        #bodyContent {
+            width:80%;
+            background-color:#ddd;
+            padding-top: 1%;
+            margin-top: 2em;margin-bottom: 2em;
+            margin-left:10%;
+            float:left;
+
+            border-radius:20px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        /************************** Header **************************/
+
+
+        /**** Title/Logo ****/
+        h1 {
+            text-align:center;
+            font-size: 2em;
+            margin: 1em 20%;
+            padding: .25em 0px;
+            color: #6dc15f;
+            border-top: 1px #000 solid;
+            border-bottom: 1px #000 solid;
+        }
+
+        header p {
+            padding: 10px;
+            padding-left: 5em;
+            padding-right: 5em;
+        }
+
+        /******** Navigation ********/
+        .headerNav {
+            padding: .25em 1em;
+            margin: 5px 0px;
+            font-size: 1.5em;
+        }
+
+            .headerNav ul {
+                list-style:none;
+                padding:0px;
+                margin:0px;
+            }
+
+            .headerNav li {
+                display:inline;
+            }
+
+            .headerNav a:link, .headerNav a:visited {
+                padding: 0 .75em;
+                margin: 0 2px;
+                border-radius:5px;
+                border:solid 2px #333;
+            }
+
+            .headerNav a:active, .headerNav a:hover, .headerNav a:focus {
+                background-color:#333;
+            }
+
+        /**** Link Styles for Current Page Links ****/
+        a.CurrentLink:link, a.CurrentLink:visited {
+            background-color: #eee;
+        }
+
+        a.CurrentLink:active, a.CurrentLink:hover, a.CurrentLink:focus {
+            color: #eee;
+            background-color: #111;
+            opacity: 1;
+        }
+
+        /**** Main Nav ****/
+        #headMainNav {
+            background-color:#5595e0;
+        }
+
+        #headMainNav a.CurrentLink:link, #headMainNav a.CurrentLink:visited {
+            background-color: #b1ceef;
+        }
+
+        /**** Page-Specific Nav ****/
+        #headPageNav {
+            text-align:right;
+            background-color:#6dc15f;
+        }
+
+        #headPageNav a.CurrentLink:link, #headPageNav a.CurrentLink:visited {
+            background-color: #b3e0ab;
+        }
+
+        /************************** Content **************************/
+
+        /**** Main Content ****/
+        #content {
+            width:100%;
+            float:left;
+        }
+
+            #content div {
+                padding:1%;
+            }
+
+        /**** Seperate Divs, within #content ****/
+        .midContentSep {
+            float:left;
+            width:48%;
+            padding:10px 1%;
+        }
+
+            .midContentSep h3 {
+                border-top:#1f3145 1px solid;
+                border-bottom:#1f3145 1px solid;
+                border-left:#1f3145 2px solid;
+                border-right:#1f3145 2px solid;
+            }
+
+            .midContentSep ul {
+                list-style:disc;
+                padding-left: 2em;
+            }
+
+            .midContentSep a, .midContentSep a:link, .midContentSep a:visited {
+                font-weight:normal;
+                color:#5595e0;
+            }
+
+            .midContentSep a:active, .midContentSep a:hover, .midContentSep a:focus {
+                color:#1f3145;
+                text-decoration:underline;
+                background:none;
+            }
+
+            .midContentSep p {
+                word-wrap: break-word;
+                margin-top: 10px;
+            }
+
+        footer {
+            width:100%;
+            float:left;
+            text-align: center;
+            color:#eee;
+            background-color:#2f2f2f;
+            padding: 1em 0px;
+
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+            footer p {
+                font-size:.9em;
+                float: left;
+                width: 40%;
+                margin: 0px 5%;
+                padding-top: .25em;
+                /*border-top: solid #ddd 1px;*/
+            }
+
+                footer p strong {
+                    display: block;
+                    font-weight: bold;
+                    padding-left: 5px;
+                    margin-bottom: 5px;
+
+                    border-right: 5px solid #ddd;
+                    border-left: 5px solid #ddd;
+                    border-bottom: 1px solid #ddd;
+                    border-top: 1px solid #ddd;
+                }
+
+            footer a, footer a:link, footer a:visited {
+                font-weight:normal;
+                background-color: none;
+                color:#5595e0;
+            }
+
+            footer a:active, footer a:hover, footer a:focus {
+                color:#ddd;
+                background-color: none;
+                text-decoration: underline;
+            }
+    </style>
+
+    <!-- Google Analytics -->
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70073602-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-70073602-2');
+    </script>
+</head>
+<body>
+    <div id="bodyContent">
+        <header>
+            <h1>Changes</h1>
+            <p><em>All builds includes up-to-date LineageOS specific changes. Check the LineageOS changelog for more details.</em></p>
+        </header>
+        <section id="content">
+            <h2>addison</h2>
+            <article class="midContentSep">
+                <h3 id="addison-stable">STABLE</h3>
+                <p>
+                    14.1-20171009
+                    <br />
+                    <ul>
+                        <li>October Securty Patch</li>
+                    </ul>
+                </p>
+            </article>
+            
+            <article class="midContentSep">
+                <h3 id="addison-nightly">UNOFFICIAL</h3>
+                <p>
+                    14.1-20171012
+                    <br />
+                    <ul>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171011
+                    <br />
+                    <ul>
+                        <li>First Build</li>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+            </article>
+
+            <h2>athene</h2>
+            <article class="midContentSep">
+                <h3 id="athene-stable">STABLE</h3>
+                <p>
+                    14.1-20171017
+                    <br />
+                    <ul>
+                        <li>KRACK WPA WiFi Patch</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171012
+                    <br />
+                    <ul>
+                        <li>October Securty Patch</li>
+                    </ul>
+                </p>
+            </article>
+
+            <article class="midContentSep">
+                <h3 id="athene-nightly">UNOFFICIAL</h3>
+                <p>
+                    14.1-20171017
+                    <br />
+                    <ul>
+                        <li>KRACK WPA WiFi Patch</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171013
+                    <br />
+                    <ul>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171011
+                    <br />
+                    <ul>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171010
+                    <br />
+                    <ul>
+                        <li>First Build</li>
+                    </ul>
+                </p>
+            </article>
+
+            <h2>oneplus3</h2>
+            <article class="midContentSep">
+                <h3 id="oneplus3-stable">STABLE</h3>
+                <p>
+                    14.1-20171016
+                    <br />
+                    <ul>
+                        <li>KRACK WPA WiFi Patch</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171012
+                    <br />
+                    <ul>
+                        <li>October Securty Patch</li>
+                    </ul>
+                </p>
+            </article>
+
+            <article class="midContentSep">
+                <h3 id="oneplus3-nightly">UNOFFICIAL</h3>
+                <p>
+                    14.1-20171017
+                    <br />
+                    <ul>
+                        <li>Test Build with FrancoKernel</li>
+                        <li>KRACK WPA WiFi Patch</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171013
+                    <br />
+                    <ul>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171011
+                    <br />
+                    <ul>
+                        <li>First Build</li>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+            </article>
+
+            <h2>victara</h2>
+            <article class="midContentSep">
+                <h3 id="victara-stable">STABLE</h3>
+                <p>
+                    14.1-20171017
+                    <br />
+                    <ul>
+                        <li>KRACK WPA WiFi Patch</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171012
+                    <br />
+                    <ul>
+                        <li>October Securty Patch</li>
+                    </ul>
+                </p>
+            </article>
+
+            <article class="midContentSep">
+                <h3 id="victara-unofficial">UNOFFICIAL</h3>
+                <p>
+                    14.1-20171013
+                    <br />
+                    <ul>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171011
+                    <br />
+                    <ul>
+                        <li>Attempt to get Deltas working</li>
+                    </ul>
+                </p>
+                <p>
+                    14.1-20171010
+                    <br />
+                    <ul>
+                        <li>First Build</li>
+                    </ul>
+                </p>
+            </article>
+            
+        </section>
+        <footer></footer>
+    </div>
+</body>
