@@ -124,6 +124,8 @@ if [ $# -gt 0 ]; then
 			cd ~/android/lineage/cm-14.1/.repo/local_manifests/
 			cp roomservice.xml.unofficial roomservice.xml
 
+			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996/
+
 			cd ~/android/lineage/cm-14.1
 
 			stable=0
@@ -160,6 +162,8 @@ if [ $# -gt 0 ]; then
 			cp common.mk.stable common.mk
 			cd ~/android/lineage/cm-14.1/.repo/local_manifests/
 			cp roomservice.xml.stable roomservice.xml
+
+			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996/
 
 			cd ~/android/lineage/cm-14.1
 
