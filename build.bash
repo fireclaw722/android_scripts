@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.22.2
+version=0.22.3
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -75,9 +75,11 @@ setuppatches() {
 			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 		oneplus3)
-			cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
-			git fetch https://github.com/franciscofranco/one_plus_3T
-			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+			if [ $stable -eq 1 ] ; then
+				cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
+				git fetch https://github.com/franciscofranco/one_plus_3T
+				git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+			fi
 			;;
 	esac	
 	
@@ -119,6 +121,9 @@ if [ $# -gt 0 ]; then
 
 			cd ~/android/lineage/cm-14.1/vendor/cm/config
 			cp common.mk.unofficial common.mk
+			cd ~/android/lineage/cm-14.1/.repo/local_manifests/
+			cp roomservice.xml.unofficial roomservice.xml
+
 			cd ~/android/lineage/cm-14.1
 
 			stable=0
@@ -153,6 +158,9 @@ if [ $# -gt 0 ]; then
 
 			cd ~/android/lineage/cm-14.1/vendor/cm/config
 			cp common.mk.stable common.mk
+			cd ~/android/lineage/cm-14.1/.repo/local_manifests/
+			cp roomservice.xml.stable roomservice.xml
+
 			cd ~/android/lineage/cm-14.1
 
 			stable=1
