@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.22.4
+version=0.22.6
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -82,7 +82,7 @@ setuppatches() {
 			elif [ $stable -eq 0 ] ; then
 				cd ~/android/lineage/cm-14.1/kernel/oneplus/
 				rm -rf msm8996
-				git clone https://github.com/franciscofranco/one_plus_3T msm8996
+				git clone https://github.com/franciscofranco/one_plus_3T msm8996 -b lineageos-14.1
 			fi
 			;;
 	esac	
