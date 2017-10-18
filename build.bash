@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.23_1
+version=0.23_2
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -173,14 +173,19 @@ setupenv() {
 
 	make clobber
 
-	# Sync new changes
-	repo sync
+	if [ $stable -eq 0 ] ; then
+		# Sync new changes
+		repo sync
+
+		mergesubstratum
+	elif [ $stable -eq 1 ] ; then
+		repo sync --force-sync
+	fi
 
 	setuppatches
 
-	if [ $stable -eq 0 ] ; then
-		mergesubstratum
-	fi
+	cd ~/android/lineage/cm-14.1 
+
 	# Setup build environment
 	source build/envsetup.sh 
 
