@@ -62,7 +62,7 @@ bdevice() {
 }
 
 setuppatches() {
-	# Add SafetyNet Patches
+	# Add Device/Kernel Specific Patches
 	case $device in
 		addison)
 			cd ~/android/lineage/cm-14.1/kernel/motorola/msm8953
@@ -79,6 +79,10 @@ setuppatches() {
 				cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
 				git fetch https://github.com/franciscofranco/one_plus_3T
 				git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+			elif [ $stable -eq 0 ] ; then
+				cd ~/android/lineage/cm-14.1/kernel/oneplus/
+				rm -rf msm8996
+				git clone https://github.com/franciscofranco/one_plus_3T msm8996
 			fi
 			;;
 	esac	
@@ -121,10 +125,6 @@ if [ $# -gt 0 ]; then
 
 			cd ~/android/lineage/cm-14.1/vendor/cm/config
 			cp common.mk.unofficial common.mk
-			cd ~/android/lineage/cm-14.1/.repo/local_manifests/
-			cp roomservice.xml.unofficial roomservice.xml
-
-			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996/
 
 			cd ~/android/lineage/cm-14.1
 
@@ -147,6 +147,9 @@ if [ $# -gt 0 ]; then
 				oneplus3-stable)
 					device=oneplus3
 					shift
+
+					cd ~/android/lineage/cm-14.1/kernel/oneplus/
+					rm -rf msm8996
 					;;
 				victara-stable)
 					device=victara
@@ -160,10 +163,6 @@ if [ $# -gt 0 ]; then
 
 			cd ~/android/lineage/cm-14.1/vendor/cm/config
 			cp common.mk.stable common.mk
-			cd ~/android/lineage/cm-14.1/.repo/local_manifests/
-			cp roomservice.xml.stable roomservice.xml
-
-			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996/
 
 			cd ~/android/lineage/cm-14.1
 
