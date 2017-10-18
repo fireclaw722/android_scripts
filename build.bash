@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.23_0
+version=0.23_1
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -178,8 +178,9 @@ setupenv() {
 
 	setuppatches
 
-	mergesubstratum
-
+	if [ $stable -eq 0 ] ; then
+		mergesubstratum
+	fi
 	# Setup build environment
 	source build/envsetup.sh 
 
