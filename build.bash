@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.22.3
+version=0.22.4
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -123,8 +123,8 @@ if [ $# -gt 0 ]; then
 			
 			shift
 
-			cd ~/android/lineage/cm-14.1/vendor/cm/config
-			cp common.mk.unofficial common.mk
+			sed -r '280 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
+			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
 
 			cd ~/android/lineage/cm-14.1
 
@@ -161,8 +161,8 @@ if [ $# -gt 0 ]; then
 					;;
 			esac
 
-			cd ~/android/lineage/cm-14.1/vendor/cm/config
-			cp common.mk.stable common.mk
+			sed -r '280 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := STABLE/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
+			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
 
 			cd ~/android/lineage/cm-14.1
 
