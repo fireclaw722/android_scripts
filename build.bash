@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.22.6
+version=0.23_0
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -61,6 +61,79 @@ bdevice() {
 	fi
 }
 
+mergesubstratum() {
+	cd ~/android/lineage/cm-14.1/vendor/cm
+	repo sync --force-sync ./
+	git fetch https://github.com/LineageOMS/android_vendor_cm
+	git cherry-pick 218eed7ae28e1185bf922af710f2b944b6241bc4
+	git cherry-pick e098867d055fdf2198616c92c24a5c993d1d9f24
+	git add sepolicy/mac_permissions.xml
+	git -c core.editor=true cherry-pick --continue
+
+	cd ~/android/lineage/cm-14.1/frameworks/base
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_frameworks_base
+
+	cd ~/android/lineage/cm-14.1/packages/apps/Settings
+	repo sync --force-sync ./
+	git fetch https://github.com/LineageOMS/android_packages_apps_Settings
+	git cherry-pick 5c4faecd8e0c8fe1e6303d161a24210c0d39cbaf
+	git cherry-pick aa0e4bea0701e14aef57740d62afba5e99989bfb
+	git cherry-pick 8fa67835e4aeff667405ff91bf0a6fe36322fdc0
+	git cherry-pick b7404d505d73291ce82f51e4234cc215cf77c040
+	git cherry-pick f76b626eae3a230a3a3899e329070a77c9209cf5
+	git add res/values/projekt_colors.xml
+	git add src/com/android/settings/deviceinfo/StorageSettings.java
+	git -c core.editor=true cherry-pick --continue
+	git cherry-pick d2c4af47aac563e1ad4a5d5c84ac8010dbadd1ef
+	git cherry-pick 9969406f0a15e2d5cc719b8cdcb54e4a416f1c0b
+	git cherry-pick fd23576617e46db5f1d760537b500700efdc0ffc
+	git cherry-pick 435d6042fa12b4eb576338afe51269d5c7862c00
+	git cherry-pick 2839dd005243ac28d864b8000416a4e93c585533
+	git cherry-pick 210416d68a9c881fac5a4d10733b588b16b4a5c6
+	git cherry-pick 860834943fa796014490b87285b7d8c9d3918052
+	git cherry-pick 985d7aeff1fbca9bccb4d5b8e9fc670dfd5e2144
+	git cherry-pick c3216b8071370a0c780ba607e65723ab56e4936c
+	git cherry-pick be8d2cf7eb6f315dfe08e756f9aae38b50c10752
+	git cherry-pick 61847b52f7e46b1f7fa8f1d19456c6ea7a17e53f
+	git cherry-pick e7eda300923f15ac1e578412720cc7228da1f072
+	git cherry-pick cbe72a9c9afe98e2598f946dddd2ceee66cec642
+	git cherry-pick f553a26c1a7b4e56f71487b210b78ed0a1e7fbf9
+	git cherry-pick a84a0e5f16afdda26d42200deeaf8777786986e6
+
+	cd ~/android/lineage/cm-14.1/packages/apps/ContactsCommon
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon
+
+	cd ~/android/lineage/cm-14.1/packages/apps/PhoneCommon
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_PhoneCommon
+
+	cd ~/android/lineage/cm-14.1/packages/apps/Contacts
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_Contacts
+
+	cd ~/android/lineage/cm-14.1/system/sepolicy
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_system_sepolicy
+
+	cd ~/android/lineage/cm-14.1/frameworks/native
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_frameworks_native
+
+	cd ~/android/lineage/cm-14.1/packages/apps/ExactCalculator
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_ExactCalculator
+
+	cd ~/android/lineage/cm-14.1/packages/apps/PackageInstaller
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_PackageInstaller
+
+	cd ~/android/lineage/cm-14.1/packages/apps/Dialer
+	repo sync --force-sync ./
+	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_Dialer
+}
+
 setuppatches() {
 	# Add Device/Kernel Specific Patches
 	case $device in
@@ -105,6 +178,8 @@ setupenv() {
 
 	setuppatches
 
+	mergesubstratum
+
 	# Setup build environment
 	source build/envsetup.sh 
 
@@ -125,6 +200,8 @@ if [ $# -gt 0 ]; then
 
 			sed -r '280 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
 			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
+
+			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
 
 			cd ~/android/lineage/cm-14.1
 
