@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.23
+version=0.23.1
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -131,6 +131,9 @@ mergesubstratum() {
 	cd ~/android/lineage/cm-14.1/packages/apps/Dialer
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_Dialer
+
+	cd ~/android/lineage/cm-14.1/packages/services/
+	git clone -b n-rootless https://github.com/substratum/interfacer ThemeInterfacer
 }
 
 setuppatches() {
