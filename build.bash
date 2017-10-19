@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.23_2
+version=0.23
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -66,9 +66,6 @@ mergesubstratum() {
 	repo sync --force-sync ./
 	git fetch https://github.com/LineageOMS/android_vendor_cm
 	git cherry-pick 218eed7ae28e1185bf922af710f2b944b6241bc4
-	git cherry-pick e098867d055fdf2198616c92c24a5c993d1d9f24
-	git add sepolicy/mac_permissions.xml
-	git -c core.editor=true cherry-pick --continue
 
 	cd ~/android/lineage/cm-14.1/frameworks/base
 	repo sync --force-sync ./
@@ -81,10 +78,12 @@ mergesubstratum() {
 	git cherry-pick aa0e4bea0701e14aef57740d62afba5e99989bfb
 	git cherry-pick 8fa67835e4aeff667405ff91bf0a6fe36322fdc0
 	git cherry-pick b7404d505d73291ce82f51e4234cc215cf77c040
+
 	git cherry-pick f76b626eae3a230a3a3899e329070a77c9209cf5
-	git add res/values/projekt_colors.xml
-	git add src/com/android/settings/deviceinfo/StorageSettings.java
-	git -c core.editor=true cherry-pick --continue
+
+	git stage src/com/android/settings/deviceinfo/StorageSettings.java
+	git -c core.editor=true commit
+
 	git cherry-pick d2c4af47aac563e1ad4a5d5c84ac8010dbadd1ef
 	git cherry-pick 9969406f0a15e2d5cc719b8cdcb54e4a416f1c0b
 	git cherry-pick fd23576617e46db5f1d760537b500700efdc0ffc
