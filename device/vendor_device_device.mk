@@ -1,3 +1,15 @@
+PRODUCT_PACKAGES += \
+    Amazon \
+    FDroid \
+    FDroidPrivilegedExtension \
+    Lawnchair \
+    MotoCamera \
+    OnePlusCamera \
+    OnePlusGallery \
+    Substratum \
+    TimeWeather \
+    YahooWeatherProvider
+
 # Google's Apps
 GAPPS_VARIANT := pico
 
