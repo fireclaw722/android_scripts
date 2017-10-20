@@ -168,6 +168,10 @@ setuppatches() {
 	wget -O ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch
 	patch --forward --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch 
 	rm -f ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch
+
+	mergesubstratum
+	
+	cd ~/android/lineage/cm-14.1
 }
 
 setupenv() {
@@ -175,14 +179,8 @@ setupenv() {
 
 	make clobber
 
-	if [ $stable -eq 0 ] ; then
-		# Sync new changes
-		repo sync
-
-		mergesubstratum
-	elif [ $stable -eq 1 ] ; then
-		repo sync --force-sync
-	fi
+	# Sync new changes
+	repo sync
 
 	setuppatches
 
