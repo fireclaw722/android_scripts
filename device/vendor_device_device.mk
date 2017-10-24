@@ -4,6 +4,7 @@ GAPPS_VARIANT := pico
 PRODUCT_PACKAGES += \
     Books \
     CalendarGooglePrebuilt \
+    Chrome \
     Drive \
     GCS \
     GoogleTTS \
@@ -19,6 +20,7 @@ PRODUCT_PACKAGES += \
     Youtube
 
 GAPPS_PACKAGE_OVERRIDES := \
+    Chrome \
     PrebuiltDeskClockGoogle
 
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
@@ -28,14 +30,23 @@ GAPPS_BYPASS_PACKAGE_OVERRIDES := \
 # Extra Apps
 PRODUCT_PACKAGES += \
     Amazon \
+    CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
+    GalleryOnePlus \
     Lawnchair \
-    MotoCamera \
-    OnePlusCamera \
-    OnePlusGallery \
+    OpenWeatherMapWeatherProvider \
     Substratum \
     TimeWeather \
-    YahooWeatherProvider
+    YahooWeatherProvider \
+    WeatherOnePlus
+
+# Moto G4-only extra apps
+PRODUCT_PACKAGES += \
+    MotoCamera
+
+# OnePlus 3(T)-only extra apps
+PRODUCT_PACKAGES += \
+    CameraOnePlus
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
