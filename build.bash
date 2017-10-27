@@ -3,21 +3,33 @@
 # Variables
 device=
 stable=0
-version=0.24
+version=0.25
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
 
 	# Breakfast
-	if ! breakfast lineage_$device-user ; then
-		echo "Breakfast failed for $device."
-		exit
+	if [ $stable -eq 1 ] ; then
+		if ! breakfast lineage_$device-user ; then
+			echo "Breakfast failed for lineage_$device-user."
+			exit
+		fi
+	elif [ $stable -eq 0 ] ; then
+		if ! breakfast $device ; then
+			echo "Breakfast failed for lineage_$device-userdebug."
+			exit
+		fi
 	fi
+	
 	# Run build
 	if ! mka target-files-package dist ; then
-		echo "$device-user build failed. Try userdebug?"
+		if [ $stable -eq 1 ] ; then
+			echo "$device-stable build failed. Try unofficial?"
+		elif [ $stable -eq 0 ] ; then
+			echo "$device-unofficial build failed. revert last change and try again."
 		exit
 	fi
+
 	# Sign Build
 	if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip ; then
 		echo "Signing failed."
@@ -33,12 +45,20 @@ bdevice() {
 	if [ $stable -eq 1 ] ; then
 		# Save Full OTA
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
-
+		
+		echo "Adding to OTA list"
+		cd ~/updater
+		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 	else
 		# Save Full OTA
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 		
+		echo "Adding to OTA list"
+		cd ~/updater
+		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r unofficial -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 	fi
+
+	cd ~/android/lineage/cm-14.1
 }
 
 mergesubstratum() {
@@ -140,8 +160,14 @@ setuppatches() {
 				git clone https://github.com/franciscofranco/one_plus_3T msm8996 -b lineageos-14.1
 			fi
 			;;
-	esac	
-	
+	esac
+
+	# Add support for updater
+	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
+	sed -r '29 s,https://download.lineageos.org/api,https://ota.jwolfweb.com/api' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
+	mv strings.xml ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
+	git commit -m "Change update location for Unofficial builds"
+
 	cd ~/android/lineage/cm-14.1
 
 	## Add UnifiedNlp patch
@@ -249,6 +275,9 @@ if [ $# -gt 0 ]; then
 			echo ""
 			build help
 	esac
+
+	cd ~/updater
+	killall flask && ./run.sh&
 else
         echo "Please use a codename for the device you wish to build."
 fi
