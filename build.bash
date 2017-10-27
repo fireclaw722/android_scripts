@@ -279,5 +279,5 @@ if [ $# -gt 0 ]; then
 	cd ~/updater
 	killall flask && ./run.sh&
 else
-        echo "Please use a codename for the device you wish to build."
+	echo "Please use a codename for the device you wish to build."
 fi
