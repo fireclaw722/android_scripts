@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.25
+version=0.25.3
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -27,6 +27,7 @@ bdevice() {
 			echo "$device-stable build failed. Try unofficial?"
 		elif [ $stable -eq 0 ] ; then
 			echo "$device-unofficial build failed. revert last change and try again."
+		fi
 		exit
 	fi
 
@@ -164,7 +165,7 @@ setuppatches() {
 
 	# Add support for updater
 	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
-	sed -r '29 s,https://download.lineageos.org/api,https://ota.jwolfweb.com/api' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
+	sed -r '29 s/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
 	mv strings.xml ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
 	git commit -m "Change update location for Unofficial builds"
 
