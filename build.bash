@@ -3,7 +3,7 @@
 # Variables
 device=
 stable=0
-version=0.25.3
+version=0.26
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -50,6 +50,11 @@ bdevice() {
 		echo "Adding to OTA list"
 		cd ~/updater
 		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+
+		# save signed recovery
+		cd ~/android/lineage/cm-14.1/
+		unzip -j signed-target_files.zip IMAGES/recovery-two-step.img
+		mv recovery-two-step.img ~/build/full/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
 	else
 		# Save Full OTA
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
