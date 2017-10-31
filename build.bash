@@ -68,8 +68,10 @@ bdevice() {
 		
 		# save signed recovery
 		cd ~/android/lineage/cm-14.1/
+		unzip -j signed-target_files.zip IMAGES/recovery.img
+		mv recovery.img ~/build/full/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
 		unzip -j signed-target_files.zip IMAGES/recovery-two-step.img
-		mv recovery-two-step.img ~/build/full/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
+		mv recovery-two-step.img ~/build/full/$device/recovery_two_step-14.1-$(date +%Y%m%d)-$device.img
 	else
 		# Save Full OTA
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
