@@ -46,11 +46,26 @@ bdevice() {
 	if [ $stable -eq 1 ] ; then
 		# Save Full OTA
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
-		
-		echo "Adding to OTA list"
-		cd ~/updater
-		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 
+		# Build Delta/Incremental OTA
+		if ./build/tools/releasetools/ota_from_target_files -i ~/build/target-delta/lineage-14.1-*-STABLE-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip ; then
+			rm ~/build/target-delta/lineage-14.1-*-STABLE-$device.zip
+			# Save target_files
+			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+
+			echo "Adding delta OTA to list"
+			cd ~/updater
+			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/delta/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/delta/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+		else
+			echo "Creating Incremental OTA failed. Saving target_files anyways."
+			# Save target_files
+			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+
+			echo "Adding full OTA to list"
+			cd ~/updater
+			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+		fi
+		
 		# save signed recovery
 		cd ~/android/lineage/cm-14.1/
 		unzip -j signed-target_files.zip IMAGES/recovery-two-step.img
@@ -59,9 +74,24 @@ bdevice() {
 		# Save Full OTA
 		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
 		
-		echo "Adding to OTA list"
-		cd ~/updater
-		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r unofficial -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+		# Build Delta/Incremental OTA
+		if ./build/tools/releasetools/ota_from_target_files -i ~/build/target-delta/lineage-14.1-*-UNOFFICIAL-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip ; then
+			rm ~/build/target-delta/lineage-14.1-*-UNOFFICIAL-$device.zip
+			# Save target_files
+			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+
+			echo "Adding delta OTA to list"
+			cd ~/updater
+			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r unofficial -m $(md5sum ~/build/delta/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/delta/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+		else
+			echo "Creating Incremental OTA failed. Saving target_files anyways."
+			# Save target_files
+			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+
+			echo "Adding full OTA to list"
+			cd ~/updater
+			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r unofficial -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
+		fi
 	fi
 
 	cd ~/android/lineage/cm-14.1
