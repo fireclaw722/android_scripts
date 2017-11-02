@@ -2,8 +2,9 @@
 
 # Variables
 device=
+releasetype=unofficial
 stable=0
-version=0.26
+version=0.27
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -23,10 +24,11 @@ bdevice() {
 	
 	# Run build
 	if ! mka target-files-package dist ; then
+		echo "Build failed"
 		if [ $stable -eq 1 ] ; then
-			echo "$device-stable build failed. Try unofficial?"
+			echo "Try unofficial? Check $device/sepolicy/kernel.te."
 		elif [ $stable -eq 0 ] ; then
-			echo "$device-unofficial build failed. revert last change and try again."
+			echo "Revert last change and try again."
 		fi
 		exit
 	fi
@@ -37,145 +39,109 @@ bdevice() {
 		exit
 	fi
 
-	# Package OTA-zip
+	# Save Signed Stable Images
+	if [ stable -eq 1 ]; then
+		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/images/lineage-14.1-$(date +%Y%m%d)-$device.zip
+	fi
+	
+	# Package Full OTA
 	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
 		echo "Creating OTA .zip failed"
 		exit
 	fi
-	
-	if [ $stable -eq 1 ] ; then
-		# Save Full OTA
-		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 
-		# Build Delta/Incremental OTA
-		if ./build/tools/releasetools/ota_from_target_files -i ~/build/target-delta/lineage-14.1-*-STABLE-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip ; then
-			rm ~/build/target-delta/lineage-14.1-*-STABLE-$device.zip
-			# Save target_files
-			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+	# Save Full OTA
+	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
-			echo "Adding delta OTA to list"
-			cd ~/updater
-			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/delta/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/delta/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
-		else
-			echo "Creating Incremental OTA failed. Saving target_files anyways."
-			# Save target_files
-			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+	# Add Full OTA
+	cd ~/updater
+	echo "Adding full OTA to list"
+	FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	cd ~/android/lineage/cm-14.1
 
-			echo "Adding full OTA to list"
-			cd ~/updater
-			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r stable -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
-		fi
-		
-		# save signed recovery
-		cd ~/android/lineage/cm-14.1/
-		unzip -j signed-target_files.zip IMAGES/recovery.img
-		mv recovery.img ~/build/full/$device/recovery-14.1-$(date +%Y%m%d)-$device.img
-		unzip -j signed-target_files.zip IMAGES/recovery-two-step.img
-		mv recovery-two-step.img ~/build/full/$device/recovery_two_step-14.1-$(date +%Y%m%d)-$device.img
-	else
-		# Save Full OTA
-		mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
-		
-		# Build Delta/Incremental OTA
-		if ./build/tools/releasetools/ota_from_target_files -i ~/build/target-delta/lineage-14.1-*-UNOFFICIAL-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip ; then
-			rm ~/build/target-delta/lineage-14.1-*-UNOFFICIAL-$device.zip
-			# Save target_files
-			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
-
-			echo "Adding delta OTA to list"
-			cd ~/updater
-			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r unofficial -m $(md5sum ~/build/delta/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/delta/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
-		else
-			echo "Creating Incremental OTA failed. Saving target_files anyways."
-			# Save target_files
-			mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/build/target-delta/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
-
-			echo "Adding full OTA to list"
-			cd ~/updater
-			FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r unofficial -m $(md5sum ~/build/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/full/$device/lineage-14.1-$(date +%Y%m%d)-UNOFFICIAL-$device.zip
-		fi
+	# Package Incremental OTA
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target-files/lineage-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
+		echo "Creating Incremental OTA failed. Saving target_files anyways."
+		# Save target_files
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target-files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+		exit
 	fi
 
+	# Save old target_files
+	mv ~/builds/$device/target-files/lineage-14.1-*-$releasetype-$device.zip ~/builds/$device/target-files/archive/
+	
+	# Save new target_files
+	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target-files/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+	
+	# Remove Full OTA
+	echo "Adding delta OTA to list"
+	cd ~/updater
+	FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+
+	# Add Incremental OTA
+	FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	
 	cd ~/android/lineage/cm-14.1
 }
 
-mergesubstratum() {
+updateLineage() {
 	cd ~/android/lineage/cm-14.1/vendor/cm
-	repo sync --force-sync ./
-	git fetch https://github.com/LineageOMS/android_vendor_cm
-	git cherry-pick 218eed7ae28e1185bf922af710f2b944b6241bc4
+	git -c core.editor=true pull https://github.com/LineageOS/android_vendor_cm
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/base
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_frameworks_base
+	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_base
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Settings
 	repo sync --force-sync ./
-	git fetch https://github.com/LineageOMS/android_packages_apps_Settings
-	git cherry-pick 5c4faecd8e0c8fe1e6303d161a24210c0d39cbaf
-	git cherry-pick aa0e4bea0701e14aef57740d62afba5e99989bfb
-	git cherry-pick 8fa67835e4aeff667405ff91bf0a6fe36322fdc0
-	git cherry-pick b7404d505d73291ce82f51e4234cc215cf77c040
-
-	git cherry-pick f76b626eae3a230a3a3899e329070a77c9209cf5
-
-	git stage src/com/android/settings/deviceinfo/StorageSettings.java
-	git -c core.editor=true commit
-
-	git cherry-pick d2c4af47aac563e1ad4a5d5c84ac8010dbadd1ef
-	git cherry-pick 9969406f0a15e2d5cc719b8cdcb54e4a416f1c0b
-	git cherry-pick fd23576617e46db5f1d760537b500700efdc0ffc
-	git cherry-pick 435d6042fa12b4eb576338afe51269d5c7862c00
-	git cherry-pick 2839dd005243ac28d864b8000416a4e93c585533
-	git cherry-pick 210416d68a9c881fac5a4d10733b588b16b4a5c6
-	git cherry-pick 860834943fa796014490b87285b7d8c9d3918052
-	git cherry-pick 985d7aeff1fbca9bccb4d5b8e9fc670dfd5e2144
-	git cherry-pick c3216b8071370a0c780ba607e65723ab56e4936c
-	git cherry-pick be8d2cf7eb6f315dfe08e756f9aae38b50c10752
-	git cherry-pick 61847b52f7e46b1f7fa8f1d19456c6ea7a17e53f
-	git cherry-pick e7eda300923f15ac1e578412720cc7228da1f072
-	git cherry-pick cbe72a9c9afe98e2598f946dddd2ceee66cec642
-	git cherry-pick f553a26c1a7b4e56f71487b210b78ed0a1e7fbf9
-	git cherry-pick a84a0e5f16afdda26d42200deeaf8777786986e6
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Settings
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/ContactsCommon
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ContactsCommon
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/PhoneCommon
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_PhoneCommon
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PhoneCommon
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Contacts
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_Contacts
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Contacts
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/system/sepolicy
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_system_sepolicy
+	git -c core.editor=true pull https://github.com/LineageOS/android_system_sepolicy
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/native
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_frameworks_native
+	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_native
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/ExactCalculator
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_ExactCalculator
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ExactCalculator
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/PackageInstaller
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_PackageInstaller
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PackageInstaller.git
+	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Dialer
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOMS/android_packages_apps_Dialer
-
-	cd ~/android/lineage/cm-14.1/packages/services/
-	git clone -b n-rootless https://github.com/substratum/interfacer ThemeInterfacer
+	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Dialer
+	git push origin HEAD:cm-14.1
 }
 
 setuppatches() {
-	# Add Device/Kernel Specific Patches
+	# Add SafetyNet Patches
 	case $device in
 		addison)
 			cd ~/android/lineage/cm-14.1/kernel/motorola/msm8953
@@ -188,15 +154,9 @@ setuppatches() {
 			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 		oneplus3)
-			if [ $stable -eq 1 ] ; then
-				cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
-				git fetch https://github.com/franciscofranco/one_plus_3T
-				git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-			elif [ $stable -eq 0 ] ; then
-				cd ~/android/lineage/cm-14.1/kernel/oneplus/
-				rm -rf msm8996
-				git clone https://github.com/franciscofranco/one_plus_3T msm8996 -b lineageos-14.1
-			fi
+			cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
+			git fetch https://github.com/franciscofranco/one_plus_3T
+			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 	esac
 
@@ -213,7 +173,7 @@ setuppatches() {
 	patch --forward --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch 
 	rm -f ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch
 
-	mergesubstratum
+	updateLineage
 	
 	cd ~/android/lineage/cm-14.1
 }
@@ -256,6 +216,7 @@ if [ $# -gt 0 ]; then
 			cd ~/android/lineage/cm-14.1
 
 			stable=0
+			releasetype=unofficial
 
 			setupenv
 
@@ -274,9 +235,6 @@ if [ $# -gt 0 ]; then
 				oneplus3-stable)
 					device=oneplus3
 					shift
-
-					cd ~/android/lineage/cm-14.1/kernel/oneplus/
-					rm -rf msm8996
 					;;
 				victara-stable)
 					device=victara
@@ -294,6 +252,7 @@ if [ $# -gt 0 ]; then
 			cd ~/android/lineage/cm-14.1
 
 			stable=1
+			releasetype=stable
 
 			setupenv
 
