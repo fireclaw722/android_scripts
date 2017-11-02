@@ -4,7 +4,7 @@
 device=
 releasetype=unofficial
 stable=0
-version=0.27.1
+version=0.27.2
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -71,15 +71,20 @@ bdevice() {
 	mv ~/builds/$device/target_files/lineage-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
 	
 	# Save new target_files
-	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	
-	# Remove Full OTA
-	echo "Adding delta OTA to list"
-	cd ~/updater
-	FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	# New protection, because I want to leave the code for later, but don't want to add incrementals to OTA-server
+	if [ $stable -eq 3 ] ; then
+		echo "Adding delta OTA to list"
+		cd ~/updater
+		# Remove Full OTA
+		FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
-	# Add Incremental OTA
-	FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+		# Add Incremental OTA
+		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	else
+		echo "Leaving full OTA, not adding Incremental"
+	fi
 	
 	cd ~/android/lineage/cm-14.1
 }
