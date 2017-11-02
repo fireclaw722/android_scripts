@@ -4,7 +4,7 @@
 device=
 releasetype=unofficial
 stable=0
-version=0.27
+version=0.27.1
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -23,7 +23,7 @@ bdevice() {
 	fi
 	
 	# Run build
-	if ! mka target-files-package dist ; then
+	if ! mka target_files-package dist ; then
 		echo "Build failed"
 		if [ $stable -eq 1 ] ; then
 			echo "Try unofficial? Check $device/sepolicy/kernel.te."
@@ -60,18 +60,18 @@ bdevice() {
 	cd ~/android/lineage/cm-14.1
 
 	# Package Incremental OTA
-	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target-files/lineage-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/lineage-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 		# Save target_files
-		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target-files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 		exit
 	fi
 
 	# Save old target_files
-	mv ~/builds/$device/target-files/lineage-14.1-*-$releasetype-$device.zip ~/builds/$device/target-files/archive/
+	mv ~/builds/$device/target_files/lineage-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
 	
 	# Save new target_files
-	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target-files/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-STABLE-$device.zip
 	
 	# Remove Full OTA
 	echo "Adding delta OTA to list"
