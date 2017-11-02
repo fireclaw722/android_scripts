@@ -23,7 +23,7 @@ bdevice() {
 	fi
 	
 	# Run build
-	if ! mka target_files-package dist ; then
+	if ! mka target-files-package dist ; then
 		echo "Build failed"
 		if [ $stable -eq 1 ] ; then
 			echo "Try unofficial? Check $device/sepolicy/kernel.te."
