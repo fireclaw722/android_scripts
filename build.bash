@@ -81,7 +81,7 @@ bdevice() {
 		FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
 		# Add Incremental OTA
-		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	else
 		echo "Leaving full OTA, not adding Incremental"
 	fi
@@ -91,57 +91,57 @@ bdevice() {
 
 updateLineage() {
 	cd ~/android/lineage/cm-14.1/vendor/cm
-	git -c core.editor=true pull https://github.com/LineageOS/android_vendor_cm
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_vendor_cm
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/base
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_base
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_frameworks_base
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Settings
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Settings
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_Settings
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/ContactsCommon
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ContactsCommon
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_ContactsCommon
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/PhoneCommon
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PhoneCommon
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_PhoneCommon
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Contacts
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Contacts
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_Contacts
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/system/sepolicy
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_system_sepolicy
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_system_sepolicy
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/native
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_native
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_frameworks_native
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/ExactCalculator
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ExactCalculator
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_ExactCalculator
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/PackageInstaller
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PackageInstaller.git
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_PackageInstaller.git
 	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Dialer
 	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Dialer
+	git -c core.editor=true pull -b cm-14.1 https://github.com/LineageOS/android_packages_apps_Dialer
 	git push origin HEAD:cm-14.1
 }
 
