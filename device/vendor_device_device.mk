@@ -7,13 +7,9 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     Maps \
     Music2 \
-    PrebuiltDeskClockGoogle \
     PrebuiltKeep \
     Velvet \
     Wallet
-
-GAPPS_PACKAGE_OVERRIDES := \
-    PrebuiltDeskClockGoogle
 
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
     Music2
