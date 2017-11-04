@@ -4,7 +4,7 @@
 device=
 releasetype=unofficial
 stable=0
-version=0.27.2
+version=0.27.3
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -41,7 +41,7 @@ bdevice() {
 
 	# Save Signed Stable Images
 	if [ stable -eq 1 ]; then
-		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/images/lineage-14.1-$(date +%Y%m%d)-$device.zip
+		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/lineage-14.1-$(date +%Y%m%d)-$device.zip
 	fi
 	
 	# Package Full OTA
@@ -85,6 +85,9 @@ bdevice() {
 	else
 		echo "Leaving full OTA, not adding Incremental"
 	fi
+
+	cd ~/updater
+	killall flask && ./run.sh&
 	
 	cd ~/android/lineage/cm-14.1
 }
@@ -277,9 +280,6 @@ if [ $# -gt 0 ]; then
 			echo ""
 			build help
 	esac
-
-	cd ~/updater
-	killall flask && ./run.sh&
 else
 	echo "Please use a codename for the device you wish to build."
 fi
