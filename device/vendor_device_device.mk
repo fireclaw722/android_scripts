@@ -7,12 +7,20 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     Maps \
     Music2 \
+	PrebuiltBugle \
     PrebuiltKeep \
     Velvet \
     Wallet
-
+	
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Music2
+    Music2 \
+    PrebuiltBugle
+
+# Technically Google Apps, but not provided by OpenGapps
+PRODUCT_PACKAGES += \
+    Fireball \
+    Gearhead \
+    Tachyon
 
 # Extra Apps
 PRODUCT_PACKAGES += \
@@ -24,6 +32,7 @@ PRODUCT_PACKAGES += \
     Lawnfeed \
     OpenWeatherMapWeatherProvider \
     Substratum \
+    Swiftkey \
     TimeWeather \
     YahooWeatherProvider
 
