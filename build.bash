@@ -4,7 +4,7 @@
 device=
 releasetype=unofficial
 stable=0
-version=0.27.3
+version=0.27.4
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -87,7 +87,7 @@ bdevice() {
 	fi
 
 	cd ~/updater
-	killall flask && ./run.sh&
+	killall flask && zsh ./run.sh&!
 	
 	cd ~/android/lineage/cm-14.1
 }
@@ -162,9 +162,9 @@ setuppatches() {
 			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 			;;
 		oneplus3)
-			cd ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
-			git fetch https://github.com/franciscofranco/one_plus_3T
-			git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+			cd ~/android/lineage/cm-14.1/kernel/oneplus
+			rm -rf msm8996
+			git clone https://github.com/franciscofranco/one_plus_3T -b lineageos-14.1 msm8996
 			;;
 	esac
 
