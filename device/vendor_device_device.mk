@@ -11,10 +11,11 @@ PRODUCT_PACKAGES += \
     PrebuiltKeep \
     Velvet \
     Wallet
-	
+
+GAPPS_FORCE_MMS_OVERRIDES := true
+
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Music2 \
-    PrebuiltBugle
+    Music2
 
 # Technically Google Apps, but not provided by OpenGapps
 PRODUCT_PACKAGES += \
