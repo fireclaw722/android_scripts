@@ -4,7 +4,7 @@
 device=
 releasetype=unofficial
 stable=0
-version=0.27.4
+version=0.27.5
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -216,7 +216,7 @@ if [ $# -gt 0 ]; then
 			
 			shift
 
-			sed -r '280 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
+			sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
 			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
 
 			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
@@ -254,7 +254,7 @@ if [ $# -gt 0 ]; then
 					;;
 			esac
 
-			sed -r '280 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := STABLE/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
+			sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := STABLE/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
 			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
 
 			cd ~/android/lineage/cm-14.1
