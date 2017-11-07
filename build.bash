@@ -41,7 +41,7 @@ bdevice() {
 
 	# Save Signed Stable Images
 	if [ stable -eq 1 ]; then
-		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/lineage-14.1-$(date +%Y%m%d)-$device.zip
+		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/fireLOS-14.1-$(date +%Y%m%d)-$device.zip
 	fi
 	
 	# Package Full OTA
@@ -51,36 +51,36 @@ bdevice() {
 	fi
 
 	# Save Full OTA
-	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
 	# Add Full OTA
 	cd ~/updater
 	echo "Adding full OTA to list"
-	FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	FLASK_APP=updater.app flask addrom -f fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	cd ~/android/lineage/cm-14.1
 
 	# Package Incremental OTA
-	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/lineage-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 		# Save target_files
-		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 		exit
 	fi
 
 	# Save old target_files
-	mv ~/builds/$device/target_files/lineage-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
+	mv ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
 	
 	# Save new target_files
-	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	
 	## Future code for possible incremental updates
 #		echo "Adding delta OTA to list"
 #		cd ~/updater
 #		# Remove Full OTA
-#		FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+#		FLASK_APP=updater.app flask delrom -f fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 #
 #		# Add Incremental OTA
-#		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+#		FLASK_APP=updater.app flask addrom -f fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
 	cd ~/updater
 	killall flask && zsh ./run.sh&!
@@ -166,7 +166,7 @@ setuppatches() {
 
 	# Add support for updater
 	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
-	sed -r '29 s/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
+	sed -r 's/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
 	mv strings.xml ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
 	git commit -m "Change update location for Unofficial builds"
 
@@ -180,14 +180,6 @@ setuppatches() {
 	updateLineage
 	
 	cd ~/android/lineage/cm-14.1
-
-	# Export variables
-	export CM_BUILDTYPE=SNAPSHOT
-	if [ $stable -eq 1 ] ; then
-		export CM_EXTRAVERSION=NJH47F
-	elif [ $stable -eq 0 ] ; then
-		export WITH_SU=true
-	fi
 }
 
 setupenv() {
@@ -205,6 +197,14 @@ setupenv() {
 	# Setup build environment
 	source build/envsetup.sh 
 
+	# export vars
+	export CM_BUILDTYPE=SNAPSHOT
+	if [ $stable -eq 1 ] ; then
+		export CM_EXTRAVERSION=NJH47F
+	elif [ $stable -eq 0 ] ; then
+		export WITH_SU=true
+	fi
+	
 	# No CCACHE
 	export USE_CCACHE=0
 	unset 'CCACHE_DISABLE' && export 'CCACHE_DISABLE=1'
@@ -212,6 +212,7 @@ setupenv() {
 	export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 }
 
+# Enter main()
 if [ $# -gt 0 ]; then
 	# Parse Args
 	case $1 in
@@ -252,10 +253,6 @@ if [ $# -gt 0 ]; then
 					device=victara
 					shift
 					;;
-				*)
-					echo "How? In? The?"
-					exit
-					;;
 			esac
 
 			#sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := STABLE/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
@@ -275,6 +272,11 @@ if [ $# -gt 0 ]; then
 			echo ""
 			echo "Available devices are:"
 			echo "'addison','athene','oneplus3','victara'"
+			echo "add '-stable' to build a snapshot"
+			echo ""
+			echo "using the 'help' subcommand shows this text"
+			echo ""
+			echo "using the 'version' subcommand outputs version info"
 			;;
 		version|-v|--version)
 			echo "Version: "$version
@@ -286,4 +288,5 @@ if [ $# -gt 0 ]; then
 	esac
 else
 	echo "Please use a codename for the device you wish to build."
+	build help
 fi
