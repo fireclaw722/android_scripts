@@ -2,9 +2,9 @@
 
 # Variables
 device=
-releasetype=unofficial
-stable=0
-version=0.27.6
+releasetype=
+stable=
+version=0.28
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -26,7 +26,7 @@ bdevice() {
 	if ! mka target-files-package dist ; then
 		echo "Build failed"
 		if [ $stable -eq 1 ] ; then
-			echo "Try unofficial? Check $device/sepolicy/kernel.te."
+			echo "Try regular/userdebug?"
 		elif [ $stable -eq 0 ] ; then
 			echo "Revert last change and try again."
 		fi
@@ -73,18 +73,14 @@ bdevice() {
 	# Save new target_files
 	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	
-	# New protection, because I want to leave the code for later, but don't want to add incrementals to OTA-server
-	if [ $stable -eq 3 ] ; then
-		echo "Adding delta OTA to list"
-		cd ~/updater
-		# Remove Full OTA
-		FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
-
-		# Add Incremental OTA
-		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
-	else
-		echo "Leaving full OTA, not adding Incremental"
-	fi
+	## Future code for possible incremental updates
+#		echo "Adding delta OTA to list"
+#		cd ~/updater
+#		# Remove Full OTA
+#		FLASK_APP=updater.app flask delrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+#
+#		# Add Incremental OTA
+#		FLASK_APP=updater.app flask addrom -f lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/lineage-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
 	cd ~/updater
 	killall flask && zsh ./run.sh&!
@@ -184,6 +180,14 @@ setuppatches() {
 	updateLineage
 	
 	cd ~/android/lineage/cm-14.1
+
+	# Export variables
+	export CM_BUILDTYPE=SNAPSHOT
+	if [ $stable -eq 1 ] ; then
+		export CM_EXTRAVERSION=NJH47F
+	elif [ $stable -eq 0 ] ; then
+		export WITH_SU=true
+	fi
 }
 
 setupenv() {
@@ -216,15 +220,15 @@ if [ $# -gt 0 ]; then
 			
 			shift
 
-			sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
-			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
+			#sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
+			#mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
 
 			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
 
 			cd ~/android/lineage/cm-14.1
 
 			stable=0
-			releasetype=unofficial
+			releasetype=experimental
 
 			setupenv
 
@@ -254,13 +258,13 @@ if [ $# -gt 0 ]; then
 					;;
 			esac
 
-			sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := STABLE/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
-			mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
+			#sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := STABLE/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
+			#mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
 
 			cd ~/android/lineage/cm-14.1
 
 			stable=1
-			releasetype=stable
+			releasetype=snapshot
 
 			setupenv
 
