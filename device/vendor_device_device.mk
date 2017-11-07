@@ -29,8 +29,6 @@ PRODUCT_PACKAGES += \
     CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
-    Lawnchair \
-    Lawnfeed \
     OpenWeatherMapWeatherProvider \
     Substratum \
     Swiftkey \
