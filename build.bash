@@ -4,7 +4,7 @@
 device=
 releasetype=
 stable=
-version=0.28
+version=0.28.1
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -40,7 +40,7 @@ bdevice() {
 	fi
 
 	# Save Signed Stable Images
-	if [ stable -eq 1 ]; then
+	if [ $stable -eq 1 ]; then
 		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/fireLOS-14.1-$(date +%Y%m%d)-$device.zip
 	fi
 	
