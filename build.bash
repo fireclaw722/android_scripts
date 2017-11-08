@@ -4,7 +4,8 @@
 device=
 releasetype=
 stable=
-version=0.28.1
+releasever=NJH47F
+version=0.29
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -51,19 +52,19 @@ bdevice() {
 	fi
 
 	# Save Full OTA
-	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 
 	# Add Full OTA
 	cd ~/updater
 	echo "Adding full OTA to list"
-	FLASK_APP=updater.app flask addrom -f fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 	cd ~/android/lineage/cm-14.1
 
 	# Package Incremental OTA
-	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip ; then
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 		# Save target_files
-		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 		exit
 	fi
 
@@ -71,16 +72,16 @@ bdevice() {
 	mv ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
 	
 	# Save new target_files
-	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 	
 	## Future code for possible incremental updates
 #		echo "Adding delta OTA to list"
 #		cd ~/updater
 #		# Remove Full OTA
-#		FLASK_APP=updater.app flask delrom -f fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+#		FLASK_APP=updater.app flask delrom -f LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 #
 #		# Add Incremental OTA
-#		FLASK_APP=updater.app flask addrom -f fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/fireLOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+#		FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 
 	cd ~/updater
 	killall flask && zsh ./run.sh&!
@@ -99,9 +100,11 @@ setupenv() {
 	# export vars
 	export CM_BUILDTYPE=SNAPSHOT
 	if [ $stable -eq 1 ] ; then
-		export CM_EXTRAVERSION=NJH47F
+		export CM_EXTRAVERSION=$releasever
+		releasever=-NJH47F
 	elif [ $stable -eq 0 ] ; then
 		export WITH_SU=true
+		releasever=
 	fi
 	
 	# No CCACHE
