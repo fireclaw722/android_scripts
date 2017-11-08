@@ -32,6 +32,7 @@ PRODUCT_PACKAGES += \
     Lawnchair \
     Lawnfeed \
     OpenWeatherMapWeatherProvider \
+    Republic \
     Substratum \
     Swiftkey \
     TimeWeather \
