@@ -29,8 +29,8 @@ PRODUCT_PACKAGES += \
     CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
-    Lawnchair \
-    Lawnfeed \
+    Nova \
+    NovaGoogle \
     OpenWeatherMapWeatherProvider \
     Republic \
     Substratum \
