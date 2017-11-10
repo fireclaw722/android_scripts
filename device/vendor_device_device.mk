@@ -30,8 +30,6 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension \
     Nova \
-    NovaGoogle \
-    OpenWeatherMapWeatherProvider \
     Republic \
     Substratum \
     Swiftkey \
