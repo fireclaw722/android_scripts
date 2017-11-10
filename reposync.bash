@@ -77,6 +77,7 @@ setuppatches() {
 	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
 	sed -r 's/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
 	mv strings.xml ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
+	git stage /android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
 	git commit -m "Change update location for Unofficial builds"
 
 	cd ~/android/lineage/cm-14.1
