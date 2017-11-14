@@ -7,12 +7,9 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     Maps \
     Music2 \
-	PrebuiltBugle \
     PrebuiltKeep \
     Velvet \
     Wallet
-
-GAPPS_FORCE_MMS_OVERRIDES := true
 
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
     Music2
