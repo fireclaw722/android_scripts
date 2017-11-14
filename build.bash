@@ -42,7 +42,7 @@ bdevice() {
 
 	# Save Signed Stable Images
 	if [ $stable -eq 1 ]; then
-		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/fireLOS-14.1-$(date +%Y%m%d)-$device.zip
+		./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/LOS-14.1-$(date +%Y%m%d)-$device.zip
 	fi
 	
 	# Package Full OTA
@@ -61,7 +61,7 @@ bdevice() {
 	cd ~/android/lineage/cm-14.1
 
 	# Package Incremental OTA
-	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip ; then
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip ; then
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 		# Save target_files
 		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
@@ -69,7 +69,7 @@ bdevice() {
 	fi
 
 	# Save old target_files
-	mv ~/builds/$device/target_files/fireLOS-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
+	mv ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
 	
 	# Save new target_files
 	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
