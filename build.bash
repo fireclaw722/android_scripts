@@ -5,7 +5,7 @@ device=
 releasetype=
 stable=
 releasever=NJH47F
-version=0.29
+version=0.30_2
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -36,8 +36,11 @@ bdevice() {
 
 	# Sign Build
 	if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip ; then
-		echo "Signing failed."
-		exit
+		echo "Signing w/ Superuser.apk"
+		if ! ./build/tools/releasetools/sign_target_files_apks -o -e Superuser.apk=/home/builder/.android-certs/platform -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip ; then
+			echo "Signing failed."
+			exit
+		fi
 	fi
 
 	# Save Signed Stable Images
@@ -64,7 +67,7 @@ bdevice() {
 	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip ; then
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 		# Save target_files
-		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
+		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 		exit
 	fi
 
