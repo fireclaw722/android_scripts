@@ -5,7 +5,7 @@ device=
 releasetype=
 stable=
 releasever=NJH47F
-version=0.30_2
+version=0.30_3
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
