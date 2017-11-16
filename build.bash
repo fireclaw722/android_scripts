@@ -5,7 +5,7 @@ device=
 releasetype=
 stable=
 releasever=NJH47F
-version=0.30_3
+version=0.30_4
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -68,7 +68,6 @@ bdevice() {
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 		# Save target_files
 		mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
-		exit
 	fi
 
 	# Save old target_files
