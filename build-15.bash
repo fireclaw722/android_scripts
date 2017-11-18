@@ -5,7 +5,7 @@ device=
 releasetype=
 stable=
 releasever=OPR3.170623.013
-version=0.31.1_15
+version=15.31.2
 
 bdevice() {
 	cd ~/android/lineage/lineage-15.0
@@ -84,10 +84,10 @@ setupenv() {
 	source build/envsetup.sh 
 
 	# export vars
-	#export CM_BUILDTYPE=SNAPSHOT
+	export CM_BUILDTYPE=SNAPSHOT
 	#if [ $stable -eq 1 ] ; then
-	#	export CM_EXTRAVERSION=$releasever
-	#	releasever=-OPR3.170623.013
+		export CM_EXTRAVERSION=$releasever
+		releasever=-OPR3.170623.013
 	#elif [ $stable -eq 0 ] ; then
 	#	export WITH_SU=true
 	#	releasever=
@@ -111,8 +111,6 @@ if [ $# -gt 0 ]; then
 
 			#sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/lineage-15.0/vendor/cm/config/common.mk >common.mk
 			#mv common.mk ~/android/lineage/lineage-15.0/vendor/cm/config/common.mk
-
-			rm -rf ~/android/lineage/lineage-15.0/kernel/oneplus/msm8996
 
 			cd ~/android/lineage/lineage-15.0
 
