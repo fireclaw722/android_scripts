@@ -5,7 +5,7 @@ device=
 releasetype=
 stable=
 releasever=NJH47F
-version=0.30_4
+version=14.30
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -75,15 +75,6 @@ bdevice() {
 	
 	# Save new target_files
 	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
-	
-	## Future code for possible incremental updates
-#		echo "Adding delta OTA to list"
-#		cd ~/updater
-#		# Remove Full OTA
-#		FLASK_APP=updater.app flask delrom -f LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
-#
-#		# Add Incremental OTA
-#		FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)$releasever-$device.zip
 
 	cd ~/updater
 	killall flask && zsh ./run.sh&!
@@ -127,8 +118,6 @@ if [ $# -gt 0 ]; then
 
 			#sed -r '281 s/CM_BUILDTYPE := [^ ]*/CM_BUILDTYPE := UNOFFICIAL/' ~/android/lineage/cm-14.1/vendor/cm/config/common.mk >common.mk
 			#mv common.mk ~/android/lineage/cm-14.1/vendor/cm/config/common.mk
-
-			rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
 
 			cd ~/android/lineage/cm-14.1
 
