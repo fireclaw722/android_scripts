@@ -10,13 +10,13 @@ setuppatches() {
     #git fetch https://github.com/franciscofranco/one_plus_3T
     #git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 
-    cd ~/android/lineage/lineage-15.0/kernel/motorola/msm8952
-    git fetch https://github.com/franciscofranco/one_plus_3T
-    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+    #cd ~/android/lineage/lineage-15.0/kernel/motorola/msm8952
+    #git fetch https://github.com/franciscofranco/one_plus_3T
+    #git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 
-    cd ~/android/lineage/lineage-15.0/kernel/oneplus/msm8996
-	git fetch https://github.com/franciscofranco/one_plus_3T
-    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+    #cd ~/android/lineage/lineage-15.0/kernel/oneplus/msm8996
+	#git fetch https://github.com/franciscofranco/one_plus_3T
+    #git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 
 	# Add support for updater
 	cd ~/android/lineage/lineage-15.0/packages/apps/Updater/
