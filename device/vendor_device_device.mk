@@ -28,8 +28,6 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension \
     Nova \
-    Republic \
-    Signal \
     Substratum \
     Swiftkey \
     TimeWeather \
