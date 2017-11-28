@@ -1,5 +1,7 @@
 #!/bin/bash
 
+version=14.0
+
 #Start
 cd ~/android/lineage/cm-14.1
 
@@ -79,16 +81,30 @@ setuppatches() {
 	mv strings.xml ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
 	git stage ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml
 	git commit -m "Change update location for Unofficial builds"
-
-	cd ~/android/lineage/cm-14.1
-
-	## Add UnifiedNlp patch
-	wget -O ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch https://raw.githubusercontent.com/microg/android_packages_apps_UnifiedNlp/master/patches/android_frameworks_base-N.patch
-	patch --forward --no-backup-if-mismatch --strip='1' --directory='frameworks/base' < ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch 
-	rm -f ~/Downloads/UnifiedNlp-android_frameworks_base-N.patch
 	
 	cd ~/android/lineage/cm-14.1
 }
+
+if [ $# -gt 0 ]; then
+	case $1 in
+		help|-h|--help)
+			echo "Usage: syncrepo"
+			echo ""
+			echo "using the 'help' subcommand shows this text"
+			echo ""
+			echo "using the 'version' subcommand outputs version info"
+			;;
+		version|-v|--version)
+			echo "Version: "$version
+			;;
+		*)
+			echo "Codename not available for build."
+			echo ""
+			syncrepo help
+			exit
+			;;
+	esac
+fi
 
 # Remove old kernel
 rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996

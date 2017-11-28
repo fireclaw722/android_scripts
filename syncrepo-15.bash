@@ -1,22 +1,13 @@
 #!/bin/bash
 
+version=15.0
+
 #Start
 cd ~/android/lineage/lineage-15.0
 
 setuppatches() {
 	# Add SafetyNet Patches
-	
-    #cd ~/android/lineage/lineage-15.0/kernel/motorola/msm8953
-    #git fetch https://github.com/franciscofranco/one_plus_3T
-    #git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-
-    #cd ~/android/lineage/lineage-15.0/kernel/motorola/msm8952
-    #git fetch https://github.com/franciscofranco/one_plus_3T
-    #git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-
-    #cd ~/android/lineage/lineage-15.0/kernel/oneplus/msm8996
-	#git fetch https://github.com/franciscofranco/one_plus_3T
-    #git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+	# these will come later
 
 	# Add support for updater
 	cd ~/android/lineage/lineage-15.0/packages/apps/Updater/
@@ -27,6 +18,27 @@ setuppatches() {
 	
 	cd ~/android/lineage/lineage-15.0
 }
+
+if [ $# -gt 0 ]; then
+	case $1 in
+		help|-h|--help)
+			echo "Usage: syncrepo"
+			echo ""
+			echo "using the 'help' subcommand shows this text"
+			echo ""
+			echo "using the 'version' subcommand outputs version info"
+			;;
+		version|-v|--version)
+			echo "Version: "$version
+			;;
+		*)
+			echo "Codename not available for build."
+			echo ""
+			syncrepo help
+			exit
+			;;
+	esac
+fi
 
 # Sync new changes
 repo sync
