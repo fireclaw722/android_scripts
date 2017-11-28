@@ -4,7 +4,6 @@
 device=
 releasetype=
 gapps=1
-releasever=NJH47F
 version=14.0.3
 
 bdevice() {
@@ -39,16 +38,16 @@ bdevice() {
 	fi
 
 	# Save Full OTA
-	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasever-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
 	# Add Full OTA
 	cd ~/updater
 	echo "Adding full OTA to list"
-	FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)-$releasever-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasever-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasever-$device.zip
+	FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	cd ~/android/lineage/cm-14.1
 
 	# Package Incremental OTA
-	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)-$releasever-$device.zip ; then
+	if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip ; then
 		echo "Creating Incremental OTA failed. Saving target_files anyways."
 	fi
 
@@ -56,7 +55,7 @@ bdevice() {
 	mv ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
 	
 	# Save new target_files
-	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)-$releasever-$device.zip
+	mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 
 	cd ~/updater
 	killall flask && zsh ./run.sh&!
