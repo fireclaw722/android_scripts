@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=14.0
+version=14.0.1
 
 #Start
 cd ~/android/lineage/cm-14.1
@@ -96,6 +96,7 @@ if [ $# -gt 0 ]; then
 			;;
 		version|-v|--version)
 			echo "Version: "$version
+			exit
 			;;
 		*)
 			echo "Codename not available for build."

@@ -30,6 +30,7 @@ if [ $# -gt 0 ]; then
 			;;
 		version|-v|--version)
 			echo "Version: "$version
+			exit
 			;;
 		*)
 			echo "Codename not available for build."
