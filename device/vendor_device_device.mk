@@ -31,6 +31,7 @@ PRODUCT_PACKAGES += \
     Substratum \
     Swiftkey \
     TimeWeather \
+    UnifiedNlp \
     YahooWeatherProvider
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
