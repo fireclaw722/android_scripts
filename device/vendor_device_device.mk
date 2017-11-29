@@ -22,16 +22,17 @@ PRODUCT_PACKAGES += \
 
 # Extra Apps
 PRODUCT_PACKAGES += \
-    Amazon \
     Aptoide \
     CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
+    mShop \
     Nova \
     Substratum \
     Swiftkey \
     TimeWeather \
     UnifiedNlp \
+    Venezia \
     YahooWeatherProvider \
     YalpStore
 
