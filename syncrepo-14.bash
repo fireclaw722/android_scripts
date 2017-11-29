@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=14.0.1
+version=14.0.2
 
 #Start
 cd ~/android/lineage/cm-14.1
@@ -93,6 +93,7 @@ if [ $# -gt 0 ]; then
 			echo "using the 'help' subcommand shows this text"
 			echo ""
 			echo "using the 'version' subcommand outputs version info"
+			exit
 			;;
 		version|-v|--version)
 			echo "Version: "$version
