@@ -22,7 +22,6 @@ PRODUCT_PACKAGES += \
 
 # Extra Apps
 PRODUCT_PACKAGES += \
-    Aptoide \
     CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
