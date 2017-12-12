@@ -4,7 +4,7 @@
 device=
 releasetype=
 gapps=1
-version=14.0.3
+version=14.0.4
 
 bdevice() {
 	cd ~/android/lineage/cm-14.1
@@ -43,7 +43,7 @@ bdevice() {
 	# Add Full OTA
 	cd ~/updater
 	echo "Adding full OTA to list"
-	FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://rctest.nt.jwolfweb.net/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
+	FLASK_APP=updater.app flask addrom -f LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip -d $device -v 14.1 -t "$(date "+%Y-%m-%d %H:%M:%S")" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip  | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-14.1-$(date +%Y%m%d)-$releasetype-$device.zip
 	cd ~/android/lineage/cm-14.1
 
 	# Package Incremental OTA
