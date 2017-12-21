@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=14.0.2
+version=14.0.4
 
 #Start
 cd ~/android/lineage/cm-14.1
@@ -8,57 +8,46 @@ cd ~/android/lineage/cm-14.1
 updateLineage() {
 	cd ~/android/lineage/cm-14.1/vendor/cm
 	git -c core.editor=true pull https://github.com/LineageOS/android_vendor_cm cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/base
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_base cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Settings
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Settings cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/ContactsCommon
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ContactsCommon cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/PhoneCommon
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PhoneCommon cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Contacts
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Contacts cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/system/sepolicy
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_system_sepolicy cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/native
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_native cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/ExactCalculator
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ExactCalculator cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/PackageInstaller
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PackageInstaller.git cm-14.1
-	git push origin HEAD:cm-14.1
 
 	cd ~/android/lineage/cm-14.1/packages/apps/Dialer
 	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Dialer cm-14.1
-	git push origin HEAD:cm-14.1
 }
 
 setuppatches() {
@@ -70,10 +59,6 @@ setuppatches() {
     cd ~/android/lineage/cm-14.1/kernel/motorola/msm8952
     git fetch https://github.com/franciscofranco/one_plus_3T
     git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-
-    cd ~/android/lineage/cm-14.1/kernel/oneplus
-	rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
-    git clone https://github.com/franciscofranco/one_plus_3T -b lineageos-14.1 msm8996
 
 	# Add support for updater
 	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
@@ -107,9 +92,6 @@ if [ $# -gt 0 ]; then
 			;;
 	esac
 fi
-
-# Remove old kernel
-rm -rf ~/android/lineage/cm-14.1/kernel/oneplus/msm8996
 
 # Sync new changes
 repo sync
