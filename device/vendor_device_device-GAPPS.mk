@@ -7,9 +7,13 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     Maps \
     Music2 \
-    PrebuiltKeep \
+    Photos \
+    PixelLauncher \
+    PixelLauncherIcons \
+    PrebuiltBugle \
     Velvet \
-    Wallet
+    Wallet \
+    WebViewGoogle
 
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
     Music2
