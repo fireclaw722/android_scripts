@@ -2,7 +2,7 @@
 
 version=14.0.7
 
-#Start
+# Start
 cd ~/android/lineage/cm-14.1
 
 updateLineage() {
