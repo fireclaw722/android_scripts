@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=14.0.4
+version=14.0.7
 
 #Start
 cd ~/android/lineage/cm-14.1
@@ -85,7 +85,7 @@ if [ $# -gt 0 ]; then
 			exit
 			;;
 		*)
-			echo "Codename not available for build."
+			echo "Error: Please see usage"
 			echo ""
 			syncrepo help
 			exit
