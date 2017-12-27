@@ -1,22 +1,22 @@
 #!/bin/bash
 
-version=15.0
+version=15.0.1
 
 #Start
-cd ~/android/lineage/lineage-15.0
+cd ~/android/lineage/lineage-15.1
 
 setuppatches() {
 	# Add SafetyNet Patches
 	# these will come later
 
 	# Add support for updater
-	cd ~/android/lineage/lineage-15.0/packages/apps/Updater/
-	sed -r 's/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/lineage-15.0/packages/apps/Updater/res/values/strings.xml > strings.xml 
-	mv strings.xml ~/android/lineage/lineage-15.0/packages/apps/Updater/res/values/strings.xml
-	git stage ~/android/lineage/lineage-15.0/packages/apps/Updater/res/values/strings.xml
+	cd ~/android/lineage/lineage-15.1/packages/apps/Updater/
+	sed -r 's/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/strings.xml > strings.xml 
+	mv strings.xml ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/strings.xml
+	git stage ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/strings.xml
 	git commit -m "Change update location for Unofficial builds"
 	
-	cd ~/android/lineage/lineage-15.0
+	cd ~/android/lineage/lineage-15.1
 }
 
 if [ $# -gt 0 ]; then
@@ -48,4 +48,4 @@ repo sync
 setuppatches
 
 # Take me back to the start
-cd ~/android/lineage/lineage-15.0
+cd ~/android/lineage/lineage-15.1
