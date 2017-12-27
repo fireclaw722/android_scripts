@@ -3,8 +3,7 @@
 # Variables
 device=
 releasetype=unofficial
-gapps=1
-version=14.0.8
+version=14.0.9
 datetime=$(date -u +%Y%m%d_%H%M%S)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
@@ -40,27 +39,18 @@ bdevice() {
         fi
 
         # Save Full OTA
-        mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/LOS-14.1-$datetime-$releasetype-$device.zip
+        mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/LOS-14.1-$datetime-$device.zip
 
         # Add Full OTA
         cd ~/updater
         echo "Adding full OTA to list"
-        FLASK_APP=updater.app flask addrom -f LOS-14.1-$datetime-$releasetype-$device.zip -d $device -v 14.1 -t "$dateforota" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$datetime-$releasetype-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-14.1-$datetime-$releasetype-$device.zip
+        FLASK_APP=updater.app flask addrom -f LOS-14.1-$datetime-$device.zip -d $device -v 14.1 -t "$dateforota" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-14.1-$datetime-$device.zip
         cd ~/android/lineage/cm-14.1
 
-        # Package Incremental OTA
-        #if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block -i ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/delta/LOS-14.1-$datetime-$releasetype-$device.zip ; then
-                echo "Creating Incremental OTA failed. Saving target_files anyways."
-        #fi
-
-        # Save old target_files
-        #mv ~/builds/$device/target_files/LOS-14.1-*-$releasetype-$device.zip ~/builds/$device/target_files/archive/
-
-        # Save new target_files
-        mv ~/android/lineage/cm-14.1/signed-target_files.zip ~/builds/$device/target_files/LOS-14.1-$datetime-$releasetype-$device.zip
-
+        # Restart the updater
         cd ~/updater
-        killall flask && zsh ./run.sh&!
+        ./run.sh&
+        disown
 
         cd ~/android/lineage/cm-14.1
 
