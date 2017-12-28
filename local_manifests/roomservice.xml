@@ -2,8 +2,8 @@
 <manifest>
     <!-- blobs -->
     <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="cm-14.1" />
-    <project name="sultanxda/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="cm-14.1" />
-    
+    <project name="sultanxda/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="cm-14.1-sultan" />
+     
     <!-- Addison -->
     <project name="LineageOS/android_device_motorola_addison" path="device/motorola/addison" remote="github" revision="cm-14.1" />
     <project name="LineageOS/android_kernel_motorola_msm8953" path="kernel/motorola/msm8953" remote="github" revision="cm-14.1" />
