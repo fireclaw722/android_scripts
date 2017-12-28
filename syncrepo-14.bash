@@ -1,12 +1,13 @@
 #!/bin/bash
 
-version=14.0.7
+version=14.0.8
 
 # Start
 cd ~/android/lineage/cm-14.1
 
 updateLineage() {
 	cd ~/android/lineage/cm-14.1/vendor/cm
+	repo sync --force-sync ./
 	git -c core.editor=true pull https://github.com/LineageOS/android_vendor_cm cm-14.1
 
 	cd ~/android/lineage/cm-14.1/frameworks/base
