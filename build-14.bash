@@ -3,7 +3,7 @@
 # Variables
 device=
 releasetype=unofficial
-version=14.0.9
+version=14.0.10
 datetime=$(date -u +%Y%m%d_%H%M%S)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
@@ -73,7 +73,7 @@ setupenv() {
 # Enter main()
 if [ $# -gt 0 ]; then
         case $1 in
-                addison|athene|oneplus3|victara)
+                addison|athene|mata|oneplus3|victara)
                         device=$1
                         shift
 
@@ -87,7 +87,7 @@ if [ $# -gt 0 ]; then
                         echo "Usage: build <device>"
                         echo ""
                         echo "Available devices are:"
-                        echo "'addison','athene','oneplus3','victara'"
+                        echo "'addison','athene','mata','oneplus3','victara'"
                         echo ""
                         echo "using the 'help' subcommand shows this text"
                         echo ""

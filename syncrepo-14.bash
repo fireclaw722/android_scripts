@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=14.0.8
+version=14.0.9
 
 # Start
 cd ~/android/lineage/cm-14.1
@@ -58,6 +58,10 @@ setuppatches() {
     git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 
     cd ~/android/lineage/cm-14.1/kernel/motorola/msm8952
+    git fetch https://github.com/franciscofranco/one_plus_3T
+    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+
+	cd ~/android/lineage/cm-14.1/kernel/essential/msm8998
     git fetch https://github.com/franciscofranco/one_plus_3T
     git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 
