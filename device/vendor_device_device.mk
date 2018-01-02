@@ -7,9 +7,13 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     Maps \
     Music2 \
-    PrebuiltKeep \
+    Photos \
+    PixelLauncher \
+    PixelLauncherIcons \
+    PrebuiltBugle \
     Velvet \
-    Wallet
+    Wallet \
+    WebViewGoogle
 
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
     Music2
@@ -22,7 +26,6 @@ PRODUCT_PACKAGES += \
 
 # Extra Apps
 PRODUCT_PACKAGES += \
-    Aptoide \
     CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
@@ -30,10 +33,7 @@ PRODUCT_PACKAGES += \
     Substratum \
     Swiftkey \
     TimeWeather \
-    UnifiedNlp \
     Underground \
-    Venezia \
-    YahooWeatherProvider \
-    YalpStore
+    YahooWeatherProvider
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
