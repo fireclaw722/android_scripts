@@ -1,39 +1,31 @@
-# Google's Apps
-GAPPS_VARIANT := pico
+# Google's Apps from OpenGapps/aosp_build
+GAPPS_VARIANT := stock
 
-PRODUCT_PACKAGES += \
-    CalendarGooglePrebuilt \
-    Drive \
-    GoogleTTS \
-    Maps \
+# Remove apps that aren't good for non-Nexus/non-Pixel phones
+GAPPS_EXCLUDED_PACKAGES := \
+    GoogleCamera \
+    GoogleDialer
+
+# Don't override Eleven, Email, or Gallery
+GAPPS_BYPASS_PACKAGE_OVERRIDES := \
     Music2 \
     Photos \
-    PixelLauncher \
-    PixelLauncherIcons \
-    PrebuiltBugle \
-    Velvet \
-    Wallet \
-    WebViewGoogle
-
-GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Music2
-
-# Technically Google Apps, but not provided by OpenGapps
-PRODUCT_PACKAGES += \
-    Fireball \
-    Gearhead \
-    Tachyon
+    PrebuiltGmail
 
 # Extra Apps
 PRODUCT_PACKAGES += \
     CommandCenter \
     FDroid \
     FDroidPrivilegedExtension \
+    Fireball \
+    Gearhead \
     Nova \
     Substratum \
     Swiftkey \
+    Tachyon \
     TimeWeather \
     Underground \
+    Venezia \
     YahooWeatherProvider
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
