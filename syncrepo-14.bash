@@ -65,6 +65,14 @@ setuppatches() {
     git fetch https://github.com/franciscofranco/one_plus_3T
     git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
 
+	cd ~/android/lineage/cm-14.1/kernel/google/marlin
+    git fetch https://github.com/franciscofranco/one_plus_3T
+    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+
+	cd ~/android/lineage/cm-14.1/kernel/google/sailfish
+    git fetch https://github.com/franciscofranco/one_plus_3T
+    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+
 	# Add support for updater
 	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
 	sed -r 's/download.lineageos.org/ota.jwolfweb.com/' ~/android/lineage/cm-14.1/packages/apps/Updater/res/values/strings.xml > strings.xml 

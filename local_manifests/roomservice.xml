@@ -13,6 +13,10 @@
     <project name="LineageOS/android_device_motorola_athene" path="device/motorola/athene" remote="github" revision="cm-14.1" />
     <project name="LineageOS/android_kernel_motorola_msm8952" path="kernel/motorola/msm8952" remote="github" revision="cm-14.1" />
     
+    <!-- (marlin) Google Pixel XL -->
+    <project name="LineageOS/android_device_google_marlin" path="device/google/marlin" remote="github" revision="cm-14.1" />
+    <project name="LineageOS/android_kernel_google_marlin" path="kernel/google/marlin" remote="github" revision="cm-14.1" />
+
     <!-- (mata) Essential PH-1 -->
     <project name="LineageOS/android_device_essential_mata" path="device/essential/mata" remote="github" revision="cm-14.1" />
     <project name="LineageOS/android_kernel_essential_msm8998" path="kernel/essential/msm8998" remote="github" revision="cm-14.1" />
@@ -20,7 +24,11 @@
     <!-- (oneplus3) OnePlus 3 / 3T -->
     <project name="LineageOS/android_device_oppo_common" path="device/oppo/common" remote="github" revision="cm-14.1" />
     <project name="sultanxda/android_device_oneplus_oneplus3" path="device/oneplus/oneplus3" remote="github" revision="cm-14.1-sultan" />
-    <project name="sultanxda/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="cm-14.1-sultan" />  
+    <project name="sultanxda/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="cm-14.1-sultan" />
+
+    <!-- (sailfish) Google Pixel -->
+    <project name="LineageOS/android_device_google_sailfish" path="device/google/sailfish" remote="github" revision="cm-14.1" />
+    <project name="LineageOS/android_kernel_google_sailfish" path="kernel/google/sailfish" remote="github" revision="cm-14.1" />
 
     <!-- (victara) Moto X 2014 -->
     <project name="LineageOS/android_device_motorola_victara" path="device/motorola/victara" remote="github" revision="cm-14.1" />

@@ -73,7 +73,7 @@ setupenv() {
 # Enter main()
 if [ $# -gt 0 ]; then
         case $1 in
-                addison|athene|mata|oneplus3|victara)
+                addison|athene|marlin|mata|oneplus3|sailfish|victara)
                         device=$1
                         shift
 
@@ -87,7 +87,7 @@ if [ $# -gt 0 ]; then
                         echo "Usage: build <device>"
                         echo ""
                         echo "Available devices are:"
-                        echo "'addison','athene','mata','oneplus3','victara'"
+                        echo "'addison','athene','marlin','mata','oneplus3','sailfish','victara'"
                         echo ""
                         echo "using the 'help' subcommand shows this text"
                         echo ""
