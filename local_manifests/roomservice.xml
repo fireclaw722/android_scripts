@@ -28,7 +28,6 @@
 
     <!-- (sailfish) Google Pixel -->
     <project name="LineageOS/android_device_google_sailfish" path="device/google/sailfish" remote="github" revision="cm-14.1" />
-    <project name="LineageOS/android_kernel_google_sailfish" path="kernel/google/sailfish" remote="github" revision="cm-14.1" />
 
     <!-- (victara) Moto X 2014 -->
     <project name="LineageOS/android_device_motorola_victara" path="device/motorola/victara" remote="github" revision="cm-14.1" />
