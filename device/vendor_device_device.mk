@@ -20,7 +20,6 @@ PRODUCT_PACKAGES += \
     Fireball \
     Gearhead \
     Nova \
-    Substratum \
     Swiftkey \
     Tachyon \
     TimeWeather \

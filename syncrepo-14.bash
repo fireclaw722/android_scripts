@@ -5,52 +5,6 @@ version=14.0.10
 # Start
 cd ~/android/lineage/cm-14.1
 
-updateLineage() {
-	cd ~/android/lineage/cm-14.1/vendor/cm
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_vendor_cm cm-14.1
-
-	cd ~/android/lineage/cm-14.1/frameworks/base
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_base cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/Settings
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Settings cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/ContactsCommon
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ContactsCommon cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/PhoneCommon
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PhoneCommon cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/Contacts
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Contacts cm-14.1
-
-	cd ~/android/lineage/cm-14.1/system/sepolicy
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_system_sepolicy cm-14.1
-
-	cd ~/android/lineage/cm-14.1/frameworks/native
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_frameworks_native cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/ExactCalculator
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_ExactCalculator cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/PackageInstaller
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_PackageInstaller.git cm-14.1
-
-	cd ~/android/lineage/cm-14.1/packages/apps/Dialer
-	repo sync --force-sync ./
-	git -c core.editor=true pull https://github.com/LineageOS/android_packages_apps_Dialer cm-14.1
-}
-
 setuppatches() {
 	# Add SafetyNet Patches
     cd ~/android/lineage/cm-14.1/kernel/motorola/msm8953
@@ -104,9 +58,6 @@ fi
 
 # Sync new changes
 repo sync
-
-# Update the LineageOS base
-updateLineage
 
 # Setup various patches
 setuppatches
