@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=14.0.10
+version=14.0.11
 
 # Start
 cd ~/android/lineage/cm-14.1
