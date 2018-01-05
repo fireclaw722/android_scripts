@@ -30,20 +30,16 @@ PRODUCT_PACKAGES += \
     CommandCenter \
     TimeWeather
 
-# Amazon Apps
-PRODUCT_PACKAGES += \
-    Underground \
-    Venezia 
-
 # FDroid
 PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension
 
-# Extra [Nova (for Google Now), Swiftkey, Yahoo WeatherProvider]
+# Extra [Nova (for Google Now), Swiftkey, Amazon Underground, Yahoo WeatherProvider]
 PRODUCT_PACKAGES += \
     Nova \
     Swiftkey \
+    Underground \
     YahooWeatherProvider
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
