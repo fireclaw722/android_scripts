@@ -4,7 +4,6 @@ GAPPS_VARIANT := micro
 PRODUCT_PACKAGES += \
     Drive \
     Maps \
-    Music2 \
     Photos \
     PixelLauncher \
     PixelLauncherIcons \
@@ -15,7 +14,6 @@ PRODUCT_PACKAGES += \
 
 # Don't override Eleven, Email, or Gallery
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Music2 \
     Photos \
     PrebuiltGmail
 
