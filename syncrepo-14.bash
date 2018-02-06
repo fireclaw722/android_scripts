@@ -9,19 +9,11 @@ setuppatches() {
 	# Add SafetyNet Patches
     cd ~/android/lineage/cm-14.1/kernel/motorola/msm8953
     git fetch https://github.com/franciscofranco/one_plus_3T
-    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+    git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
 
     cd ~/android/lineage/cm-14.1/kernel/motorola/msm8952
     git fetch https://github.com/franciscofranco/one_plus_3T
-    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-
-	cd ~/android/lineage/cm-14.1/kernel/essential/msm8998
-    git fetch https://github.com/franciscofranco/one_plus_3T
-    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
-
-	cd ~/android/lineage/cm-14.1/kernel/google/marlin
-    git fetch https://github.com/franciscofranco/one_plus_3T
-    git cherry-pick 4ccdebba15186d6631ca286c8b8348ac3b1f3301 5a9321d9e89dda28c68272e98b9a2e07ba76dbc9
+    git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
 
 	# Add support for updater
 	cd ~/android/lineage/cm-14.1/packages/apps/Updater/
