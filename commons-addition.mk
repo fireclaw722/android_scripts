@@ -1,21 +1,17 @@
 # Google's Apps from opengapps/aosp_build
-GAPPS_VARIANT := micro
+GAPPS_VARIANT := nano
 
 PRODUCT_PACKAGES += \
     Drive \
     Maps \
+    Music2 \
     Photos \
-    PixelLauncher \
-    PixelLauncherIcons \
-    PlusOne \
-    PrebuiltBugle \
-    Wallet \
-    YouTube
+    Wallet
 
-# Don't override Eleven, Email, or Gallery
+# Don't override Eleven or Gallery
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Photos \
-    PrebuiltGmail
+    Music2 \
+    Photos
 
 # Google Apps not provided by opengapps/aosp_build
 PRODUCT_PACKAGES += \
