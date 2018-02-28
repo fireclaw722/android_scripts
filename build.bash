@@ -3,12 +3,12 @@
 # Variables
 device=
 releasetype=unofficial
-version=14.0.10
+version=15.0.0
 datetime=$(date -u +%Y%m%d_%H%M%S)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
 bdevice() {
-        cd ~/android/lineage/cm-14.1
+        cd ~/android/lineage/lineage-15.1
 
         # Breakfast
         if ! breakfast lineage_$device-user ; then
@@ -30,7 +30,7 @@ bdevice() {
         fi
 
         # Save Signed Stable Images
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/LOS-14.1-$datetime-$device.zip
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/LOS-15.1-$datetime-$device.zip
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
@@ -39,27 +39,27 @@ bdevice() {
         fi
 
         # Save Full OTA
-        mv ~/android/lineage/cm-14.1/signed-ota_update.zip ~/builds/$device/full/LOS-14.1-$datetime-$device.zip
+        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip ~/builds/$device/full/LOS-15.1-$datetime-$device.zip
 
         # Add Full OTA
         cd ~/updater
         echo "Adding full OTA to list"
-        FLASK_APP=updater.app flask addrom -f LOS-14.1-$datetime-$device.zip -d $device -v 14.1 -t "$dateforota" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-14.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-14.1-$datetime-$device.zip
-        cd ~/android/lineage/cm-14.1
+        FLASK_APP=updater.app flask addrom -f LOS-15.1-$datetime-$device.zip -d $device -v 15.1 -t "$dateforota" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-15.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-15.1-$datetime-$device.zip
+        cd ~/android/lineage/lineage-15.1
 
         # Restart the updater
         cd ~/updater
         ./run.sh&
         disown
 
-        cd ~/android/lineage/cm-14.1
+        cd ~/android/lineage/lineage-15.1
 
         make clobber
         mka clobber
 }
 
 setupenv() {
-        cd ~/android/lineage/cm-14.1
+        cd ~/android/lineage/lineage-15.1
 
         make clobber
 
@@ -77,7 +77,7 @@ if [ $# -gt 0 ]; then
                         device=$1
                         shift
 
-                        cd ~/android/lineage/cm-14.1
+                        cd ~/android/lineage/lineage-15.1
 
                         setupenv
 
