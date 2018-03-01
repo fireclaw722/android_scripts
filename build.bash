@@ -11,7 +11,7 @@ bdevice() {
         cd ~/android/lineage/lineage-15.1
 
         # Breakfast
-        if ! breakfast lineage_$device-user ; then
+        if ! breakfast lineage_$device-userdebug ; then
                 echo "Breakfast failed for lineage_$device-user."
                 exit
         fi
@@ -24,13 +24,13 @@ bdevice() {
         fi
 
         # Sign Build
-        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*-target_files-*.zip signed-target_files.zip ; then
+        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
                 echo "Signing failed."
                 exit
         fi
 
         # Save Signed Stable Images
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/LOS-15.1-$datetime-$device.zip
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/LOS-IMG-15.1-$datetime-$device.zip
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
@@ -39,7 +39,7 @@ bdevice() {
         fi
 
         # Save Full OTA
-        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip ~/builds/$device/full/LOS-15.1-$datetime-$device.zip
+        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip ~/builds/LOS-15.1-$datetime-$device.zip
 
         # Add Full OTA
         cd ~/updater
