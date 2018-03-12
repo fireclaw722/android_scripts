@@ -10,8 +10,10 @@ PRODUCT_PACKAGES += \
 
 # Extra [Nova (for Google Now), Swiftkey, Amazon Underground, Yahoo WeatherProvider]
 PRODUCT_PACKAGES += \
+    Fennec \
     Nova \
     Swiftkey \
     Underground \
+    UnifiedNlp \
     Venezia \
     YahooWeatherProvider
