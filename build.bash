@@ -32,6 +32,8 @@ bdevice() {
         # Save Signed Stable Images
         ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/LOS-IMG-15.1-$datetime-$device.zip
 
+        mka otatools
+
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
                 echo "Creating OTA .zip failed"
@@ -68,6 +70,7 @@ setupenv() {
 
         # export vars
         export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
+        export WITH_SU=true
 }
 
 # Enter main()
