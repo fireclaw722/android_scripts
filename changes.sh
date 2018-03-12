@@ -21,7 +21,7 @@ git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e064
 ## Extras
 # add fdroid, and other pre-builts to build process
 cd ~/android/lineage/lineage-15.1/vendor/lineage/config/
-cat commons-additions.mk >> commons.mk
+cat commons-additions.mk >> common.mk
 
 # Add support for updater
 cd ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/
