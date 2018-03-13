@@ -30,7 +30,7 @@ bdevice() {
         fi
 
         # Save Signed Stable Images
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/LOS-IMG-15.1-$datetime-$device.zip
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/LOS-IMG-15.1-$datetime-$device.zip
 
         mka otatools
 
@@ -41,7 +41,7 @@ bdevice() {
         fi
 
         # Save Full OTA
-        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip ~/builds/LOS-15.1-$datetime-$device.zip
+        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip ~/builds/$device/full/LOS-15.1-$datetime-$device.zip
 
         # Add Full OTA
         cd ~/updater
@@ -70,7 +70,6 @@ setupenv() {
 
         # export vars
         export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
-        export WITH_SU=true
 }
 
 # Enter main()
