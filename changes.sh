@@ -23,6 +23,6 @@ git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e064
 cd ~/android/lineage/lineage-15.1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-# Add support for updater
+# Add unofficial support for updater
 cd ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/
 sed -r 's/download.lineageos.org/ota.jwolfweb.com/' strings.xml
