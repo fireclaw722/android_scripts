@@ -23,6 +23,10 @@ git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e064
 cd ~/android/lineage/lineage-15.1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
+# Change icon-mask back to square
+cd ~/android/lineage/lineage-15.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
+sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
+
 # Add unofficial support for updater
 cd ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/
 sed -r 's/download.lineageos.org/ota.jwolfweb.com/' strings.xml
