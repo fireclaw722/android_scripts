@@ -44,13 +44,13 @@ bdevice() {
         mv ~/android/lineage/lineage-15.1/signed-ota_update.zip ~/builds/$device/full/LOS-15.1-$datetime-$device.zip
 
         # Add Full OTA
-        cd ~/updater
+        cd ~/lineageos_updater
         echo "Adding full OTA to list"
-        FLASK_APP=updater.app flask addrom -f LOS-15.1-$datetime-$device.zip -d $device -v 15.1 -t "$dateforota" -r $releasetype -m $(md5sum ~/builds/$device/full/LOS-15.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-15.1-$datetime-$device.zip
+        FLASK_APP=updater/app.py flask addrom -f LOS-15.1-$datetime-$device.zip -d $device -v 15.1 -t "$dateforota" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/LOS-15.1-$datetime-$device.zip) -m $(md5sum ~/builds/$device/full/LOS-15.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-15.1-$datetime-$device.zip
         cd ~/android/lineage/lineage-15.1
 
         # Restart the updater
-        cd ~/updater
+        cd ~/lineageos_updater
         ./run.sh&
         disown
 
