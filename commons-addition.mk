@@ -36,4 +36,4 @@ PRODUCT_PACKAGES += \
     Venezia \
     YahooWeatherProvider
 
-$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+$(call inherit-product, vendor/google/build/opengapps-packages.mk)
