@@ -3,7 +3,7 @@
 # Variables
 device=
 releasetype=unofficial
-version=15.0.1
+version=15.0.2
 datetime=$(date -u +%Y%m%d_%H%M%S)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
@@ -11,7 +11,7 @@ bdevice() {
         cd ~/android/lineage/lineage-15.1
 
         # Breakfast
-        if ! breakfast lineage_$device-userdebug ; then
+        if ! breakfast lineage_$device-user ; then
                 echo "Breakfast failed for lineage_$device-user."
                 exit
         fi
