@@ -89,7 +89,7 @@ if [ $# -gt 0 ]; then
                         echo "Usage: build <device>"
                         echo ""
                         echo "Available devices are:"
-                        echo "'addison','athene','marlin','mata','oneplus3','sailfish','victara'"
+                        echo "'oneplus3'"
                         echo ""
                         echo "using the 'help' subcommand shows this text"
                         echo ""
