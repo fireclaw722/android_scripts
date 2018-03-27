@@ -3,7 +3,7 @@
 # Variables
 device=
 releasetype=unofficial
-version=15.0.2
+version=15.0.3
 datetime=$(date -u +%Y%m%d_%H%M%S)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
@@ -101,7 +101,7 @@ if [ $# -gt 0 ]; then
                 *)
                         echo "Codename not available for build."
                         echo ""
-                        build help
+                        build-15 help
         esac
 else
         echo "Please use a codename for the device you wish to build."
