@@ -3,7 +3,7 @@
 # Variables
 device=
 releasetype=unofficial
-version=15.0.3
+version=15.0.4
 datetime=$(date -u +%Y%m%d_%H%M%S)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
@@ -75,7 +75,7 @@ setupenv() {
 # Enter main()
 if [ $# -gt 0 ]; then
         case $1 in
-                addison|athene|marlin|mata|oneplus3|sailfish|victara)
+                oneplus3)
                         device=$1
                         shift
 
