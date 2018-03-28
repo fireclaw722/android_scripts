@@ -11,12 +11,6 @@ PRODUCT_PACKAGES += \
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
     Photos
 
-# Google Apps not provided by opengapps/aosp_build
-PRODUCT_PACKAGES += \
-    Fireball \
-    Gearhead \
-    Tachyon
-
 # Moto Widgets
 PRODUCT_PACKAGES += \
     CommandCenter \
