@@ -3,8 +3,10 @@ GAPPS_VARIANT := nano
 
 PRODUCT_PACKAGES += \
     Drive \
+    Fireball \
     Maps \
     Photos \
+    Tachyon \
     Wallet
 
 # Don't override Eleven or Gallery
@@ -26,8 +28,6 @@ PRODUCT_PACKAGES += \
     Fennec \
     Nova \
     Swiftkey \
-    Underground \
-    Venezia \
-    YahooWeatherProvider
+    Venezia
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
