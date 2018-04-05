@@ -18,6 +18,15 @@ git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e064
 
 # moto-msm8974/victara not applicable :: no bootloader check on safetynet
 
+# Low-RAM on Moto G4
+cd ~/android/lineage/lineage-15.1/device/motorola/athene/
+# edit system.prop ; adding the following
+    # Low memory device
+    ro.config.low_ram=true
+
+    # Force high-end graphics in low ram mode
+    persist.sys.force_highendgfx=trues
+
 ## Extras
 # add google, fdroid, and other pre-builts to build process
 cd ~/android/lineage/lineage-15.1/vendor/lineage/config/
