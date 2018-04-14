@@ -43,3 +43,7 @@ sed -r 's/download.lineageos.org/ota.jwolfweb.com/' strings.xml
 
 # add blue bootanimation
 cp ~/Downloads/bootanimation.tar ~/android/lineage/lineage-15.1/vendor/lineage/bootanimation
+
+# revert 5252d606716c3f8d81617babc1293c122359a94d
+cd ~/android/lineage/lineage-15.1/packages/apps/Updater
+git revert 5252d606716c3f8d81617babc1293c122359a94d
