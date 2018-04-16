@@ -4,7 +4,7 @@
 device=
 releasetype=unofficial
 version=15.0.4
-datetime=$(date -u +%Y%m%d_%H%M%S)
+datetime=$(date -u +%Y%m%d)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
 bdevice() {
