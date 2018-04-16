@@ -3,7 +3,7 @@
 # Variables
 device=
 releasetype=unofficial
-version=15.0.4
+version=15.0.5
 datetime=$(date -u +%Y%m%d)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 
