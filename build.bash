@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=15.0.5
+version=15.0.7
 datetime=$(date -u +%Y%m%d)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=unofficial
@@ -29,8 +29,8 @@ bdevice() {
                 exit
         fi
 
-        # Save Signed Stable Images
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/LOS-IMG-15.1-$datetime-$device.zip
+        # Save Recovery (and boot)
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/builds/$device/img/LOS-IMG-15.1-$datetime-$device.zip
 
         mka otatools
 
