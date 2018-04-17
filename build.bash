@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Variables
-device=
-releasetype=unofficial
 version=15.0.5
 datetime=$(date -u +%Y%m%d)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
+releasetype=unofficial
+device=
 
 bdevice() {
         cd ~/android/lineage/lineage-15.1
