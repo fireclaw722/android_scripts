@@ -1,9 +1,9 @@
-# Google's Apps from opengapps/aosp_build
+# Google's Apps
 GAPPS_VARIANT := nano
 
 PRODUCT_PACKAGES += \
+    Chrome \
     Drive \
-    Fireball \
     Maps \
     Photos \
     Tachyon \
@@ -23,10 +23,11 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension
 
-# Extra [Nova (for Google Now), Swiftkey, Amazon Underground, Yahoo WeatherProvider]
+# Extra [Firefox, Nova (for Google Now), Signal, Swiftkey, Amazon Underground, Yahoo WeatherProvider]
 PRODUCT_PACKAGES += \
     Fennec \
     Nova \
+    Signal \
     Swiftkey \
     Venezia
 
