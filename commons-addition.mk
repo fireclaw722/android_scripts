@@ -23,7 +23,7 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension
 
-# Extra [Firefox, Nova (for Google Now), Signal, Swiftkey, Amazon Underground, Yahoo WeatherProvider]
+# Extra [Firefox, Nova (for Google Now), Signal, Swiftkey, Amazon App Store]
 PRODUCT_PACKAGES += \
     Fennec \
     Nova \
