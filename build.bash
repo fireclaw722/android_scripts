@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Variables
-version=15.0.7
+version=15.0.8
 datetime=$(date -u +%Y%m%d)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
-releasetype=unofficial
+releasetype=release
 device=
 
 bdevice() {
@@ -72,7 +72,7 @@ setupenv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=RELEASE
 }
 
 # Enter main()
