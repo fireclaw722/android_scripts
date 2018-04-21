@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <!-- Vendor Blobs -->
-    <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="lineage-15.1" />
     <project name="TheMuppets/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="lineage-15.1" />
     
     <!-- (oneplus3) OnePlus 3 / 3T -->
