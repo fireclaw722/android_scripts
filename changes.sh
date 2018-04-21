@@ -45,10 +45,10 @@ sed -r 's/download.lineageos.org/ota.jwolfweb.com/' strings.xml
 cp ~/Downloads/bootanimation.tar ~/android/lineage/lineage-15.1/vendor/lineage/bootanimation
 
 # Cerulean Rebrand
-cd ~/android/lineage/lineage-15.1/lineage-sdk/res/res/strings.xml
-sed -r 's/LineageOS/Cerulean/' cm_strings.xml
+cd ~/android/lineage/lineage-15.1/lineage-sdk/lineage/res/res/values/
+sed -r 's/LineageOS/Cerulean/' strings.xml
 
-cd ~/android/lineage/lineage-15.1/vendor/cm/config/
+cd ~/android/lineage/lineage-15.1/vendor/lineage/config/
 sed -r 's/LineageOS/Cerulean/' common.mk
 
 cd ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/
