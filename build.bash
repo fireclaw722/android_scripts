@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=15.0.10
+version=15.0.11
 datetime=$(date -u +%Y%m%d)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
@@ -30,7 +30,7 @@ bdevice() {
         fi
 
         # Save Recovery (and boot)
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/LOS-IMG-15.1-$datetime-$device.zip
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-IMG-15.1-$datetime-$device.zip
 
         mka otatools
 
@@ -41,15 +41,15 @@ bdevice() {
         fi
 
         # Save Full OTA
-        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip /srv/builds/$device/full/LOS-15.1-$datetime-$device.zip
+        mv ~/android/lineage/lineage-15.1/signed-ota_update.zip /srv/builds/$device/full/Cerulean-15.1-$datetime-$device.zip
 
         # Save target_files
-        mv signed-target_files.zip /srv/builds/$device/target_files/LOS-TF-15.1-$datetime-$device.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-TF-15.1-$datetime-$device.zip
 
         # Add Full OTA
         cd ~/updater
         echo "Adding full OTA to list"
-        FLASK_APP=updater/app.py flask addrom -f LOS-15.1-$datetime-$device.zip -d $device -v 15.1 -t "$dateforota" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/LOS-15.1-$datetime-$device.zip) -m $(md5sum /srv/builds/$device/full/LOS-15.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LOS-15.1-$datetime-$device.zip
+        FLASK_APP=updater/app.py flask addrom -f Cerulean-15.1-$datetime-$device.zip -d $device -v 15.1 -t "$dateforota" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1-$datetime-$device.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1-$datetime-$device.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1-$datetime-$device.zip
         cd ~/android/lineage/lineage-15.1
 
         # Restart the updater
