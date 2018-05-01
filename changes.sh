@@ -1,3 +1,8 @@
+# MicroG for non-Google/Unofficial builds
+wget -O ~/Downloads/GmsCore-android_frameworks_base-O.patch https://raw.githubusercontent.com/FreeMobileOS/android_packages_apps_GmsCore/fmo-O-for-upstream/patches/android_frameworks_base-O.patch
+cd ~/android/lineage-15.1
+patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
+
 ## Add SafetyNet Patches
 # moto-msm8953/addison
 ### NOT INCLUDED BECAUSE ADDISON ISNT PORTED TO 15.1
