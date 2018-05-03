@@ -3,7 +3,11 @@ GAPPS_VARIANT := nano
 
 PRODUCT_PACKAGES += \
     Books \
+    Chrome \
     Drive \
+    EditorDocs \
+    EditorSheets \
+    EditorSlides \
     Maps \
     Music2 \
     Photos \
@@ -12,7 +16,8 @@ PRODUCT_PACKAGES += \
     PrebuiltKeep \
     Tachyon \
     Videos \
-    Wallet
+    Wallet \
+    YouTube
 
 # Don't override Eleven, Gallery, or Email
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
