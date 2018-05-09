@@ -33,6 +33,13 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension
 
+# Microsoft Office packages
+PRODUCT_PACKAGES += \
+    Excel \
+    Outlook \
+    Powerpoint \
+    Word
+
 # Extra [Firefox, Nova (for Google Now), Swiftkey]
 PRODUCT_PACKAGES += \
     Fennec \
