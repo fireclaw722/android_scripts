@@ -7,6 +7,7 @@ PRODUCT_PACKAGES += \
     Drive \
     Maps \
     Music2 \
+    Newsstand \
     Photos \
     PlayGames \
     PrebuiltGmail \
