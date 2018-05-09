@@ -5,9 +5,6 @@ PRODUCT_PACKAGES += \
     Books \
     Chrome \
     Drive \
-    EditorDocs \
-    EditorSheets \
-    EditorSlides \
     Maps \
     Music2 \
     Photos \
