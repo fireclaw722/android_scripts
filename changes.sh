@@ -1,3 +1,17 @@
+### Merge Substratum OMS changes from carbonrom gerrit 
+# frameworks/base :: 5180, 5181, 5183-5189, 5282-5299, 6333-6337, 6228
+vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P frameworks/base ####
+
+# packages/apps/settings :: 5192, 5300-5304, 6338, 6230
+vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P packages/apps/Settings ####
+
+# system/sepolicy :: 5190, 5191, 6339
+vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P system/sepolicy ####
+
+# build/make :: 5193
+vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P build/make ####
+
+
 ## Add SafetyNet Patches
 # moto-msm8953/addison
 ### NOT INCLUDED BECAUSE ADDISON ISNT PORTED TO 15.1
