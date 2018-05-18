@@ -1,15 +1,23 @@
-### Merge Substratum OMS changes from carbonrom gerrit 
-# frameworks/base :: 5180, 5181, 5183-5189, 5282-5299, 6333-6337, 6228
-vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P frameworks/base ####
+### Merge Substratum OMS changes from substratum gerrit 
+### [num] means non-clean merge
+# frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 485
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 487
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 488 455 491 423 424
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 425 427 430 431 448
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 454 458 489 492 494 499
 
-# packages/apps/settings :: 5192, 5300-5304, 6338, 6230
-vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P packages/apps/Settings ####
+# packages/apps/settings :: 471 472 [473] 479 [482] 484 [447] 495 496
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 471 472 473
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 479 482
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 484 447
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 495 496
 
-# system/sepolicy :: 5190, 5191, 6339
-vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P system/sepolicy ####
+# system/sepolicy :: 432 450 493
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system/sepolicy 432 450 493
 
-# build/make :: 5193
-vendor/lineage/build/tools/repopick.py -f -g https://review.carbonrom.org -P build/make ####
+# build :: 459
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
 
 
 ## Add SafetyNet Patches
@@ -31,15 +39,6 @@ git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
 
 # moto-msm8974/victara not applicable :: no bootloader check on safetynet
-
-# Low-RAM on Moto G4
-cd ~/android/lineage/lineage-15.1/device/motorola/athene/
-# edit system.prop ; adding the following
-    # Low memory device
-    ro.config.low_ram=true
-
-    # Force high-end graphics in low ram mode
-    persist.sys.force_highendgfx=trues
 
 ## Extras
 # add Google Apps, fdroid, and other pre-builts to build process
