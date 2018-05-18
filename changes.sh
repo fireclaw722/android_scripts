@@ -55,7 +55,8 @@ cd ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/
 sed -r 's/download.lineageos.org/ota.jwolfweb.com/' strings.xml
 
 # add blue bootanimation
-cp ~/Downloads/bootanimation.tar ~/android/lineage/lineage-15.1/vendor/lineage/bootanimation
+cp ~/Downloads/blue-los-bootanimation.tar ~/android/lineage/lineage-15.1/vendor/lineage/bootanimation/bootanimation.tar
+cd ~/android/lineage/lineage-15.1/vendor/lineage/bootanimation/
 
 # Cerulean Rebrand
 cd ~/android/lineage/lineage-15.1/lineage-sdk/lineage/res/res/values/
