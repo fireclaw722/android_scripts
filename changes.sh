@@ -72,3 +72,6 @@ sed -r 's/LineageOS/Cerulean/' common.mk
 
 cd ~/android/lineage/lineage-15.1/packages/apps/Updater/res/values/
 sed -r 's/LineageOS/Cerulean/' strings.xml
+
+cd ~/android/lineage/lineage-15.1/packages/apps/LineageParts/res/values
+sed -r 's/LineageOS/Cerulean/' strings.xml
