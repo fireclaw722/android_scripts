@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=15.0.11
+version=15.0.12
 datetime=$(date -u +%Y%m)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
