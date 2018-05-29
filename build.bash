@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=15.0.12
+version=15.0.13
 datetime=$(date -u +%Y%m)
 dateforota=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
@@ -30,7 +30,7 @@ bdevice() {
         fi
 
         # Save Recovery (and boot)
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-IMG-15.1-$datetime-$device.zip
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-15.1-$datetime-$device.zip
 
         mka otatools
 
@@ -44,7 +44,7 @@ bdevice() {
         mv ~/android/lineage/lineage-15.1/signed-ota_update.zip /srv/builds/$device/full/Cerulean-15.1-$datetime-$device.zip
 
         # Save target_files
-        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-TF-15.1-$datetime-$device.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-15.1-$datetime-$device.zip
 
         # Add Full OTA
         cd ~/updater
