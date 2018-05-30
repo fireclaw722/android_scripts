@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=1.0.0
+version=0.1.0
 datetime=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
@@ -19,7 +19,7 @@ showHelp() {
 }
 
 cleanMka(){
-        cd ~/android/lineage/lineage-15.1
+        cd ~/android/aosp/oreo-mr1
 
         if ! mka clobber ; then
                 make clobber
@@ -31,7 +31,7 @@ buildDevice() {
         # Start clean
         cleanMka
 
-        cd ~/android/lineage/lineage-15.1
+        cd ~/android/aosp/oreo-mr1
 
         # Breakfast
         if ! breakfast lineage_$device-user ; then
@@ -62,7 +62,7 @@ buildDevice() {
 }
 
 buildOTA() {
-        cd ~/android/lineage/lineage-15.1
+        cd ~/android/aosp/oreo-mr1
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
@@ -86,7 +86,7 @@ addOTA() {
 }
 
 saveFiles() {
-        cd ~/android/lineage/lineage-15.1
+        cd ~/android/aosp/oreo-mr1
 
         # Save Information
         echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1-$datetime.txt
@@ -106,7 +106,7 @@ saveFiles() {
 }
 
 setupEnv() {
-        cd ~/android/lineage/lineage-15.1
+        cd ~/android/aosp/oreo-mr1
 
         cleanMka
 
