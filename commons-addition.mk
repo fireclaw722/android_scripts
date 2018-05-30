@@ -1,21 +1,24 @@
 # Google's Apps
 GAPPS_VARIANT := nano
 
+# opengapps/aosp_build
 PRODUCT_PACKAGES += \
     Books \
-    Chrome \
     Drive \
     Maps \
     Music2 \
     Newsstand \
     Photos \
     PlayGames \
-    PrebuiltGmail \
-    PrebuiltKeep \
-    Tachyon \
     Videos \
     Wallet \
     YouTube
+
+# other google apps
+PRODUCT_PACKAGES += \
+    Fireball \
+    Gearhead \
+    Tachyon
 
 # Don't override Eleven, Gallery, or Email
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
