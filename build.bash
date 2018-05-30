@@ -89,20 +89,20 @@ saveFiles() {
         cd ~/android/cerulean/oreo-mr1
 
         # Save Information
-        echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-8.1-$datetime.txt
+        echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1-$datetime.txt
         echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1-$datetime.txt
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-8.1-$datetime.zip        
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-15.1-$datetime.zip        
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-8.1-$datetime.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-15.1-$datetime.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/Cerulean-8.1-$datetime.zip
+        mv signed-ota_update.zip /srv/builds/$device/full/Cerulean-15.1-$datetime.zip
 }
 
 setupEnv() {
