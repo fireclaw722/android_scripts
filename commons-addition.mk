@@ -46,7 +46,6 @@ PRODUCT_PACKAGES += \
 # Extra [Firefox, Nova (for Google Now), Swiftkey]
 PRODUCT_PACKAGES += \
     Fennec \
-    Nova \
     Swiftkey
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
