@@ -43,9 +43,9 @@ PRODUCT_PACKAGES += \
     Powerpoint \
     Word
 
-# Extra [Firefox, Nova (for Google Now), Swiftkey]
+# Extra [Firefox, Nova (for Google Now)]
 PRODUCT_PACKAGES += \
     Fennec \
-    Swiftkey
+    Nova
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
