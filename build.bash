@@ -55,14 +55,14 @@ buildDevice() {
                         exit
                 fi
         fi
-
-        # For some reason, brotli doesn't work unless "otatools" is ran
-        # so build "otatools" for future use
-        mka otatools
 }
 
 buildOTA() {
         cd ~/android/cerulean/oreo-mr1
+
+        # For some reason, brotli doesn't work unless "otatools" is ran
+        # so build "otatools" for future use
+        mka otatools
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
