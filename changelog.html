@@ -47,11 +47,18 @@
 
         <h3>System-level Changes</h3>
         <ul>
-            <li>Lineage Sources updated to include May Security Patch</li>
+            <li>Lineage Sources synced to include May Security Patch</li>
+            <li>
+                -user builds instead of -userdebug
+                <ul>
+                    <li>LineageSU doesn't work on -user builds</li>
+                    <li>No permissive SELinux domains allowed in -user builds</li>
+                </ul>
+            </li>
+            <li>Blue (Cerulean) Lineage boot animation replacing regular Lineage boot animation</li>
+            <li>OTA Update support via Updater app from LineageOS and invisiblek's fork of the server</li>
             <li class="add">Substratum support</li>
             <li class="add">SafetyNet bypass kernel commits</li>
-            <li>Blue (Cerulean) boot animation</li>
-            <li>OTA Update support via Updater app from LineageOS and invisiblek's fork of the server</li>
             <li class="add">UnifiedNlp for no-Gapps location support</li>
         </ul>
 
