@@ -55,10 +55,6 @@ cat commons-additions.mk >> common.mk
 cd ~/android/cerulean/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
 
-# Add support for unofficial updates
-cd ~/android/cerulean/oreo-mr1/packages/apps/Updater/res/values/
-sed -r 's/download.lineageos.org/ota.jwolfweb.com/' strings.xml
-
 # add blue bootanimation
 cp ~/Downloads/blue-los-bootanimation.tar ~/android/cerulean/oreo-mr1/vendor/lineage/bootanimation/bootanimation.tar
 cd ~/android/cerulean/oreo-mr1/vendor/lineage/bootanimation/
@@ -69,9 +65,6 @@ sed -r 's/LineageOS/Cerulean/' strings.xml
 
 cd ~/android/cerulean/oreo-mr1/vendor/lineage/config/
 sed -r 's/LineageOS/Cerulean/' common.mk
-
-cd ~/android/cerulean/oreo-mr1/packages/apps/Updater/res/values/
-sed -r 's/LineageOS/Cerulean/' strings.xml
 
 cd ~/android/cerulean/oreo-mr1/packages/apps/LineageParts/res/values
 sed -r 's/LineageOS/Cerulean/' strings.xml
