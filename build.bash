@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=15.1.0
+version=1.0.0
 datetime=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
