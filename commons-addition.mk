@@ -46,6 +46,7 @@ PRODUCT_PACKAGES += \
 # Extra [Firefox, Nova (for Google Now)]
 PRODUCT_PACKAGES += \
     Fennec \
-    Nova
+    Nova \
+    UnifiedNlp-Gapps
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
