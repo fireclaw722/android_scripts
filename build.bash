@@ -76,7 +76,7 @@ addOTA() {
         echo "Adding full OTA to list"
         cd ~/updater
 
-        FLASK_APP=updater/app.py flask addrom -f Cerulean-15.1.$builddate-$device.zip -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1-$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1-$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1-$builddate.zip
+        FLASK_APP=updater/app.py flask addrom -f Cerulean-15.1.$builddate-$device.zip -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
 
         # Restart the updater
         echo "Restarting updater backend..."
@@ -89,20 +89,20 @@ saveFiles() {
         cd ~/android/cerulean/oreo-mr1
 
         # Save Information
-        echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1-$builddate.txt
-        echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1-$builddate.txt
+        echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
+        echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-15.1-$builddate.zip        
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-15.1.$builddate.zip        
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-15.1-$builddate.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-15.1.$builddate.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/Cerulean-15.1-$builddate.zip
+        mv signed-ota_update.zip /srv/builds/$device/full/Cerulean-15.1.$builddate.zip
 }
 
 setupEnv() {
