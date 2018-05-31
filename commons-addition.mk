@@ -3,15 +3,12 @@ GAPPS_VARIANT := nano
 
 # opengapps/aosp_build
 PRODUCT_PACKAGES += \
-    Books \
-    Drive \
     Maps \
     Music2 \
     Newsstand \
     PlayGames \
     Videos \
-    Wallet \
-    YouTube
+    Wallet
 
 # Don't override Eleven, Gallery, or Email
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
@@ -27,17 +24,9 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension
 
-# Microsoft Office packages
-PRODUCT_PACKAGES += \
-    Excel \
-    Outlook \
-    Powerpoint \
-    Word
-
 # Extra [Firefox, Nova (for Google Now)]
 PRODUCT_PACKAGES += \
     Fennec \
-    Nova \
-    UnifiedNlp-Gapps
+    Nova
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
