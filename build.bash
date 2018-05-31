@@ -1,17 +1,22 @@
 #!/bin/bash
 
 # Variables
-version=0.1.1
+version=0.2.0
 builddate=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
 device=
 
 showHelp() {
-        echo "Usage: build <device>"
+        echo "Usage: build <device> [releasetype]"
         echo ""
         echo "Available devices are:"
         echo "'oneplus3'"
+        echo ""
+        echo "Available releasetypes are:"
+        echo "'release', 'nightly'"
+        echo "default is 'release'"
+        echo "nightlies are not actually built nightly, and are of beta quality"
         echo ""
         echo "using the 'help' subcommand shows this text"
         echo ""
@@ -34,9 +39,16 @@ buildDevice() {
         cd ~/android/cerulean/oreo-mr1
 
         # Breakfast
-        if ! breakfast lineage_$device-user ; then
-                echo "Breakfast failed for lineage_$device-user."
-                exit
+        if [ "$releasetype" == "nightly" ] ; then
+                if ! breakfast lineage_$device-userdebug ; then
+                        echo "Error: Breakfast failed for lineage_$device-userdebug"
+                        exit
+                fi
+        elif [ "$releasetype" == "release" ] ; then
+                if ! breakfast lineage_$device-user ; then
+                        echo "Error: Breakfast failed for lineage_$device-user"
+                        exit
+                fi
         fi
 
         # Run build
@@ -76,7 +88,11 @@ addOTA() {
         echo "Adding full OTA to list"
         cd ~/updater
 
-        FLASK_APP=updater/app.py flask addrom -f Cerulean-15.1.$builddate-$device.zip -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+        if [ "$releasetype" == "nightly" ] ; then
+                FLASK_APP=updater/app.py flask addrom -f "15.1-beta $(date -u +%Y-%m-%d)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+        elif [ "$releasetype" == "release" ] ; then
+                FLASK_APP=updater/app.py flask addrom -f "15.1 $(date -u +%Y-%m)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+        fi
 
         # Restart the updater
         echo "Restarting updater backend..."
@@ -87,10 +103,6 @@ addOTA() {
 
 saveFiles() {
         cd ~/android/cerulean/oreo-mr1
-
-        # Save Information
-        echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
-        echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
@@ -114,42 +126,72 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=RELEASE
+        if [ "$releasetype" == "nightly" ] ; then
+                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=NIGHTLY
+        elif [ "$releasetype" == "release" ] ; then
+                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=RELEASE
+        fi
 }
 
-# Enter main()
-if [ $# -gt 0 ]; then
-        case $1 in
-                oneplus3)
-                        device=$1
-                        shift
+## Enter main()
 
-                        cd ~/android/cerulean/oreo-mr1
-
-                        setupEnv
-
-                        buildDevice
-
-                        buildOTA
-
-                        saveFiles
-
-                        addOTA
-
-                        cleanMka
+# take care of releasetype
+if [ $# -eq 2 ] ; then
+        case $2 in
+                release)
+                        releasetype=$2
+                        builddate=$(date -u +%Y%m)
                         ;;
-                help|-h|--help)
-                        showHelp
-                        ;;
-                version|-v|--version)
-                        echo "Version: "$version
+                nightly)
+                        releasetype=$2
                         ;;
                 *)
-                        echo "Error: Codename not available for build."
+                        echo "Error: releasetype not available"
                         echo ""
                         showHelp
-        esac
+                        exit
+        esac        
+elif [ $# -eq 1 ] ; then
+        releasetype=release
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
+        exit
 fi
+
+# now device
+case $1 in
+        oneplus3)
+                device=$1
+                shift
+
+                # Save Information
+                echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
+                echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
+
+                # run build
+                cd ~/android/cerulean/oreo-mr1
+
+                setupEnv
+
+                buildDevice
+
+                buildOTA
+
+                saveFiles
+
+                addOTA
+
+                cleanMka
+                ;;
+        help|-h|--help)
+                showHelp
+                ;;
+        version|-v|--version)
+                echo "Version: "$version
+                ;;
+        *)
+                echo "Error: Codename not available for build."
+                echo ""
+                showHelp
+esac
