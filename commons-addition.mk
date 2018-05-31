@@ -8,23 +8,14 @@ PRODUCT_PACKAGES += \
     Maps \
     Music2 \
     Newsstand \
-    Photos \
     PlayGames \
     Videos \
     Wallet \
     YouTube
 
-# other google apps
-PRODUCT_PACKAGES += \
-    Fireball \
-    Gearhead \
-    Tachyon
-
 # Don't override Eleven, Gallery, or Email
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Music2 \
-    Photos \
-    PrebuiltGmail
+    Music2
 
 # Moto Widgets
 PRODUCT_PACKAGES += \
