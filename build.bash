@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.1.0
+version=0.1.1
 builddate=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
@@ -106,7 +106,7 @@ saveFiles() {
 }
 
 setupEnv() {
-        cd ~/android/aosp/oreo-mr1
+        cd ~/android/cerulean/oreo-mr1
 
         cleanMka
 
