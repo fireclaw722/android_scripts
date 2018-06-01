@@ -22,7 +22,7 @@ PRODUCT_PACKAGES += \
 # FDroid
 PRODUCT_PACKAGES += \
     FDroid \
-    FDroidPrivilegedExtension
+    F-DroidPrivilegedExtension
 
 # Extra [Firefox, Nova (for Google Now)]
 PRODUCT_PACKAGES += \
