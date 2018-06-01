@@ -53,17 +53,17 @@ buildDevice() {
 
         # Run build
         if ! mka target-files-package dist ; then
-                echo "Build failed"
+                echo "Error: Make failed"
                 echo "Revert last change and try again."
                 exit
         fi
 
         # Sign Build
         if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
-                echo "Signing failed. Re-input the passwords for second attempt."
+                echo "Error: Signing failed. Re-input the passwords for second attempt."
                 rm signed-target_files.zip
                  if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
-                        echo "Signing failed, again. Exiting..."
+                        echo "Error: Signing failed, again. Exiting..."
                         exit
                 fi
         fi
@@ -78,7 +78,7 @@ buildOTA() {
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
-                echo "Creating Full OTA failed"
+                echo "Error: Creating Full OTA failed"
                 exit
         fi
 }
@@ -96,7 +96,7 @@ addOTA() {
                 FLASK_APP=updater/app.py flask addrom -f "15.1 $(date --date='$updaterDate' +%Y-%m)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
                 echo "Full release OTA added"
         fi
-        
+
         echo ""
 
         # Restart the updater
