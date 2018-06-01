@@ -36,7 +36,9 @@ git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e064
 
 # moto-msm8974/victara not applicable :: no bootloader check on safetynet
 
-### Remove modemAssertion from device/oneplus/oneplus3/releasetools.py
+### Remove modemAssertion so Incrementals can generate
+cd ~/android/cerulean/oreo-mr1/device/oneplus/oneplus3/
+vi releasetools.py
     # Replace
     def IncrementalOTA_Assertions(info):
         AddModemAssertion(info)
