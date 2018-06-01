@@ -86,16 +86,22 @@ buildOTA() {
 addOTA() {
         # Add packaged update to the update backend
         echo "Adding full OTA to list"
+        echo ""
         cd ~/updater
 
         if [ "$releasetype" == "nightly" ] ; then
                 FLASK_APP=updater/app.py flask addrom -f "15.1-beta $(date --date='$updaterDate' +%Y-%m-%d)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+                echo "Full beta OTA added"
         elif [ "$releasetype" == "release" ] ; then
                 FLASK_APP=updater/app.py flask addrom -f "15.1 $(date --date='$updaterDate' +%Y-%m)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+                echo "Full release OTA added"
         fi
+        
+        echo ""
 
         # Restart the updater
         echo "Restarting updater backend..."
+        echo ""
         ./run.sh&
         disown
         echo "Updater backend restarted"
