@@ -24,9 +24,10 @@ PRODUCT_PACKAGES += \
     FDroid \
     F-DroidPrivilegedExtension
 
-# Extra [Firefox, Nova (for Google Now)]
+# Extra [Firefox, Google Now Plugins (for non-Stock Launchers)]
 PRODUCT_PACKAGES += \
+    ActionGoogle \
     Fennec \
-    Nova
+    NovaGoogle
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
