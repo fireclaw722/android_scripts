@@ -167,7 +167,9 @@ case $1 in
 
                 # Save Information
                 echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
+                echo "----------------------------------------" >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
                 echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
+                echo "" >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
 
                 # run build
                 cd ~/android/cerulean/oreo-mr1
