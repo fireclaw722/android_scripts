@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.2.1
+version=0.2.2
 builddate=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=release
@@ -90,10 +90,10 @@ addOTA() {
         cd ~/updater
 
         if [ "$releasetype" == "nightly" ] ; then
-                FLASK_APP=updater/app.py flask addrom -f "15.1-beta $(date --date='$updaterDate' +%Y-%m-%d)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+                FLASK_APP=updater/app.py flask addrom -f "15.1-beta $(date --date="$updaterDate" +%Y-%m-%d)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
                 echo "Full beta OTA added"
         elif [ "$releasetype" == "release" ] ; then
-                FLASK_APP=updater/app.py flask addrom -f "15.1 $(date --date='$updaterDate' +%Y-%m)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
+                FLASK_APP=updater/app.py flask addrom -f "15.1 $(date --date="$updaterDate" +%Y-%m)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
                 echo "Full release OTA added"
         fi
 
