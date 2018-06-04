@@ -11,7 +11,7 @@ showHelp() {
         echo "Usage: build <device> [releasetype]"
         echo ""
         echo "Available devices are:"
-        echo "'oneplus3'"
+        echo "'athene', 'oneplus3'"
         echo ""
         echo "Available releasetypes are:"
         echo "'release', 'nightly'"
@@ -167,7 +167,7 @@ fi
 
 # now device
 case $1 in
-        oneplus3)
+        athene|oneplus3)
                 device=$1
                 shift
 
