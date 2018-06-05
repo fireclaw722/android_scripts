@@ -1,5 +1,5 @@
-### Merge Substratum OMS changes from substratum gerrit 
-### [num] means non-clean merge
+## Merge Substratum OMS changes from substratum gerrit 
+# [num] means non-clean merge
 # frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 485
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 487
@@ -36,7 +36,7 @@ git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e064
 
 # moto-msm8974/victara not applicable :: no bootloader check on safetynet
 
-### Remove modemAssertion so Incrementals can generate
+## Remove modemAssertion so Incrementals can generate
 cd ~/android/cerulean/oreo-mr1/device/oneplus/oneplus3/
 vi releasetools.py
     # Replace
@@ -47,26 +47,42 @@ vi releasetools.py
     def IncrementalOTA_Assertions(info):
         return
 
-## Extras
-# add Google Apps, fdroid, and other pre-builts to build process
+## Move Updates to Settings > System
+cd ~/android/cerulean/oreo-mr1/packages/apps/Settings/res/xml/
+vi device_info_settings.xml
+    # remove
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
+vi system_dashboard_fragment.xml
+    # add 
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
+
+
+## add Google Apps, fdroid, and other pre-builts to build process
 cd ~/android/cerulean/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-# Change icon-mask back to square
+## Change icon-mask back to square
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
 cd ~/android/cerulean/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
 
-# add blue bootanimation
+## add blue bootanimation
 cp ~/Downloads/blue-los-bootanimation.tar ~/android/cerulean/oreo-mr1/vendor/lineage/bootanimation/bootanimation.tar
 cd ~/android/cerulean/oreo-mr1/vendor/lineage/bootanimation/
 
-# Cerulean Rebrand
+## Cerulean Rebrand
+# Change values for updater, version
 cd ~/android/cerulean/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS/Cerulean/' strings.xml
 
-cd ~/android/cerulean/oreo-mr1/vendor/lineage/config/
-sed -r 's/LineageOS/Cerulean/' common.mk
-
+# Change Values for updater, version
 cd ~/android/cerulean/oreo-mr1/packages/apps/LineageParts/res/values
 sed -r 's/LineageOS/Cerulean/' strings.xml
