@@ -21,13 +21,39 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/
 
 
 ## Add SafetyNet Patches
+## addison, angler, athene, bullhead, griffin, marlin, oneplus2, oneplus3
 # moto-msm8953/addison
 # no available ports ; maybe when I have the time ill work on it
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
 
+# angler
+cd ~/android/lineage/oreo-mr1/kernel/huawei/angler
+git fetch https://github.com/franciscofranco/angler
+git cherry-pick 9cb8ecbd16b8886e4bd05d63fff78a32d304e94b f2ead91654706afad119b279dbea6c363526d077
+
 # moto-msm8952/athene
 # included in current kernel
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8952
+
+# bullhead
+cd ~/android/lineage/oreo-mr1/kernel/lge/bullhead
+git fetch https://github.com/franciscofranco/bullhead
+git cherry-pick 7134d85554ec3bb40b5f2ba16b514e0495253937 9617984cebebefcf83d992fb18d59ffe9e18dba0
+
+# moto-msm8996/griffin
+cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
+git fetch https://github.com/franciscofranco/one_plus_3T
+git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
+
+# marlin (includes sailfish)
+cd ~/android/lineage/oreo-mr1/kernel/google/marlin
+git fetch https://github.com/franciscofranco/one_plus_3T
+git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
+
+# oneplus-msm8994/oneplus2
+cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8994
+git fetch https://github.com/franciscofranco/one_plus_2
+git cherry-pick 447de8129ab0d1416a751478b59318bebc67aaab e8c7dc05c6f3686b530896d2ad1457033ab41df1 
 
 # oneplus-msm8996/oneplus3
 cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8996
@@ -47,3 +73,8 @@ cat commons-additions.mk >> common.mk
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
+
+## Cerulean Rebrand
+# Change values for updater, version
+cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
+sed -r 's/LineageOS updates/Android Updates/' strings.xml
