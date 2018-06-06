@@ -34,7 +34,7 @@
     <project name="LineageOS/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="lineage-15.1" />
 
     <!-- (sailfish) Google Pixel -->
-    <project name="LineageOS/android_device_google_sailfish" path="device/google/marlin" remote="github" revision="lineage-15.1" />
+    <project name="LineageOS/android_device_google_sailfish" path="device/google/sailfish" remote="github" revision="lineage-15.1" />
 
     <!-- Extra/Commons -->
     <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" revision="lineage-15.1" />
