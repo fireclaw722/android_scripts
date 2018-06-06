@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.3.1
+version=0.3.2
 builddate=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=
