@@ -74,7 +74,24 @@ cat commons-additions.mk >> common.mk
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
 
-## Cerulean Rebrand
+## LineageOMS Rebrand
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS updates/Android Updates/' strings.xml
+
+## Vendor-level patch
+cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
+    # change
+    <Preference android:key="vendor_security_patch"
+        android:title="Vendor Security Patch Level" # android:title="@string/security_patch"
+        android:summary="@string/summary_placeholder">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://source.android.com/security/bulletin/" />
+    </Preference>
+    # add after
+    <Preference android:key="aosp_security_patch"
+        android:title="@string/security_patch"
+        android:summary="May 5, 2018"> # android:summary="@string/summary_placeholder">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="https://source.android.com/security/bulletin/" />
+    </Preference>

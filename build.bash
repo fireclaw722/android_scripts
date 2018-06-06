@@ -168,6 +168,25 @@ case $1 in
                 device=$1
                 shift
 
+                case $device in 
+                        angler|bullhead|marlin|oneplus3|sailfish)
+                                PLATFORM_SECURITY_PATCH := 2018-05-05
+                                ;;
+                        athene)
+                                PLATFORM_SECURITY_PATCH := 2018-04-01
+                                ;;
+                        griffin)
+                                PLATFORM_SECURITY_PATCH := 2018-03-01
+                                ;;
+                        oneplus2)
+                                PLATFORM_SECURITY_PATCH := 2017-10-05
+                                ;;
+                        *)
+                                echo "Error: No?"
+                                exit
+                esac
+
+
                 # run build
                 cd ~/android/lineage/oreo-mr1
 
