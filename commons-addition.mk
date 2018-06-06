@@ -14,5 +14,3 @@ PRODUCT_PACKAGES += \
     Fennec \
     NovaGoogle \
     UnifiedNlp
-
-$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
