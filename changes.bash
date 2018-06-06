@@ -29,7 +29,7 @@ cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
 # angler
 cd ~/android/lineage/oreo-mr1/kernel/huawei/angler
 git fetch https://github.com/franciscofranco/angler
-git cherry-pick 9cb8ecbd16b8886e4bd05d63fff78a32d304e94b f2ead91654706afad119b279dbea6c363526d077
+git cherry-pick f2ead91654706afad119b279dbea6c363526d077 9cb8ecbd16b8886e4bd05d63fff78a32d304e94b
 
 # moto-msm8952/athene
 # included in current kernel
@@ -38,27 +38,29 @@ cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8952
 # bullhead
 cd ~/android/lineage/oreo-mr1/kernel/lge/bullhead
 git fetch https://github.com/franciscofranco/bullhead
-git cherry-pick 7134d85554ec3bb40b5f2ba16b514e0495253937 9617984cebebefcf83d992fb18d59ffe9e18dba0
+git cherry-pick 9617984cebebefcf83d992fb18d59ffe9e18dba0 7134d85554ec3bb40b5f2ba16b514e0495253937
 
 # moto-msm8996/griffin
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
 git fetch https://github.com/franciscofranco/one_plus_3T
-git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
+git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 # marlin (includes sailfish)
 cd ~/android/lineage/oreo-mr1/kernel/google/marlin
 git fetch https://github.com/franciscofranco/one_plus_3T
-git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
+git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 # oneplus-msm8994/oneplus2
 cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8994
 git fetch https://github.com/franciscofranco/one_plus_2
-git cherry-pick 447de8129ab0d1416a751478b59318bebc67aaab e8c7dc05c6f3686b530896d2ad1457033ab41df1 
+git cherry-pick e8c7dc05c6f3686b530896d2ad1457033ab41df1 447de8129ab0d1416a751478b59318bebc67aaab
 
 # oneplus-msm8996/oneplus3
 cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8996
 git fetch https://github.com/franciscofranco/one_plus_3T
-git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
+git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
+git commit
+git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 ## Fix griffin blobs
 cd ~/android/lineage/oreo-mr1/vendor/motorola
