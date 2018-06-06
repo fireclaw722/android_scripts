@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Cerulean Changelog</title>
+        <title>Fireclaw's LineageOMS Changelog</title>
         <style>
             h1 {
                 border-bottom: 1px solid #111;
                 width: 50%;
             }
             .add {
-                color: #0064ff;
+                color: #167c80;
             }
             .remove {
                 color: #B00020;
@@ -41,73 +41,38 @@
             </tr>
         </table>
 
-        <h1>Changes for Cerulean LineageOS</h1>
+        <h1>Changes for Fireclaw's LineageOMS</h1>
 
-        <h2>2018-06-02_nightly</h2>
-        <p>Fixed Updater. Previous updates pulled</p>
-
-        <h2>2018-06-01_nightly</h2>
-
+        <h2>2018-06-07_nightly</h2>
+        <h3>Devices</h3>
+        <ul>
+            <li>OnePlus 3/3T</li>
+        </ul>
         <h3>System-level</h3>
         <ul>
-            <li>Lineage Sources synced</li>
+            <li>AOSP-style square icon mask</li>
+            <li class="add">Substratum support</li>
+            <li class="add">SafetyNet bypass kernel commits</li>
+            <li class="add">MicroG's UnifiedNlp for providing location info on Non-Google installs</li>
+            <li class="add">F-Droid Privileged Extension</li>
         </ul>
 
         <h3>App Changes</h3>
         <ul>
-            <li class="add">F-Droid Privileged Extension</li>
-            <li class="remove">Nova Launcher</li>
+            <li class="add">F-Droid app</li>
             <li>Google Now Plugins for custom launchers
                 <ul>
                     <li class="add">Nova Launcher</li>
                     <li class="add">Action Launcher</li>
                 </ul>
             </li>
-        </ul>
-
-        <h2>2018-05-31_nightly</h2>
-
-        <h3>System-level Changes</h3>
-        <ul>
-            <li>Lineage Sources synced to include May Security Patch</li>
-            <li>
-                -userdebug builds
+            <li>Motorola Widgets
                 <ul>
-                    <li>LineageSU doesn't work on -user builds</li>
-                    <li>No permissive SELinux domains allowed in -user builds</li>
+                    <li class="add">TimeWeather from the Moto X4/G5/Z2/etc</li>
+                    <li class="add">CommandCenter from the Z Droid devices</li>
                 </ul>
             </li>
-            <li>Blue (Cerulean) Lineage boot animation replacing regular Lineage boot animation</li>
-            <li>OTA Update support via Updater app from LineageOS and invisiblek's fork of the server</li>
-            <li class="add">Substratum support</li>
-            <li class="add">SafetyNet bypass kernel commits</li>
-        </ul>
-
-        <h3>App Changes</h3>
-        <ul>
-            <li class="add">F-Droid app</li>
-            <li>
-                OpenGApps / aosp_build
-                <ul>
-                    <li class="add">Google (Search)</li>
-                    <li class="add">Google News</li>
-                    <li class="add">Google Pay</li>
-                    <li class="add">Google Play (Services/Store/Framework/Basics/etc)</li>
-                    <li class="add">Google Play Games</li>
-                    <li class="add">Google Play Movies &amp; TV</li>
-                    <li class="add">Google Play Music</li>
-                </ul>
-            </li>
-            <li>
-                Moto Widgets
-                <ul>
-                    <li class="add">Time-Weather from the G5-series, X4, and Z2-series</li>
-                    <li class="add">Command-Center from Z(1) Droid-series</li>
-                </ul>
-            </li>
-            <li class="remove">Jelly (LineageOS Stock Browser)</li>
             <li class="add">Mozilla Firefox</li>
-            <li class="add">Nova Launcher</li>
         </ul>
     </body>
 </html>

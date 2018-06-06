@@ -22,67 +22,28 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/
 
 ## Add SafetyNet Patches
 # moto-msm8953/addison
-### NOT INCLUDED BECAUSE ADDISON ISNT PORTED TO 15.1
-cd ~/android/cerulean/oreo-mr1/kernel/motorola/msm8953
+# no available ports ; maybe when I have the time ill work on it
+cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
 
 # moto-msm8952/athene
-### NOT INCLUDED BECAUSE ATHENE ISNT PORTED TO 15.1
-cd ~/android/cerulean/oreo-mr1/kernel/motorola/msm8952
+# included in current kernel
+cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8952
 
 # oneplus-msm8996/oneplus3
-cd ~/android/cerulean/oreo-mr1/kernel/oneplus/msm8996
+cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8996
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick 8e65978cec11a62b0404d88db43adb35f3258e7d c97c758b15ba49bb848e0644089432569145ade3
 
-# moto-msm8974/victara not applicable :: no bootloader check on safetynet
+## Fix griffin blobs
+cd ~/android/lineage/oreo-mr1/vendor/motorola
+git fetch https://github.com/TheMuppets/proprietary_vendor_motorola lineage-15.1
+git cherry-pick 0cbffd4187afca5b1bed84fba0d4167bc07c08eb
 
-## Remove modemAssertion so Incrementals can generate
-cd ~/android/cerulean/oreo-mr1/device/oneplus/oneplus3/
-vi releasetools.py
-    # Replace
-    def IncrementalOTA_Assertions(info):
-        AddModemAssertion(info)
-        return
-    # With
-    def IncrementalOTA_Assertions(info):
-        return
-
-## Move Updates to Settings > System
-cd ~/android/cerulean/oreo-mr1/packages/apps/Settings/res/xml/
-vi device_info_settings.xml
-    # remove
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-vi system_dashboard_fragment.xml
-    # add 
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-
-
-## add Google Apps, fdroid, and other pre-builts to build process
-cd ~/android/cerulean/oreo-mr1/vendor/lineage/config/
+## add fdroid, and other pre-builts to build process
+cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
 ## Change icon-mask back to square
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
-cd ~/android/cerulean/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
+cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
-
-## add blue bootanimation
-cp ~/Downloads/blue-los-bootanimation.tar ~/android/cerulean/oreo-mr1/vendor/lineage/bootanimation/bootanimation.tar
-cd ~/android/cerulean/oreo-mr1/vendor/lineage/bootanimation/
-
-## Cerulean Rebrand
-# Change values for updater, version
-cd ~/android/cerulean/oreo-mr1/lineage-sdk/lineage/res/res/values/
-sed -r 's/LineageOS/Cerulean/' strings.xml
-
-# Change Values for updater, version
-cd ~/android/cerulean/oreo-mr1/packages/apps/LineageParts/res/values
-sed -r 's/LineageOS/Cerulean/' strings.xml

@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Variables
-version=0.2.2
+version=0.3.0
 builddate=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
-releasetype=release
+releasetype=
 device=
 
 showHelp() {
         echo "Usage: build <device> [releasetype]"
         echo ""
         echo "Available devices are:"
-        echo "'athene', 'oneplus3'"
+        echo "'angler', 'athene', 'bullhead', 'griffin', 'marlin', 'oneplus2', 'oneplus3', 'sailfish'"
         echo ""
         echo "Available releasetypes are:"
         echo "'release', 'nightly'"
@@ -24,7 +24,7 @@ showHelp() {
 }
 
 cleanMka(){
-        cd ~/android/cerulean/oreo-mr1
+        cd ~/android/lineage/oreo-mr1
 
         if ! mka clobber ; then
                 make clobber
@@ -36,7 +36,7 @@ buildDevice() {
         # Start clean
         cleanMka
 
-        cd ~/android/cerulean/oreo-mr1
+        cd ~/android/lineage/oreo-mr1
 
         # Breakfast
         if [ "$releasetype" == "nightly" ] ; then
@@ -70,7 +70,7 @@ buildDevice() {
 }
 
 buildOTA() {
-        cd ~/android/cerulean/oreo-mr1
+        cd ~/android/lineage/oreo-mr1
 
         # For some reason, brotli doesn't work unless "otatools" is ran
         # so build "otatools" for future use
@@ -89,13 +89,8 @@ addOTA() {
         echo ""
         cd ~/updater
 
-        if [ "$releasetype" == "nightly" ] ; then
-                FLASK_APP=updater/app.py flask addrom -f "15.1-beta $(date --date="$updaterDate" +%Y-%m-%d)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
-                echo "Full beta OTA added"
-        elif [ "$releasetype" == "release" ] ; then
-                FLASK_APP=updater/app.py flask addrom -f "15.1 $(date --date="$updaterDate" +%Y-%m)" -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/Cerulean-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/Cerulean-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-15.1.$builddate.zip
-                echo "Full release OTA added"
-        fi
+        FLASK_APP=updater/app.py flask addrom -f 15.1_$(date --date="$updaterDate" +%Y-%m-%d)_$device -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LineageOMS-15.1.$builddate.zip
+        echo "Full OTA added"
 
         echo ""
 
@@ -108,23 +103,23 @@ addOTA() {
 }
 
 saveFiles() {
-        cd ~/android/cerulean/oreo-mr1
+        cd ~/android/lineage/oreo-mr1
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/Cerulean-15.1.$builddate.zip        
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/LineageOMS-15.1.$builddate.zip        
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/Cerulean-15.1.$builddate.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/LineageOMS-15.1.$builddate.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/Cerulean-15.1.$builddate.zip
+        mv signed-ota_update.zip /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip
 }
 
 setupEnv() {
-        cd ~/android/cerulean/oreo-mr1
+        cd ~/android/lineage/oreo-mr1
 
         cleanMka
 
@@ -132,10 +127,11 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
         if [ "$releasetype" == "nightly" ] ; then
-                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=NIGHTLY
+                export RELEASE_TYPE=NIGHTLY
         elif [ "$releasetype" == "release" ] ; then
-                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=RELEASE
+                export RELEASE_TYPE=RELEASE
         fi
 }
 
@@ -167,18 +163,12 @@ fi
 
 # now device
 case $1 in
-        athene|oneplus3)
+        angler|athene|bullhead|griffin|marlin|oneplus2|oneplus3|sailfish)
                 device=$1
                 shift
 
-                # Save Information
-                echo "Build Time for Updater: " >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
-                echo "----------------------------------------" >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
-                echo $updaterDate >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
-                echo "" >> /srv/builds/$device/target_files/Cerulean-15.1.$builddate.txt
-
                 # run build
-                cd ~/android/cerulean/oreo-mr1
+                cd ~/android/lineage/oreo-mr1
 
                 setupEnv
 
