@@ -13,4 +13,4 @@ PRODUCT_PACKAGES += \
     ActionGoogle \
     Fennec \
     NovaGoogle \
-    UnifiedNlp
+    UnifiedNlp-GApps
