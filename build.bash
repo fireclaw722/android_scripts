@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.3.2
+version=0.3.3
 builddate=$(date -u +%Y%m%d)
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=
@@ -89,7 +89,7 @@ addOTA() {
         echo ""
         cd ~/updater
 
-        FLASK_APP=updater/app.py flask addrom -f 15.1_$builddate_$device -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LineageOMS-15.1.$builddate.zip
+        FLASK_APP=updater/app.py flask addrom -f 15.1-$builddate-$device -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LineageOMS-15.1.$builddate.zip
         echo "Full OTA added"
 
         echo ""
