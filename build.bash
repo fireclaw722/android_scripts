@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables
-version=0.3.3
-builddate=$(date -u +%Y%m%d)
+version=0.3.5
+builddate=
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=
 device=
@@ -14,9 +14,8 @@ showHelp() {
         echo "'angler', 'athene', 'bullhead', 'griffin', 'marlin', 'oneplus2', 'oneplus3', 'sailfish'"
         echo ""
         echo "Available releasetypes are:"
-        echo "'release', 'nightly'"
-        echo "default is 'release'"
-        echo "nightlies are not actually built nightly, and are of beta quality"
+        echo "'snapshot', 'experimental'"
+        echo "default is 'snapshot'"
         echo ""
         echo "using the 'help' subcommand shows this text"
         echo ""
@@ -39,12 +38,12 @@ buildDevice() {
         cd ~/android/lineage/oreo-mr1
 
         # Breakfast
-        if [ "$releasetype" == "nightly" ] ; then
+        if [ "$releasetype" == "experimental" ] ; then
                 if ! breakfast lineage_$device-userdebug ; then
                         echo "Error: Breakfast failed for lineage_$device-userdebug"
                         exit
                 fi
-        elif [ "$releasetype" == "release" ] ; then
+        elif [ "$releasetype" == "snapshot" ] ; then
                 if ! breakfast lineage_$device-user ; then
                         echo "Error: Breakfast failed for lineage_$device-user"
                         exit
@@ -128,11 +127,9 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
-        if [ "$releasetype" == "nightly" ] ; then
-                export RELEASE_TYPE=NIGHTLY
-        elif [ "$releasetype" == "release" ] ; then
-                export RELEASE_TYPE=RELEASE
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" export RELEASE_TYPE=SNAPSHOT
+        if [ "$releasetype" == "snapshot" ] ; then
+                export LINEAGE_EXTRAVERSION=LineageOMS
         fi
 }
 
@@ -141,12 +138,13 @@ setupEnv() {
 # take care of releasetype
 if [ $# -eq 2 ] ; then
         case $2 in
-                release)
+                snapshot)
                         releasetype=$2
-                        builddate=$(date -u +%Y%m)
+                        builddate=$(date -u +%Y%m%d)
                         ;;
-                nightly)
+                experimental)
                         releasetype=$2
+                        builddate=$(date -u +%Y%m%d_%H%M%S)
                         ;;
                 *)
                         echo "Error: releasetype not available"
@@ -155,7 +153,7 @@ if [ $# -eq 2 ] ; then
                         exit
         esac        
 elif [ $# -eq 1 ] ; then
-        releasetype=release
+        releasetype=snapshot
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
@@ -169,7 +167,10 @@ case $1 in
                 shift
 
                 case $device in 
-                        angler|bullhead|marlin|oneplus3|sailfish)
+                        angler|bullhead|marlin|sailfish)
+                                PLATFORM_SECURITY_PATCH := 2018-06-05
+                                ;;
+                        oneplus3)
                                 PLATFORM_SECURITY_PATCH := 2018-05-05
                                 ;;
                         athene)
