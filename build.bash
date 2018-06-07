@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.3.5
+version=0.3.6
 builddate=
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=
@@ -168,19 +168,19 @@ case $1 in
 
                 case $device in 
                         angler|bullhead|marlin|sailfish)
-                                PLATFORM_SECURITY_PATCH := 2018-06-05
+                                export PLATFORM_SECURITY_PATCH := 2018-06-05
                                 ;;
                         oneplus3)
-                                PLATFORM_SECURITY_PATCH := 2018-05-05
+                                export PLATFORM_SECURITY_PATCH := 2018-05-05
                                 ;;
                         athene)
-                                PLATFORM_SECURITY_PATCH := 2018-04-01
+                                export PLATFORM_SECURITY_PATCH := 2018-04-01
                                 ;;
                         griffin)
-                                PLATFORM_SECURITY_PATCH := 2018-03-01
+                                export PLATFORM_SECURITY_PATCH := 2018-03-01
                                 ;;
                         oneplus2)
-                                PLATFORM_SECURITY_PATCH := 2017-10-05
+                                export PLATFORM_SECURITY_PATCH := 2017-10-05
                                 ;;
                         *)
                                 echo "Error: No?"
