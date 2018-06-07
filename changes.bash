@@ -85,16 +85,16 @@ sed -r 's/LineageOS updates/Android Updates/' strings.xml
 cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
 vi device_info_settings.xml
     # change
-    <Preference android:key="vendor_security_patch"
-        android:title="Vendor Security Patch Level" # android:title="@string/security_patch"
+    <Preference android:key="security_patch"
+        android:title="Vendor Security Patch Level" #android:title="@string/security_patch"
         android:summary="@string/summary_placeholder">
         <intent android:action="android.intent.action.VIEW"
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
     # add after
     <Preference android:key="aosp_security_patch"
-        android:title="@string/security_patch"
-        android:summary="May 5, 2018"> # android:summary="@string/summary_placeholder">
+        android:title="Android Security Patch Level" #android:title="@string/security_patch"
+        android:summary="May 5, 2018"> #android:summary="@string/summary_placeholder">
         <intent android:action="android.intent.action.VIEW"
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
