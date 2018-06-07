@@ -168,19 +168,19 @@ case $1 in
 
                 case $device in 
                         angler|bullhead|marlin|sailfish)
-                                export PLATFORM_SECURITY_PATCH := 2018-06-05
+                                export PLATFORM_SECURITY_PATCH=2018-06-05
                                 ;;
                         oneplus3)
-                                export PLATFORM_SECURITY_PATCH := 2018-05-05
+                                export PLATFORM_SECURITY_PATCH=2018-05-05
                                 ;;
                         athene)
-                                export PLATFORM_SECURITY_PATCH := 2018-04-01
+                                export PLATFORM_SECURITY_PATCH=2018-04-01
                                 ;;
                         griffin)
-                                export PLATFORM_SECURITY_PATCH := 2018-03-01
+                                export PLATFORM_SECURITY_PATCH=2018-03-01
                                 ;;
                         oneplus2)
-                                export PLATFORM_SECURITY_PATCH := 2017-10-05
+                                export PLATFORM_SECURITY_PATCH=2017-10-05
                                 ;;
                         *)
                                 echo "Error: No?"
