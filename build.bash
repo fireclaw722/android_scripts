@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.3.6
+version=0.3.7
 builddate=
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=
@@ -127,7 +127,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" export RELEASE_TYPE=SNAPSHOT
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=SNAPSHOT
         if [ "$releasetype" == "snapshot" ] ; then
                 export LINEAGE_EXTRAVERSION=LineageOMS
         fi
