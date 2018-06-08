@@ -98,3 +98,7 @@ vi device_info_settings.xml
         <intent android:action="android.intent.action.VIEW"
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
+
+## Recovery changes
+cd ~/android/lineage/oreo-mr1/
+vendor/lineage/build/tools/repopick.py 211098 212944 212711 210648 209638
