@@ -102,3 +102,7 @@ vi device_info_settings.xml
 ## Recovery changes
 cd ~/android/lineage/oreo-mr1/
 vendor/lineage/build/tools/repopick.py 211098 212944 212711 210648 209638
+
+## No stats collection
+cd ~/android/lineage/oreo-mr1/packages/apps/LineageParts/res/values/
+sed -r "s/stats.lineageos.org/nostatscollection" config.xml
