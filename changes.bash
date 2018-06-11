@@ -94,7 +94,7 @@ vi device_info_settings.xml
     # add after
     <Preference android:key="aosp_security_patch"
         android:title="Android Security Patch Level"
-        android:summary="May 5, 2018">
+        android:summary="June 5, 2018">
         <intent android:action="android.intent.action.VIEW"
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
