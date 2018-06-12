@@ -8,8 +8,6 @@ PRODUCT_PACKAGES += \
     FDroid \
     F-DroidPrivilegedExtension
 
-# Extra [Firefox, Google Now Plugins (for non-Stock Launchers)]
+# Extra [Firefox]
 PRODUCT_PACKAGES += \
-    ActionGoogle \
-    Fennec \
-    NovaGoogle
+    Fennec
