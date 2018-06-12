@@ -47,8 +47,15 @@
         <ul>
             <li>Snapshot
                 <ul>
-                    <li>Built when monthly security patches are merged, <em>unless</em> a critical patch is made available</li>
+                    <li>Built when monthly security patches are merged. Exceptions are as follows:
+                        <ul>
+                            <li>critical device-specific bug is found, and solving requires re-build</li>
+                            <li>LineageOS team provides patch to critical bug ahead of monthly security patch</li>
+                            <li>device hasn't had a snapshot build and is ready for snapshot</li>
+                        </ul>
+                    </li>
                     <li>-user builds, which don't permit SELinux permissive domains, nor allow root. It is recommended that you use Magisk for root if you plan on rooting.</li>
+                    <li>Snapshot builds come from official LineageOS repos, and devices must meet the criteria for LineageOS official builds for snapshot</li>
                 </ul>
             </li>
             <li>Experimental
@@ -60,6 +67,41 @@
             </li>
         </ul>
 
+        <h2>2018-06-11_snapshot</h2>
+        <h3>Devices</h3>
+        <ul>
+            <li>OnePlus 3</li>
+            <li>Huawei Nexus 6P</li>
+            <li>LG Nexus 5X</li>
+            <li>Motorola Moto Z</li>
+        </ul>
+        <h3>System-level change</h3>
+        <ul>
+            <li>Include June Security Patch</li>
+        </ul>
+
+        <h2>2018-06-11_experimental</h2>
+        <h3>Devices</h3>
+        <ul>
+            <li>Moto G4/G4 Plus</li>
+        </ul>
+        <h3>System-level change</h3>
+        <ul>
+            <li>REVERT: Test battery icon styles and OPA-layout from LineageOS gerrit</li>
+            <li>LineageOS sources updated to include June security patch.</li>
+        </ul>
+
+        <h2>2018-06-09_experimental</h2>
+        <h3>Devices</h3>
+        <ul>
+            <li>Moto G4/G4 Plus</li>
+        </ul>
+        <h3>System-level change</h3>
+        <ul>
+            <li>Test battery icon styles and OPA-layout from LineageOS gerrit</li>
+            <li>Merge changes for LineageOS recovery. TWRP is still recommended.</li>
+        </ul>
+
         <h2>2018-06-07_experimental</h2>
         <h3>Devices</h3>
         <ul>
@@ -69,14 +111,14 @@
         <ul>
             <li>Fix issue with UnifiedNlp and using OpenGapps packages</li>
             <li>Patch level corresponds to highest <em>available</em> vendor patch. AOSP/user-space patches are still applied from the LineageOS sources
-                    <ul>
-                        <li>Nexus/Pixel: 2018-06-05</li>
-                        <li>Oneplus 3/Oneplus 3T: 2018-05-05</li>
-                        <li>Moto G4/G4 Plus: 2018-04-01</li>
-                        <li>Moto Z: 2018-03-01</li>
-                        <li>Oneplus 2: 2017-10-05</li>
-                    </ul>
-                </li>
+                <ul>
+                    <li>Nexus/Pixel: 2018-06-05</li>
+                    <li>Oneplus 3/Oneplus 3T: 2018-05-05</li>
+                    <li>Moto G4/G4 Plus: 2018-04-01</li>
+                    <li>Moto Z: 2018-03-01</li>
+                    <li>Oneplus 2: 2017-10-05</li>
+                </ul>
+            </li>
         </ul>
 
         <h2>2018-06-06_nightly</h2>
