@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.3.8
+version=0.3.9
 builddate=
 updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
 releasetype=
@@ -154,6 +154,7 @@ if [ $# -eq 2 ] ; then
         esac        
 elif [ $# -eq 1 ] ; then
         releasetype=snapshot
+        builddate=$(date -u +%Y%m%d)
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
