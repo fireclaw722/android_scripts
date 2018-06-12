@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Variables
-version=0.3.12
+version=0.3.13
 builddate=
-updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
+updaterDate=
 releasetype=
 device=
 
@@ -121,15 +121,21 @@ saveFiles() {
 setupEnv() {
         cd ~/android/lineage/oreo-mr1
 
+        # setup variables
+        updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S") 
+
         cleanMka
 
         # Setup build environment
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=SNAPSHOT
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=SNAPSHOT 
         if [ "$releasetype" == "snapshot" ] ; then
-                export LINEAGE_EXTRAVERSION=fireclaw
+                export LINEAGE_EXTRAVERSION=fireclaw 
+                builddate=$(date -u +%Y%m%d)
+        elif [ "$releasetype" == "experimental" ] ; then
+                builddate=$(date -u +%Y%m%d_%H%M%S)
         fi
 }
 
@@ -140,11 +146,9 @@ if [ $# -eq 2 ] ; then
         case $2 in
                 snapshot)
                         releasetype=$2
-                        builddate=$(date -u +%Y%m%d)
                         ;;
                 experimental)
                         releasetype=$2
-                        builddate=$(date -u +%Y%m%d_%H%M%S)
                         ;;
                 *)
                         echo "Error: releasetype not available"
@@ -154,7 +158,6 @@ if [ $# -eq 2 ] ; then
         esac        
 elif [ $# -eq 1 ] ; then
         releasetype=snapshot
-        builddate=$(date -u +%Y%m%d)
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
