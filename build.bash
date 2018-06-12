@@ -171,10 +171,7 @@ case $1 in
                 shift
 
                 case $device in
-                        addison)
-                                export PLATFORM_SECURITY_PATCH=2018-04-01
-                                ;;
-                        athene)
+                        addison|athene)
                                 export PLATFORM_SECURITY_PATCH=2018-04-01
                                 ;;
                         griffin)
