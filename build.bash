@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.3.13
+version=0.4.0
 builddate=
 updaterDate=
 releasetype=
@@ -88,7 +88,8 @@ addOTA() {
         echo ""
         cd ~/updater
 
-        FLASK_APP=updater/app.py flask addrom -f 15.1-$builddate-$device -d $device -v 15.1 -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LineageOMS-15.1.$builddate.zip
+        FLASK_APP=updater/app.py flask addrom -f 15.1-$releasetype-$builddate-$device -d $device -v 15.1 -t "$updaterDate" -r unofficial -s $(stat --printf="%s" /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LineageOMS-15.1.$builddate.zip
+
         echo "Full OTA added"
 
         echo ""
@@ -130,9 +131,8 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" RELEASE_TYPE=SNAPSHOT 
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" TARGET_UNOFFICIAL_BUILD_ID=fireclaw
         if [ "$releasetype" == "snapshot" ] ; then
-                export LINEAGE_EXTRAVERSION=fireclaw 
                 builddate=$(date -u +%Y%m%d)
         elif [ "$releasetype" == "experimental" ] ; then
                 builddate=$(date -u +%Y%m%d_%H%M%S)
