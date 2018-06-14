@@ -1,12 +1,21 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Fireclaw's LineageOMS Changelog</title>
         <style>
+            h1, h2, h3, h4, h5 {
+                font-family:'Courier New', Courier, monospace;
+            }
+            
+            body {
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+
             h1 {
                 border-bottom: 1px solid #111;
-                width: 50%;
+                width: 70%;
             }
             .add {
                 color: #167c80;
@@ -15,15 +24,58 @@
                 color: #B00020;
             }
             table.key {
-                border: 1px solid #111;
+                border: 1px solid #888;
             }
-            table.key tr td, table.key tr th {
-                border: 1px solid #111;
+            table.key tr th {
+                border: 1px solid #222;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            table.key tr th, table.key tr td {
+                text-align: center;
+                width: 33%;
             }
 
             hr.break {
                 width: 20%;
                 margin-right: 80%;
+            }
+
+            section {
+                padding-left: 1em;
+                padding-right: 1em;
+
+                width: 80%;
+                margin-left: 5%;
+            }
+
+            article.changes {
+                width: 60%;
+            }
+
+            article.changes:hover div.fold, article.changes:active div.fold, article.changes:focus div.fold {
+                opacity: 1;
+                max-height: 100%;
+            }
+
+            article.changes h2 {
+                padding-left: 1em;
+                border-bottom: #111 solid 1px;
+            }
+
+            div.fold {
+                display: hidden;
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: .35s ease-in-out .25s;
+                -webkit-transition: .35s ease-in-out .25s;
+                -moz-transition: .35s ease-in-out .25s;
+            }
+
+            div.fold h3 {
+                padding: 0;
+                margin: 0;
             }
         </style>
     </head>
@@ -35,125 +87,132 @@
         <table class="key">
             <tr><th colspan="3">Key</th></tr>
             <tr>
+                <td colspan="3">Hover over the date to see changes on implemented on that date.</td>
+            </tr>
+            <tr>
                 <td class="add">Add</td>
                 <td class="remove">Remove</td>
                 <td>General Information</td>
             </tr>
         </table>
 
-        <h1>Changes for Fireclaw's LineageOMS</h1>
+        <h1>Fireclaw's Changes</h1>
 
-        <h2>Build types</h2>
-        <ul>
-            <li>Snapshot
-                <ul>
-                    <li>Built when monthly security patches are merged. Exceptions are as follows:
-                        <ul>
-                            <li>critical device-specific bug is found, and solving requires re-build</li>
-                            <li>LineageOS team provides patch to critical bug ahead of monthly security patch</li>
-                            <li>device hasn't had a snapshot build and is ready for snapshot</li>
-                        </ul>
-                    </li>
-                    <li>-user builds, which don't permit SELinux permissive domains, nor allow root. It is recommended that you use Magisk for root if you plan on rooting.</li>
-                    <li>Snapshot builds come from official LineageOS repos, and devices must meet the criteria for LineageOS official builds for snapshot</li>
-                </ul>
-            </li>
-            <li>Experimental
-                <ul>
-                    <li>Built including different patches to fix issues with OMS, Lineage, included system apps, or builds for devices that can't be built using -user builds</li>
-                    <li>Features may quickly break and these builds will generally be less stable</li>
-                    <li>Builds are not regular and may come at any time</li>
-                </ul>
-            </li>
-        </ul>
+        <section>
+            <article class="changes">
+                <h2>2018-06-06</h2>
+                <div class="fold">
+                    <h3>System-level chnages</h3>
+                    <ul>
+                        <li>AOSP-style square icon mask</li>
+                        <li class="add">Substratum support</li>
+                        <li class="add">SafetyNet bypass kernel commits</li>
+                        <li class="add">MicroG's UnifiedNlp for providing location info on Non-Google installs</li>
+                        <li class="add">F-Droid Privileged Extension</li>
+                    </ul>
 
-        <h2>2018-06-12_experimental</h2>
-        <h3>Devices</h3>
-        <ul>
-            <li>Moto G4/G4 Plus</li>
-        </ul>
-        <h3>System-level change</h3>
-        <ul>
-            <li class="remove">UnifiedNlp for location services
-                <ul>
-                    <li>It doesn't function properly, so leave it to the user to install</li>
-                </ul>
-            </li>
-            <li class="remove">Google Now Plugins for 3rd Party Launchers</li>
-        </ul>
-        
-        <h2>2018-06-11_experimental</h2>
-        <h3>Devices</h3>
-        <ul>
-            <li>Moto G4/G4 Plus</li>
-        </ul>
-        <h3>System-level change</h3>
-        <ul>
-            <li>REVERT: Test battery icon styles and OPA-layout from LineageOS gerrit</li>
-            <li>LineageOS sources updated to include June security patch.</li>
-        </ul>
+                    <h3>App Changes</h3>
+                    <ul>
+                        <li class="add">F-Droid app</li>
+                        <li>Google Now Plugins for custom launchers
+                            <ul>
+                                <li class="add">Nova Launcher</li>
+                                <li class="add">Action Launcher</li>
+                            </ul>
+                        </li>
+                        <li>Motorola Widgets
+                            <ul>
+                                <li class="add">TimeWeather from the Moto X4/G5/Z2/etc</li>
+                                <li class="add">CommandCenter from the Z Droid devices</li>
+                            </ul>
+                        </li>
+                        <li class="add">Mozilla Firefox</li>
+                    </ul>
+                </div>
+            </article>
 
-        <h2>2018-06-09_experimental</h2>
-        <h3>Devices</h3>
-        <ul>
-            <li>Moto G4/G4 Plus</li>
-        </ul>
-        <h3>System-level change</h3>
-        <ul>
-            <li>Test battery icon styles and OPA-layout from LineageOS gerrit</li>
-            <li>Merge changes for LineageOS recovery. TWRP is still recommended.</li>
-        </ul>
+            <article class="changes">
+                <h2>2018-06-07</h2>
+                <div class="fold">
+                    <h3>System-level Changes</h3>
+                    <ul>
+                        <li>Fix issue with UnifiedNlp and using OpenGapps packages</li>
+                        <li>Patch level corresponds to highest <em>available</em> vendor patch. AOSP/user-space patches are still applied from the LineageOS sources
+                            <ul>
+                                <li>Nexus/Pixel: 2018-06-05</li>
+                                <li>Oneplus 3/Oneplus 3T: 2018-05-05</li>
+                                <li>Moto G4/G4 Plus: 2018-04-01</li>
+                                <li>Moto Z: 2018-03-01</li>
+                                <li>Oneplus 2: 2017-10-05</li>
+                            </ul>
+                        </li>
+                    </ul>
 
-        <h2>2018-06-07_experimental</h2>
-        <h3>Devices</h3>
-        <ul>
-            <li>Moto G4/G4 Plus</li>
-        </ul>
-        <h3>System-level changes</h3>
-        <ul>
-            <li>Fix issue with UnifiedNlp and using OpenGapps packages</li>
-            <li>Patch level corresponds to highest <em>available</em> vendor patch. AOSP/user-space patches are still applied from the LineageOS sources
-                <ul>
-                    <li>Nexus/Pixel: 2018-06-05</li>
-                    <li>Oneplus 3/Oneplus 3T: 2018-05-05</li>
-                    <li>Moto G4/G4 Plus: 2018-04-01</li>
-                    <li>Moto Z: 2018-03-01</li>
-                    <li>Oneplus 2: 2017-10-05</li>
-                </ul>
-            </li>
-        </ul>
+                    <h3>App Changes</h3>
+                    <p>None</p>
+                </div>
+            </article>
 
-        <h2>2018-06-06_nightly</h2>
-        <h3>Devices</h3>
-        <ul>
-            <li>Moto G4/G4 Plus</li>
-            <li>OnePlus 3/3T</li>
-        </ul>
-        <h3>System-level chnages</h3>
-        <ul>
-            <li>AOSP-style square icon mask</li>
-            <li class="add">Substratum support</li>
-            <li class="add">SafetyNet bypass kernel commits</li>
-            <li class="add">MicroG's UnifiedNlp for providing location info on Non-Google installs</li>
-            <li class="add">F-Droid Privileged Extension</li>
-        </ul>
+            <article class="changes">
+                <h2>2018-06-09</h2>
+                <div class="fold">
+                    <h3>System-level Changes</h3>
+                    <ul>
+                        <li class="add">battery icon styles</li>
+                        <li class="add">OPA-layout</li>
+                        <li>Merge changes for LineageOS recovery. TWRP is still recommended.</li>
+                    </ul>
 
-        <h3>App Changes</h3>
-        <ul>
-            <li class="add">F-Droid app</li>
-            <li>Google Now Plugins for custom launchers
-                <ul>
-                    <li class="add">Nova Launcher</li>
-                    <li class="add">Action Launcher</li>
-                </ul>
-            </li>
-            <li>Motorola Widgets
-                <ul>
-                    <li class="add">TimeWeather from the Moto X4/G5/Z2/etc</li>
-                    <li class="add">CommandCenter from the Z Droid devices</li>
-                </ul>
-            </li>
-            <li class="add">Mozilla Firefox</li>
-        </ul>
+                    <h3>App Changes</h3>
+                    <p>None</p>
+                </div>
+            </article>
+
+            <article class="changes">
+                <h2>2018-06-11</h2>
+                <div class="fold">
+                    <h3>System-level Changes</h3>
+                    <ul>
+                        <li class="remove">battery icon styles</li>
+                        <li class="remove">OPA-layout</li>
+                        <li>LineageOS sources updated to include June security patch.</li>
+                    </ul>
+
+                    <h3>App Changes</h3>
+                </div>
+            </article>
+
+            <article class="changes">
+                <h2>2018-06-12</h2>
+                <div class="fold">
+                    <h3>System-level Changes</h3>
+                    <ul>
+                        <li class="remove">UnifiedNlp for location services
+                            <ul>
+                                <li>It doesn't function properly, so leave it to the user to install</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>App Changes</h3>
+                    <ul>
+                        <li class="remove">Google Now Plugins for 3rd Party Launchers</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="changes">
+                <h2>2018-06-13</h2>
+                <div class="fold">
+                    <h3>System-level Changes</h3>
+                    <p>None</p>
+                    
+                    <h3>App Changes</h3>
+                    <p>None</p>
+
+                    <p>Build for fun</p>
+                </div>
+            </article>
+        </section>
     </body>
 </html>
