@@ -47,7 +47,7 @@ cd ~/android/lineage/oreo-mr1/vendor/motorola
 git fetch https://github.com/TheMuppets/proprietary_vendor_motorola lineage-15.1
 git cherry-pick 0cbffd4187afca5b1bed84fba0d4167bc07c08eb
 
-## add fdroid, and other pre-builts to build process
+## add fdroid and other pre-builts to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
