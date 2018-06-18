@@ -79,9 +79,23 @@ vi device_info_settings.xml
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
 
-## Recovery changes
-cd ~/android/lineage/oreo-mr1/
-vendor/lineage/build/tools/repopick.py 211098 212944 212711 209638
+## Move updates to fore-front
+vi device_info_settings.xml
+    # remove
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
+
+vi system_dashboard_fragment.xml
+    # add
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
+
 
 ## No stats collection
 cd ~/android/lineage/oreo-mr1/packages/apps/LineageParts/res/values/
