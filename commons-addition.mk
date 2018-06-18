@@ -1,13 +1,7 @@
-# Moto Widgets
+# Extra [Firefox, Moto Widgets, F-Droid]  #
 PRODUCT_PACKAGES += \
     CommandCenter \
-    TimeWeather
-
-# FDroid
-PRODUCT_PACKAGES += \
+    F-DroidPrivilegedExtension \
     FDroid \
-    F-DroidPrivilegedExtension
-
-# Extra [Firefox]
-PRODUCT_PACKAGES += \
-    Fennec
+    Fennec \
+    TimeWeather
