@@ -1,4 +1,5 @@
-# Extra [Firefox, Moto Widgets, F-Droid]  #
+# Extra [Firefox, Moto Widgets, F-Droid]
+
 PRODUCT_PACKAGES += \
     CommandCenter \
     F-DroidPrivilegedExtension \
