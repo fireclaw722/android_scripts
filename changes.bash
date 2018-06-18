@@ -56,11 +56,6 @@ cat commons-additions.mk >> common.mk
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
 
-## LineageOMS Rebrand
-# Change values for updater, version
-cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
-sed -r 's/LineageOS updates/Android Updates/' strings.xml
-
 ## Vendor-level patch
 cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
 vi device_info_settings.xml
@@ -79,24 +74,3 @@ vi device_info_settings.xml
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
 
-## Move updates to fore-front
-vi device_info_settings.xml
-    # remove
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-
-vi system_dashboard_fragment.xml
-    # add
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-
-
-## No stats collection
-cd ~/android/lineage/oreo-mr1/packages/apps/LineageParts/res/values/
-sed -r "s/stats.lineageos.org/nostatscollection" config.xml
