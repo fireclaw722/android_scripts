@@ -2,15 +2,11 @@
 <manifest>
     <!-- Vendor Blobs -->
     <project name="TheMuppets/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="lineage-15.1" />
-    <project name="sgspluss/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="lineage-15.1" />
+    <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="lineage-15.1" />
 
     <!-- (angler) Huawei Nexus 6P -->
     <project name="LineageOS/android_device_huawei_angler" path="device/huawei/angler" remote="github" revision="lineage-15.1" />
     <project name="LineageOS/android_kernel_huawei_angler" path="kernel/huawei/angler" remote="github" revision="lineage-15.1" />
-
-    <!-- (athene) Motorola Moto G4/G4 Plus -->
-    <project name="sgspluss/android_device_motorola_athene" path="device/motorola/athene" remote="github" revision="lineage-15.1" />
-    <project name="sgspluss/android_kernel_motorola_msm8952" path="kernel/motorola/msm8952" remote="github" revision="lineage-15.1" />
 
     <!-- (bullhead) LG Nexus 5X -->
     <project name="LineageOS/android_device_lge_bullhead" path="device/lge/bullhead" remote="github" revision="lineage-15.1" />
