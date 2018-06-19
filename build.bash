@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.4.0
+version=0.4.1
 builddate=
 updaterDate=
 releasetype=
@@ -11,7 +11,7 @@ showHelp() {
         echo "Usage: build <device> [releasetype]"
         echo ""
         echo "Available devices are:"
-        echo "'athene', 'griffin', 'oneplus3'"
+        echo "'griffin', 'oneplus3'"
         echo ""
         echo "Available releasetypes are:"
         echo "'snapshot', 'experimental'"
@@ -166,19 +166,22 @@ fi
 
 # now device
 case $1 in
-        athene|griffin|oneplus3)
+        angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin)
                 device=$1
                 shift
 
                 case $device in
+                        angler|bullhead|marlin|sailfish)
+                                export PLATFORM_SECURITY_PATCH=2018-06-01
+                                ;;
+                        oneplus3)
+                                export PLATFORM_SECURITY_PATCH=2018-05-01
+                                ;;
                         addison|athene)
                                 export PLATFORM_SECURITY_PATCH=2018-04-01
                                 ;;
                         griffin)
                                 export PLATFORM_SECURITY_PATCH=2018-03-01
-                                ;;
-                        oneplus3)
-                                export PLATFORM_SECURITY_PATCH=2018-05-01
                                 ;;
                         *)
                                 echo "Error: No?"
