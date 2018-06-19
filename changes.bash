@@ -42,11 +42,6 @@ git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit
 git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 
-## Fix griffin blobs
-cd ~/android/lineage/oreo-mr1/vendor/motorola
-git fetch https://github.com/TheMuppets/proprietary_vendor_motorola lineage-15.1
-git cherry-pick 0cbffd4187afca5b1bed84fba0d4167bc07c08eb
-
 ## add fdroid and other pre-builts to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk

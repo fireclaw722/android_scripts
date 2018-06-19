@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.4.1
+version=0.5
 builddate=
 updaterDate=
 releasetype=
@@ -166,9 +166,24 @@ fi
 
 # now device
 case $1 in
-        angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin)
+        angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin|oneplus2|victara)
                 device=$1
                 shift
+
+                if [ "$device" == "athene" ] ; then
+                        cd ~/android/lineage/oreo-mr1/device/motorola
+                        git clone -b lineage-15.1-go https://github.com/sgspluss/android_device_motorola_athene
+
+                        cd ~/android/lineage/oreo-mr1/kernel/motorola
+                        git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952
+
+                        cd ~/android/lineage/oreo-mr1/vendor
+                        rm -rf motorola
+                        git clone -b lineage-15.1 https://github.com/sgspluss/proprietary_vendor_motorola motorola
+                elif [ "$device" == "addison" ] || [ "$device" == "victara" ] ; then
+                        echo "This device is not available for build at this moment"
+                        exit
+                fi
 
                 case $device in
                         angler|bullhead|marlin|sailfish)
@@ -183,6 +198,11 @@ case $1 in
                         griffin)
                                 export PLATFORM_SECURITY_PATCH=2018-03-01
                                 ;;
+                        oneplus2)
+                                export PLATFORM_SECURITY_PATCH=2017-10-01
+                                ;;
+                        victara)
+                                export PLATFORM_SECURITY_PATCH=2016-08-01
                         *)
                                 echo "Error: No?"
                                 exit
@@ -203,6 +223,25 @@ case $1 in
                 addOTA
 
                 cleanMka
+
+                if [ "$device" == "addison" ] || [ "$device" == "athene" ] || [ "$device" == "victara" ] ; then
+                        # Remove device files
+                        cd ~/android/lineage/oreo-mr1/device/motorola
+                        rm -rf addison
+                        rm -rf athene
+                        rm -rf victara
+
+                        # Remove Kernels
+                        cd ~/android/lineage/oreo-mr1/kernel/motorola
+                        rm -rf msm8953
+                        rm -rf msm8952
+                        rm -rf msm8974
+                        
+                        # Remove and re-sync proprietary blobs
+                        cd ~/android/lineage/oreo-mr1/vendor
+                        rm -rf motorola
+                        git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
+                fi
                 ;;
         help|-h|--help)
                 showHelp
