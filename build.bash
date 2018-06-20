@@ -203,9 +203,6 @@ case $1 in
                                 ;;
                         victara)
                                 export PLATFORM_SECURITY_PATCH=2016-08-01
-                        *)
-                                echo "Error: No?"
-                                exit
                 esac
 
 
