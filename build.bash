@@ -224,7 +224,7 @@ case $1 in
 
                 cleanMka
 
-                if [ "$device" == "addison" ] || [ "$device" == "athene" ] || [ "$device" == "victara" ] ; then
+                if [ "$device" == "athene" ] ; then
                         # Remove device files
                         cd ~/android/lineage/oreo-mr1/device/motorola
                         rm -rf addison
