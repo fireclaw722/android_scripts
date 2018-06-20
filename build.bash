@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.5
+version=0.5.1
 builddate=
 updaterDate=
 releasetype=
