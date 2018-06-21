@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.5.1
+version=0.5.2
 builddate=
 updaterDate=
 releasetype=
@@ -82,6 +82,22 @@ buildOTA() {
         fi
 }
 
+saveFiles() {
+        cd ~/android/lineage/oreo-mr1
+
+        # Save Recovery (and boot)
+        echo "Saving Recovery and Boot Images"
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/LineageOMS-15.1.$builddate.zip        
+
+        # Save target_files
+        echo "Saving Build Files"
+        mv signed-target_files.zip /srv/builds/$device/target_files/LineageOMS-15.1.$builddate.zip
+
+        # Save OTA files
+        echo "Saving OTA update"
+        mv signed-ota_update.zip /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip
+}
+
 addOTA() {
         # Add packaged update to the update backend
         echo "Adding full OTA to list"
@@ -101,22 +117,6 @@ addOTA() {
         disown
         echo "Updater backend restarted"
         echo ""
-}
-
-saveFiles() {
-        cd ~/android/lineage/oreo-mr1
-
-        # Save Recovery (and boot)
-        echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/LineageOMS-15.1.$builddate.zip        
-
-        # Save target_files
-        echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/LineageOMS-15.1.$builddate.zip
-
-        # Save OTA files
-        echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip
 }
 
 setupEnv() {
@@ -170,21 +170,6 @@ case $1 in
                 device=$1
                 shift
 
-                if [ "$device" == "athene" ] ; then
-                        cd ~/android/lineage/oreo-mr1/device/motorola
-                        git clone -b lineage-15.1-go https://github.com/sgspluss/android_device_motorola_athene
-
-                        cd ~/android/lineage/oreo-mr1/kernel/motorola
-                        git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952
-
-                        cd ~/android/lineage/oreo-mr1/vendor
-                        rm -rf motorola
-                        git clone -b lineage-15.1 https://github.com/sgspluss/proprietary_vendor_motorola motorola
-                elif [ "$device" == "addison" ] || [ "$device" == "victara" ] ; then
-                        echo "This device is not available for build at this moment"
-                        exit
-                fi
-
                 case $device in
                         angler|bullhead|marlin|sailfish)
                                 export PLATFORM_SECURITY_PATCH=2018-06-01
@@ -192,8 +177,28 @@ case $1 in
                         oneplus3)
                                 export PLATFORM_SECURITY_PATCH=2018-05-01
                                 ;;
-                        addison|athene)
+                        athene)
                                 export PLATFORM_SECURITY_PATCH=2018-04-01
+
+                                # Unofficial Build
+                                echo "Setting up unofficial build parameters"
+                                cd ~/android/lineage/oreo-mr1/device/motorola
+                                git clone -b lineage-15.1-go https://github.com/sgspluss/android_device_motorola_athene
+
+                                cd ~/android/lineage/oreo-mr1/kernel/motorola
+                                git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952
+
+                                cd ~/android/lineage/oreo-mr1/vendor
+                                rm -rf motorola
+                                git clone -b lineage-15.1 https://github.com/sgspluss/proprietary_vendor_motorola motorola
+
+                                # Force Experimental build, because unofficial
+                                releasetype=experimental
+                                ;;
+                        addison)
+                                export PLATFORM_SECURITY_PATCH=2018-04-01
+                                echo "The Moto Z Play is not available for build at this moment"
+                                exit
                                 ;;
                         griffin)
                                 export PLATFORM_SECURITY_PATCH=2018-03-01
@@ -203,6 +208,13 @@ case $1 in
                                 ;;
                         victara)
                                 export PLATFORM_SECURITY_PATCH=2016-08-01
+                                echo "The Moto X 2014 is not available for build at this moment"
+                                exit
+                                ;;
+                        *)
+                                echo "No?"
+                                echo "How in the hell"
+                                exit
                 esac
 
 
@@ -221,24 +233,50 @@ case $1 in
 
                 cleanMka
 
-                if [ "$device" == "athene" ] ; then
-                        # Remove device files
-                        cd ~/android/lineage/oreo-mr1/device/motorola
-                        rm -rf addison
-                        rm -rf athene
-                        rm -rf victara
+                case $device in
+                        addison)
+                                # Remove Z Play device tree
+                                cd ~/android/lineage/oreo-mr1/device/motorola
+                                rm -rf addison
+                                
+                                # Remove Z Play kernel
+                                cd ~/android/lineage/oreo-mr1/kernel/motorola
+                                rm -rf msm8953
 
-                        # Remove Kernels
-                        cd ~/android/lineage/oreo-mr1/kernel/motorola
-                        rm -rf msm8953
-                        rm -rf msm8952
-                        rm -rf msm8974
-                        
-                        # Remove and re-sync proprietary blobs
-                        cd ~/android/lineage/oreo-mr1/vendor
-                        rm -rf motorola
-                        git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
-                fi
+                                # Remove and re-sync original proprietary blobs
+                                cd ~/android/lineage/oreo-mr1/vendor
+                                rm -rf motorola
+                                git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
+                                ;;
+                        athene)
+                                # Remove device files
+                                cd ~/android/lineage/oreo-mr1/device/motorola
+                                rm -rf athene
+
+                                # Remove Moto G4/G4 Plus Kernel
+                                cd ~/android/lineage/oreo-mr1/kernel/motorola
+                                rm -rf msm8952
+                                
+                                # Remove and re-sync proprietary blobs
+                                cd ~/android/lineage/oreo-mr1/vendor
+                                rm -rf motorola
+                                git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
+                                ;;
+                        victara)
+                                # Remove device files
+                                cd ~/android/lineage/oreo-mr1/device/motorola
+                                rm -rf victara
+
+                                # Remove Moto X 2014 Kernel
+                                cd ~/android/lineage/oreo-mr1/kernel/motorola
+                                rm -rf msm8974
+                                
+                                # Remove and re-sync proprietary blobs
+                                cd ~/android/lineage/oreo-mr1/vendor
+                                rm -rf motorola
+                                git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
+                                ;;
+                esac
                 ;;
         help|-h|--help)
                 showHelp
