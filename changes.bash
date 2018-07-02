@@ -5,7 +5,7 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P framew
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 487
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 488 455 491 423 424
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 425 427 430 431 448
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 454 458 489 492 494 499
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 454 458 489 492 494 499 500
 
 # packages/apps/settings :: 471 472 [473] 479 [482] 484 [447] 495 496
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 471 472 473
