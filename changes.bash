@@ -74,7 +74,16 @@ vi device_info_settings.xml
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS updates/Android Updates/' strings.xml
 
-## Move updates to fore-front
+# Change Major Version
+cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
+vi common.mk
+    # edit
+    PRODUCT_VERSION_MAJOR = 15
+    # to 
+    PRODUCT_VERSION_MAJOR = 8
+
+# Move updates to fore-front
+cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
 vi device_info_settings.xml
     # remove
     <!-- LineageOS updates -->
