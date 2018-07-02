@@ -69,3 +69,25 @@ vi device_info_settings.xml
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
 
+### Cerulean-specific changes
+# Change values for updater, version
+cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
+sed -r 's/LineageOS updates/Android Updates/' strings.xml
+
+## Move updates to fore-front
+vi device_info_settings.xml
+    # remove
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
+
+cd ~/android/lineage/oreo-mr1/packages/apps/Updater/
+vi AndroidManifest.xml
+    # add
+    <intent-filter>
+        <action android:name="android.settings.SYSTEM_UPDATE_SETTINGS" />
+        [...]
+    </intent-filter>
+
