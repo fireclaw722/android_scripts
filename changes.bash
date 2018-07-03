@@ -1,11 +1,11 @@
 ## Merge Substratum OMS changes from substratum gerrit 
 # [num] means non-clean merge
-# frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499 [500]
+# frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 485
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 487
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 488 455 491 423 424
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 425 427 430 431 448
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 454 458 489 492 494 499 500
+vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 454 458 489 492 494 499
 
 # packages/apps/settings :: 471 472 [473] 479 [482] 484 [447] 495 496
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 471 472 473
@@ -46,7 +46,8 @@ git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-## Change icon-mask back to square
+### Cerulean-specific changes
+# Change icon-mask back to square
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
@@ -69,7 +70,6 @@ vi device_info_settings.xml
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
 
-### Cerulean-specific changes
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS updates/Android Updates/' strings.xml
@@ -100,3 +100,9 @@ vi AndroidManifest.xml
         [...]
     </intent-filter>
 
+# Black theme
+cd ~/android/lineage/oreo-mr1/
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t berry-black-theme
+
+# unofficial Trust changes (vendor patch level)
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171 
