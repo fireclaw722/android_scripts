@@ -26,4 +26,9 @@ PRODUCT_PACKAGES += \
     Videos \
     Wallet
 
+# Don't override Eleven, Gallery, or Email
+GAPPS_BYPASS_PACKAGE_OVERRIDES := \
+    Chrome \
+    Music2
+
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
