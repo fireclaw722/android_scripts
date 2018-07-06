@@ -102,7 +102,7 @@ vi AndroidManifest.xml
 
 # Black theme
 cd ~/android/lineage/oreo-mr1/
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t berry-black-theme
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t berry-black-theme
 
 # unofficial Trust changes (vendor patch level)
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171 
