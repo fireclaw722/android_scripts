@@ -1,13 +1,16 @@
-# Extra [Firefox, Moto Widgets, F-Droid]
+## LineageOMS & Cerulean ##
+# F-Droid
+PRODUCT_PACKAGES += \
+    F-DroidPrivilegedExtension \
+    FDroid
 
+## Cerulean ##
+# Extras [Firefox, Moto Widgets, Nova]
 PRODUCT_PACKAGES += \
     CommandCenter \
-    F-DroidPrivilegedExtension \
-    FDroid \
     Fennec \
     TimeWeather
 
-## Cerulean
 # Microsoft Office packages
 PRODUCT_PACKAGES += \
     Excel \
