@@ -46,7 +46,7 @@ git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-### Cerulean-specific changes
+### Cerulean-specific changes ###
 # Change icon-mask back to square
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
