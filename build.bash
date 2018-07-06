@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.5.2
+version=0.5.3
 builddate=
 updaterDate=
 releasetype=
@@ -172,7 +172,7 @@ case $1 in
 
                 case $device in
                         angler|bullhead|marlin|sailfish)
-                                export PLATFORM_SECURITY_PATCH=2018-06-01
+                                export PLATFORM_SECURITY_PATCH=2018-07-01
                                 ;;
                         oneplus3)
                                 export PLATFORM_SECURITY_PATCH=2018-05-01
