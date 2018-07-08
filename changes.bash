@@ -46,11 +46,15 @@ git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-### Cerulean-specific changes ###
-# Change icon-mask back to square
-# revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
-sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
+# Move updates to fore-front
+cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
+vi device_info_settings.xml
+    # remove
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
 
 ## Vendor-level patch
 cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
@@ -70,6 +74,12 @@ vi device_info_settings.xml
             android:data="https://source.android.com/security/bulletin/" />
     </Preference>
 
+### Cerulean-specific changes ###
+# Change icon-mask back to square
+# revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
+cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
+sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
+
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS updates/Android Updates/' strings.xml
@@ -81,24 +91,6 @@ vi common.mk
     PRODUCT_VERSION_MAJOR = 15
     # to 
     PRODUCT_VERSION_MAJOR = 8
-
-# Move updates to fore-front
-cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
-vi device_info_settings.xml
-    # remove
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-
-cd ~/android/lineage/oreo-mr1/packages/apps/Updater/
-vi AndroidManifest.xml
-    # add
-    <intent-filter>
-        <action android:name="android.settings.SYSTEM_UPDATE_SETTINGS" />
-        [...]
-    </intent-filter>
 
 # Black theme
 cd ~/android/lineage/oreo-mr1/
