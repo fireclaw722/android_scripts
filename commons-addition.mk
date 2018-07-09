@@ -9,6 +9,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CommandCenter \
     Fennec \
+    Nova \
     TimeWeather
 
 # Microsoft Office packages
