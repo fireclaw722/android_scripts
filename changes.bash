@@ -19,7 +19,6 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system
 # build :: 459
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
 
-
 ## Add SafetyNet Patches
 ## addison, angler, athene, bullhead, griffin, marlin, oneplus2, oneplus3
 # moto-msm8953/addison
@@ -42,6 +41,12 @@ git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit
 git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 
+# unofficial Trust changes (vendor patch level)
+cd ~/android/lineage/oreo-mr1/
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171 
+
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t vendor-asb-device-info
+
 ## add fdroid and other pre-builts to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
@@ -55,24 +60,6 @@ vi device_info_settings.xml
         android:key="lineage_updates"
         lineage:requiresOwner="true"
         lineage:requiresPackage="org.lineageos.updater" />
-
-## Vendor-level patch
-cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
-vi device_info_settings.xml
-    # change
-    <Preference android:key="security_patch"
-        android:title="Vendor Security Patch Level"
-        android:summary="@string/summary_placeholder">
-        <intent android:action="android.intent.action.VIEW"
-            android:data="https://source.android.com/security/bulletin/" />
-    </Preference>
-    # add after
-    <Preference android:key="aosp_security_patch"
-        android:title="Android Security Patch Level"
-        android:summary="July 5, 2018">
-        <intent android:action="android.intent.action.VIEW"
-            android:data="https://source.android.com/security/bulletin/" />
-    </Preference>
 
 ### Cerulean-specific changes ###
 # Change icon-mask back to square
@@ -92,9 +79,3 @@ vi common.mk
     # to 
     PRODUCT_VERSION_MAJOR = 8
 
-# Black theme
-cd ~/android/lineage/oreo-mr1/
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t berry-black-theme
-
-# unofficial Trust changes (vendor patch level)
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171 
