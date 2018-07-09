@@ -4,35 +4,50 @@ PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
     FDroid
 
+# Firefox & Substratum
+PRODUCT_PACKAGES += \
+    Fennec \
+    Substratum
+
 ## Cerulean ##
-# Extras [Firefox, Moto Widgets, Nova]
+# Moto Widgets
 PRODUCT_PACKAGES += \
     CommandCenter \
-    Fennec \
-    Nova \
     TimeWeather
 
-# Microsoft Office packages
+## Microsoft
+# MSN Services
+PRODUCT_PACKAGES += \
+    Bing \
+    Cortana \
+    MicrosoftNews
+
+# Microsoft Office
 PRODUCT_PACKAGES += \
     Excel \
+    Onenote \
+    Onedrive \
     Outlook \
     Powerpoint \
     Word
 
-# Google stuff
+# Extra Microsoft Android Apps
+PRODUCT_PACKAGES += \
+    Edge \
+    MicrosoftLauncher \
+    Swiftkey
+
+## Google via OpenGApps
 GAPPS_VARIANT := nano
 PRODUCT_PACKAGES += \
     Books \
-    Chromme \
     Maps \
     Music2 \
-    Newsstand \
     Videos \
     Wallet
 
 # Don't override Eleven, Gallery, or Email
 GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Chrome \
     Music2
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
