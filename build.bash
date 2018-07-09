@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.5.3
+version=0.5.3_a
 builddate=
 updaterDate=
 releasetype=
@@ -172,13 +172,13 @@ case $1 in
 
                 case $device in
                         angler|bullhead|marlin|sailfish)
-                                export PLATFORM_SECURITY_PATCH=2018-07-01
+                                #export PLATFORM_SECURITY_PATCH=2018-07-01
                                 ;;
                         oneplus3)
-                                export PLATFORM_SECURITY_PATCH=2018-05-01
+                                #export PLATFORM_SECURITY_PATCH=2018-05-01
                                 ;;
                         athene)
-                                export PLATFORM_SECURITY_PATCH=2018-04-01
+                                #export PLATFORM_SECURITY_PATCH=2018-04-01
 
                                 # Unofficial Build
                                 echo "Setting up unofficial build parameters"
@@ -196,18 +196,18 @@ case $1 in
                                 releasetype=experimental
                                 ;;
                         addison)
-                                export PLATFORM_SECURITY_PATCH=2018-04-01
+                                #export PLATFORM_SECURITY_PATCH=2018-04-01
                                 echo "The Moto Z Play is not available for build at this moment"
                                 exit
                                 ;;
                         griffin)
-                                export PLATFORM_SECURITY_PATCH=2018-03-01
+                                #export PLATFORM_SECURITY_PATCH=2018-03-01
                                 ;;
                         oneplus2)
-                                export PLATFORM_SECURITY_PATCH=2017-10-01
+                                #export PLATFORM_SECURITY_PATCH=2017-10-01
                                 ;;
                         victara)
-                                export PLATFORM_SECURITY_PATCH=2016-08-01
+                                #export PLATFORM_SECURITY_PATCH=2016-08-01
                                 echo "The Moto X 2014 is not available for build at this moment"
                                 exit
                                 ;;
