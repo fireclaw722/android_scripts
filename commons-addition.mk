@@ -38,11 +38,12 @@ PRODUCT_PACKAGES += \
     Swiftkey
 
 ## Google via OpenGApps
-GAPPS_VARIANT := nano
+GAPPS_VARIANT := pico
 PRODUCT_PACKAGES += \
     Books \
     Maps \
     Music2 \
+    PlayGames \
     Videos \
     Wallet
 
