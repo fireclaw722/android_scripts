@@ -79,3 +79,6 @@ vi common.mk
     # to 
     PRODUCT_VERSION_MAJOR = 8
 
+# Pixel-Blue bootanimation
+cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
+cp ~/Downloads/blue-los-bootanimation.tar ./
