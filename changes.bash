@@ -1,3 +1,9 @@
+####
+#### This isn't an actual script, and it is to
+#### function as a how-to merge different changes
+####
+exit
+
 ## Merge Substratum OMS changes from substratum gerrit 
 # [num] means non-clean merge
 # frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499
