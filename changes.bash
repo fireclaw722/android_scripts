@@ -53,7 +53,7 @@ cat commons-additions.mk >> common.mk
 
 # Move updates to fore-front
 cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
-vi device_info_settings.xml
+nano device_info_settings.xml
     # remove
     <!-- LineageOS updates -->
     <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
@@ -65,11 +65,16 @@ vi device_info_settings.xml
 # Change icon-mask back to square
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
-sed -r 's/<string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>//' config.xml
+nano config.xml
+    # replace
+    <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
+    # with 
+    <string name="config_icon_mask" translatable="false">"M50,0 C10,0 0,10 0,50 0,90 10,100 50,100 90,100 100,90 100,50 100,10 90,0 50,0 Z"</string>
 
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
-sed -r 's/LineageOS updates/Android Updates/' strings.xml
+sed -r 's/LineageOS/Cerulean/' strings.xml
+    # replace
 
 # Change Major Version
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
