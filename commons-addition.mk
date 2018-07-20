@@ -10,6 +10,11 @@ PRODUCT_PACKAGES += \
     Substratum
 
 ## Cerulean ##
+# Republic Apps for Republic Wireless support
+PRODUCT_PACKAGES += \
+    Republic \
+    RepublicAnywhere
+
 # Moto Widgets
 PRODUCT_PACKAGES += \
     CommandCenter \
