@@ -1,21 +1,23 @@
 #!/bin/bash
 
 # Variables
-version=0.5.3_a
+version=0.6
+device=
 builddate=
 updaterDate=
 releasetype=
-device=
+RomName=
+RomVers=
 
 showHelp() {
-        echo "Usage: build <device> [releasetype]"
+        echo "Usage: build <device> [romtype]"
         echo ""
         echo "Available devices are:"
         echo "'griffin', 'oneplus3'"
         echo ""
-        echo "Available releasetypes are:"
-        echo "'snapshot', 'experimental'"
-        echo "default is 'snapshot'"
+        echo "Available romtypes are:"
+        echo "'cerulean', 'lineageoms'"
+        echo "default is 'lineageoms'"
         echo ""
         echo "using the 'help' subcommand shows this text"
         echo ""
@@ -38,16 +40,9 @@ buildDevice() {
         cd ~/android/lineage/oreo-mr1
 
         # Breakfast
-        if [ "$releasetype" == "experimental" ] ; then
-                if ! breakfast lineage_$device-userdebug ; then
-                        echo "Error: Breakfast failed for lineage_$device-userdebug"
-                        exit
-                fi
-        elif [ "$releasetype" == "snapshot" ] ; then
-                if ! breakfast lineage_$device-user ; then
-                        echo "Error: Breakfast failed for lineage_$device-user"
-                        exit
-                fi
+        if ! breakfast lineage_$device-userdebug ; then
+                echo "Error: Breakfast failed for lineage_$device-userdebug"
+                exit
         fi
 
         # Run build
@@ -87,15 +82,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/LineageOMS-15.1.$builddate.zip        
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/$RomName-$RomVers.$builddate.zip        
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/LineageOMS-15.1.$builddate.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/$RomName-$RomVers.$builddate.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip
+        mv signed-ota_update.zip /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip
 }
 
 addOTA() {
@@ -104,7 +99,7 @@ addOTA() {
         echo ""
         cd ~/updater
 
-        FLASK_APP=updater/app.py flask addrom -f 15.1-$releasetype-$builddate-$device -d $device -v 15.1 -t "$updaterDate" -r unofficial -s $(stat --printf="%s" /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip) -m $(md5sum /srv/builds/$device/full/LineageOMS-15.1.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/LineageOMS-15.1.$builddate.zip
+        FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers-$builddate-$device -d $device -v $RomVers -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip) -m $(md5sum /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-8.1.$builddate.zip
 
         echo "Full OTA added"
 
@@ -131,7 +126,12 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" TARGET_UNOFFICIAL_BUILD_ID=fireclaw
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" 
+        if [ "$RomName" == "LineageOMS" ] ; then
+                export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
+        elif [ "$RomName" == "Cerulean" ] ; then
+                export RELEASE_TYPE=RELEASE
+        fi
         if [ "$releasetype" == "snapshot" ] ; then
                 builddate=$(date -u +%Y%m%d)
         elif [ "$releasetype" == "experimental" ] ; then
@@ -144,20 +144,26 @@ setupEnv() {
 # take care of releasetype
 if [ $# -eq 2 ] ; then
         case $2 in
-                snapshot)
-                        releasetype=$2
+                lineageoms)
+                        releasetype=unofficial
+                        RomName=LineageOMS
+                        RomVers=15.1
                         ;;
-                experimental)
-                        releasetype=$2
+                cerulean)
+                        releasetype=release
+                        RomName=Cerulean
+                        RomVers=8.1
                         ;;
                 *)
-                        echo "Error: releasetype not available"
+                        echo "Error: romtype not available"
                         echo ""
                         showHelp
                         exit
         esac        
 elif [ $# -eq 1 ] ; then
-        releasetype=snapshot
+        releasetype=unofficial
+        RomName=LineageOMS
+        RomVers=15.1
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
@@ -168,56 +174,7 @@ fi
 case $1 in
         angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin|oneplus2|victara)
                 device=$1
-                shift
-
-                case $device in
-                        angler|bullhead|marlin|sailfish)
-                                #export PLATFORM_SECURITY_PATCH=2018-07-01
-                                ;;
-                        oneplus3)
-                                #export PLATFORM_SECURITY_PATCH=2018-05-01
-                                ;;
-                        athene)
-                                #export PLATFORM_SECURITY_PATCH=2018-04-01
-
-                                # Unofficial Build
-                                echo "Setting up unofficial build parameters"
-                                cd ~/android/lineage/oreo-mr1/device/motorola
-                                git clone -b lineage-15.1-go https://github.com/sgspluss/android_device_motorola_athene
-
-                                cd ~/android/lineage/oreo-mr1/kernel/motorola
-                                git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952
-
-                                cd ~/android/lineage/oreo-mr1/vendor
-                                rm -rf motorola
-                                git clone -b lineage-15.1 https://github.com/sgspluss/proprietary_vendor_motorola motorola
-
-                                # Force Experimental build, because unofficial
-                                releasetype=experimental
-                                ;;
-                        addison)
-                                #export PLATFORM_SECURITY_PATCH=2018-04-01
-                                echo "The Moto Z Play is not available for build at this moment"
-                                exit
-                                ;;
-                        griffin)
-                                #export PLATFORM_SECURITY_PATCH=2018-03-01
-                                ;;
-                        oneplus2)
-                                #export PLATFORM_SECURITY_PATCH=2017-10-01
-                                ;;
-                        victara)
-                                #export PLATFORM_SECURITY_PATCH=2016-08-01
-                                echo "The Moto X 2014 is not available for build at this moment"
-                                exit
-                                ;;
-                        *)
-                                echo "No?"
-                                echo "How in the hell"
-                                exit
-                esac
-
-
+                
                 # run build
                 cd ~/android/lineage/oreo-mr1
 
@@ -232,51 +189,6 @@ case $1 in
                 addOTA
 
                 cleanMka
-
-                case $device in
-                        addison)
-                                # Remove Z Play device tree
-                                cd ~/android/lineage/oreo-mr1/device/motorola
-                                rm -rf addison
-                                
-                                # Remove Z Play kernel
-                                cd ~/android/lineage/oreo-mr1/kernel/motorola
-                                rm -rf msm8953
-
-                                # Remove and re-sync original proprietary blobs
-                                cd ~/android/lineage/oreo-mr1/vendor
-                                rm -rf motorola
-                                git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
-                                ;;
-                        athene)
-                                # Remove device files
-                                cd ~/android/lineage/oreo-mr1/device/motorola
-                                rm -rf athene
-
-                                # Remove Moto G4/G4 Plus Kernel
-                                cd ~/android/lineage/oreo-mr1/kernel/motorola
-                                rm -rf msm8952
-                                
-                                # Remove and re-sync proprietary blobs
-                                cd ~/android/lineage/oreo-mr1/vendor
-                                rm -rf motorola
-                                git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
-                                ;;
-                        victara)
-                                # Remove device files
-                                cd ~/android/lineage/oreo-mr1/device/motorola
-                                rm -rf victara
-
-                                # Remove Moto X 2014 Kernel
-                                cd ~/android/lineage/oreo-mr1/kernel/motorola
-                                rm -rf msm8974
-                                
-                                # Remove and re-sync proprietary blobs
-                                cd ~/android/lineage/oreo-mr1/vendor
-                                rm -rf motorola
-                                git clone -b lineage-15.1 https://github.com/TheMuppets/proprietary_vendor_motorola motorola
-                                ;;
-                esac
                 ;;
         help|-h|--help)
                 showHelp
