@@ -92,6 +92,7 @@ vi common.mk
 cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
-# Pixel-Blue bootanimation
+# Win8 bootanimation
 cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
-cp ~/Downloads/blue-los-bootanimation.tar ./
+cp ~/Downloads/windows-8-bootanim/bootanimation.tar ./
+cp ~/Downloads/windows-8-bootanim/desc.txt ./
