@@ -40,15 +40,7 @@ PRODUCT_PACKAGES += \
 ## Google via OpenGApps
 GAPPS_VARIANT := pico
 PRODUCT_PACKAGES += \
-    Books \
     Maps \
-    Music2 \
-    PlayGames \
-    Videos \
     Wallet
-
-# Don't override Eleven, Gallery, or Email
-GAPPS_BYPASS_PACKAGE_OVERRIDES := \
-    Music2
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
