@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.6
+version=0.6.1
 device=
 builddate=
 updaterDate=
