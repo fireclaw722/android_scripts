@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.6
+version=0.6.1
 device=
 builddate=
 updaterDate=
@@ -118,7 +118,8 @@ setupEnv() {
         cd ~/android/lineage/oreo-mr1
 
         # setup variables
-        updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S") 
+        updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
+        builddate=$(date -u +%Y%m%d) 
 
         cleanMka
 
@@ -131,11 +132,6 @@ setupEnv() {
                 export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
         elif [ "$RomName" == "Cerulean" ] ; then
                 export RELEASE_TYPE=RELEASE
-        fi
-        if [ "$releasetype" == "snapshot" ] ; then
-                builddate=$(date -u +%Y%m%d)
-        elif [ "$releasetype" == "experimental" ] ; then
-                builddate=$(date -u +%Y%m%d_%H%M%S)
         fi
 }
 
