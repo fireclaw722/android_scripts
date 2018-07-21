@@ -49,9 +49,7 @@ git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 # unofficial Trust changes (vendor patch level)
 cd ~/android/lineage/oreo-mr1/
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171 
-
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t vendor-asb-device-info
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
 
 ## add fdroid and other pre-builts to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
