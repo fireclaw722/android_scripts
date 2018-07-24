@@ -30,8 +30,8 @@ PRODUCT_PACKAGES += \
 # Microsoft Office
 PRODUCT_PACKAGES += \
     Excel \
-    Onenote \
     Onedrive \
+    Onenote \
     Outlook \
     Powerpoint \
     Word
