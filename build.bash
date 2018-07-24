@@ -136,7 +136,6 @@ addOTA() {
 }
 
 ## Enter main()
-
 # take care of releasetype
 if [ $# -eq 2 ] ; then
         case $2 in
