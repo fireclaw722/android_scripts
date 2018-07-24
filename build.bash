@@ -33,6 +33,28 @@ cleanMka(){
         fi
 }
 
+
+setupEnv() {
+        cd ~/android/lineage/oreo-mr1
+
+        # setup variables
+        updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
+        builddate=$(date -u +%Y%m%d) 
+
+        cleanMka
+
+        # Setup build environment
+        source build/envsetup.sh
+
+        # export vars
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" 
+        if [ "$RomName" == "LineageOMS" ] ; then
+                export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
+        elif [ "$RomName" == "Cerulean" ] ; then
+                export RELEASE_TYPE=RELEASE
+        fi
+}
+
 buildDevice() {
         # Start clean
         cleanMka
@@ -112,27 +134,6 @@ addOTA() {
         disown
         echo "Updater backend restarted"
         echo ""
-}
-
-setupEnv() {
-        cd ~/android/lineage/oreo-mr1
-
-        # setup variables
-        updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
-        builddate=$(date -u +%Y%m%d) 
-
-        cleanMka
-
-        # Setup build environment
-        source build/envsetup.sh
-
-        # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" 
-        if [ "$RomName" == "LineageOMS" ] ; then
-                export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
-        elif [ "$RomName" == "Cerulean" ] ; then
-                export RELEASE_TYPE=RELEASE
-        fi
 }
 
 ## Enter main()
