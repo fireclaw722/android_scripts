@@ -76,7 +76,9 @@ nano config.xml
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS/Cerulean/' strings.xml
-    # replace
+
+cd ~/android/lineage/oreo-mr1/packages/apps/Updater/res/values
+sed -r 's/Lineage/Cerulean/' strings.xml
 
 # Change Major Version
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
