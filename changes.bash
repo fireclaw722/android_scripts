@@ -25,6 +25,14 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system
 # build :: 459
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
 
+## Moto Vendor updates for unofficial addison / athene builds
+cd ~/android/lineage/oreo-mr1/vendor/motorola
+# addison
+git pull https://github.com/BtbN/proprietary_vendor_motorola
+
+# athene
+git pull https://github.com/sgspluss/proprietary_vendor_motorola
+
 ## Add SafetyNet Patches
 ## addison, angler, athene, bullhead, griffin, marlin, oneplus2, oneplus3
 # moto-msm8953/addison
