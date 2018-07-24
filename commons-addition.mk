@@ -41,11 +41,3 @@ PRODUCT_PACKAGES += \
     Edge \
     MicrosoftLauncher \
     Swiftkey
-
-## Google via OpenGApps
-GAPPS_VARIANT := pico
-PRODUCT_PACKAGES += \
-    Maps \
-    Wallet
-
-$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
