@@ -25,23 +25,34 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system
 # build :: 459
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
 
-## Moto Vendor updates for unofficial addison / athene builds
+## unofficial addison / athene builds
+## proprietary blobs
 cd ~/android/lineage/oreo-mr1/vendor/motorola
 # addison
 git pull https://github.com/BtbN/proprietary_vendor_motorola
-
 # athene
 git pull https://github.com/sgspluss/proprietary_vendor_motorola
 
-## Add SafetyNet Patches
-## addison, angler, athene, bullhead, griffin, marlin, oneplus2, oneplus3
-# moto-msm8953/addison
-# no available ports ; maybe when I have the time ill work on it
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
+## kernel
+cd ~/android/lineage/oreo-mr1/kernel/motorola
+# addison
+git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 msm8953
+# athene
+git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952 msm8952
 
-# moto-msm8952/athene
-# included in current kernel
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8952
+## device-tree
+cd ~/android/lineage/oreo-mr1/device/motorola
+# addison
+git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison addison
+# athene
+git clone -b lineage-15.1 https://github.com/sgspluss/android_device_motorola_athene athene
+
+
+## Add SafetyNet Patches
+# moto-msm8996/addison
+cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
+git fetch https://github.com/franciscofranco/one_plus_3T
+git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 # moto-msm8996/griffin
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
