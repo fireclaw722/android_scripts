@@ -82,15 +82,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/$RomName-$RomVers.$builddate.zip        
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/$RomName-$RomVers.$builddate-$device.zip        
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/$RomName-$RomVers.$builddate.zip
+        mv signed-target_files.zip /srv/builds/$device/target_files/$RomName-$RomVers.$builddate-$device.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip
+        mv signed-ota_update.zip /srv/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip
 }
 
 addOTA() {
@@ -99,7 +99,7 @@ addOTA() {
         echo ""
         cd ~/updater
 
-        FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers-$builddate-$device -d $device -v $RomVers -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip) -m $(md5sum /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-8.1.$builddate.zip
+        FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers.$builddate-$device -d $device -v $RomVers -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip) -m $(md5sum /srv/builds/$device/full/$RomName-$RomVers.$builddate.zip | awk '{ print $1 }') -u https://ota.jwolfweb.com/builds/$device/full/Cerulean-8.1.$builddate.zip
 
         echo "Full OTA added"
 
