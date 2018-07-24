@@ -33,7 +33,6 @@ cleanMka(){
         fi
 }
 
-
 setupEnv() {
         cd ~/android/lineage/oreo-mr1
 
