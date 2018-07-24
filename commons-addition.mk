@@ -4,9 +4,8 @@ PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
     FDroid
 
-# Firefox & Substratum
+# Substratum
 PRODUCT_PACKAGES += \
-    Fennec \
     Substratum
 
 ## Cerulean ##
