@@ -25,28 +25,31 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system
 # build :: 459
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
 
-## unofficial addison / athene builds
-## proprietary blobs
+## unofficial addison builds
+# proprietary blobs
 cd ~/android/lineage/oreo-mr1/vendor/motorola
-# addison
 git pull https://github.com/BtbN/proprietary_vendor_motorola
-# athene
+
+# kernel
+cd ~/android/lineage/oreo-mr1/kernel/motorola
+git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 msm8953
+
+# device-tree
+cd ~/android/lineage/oreo-mr1/device/motorola
+git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison addison
+
+## unofficial athene builds
+# proprietary blobs
+cd ~/android/lineage/oreo-mr1/vendor/motorola
 git pull https://github.com/sgspluss/proprietary_vendor_motorola
 
-## kernel
+# kernel
 cd ~/android/lineage/oreo-mr1/kernel/motorola
-# addison
-git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 msm8953
-# athene
 git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952 msm8952
 
-## device-tree
+# device-tree
 cd ~/android/lineage/oreo-mr1/device/motorola
-# addison
-git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison addison
-# athene
 git clone -b lineage-15.1 https://github.com/sgspluss/android_device_motorola_athene athene
-
 
 ## Add SafetyNet Patches
 # moto-msm8996/addison
