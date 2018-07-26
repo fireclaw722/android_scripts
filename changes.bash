@@ -38,6 +38,18 @@ git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm895
 cd ~/android/lineage/oreo-mr1/device/motorola
 git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison addison
 
+# Battery Mods + Efficiency mode
+# import manually "branch:lineage-15.1 topic:moto-mods"
+cd ~/android/lineage/oreo-mr1/
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
+
+# Define Vendor security patch level OPN27.76-12-22
+cd ~/android/lineage/oreo-mr1/device/motorola/addison
+nano lineage.mk
+    # Vendor security patch level
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.lineage.build.vendor_security_patch=2018-04-01
+
 ## unofficial athene builds
 # proprietary blobs
 cd ~/android/lineage/oreo-mr1/vendor/motorola
@@ -50,6 +62,13 @@ git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_ms
 # device-tree
 cd ~/android/lineage/oreo-mr1/device/motorola
 git clone -b lineage-15.1 https://github.com/sgspluss/android_device_motorola_athene athene
+
+# Define Vendor security patch level NPJS25.93-14.7-8
+cd ~/android/lineage/oreo-mr1/device/motorola/athene
+nano lineage.mk
+    # Vendor security patch level
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.lineage.build.vendor_security_patch=2018-04-01
 
 ## Add SafetyNet Patches
 # moto-msm8996/addison
