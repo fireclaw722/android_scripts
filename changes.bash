@@ -71,7 +71,7 @@ nano lineage.mk
         ro.lineage.build.vendor_security_patch=2018-04-01
 
 ## Add SafetyNet Patches
-# moto-msm8996/addison
+# moto-msm8953/addison
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
