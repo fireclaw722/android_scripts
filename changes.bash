@@ -123,7 +123,7 @@ sed -r 's/Lineage/Cerulean/' strings.xml
 
 # Change Major Version
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
-vi common.mk
+nano common.mk
     # edit
     PRODUCT_VERSION_MAJOR = 15
     # to 
