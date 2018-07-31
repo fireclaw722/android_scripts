@@ -104,6 +104,10 @@ nano lineage_adaptive_icons.xml
     # to
     <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
 
+# EmojiOne
+cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
+cp ~/Downloads/NotoColorEmoji.ttf ./
+
 ### Cerulean-specific changes ###
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
@@ -119,10 +123,6 @@ nano common.mk
     PRODUCT_VERSION_MAJOR = 15
     # to 
     PRODUCT_VERSION_MAJOR = 8
-
-# EmojiOne
-cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
-cp ~/Downloads/NotoColorEmoji.ttf ./
 
 # Win8 bootanimation
 cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
