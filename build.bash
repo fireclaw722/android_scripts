@@ -181,7 +181,7 @@ case $1 in
 
                 saveFiles
 
-                addOTA
+                #addOTA
 
                 cleanMka
                 ;;
