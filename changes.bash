@@ -90,7 +90,6 @@ nano device_info_settings.xml
         lineage:requiresOwner="true"
         lineage:requiresPackage="org.lineageos.updater" />
 
-### Cerulean-specific changes ###
 # Change icon-mask back to square
 # revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
@@ -98,6 +97,14 @@ nano config.xml
     # remove
     <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
 
+cd ~/android/lineage/oreo-mr1/packages/apps/Trebuchet/res/values
+nano lineage_adaptive_icons.xml
+    # edit
+    <string name="icon_shape_default" translatable="false">@string/mask_path_circle</string>
+    # to
+    <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
+
+### Cerulean-specific changes ###
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS/Cerulean/' strings.xml
