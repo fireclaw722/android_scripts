@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.6.3
+version=0.6.4
 device=
 builddate=
 updaterDate=
@@ -103,7 +103,7 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/$RomName-$RomVers.$builddate-$device.zip        
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/$RomName-$RomVers.$builddate-$device.zip   
 
         # Save target_files
         echo "Saving Build Files"
