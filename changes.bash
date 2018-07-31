@@ -30,14 +30,6 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/
 cd ~/android/lineage/oreo-mr1/vendor/motorola
 git pull https://github.com/BtbN/proprietary_vendor_motorola
 
-# kernel
-cd ~/android/lineage/oreo-mr1/kernel/motorola
-git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 msm8953
-
-# device-tree
-cd ~/android/lineage/oreo-mr1/device/motorola
-git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison addison
-
 # Battery Mods + Efficiency mode
 # import manually "branch:lineage-15.1 topic:moto-mods"
 cd ~/android/lineage/oreo-mr1/
@@ -54,14 +46,6 @@ nano lineage.mk
 # proprietary blobs
 cd ~/android/lineage/oreo-mr1/vendor/motorola
 git pull https://github.com/sgspluss/proprietary_vendor_motorola
-
-# kernel
-cd ~/android/lineage/oreo-mr1/kernel/motorola
-git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952 msm8952
-
-# device-tree
-cd ~/android/lineage/oreo-mr1/device/motorola
-git clone -b lineage-15.1 https://github.com/sgspluss/android_device_motorola_athene athene
 
 # Define Vendor security patch level NPJS25.93-14.7-8
 cd ~/android/lineage/oreo-mr1/device/motorola/athene
