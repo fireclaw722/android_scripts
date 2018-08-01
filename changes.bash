@@ -35,12 +35,12 @@ git pull https://github.com/BtbN/proprietary_vendor_motorola
 cd ~/android/lineage/oreo-mr1/
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
-# Define Vendor security patch level OPN27.76-12-22
+# Define Vendor security patch level OPNS27.76-12-22-3
 cd ~/android/lineage/oreo-mr1/device/motorola/addison
 nano lineage.mk
     # Vendor security patch level
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.lineage.build.vendor_security_patch=2018-04-01
+        ro.lineage.build.vendor_security_patch=2018-06-01
 
 ## unofficial athene builds
 # proprietary blobs
