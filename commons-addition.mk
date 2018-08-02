@@ -1,4 +1,4 @@
-## LineageOMS & Cerulean ##
+## LineageOMS ##
 # F-Droid
 PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
@@ -8,35 +8,30 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Substratum
 
-## Cerulean ##
-# Republic Apps for Republic Wireless support
-PRODUCT_PACKAGES += \
-    Republic \
-    RepublicAnywhere
-
 # Moto Widgets
 PRODUCT_PACKAGES += \
     CommandCenter \
     TimeWeather
 
+## Cerulean ##
 ## Microsoft
-# MSN Services
+# MSN Services (Bing)
 PRODUCT_PACKAGES += \
     Bing \
+    BingNews
+
+# Microsoft G-Apps replacements (Assistant, Browser, Launcher, Keyboard)
+PRODUCT_PACKAGES += \
     Cortana \
-    MicrosoftNews
+    EMMX \
+    MicrosoftLauncher \
+    Swiftkey
 
 # Microsoft Office
 PRODUCT_PACKAGES += \
     Excel \
-    Onedrive \
     Onenote \
     Outlook \
     Powerpoint \
+    Skydrive \
     Word
-
-# Extra Microsoft Android Apps
-PRODUCT_PACKAGES += \
-    Edge \
-    MicrosoftLauncher \
-    Swiftkey
