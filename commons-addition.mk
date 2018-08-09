@@ -1,4 +1,4 @@
-## LineageOMS ##
+## Basic Extras
 # F-Droid
 PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
@@ -13,7 +13,6 @@ PRODUCT_PACKAGES += \
     CommandCenter \
     TimeWeather
 
-## Cerulean ##
 ## Microsoft
 # MSN Services (Bing)
 PRODUCT_PACKAGES += \
