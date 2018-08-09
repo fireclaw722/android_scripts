@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7
+version=0.7.1
 device=
 builddate=
 updaterDate=
@@ -107,11 +107,11 @@ saveFiles() {
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/$device/target_files/$RomName-$RomVers.$builddate-$device.zip
+        mv signed-target_files.zip ~/builds/$device/target_files/$RomName-$RomVers.$builddate-$device.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/$device/full/$RomName-$RomVers.$builddate-$device.zip
+        mv signed-ota_update.zip ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip
 }
 
 addOTA() {
