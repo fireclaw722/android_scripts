@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.6.5
+version=0.7
 device=
 builddate=
 updaterDate=
@@ -36,22 +36,22 @@ cleanMka(){
 setupEnv() {
         cd ~/android/lineage/oreo-mr1
 
-        # setup variables
-        updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
-        builddate=$(date -u +%Y%m%d) 
-
         cleanMka
 
         # Setup build environment
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
         if [ "$RomName" == "LineageOMS" ] ; then
                 export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
         elif [ "$RomName" == "Cerulean" ] ; then
                 export RELEASE_TYPE=RELEASE
         fi
+
+        # output datetime to text file for updater
+        touch datetime-for-updater.txt
+        echo $updaterDate > datetime-for-updater.txt
 }
 
 buildDevice() {
@@ -103,15 +103,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip /srv/builds/$device/img/$RomName-$RomVers.$builddate-$device.zip   
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/builds/$device/img/$RomName-$RomVers.$builddate-$device.zip   
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip /srv/builds/$device/target_files/$RomName-$RomVers.$builddate-$device.zip
+        mv signed-target_files.zip ~/$device/target_files/$RomName-$RomVers.$builddate-$device.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip /srv/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip
+        mv signed-ota_update.zip ~/$device/full/$RomName-$RomVers.$builddate-$device.zip
 }
 
 addOTA() {
@@ -180,8 +180,6 @@ case $1 in
                 buildOTA
 
                 saveFiles
-
-                addOTA
 
                 cleanMka
                 ;;
