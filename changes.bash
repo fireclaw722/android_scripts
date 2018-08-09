@@ -108,11 +108,11 @@ nano lineage_adaptive_icons.xml
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/lineage-sdk/packages/LineageSettingsProvider/res/values/
 sed -r 's/true/false/' defaults.xml
 
-### Cerulean-specific changes ###
 # EmojiOne
 cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
+### Cerulean-specific changes ###
 # Change values for updater, version
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
 sed -r 's/LineageOS/Cerulean/' strings.xml
