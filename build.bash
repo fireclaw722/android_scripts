@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.6.4
+version=0.6.5
 device=
 builddate=
 updaterDate=
@@ -46,7 +46,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" 
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C
         if [ "$RomName" == "LineageOMS" ] ; then
                 export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
         elif [ "$RomName" == "Cerulean" ] ; then
