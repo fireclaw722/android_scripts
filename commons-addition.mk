@@ -35,36 +35,3 @@ PRODUCT_PACKAGES += \
     Powerpoint \
     Skydrive \
     Word
-
-## Google
-# Base G services
-PRODUCT_PACKAGES += \
-    GmsCore \
-    GoogleBackupTransport \
-    GoogleExtServices \
-    GoogleFeedback \
-    GoogleOneTimeInitializer \
-    GooglePartnerSetup \
-    GoogleServicesFramework \
-    Phonesky \
-    SetupWizardGoogle \
-
-# Core G Apps
-PRODUCT_PACKAGES += \
-    Duo \
-    GoogleContactsSyncAdapter \
-    GoogleExtShared \
-    GooglePay \
-    GooglePrintRecommendationService \
-    GoogleTTS \
-    Maps \
-    Velvet
-
-# Extra G Apps
-PRODUCT_PACKAGES += \
-    CalendarGoogle \
-    Chrome \
-    Drive \
-    Gmail2 \
-    Photos \
-    YouTube
