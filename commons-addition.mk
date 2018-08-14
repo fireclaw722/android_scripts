@@ -12,25 +12,3 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CommandCenter \
     TimeWeather
-
-## Microsoft
-# MSN Services (Bing)
-PRODUCT_PACKAGES += \
-    Bing \
-    BingNews
-
-# Microsoft G-Apps replacements (Assistant, Browser, Launcher, Keyboard)
-PRODUCT_PACKAGES += \
-    Cortana \
-    EMMX \
-    MicrosoftLauncher \
-    Swiftkey
-
-# Microsoft Office
-PRODUCT_PACKAGES += \
-    Excel \
-    Onenote \
-    Outlook \
-    Powerpoint \
-    Skydrive \
-    Word
