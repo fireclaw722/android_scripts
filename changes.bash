@@ -4,8 +4,9 @@
 ####
 exit
 
+cd ~/android/lineage/oreo-mr1/
 ## Merge Substratum OMS changes from substratum gerrit 
-# [num] means non-clean merge
+## [num] means non-clean merge
 # frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 485
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 487
@@ -24,6 +25,46 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system
 
 # build :: 459
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
+
+## Extra System Changes
+# unofficial Trust changes (vendor patch level)
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
+
+# add fdroid and other pre-built apps to build process
+cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
+cat commons-additions.mk >> common.mk
+
+# Move updates to fore-front
+cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
+nano device_info_settings.xml
+    # remove
+    <!-- LineageOS updates -->
+    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
+        android:key="lineage_updates"
+        lineage:requiresOwner="true"
+        lineage:requiresPackage="org.lineageos.updater" />
+
+# Change System icon-mask back to square
+cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
+nano config.xml
+    # remove
+    <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
+
+# change Trebuchet icon-mask back to square
+cd ~/android/lineage/oreo-mr1/packages/apps/Trebuchet/res/values
+nano lineage_adaptive_icons.xml
+    # edit
+    <string name="icon_shape_default" translatable="false">@string/mask_path_circle</string>
+    # to
+    <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
+
+# Turn LineageOS stats collection off
+cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/lineage-sdk/packages/LineageSettingsProvider/res/values/
+sed -r 's/true/false/' defaults.xml
+
+# Replace Android system emoji with EmojiOne
+cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
+cp ~/Downloads/NotoColorEmoji.ttf ./
 
 ## unofficial addison builds
 # proprietary blobs
@@ -71,64 +112,3 @@ git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit
 git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
-
-# unofficial Trust changes (vendor patch level)
-cd ~/android/lineage/oreo-mr1/
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
-
-## add fdroid and other pre-builts to build process
-cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
-cat commons-additions.mk >> common.mk
-
-# Move updates to fore-front
-cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
-nano device_info_settings.xml
-    # remove
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-
-# Change icon-mask back to square
-# revert: https://github.com/LineageOS/android_vendor_lineage/commit/d12ab12c6142337fc79a76af50fc3d62bc337626
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
-nano config.xml
-    # remove
-    <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
-
-cd ~/android/lineage/oreo-mr1/packages/apps/Trebuchet/res/values
-nano lineage_adaptive_icons.xml
-    # edit
-    <string name="icon_shape_default" translatable="false">@string/mask_path_circle</string>
-    # to
-    <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
-
-# No stats collection
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/lineage-sdk/packages/LineageSettingsProvider/res/values/
-sed -r 's/true/false/' defaults.xml
-
-# EmojiOne
-cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
-cp ~/Downloads/NotoColorEmoji.ttf ./
-
-### Cerulean-specific changes ###
-# Change values for updater, version
-cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values/
-sed -r 's/LineageOS/Cerulean/' strings.xml
-
-cd ~/android/lineage/oreo-mr1/packages/apps/Updater/res/values
-sed -r 's/Lineage/Cerulean/' strings.xml
-
-# Change Major Version
-cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
-nano common.mk
-    # edit
-    PRODUCT_VERSION_MAJOR = 15
-    # to 
-    PRODUCT_VERSION_MAJOR = 8
-
-# Win8 bootanimation
-cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
-cp ~/Downloads/windows-8-bootanim/bootanimation.tar ./
-cp ~/Downloads/windows-8-bootanim/desc.txt ./
