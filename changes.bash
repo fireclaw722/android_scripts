@@ -34,7 +34,7 @@ vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-# Move updates to fore-front
+# Unofficial updater uses AOSP update settings location
 cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
 nano device_info_settings.xml
     # remove
