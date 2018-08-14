@@ -12,3 +12,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CommandCenter \
     TimeWeather
+
+# Firefox
+PRODUCT_PACKAGES += \
+    Fennec \
+    Klar
