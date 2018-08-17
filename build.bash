@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7.1
+version=0.7.2
 device=
 builddate=
 updaterDate=
@@ -51,7 +51,10 @@ setupEnv() {
 
         # output datetime to text file for updater
         touch datetime-for-updater.txt
-        echo $updaterDate > datetime-for-updater.txt
+        echo "----" >> datetime-for-updater.txt
+        echo $device >> datetime-for-updater.txt
+        echo $updaterDate >> datetime-for-updater.txt
+        echo "" >> datetime-for-updater.txt
 }
 
 buildDevice() {
