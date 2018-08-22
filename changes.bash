@@ -73,49 +73,61 @@ cp ~/Downloads/NotoColorEmoji.ttf ./
 ## Device Specific changes
 ##
 
-## unofficial addison builds
-# proprietary blobs
-cd ~/android/lineage/oreo-mr1/vendor/motorola
-git pull https://github.com/BtbN/proprietary_vendor_motorola
-
-# Battery Mods + Efficiency mode
-# import manually "branch:lineage-15.1 topic:moto-mods"
-cd ~/android/lineage/oreo-mr1/
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
+## addison (Moto Z Play)
+# clone device/kernel/proprietary files
+cd ~/android/lineage/oreo-mr1
+git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison device/motorola/addison
+git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 kernel/motorola/msm8953
+git clone -b lineage-15.1 https://github.com/BtbN/proprietary_vendor_motorola vendor/motorola
 
 # Define Vendor security patch level OPNS27.76-12-22-3
 cd ~/android/lineage/oreo-mr1/device/motorola/addison
 nano lineage.mk
-    # Vendor security patch level
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.lineage.build.vendor_security_patch=2018-06-01
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2018-06-01
 
-## unofficial athene builds
-# proprietary blobs
-cd ~/android/lineage/oreo-mr1/vendor/motorola
-git pull https://github.com/sgspluss/proprietary_vendor_motorola
-
-# Define Vendor security patch level NPJS25.93-14.7-8
-cd ~/android/lineage/oreo-mr1/device/motorola/athene
-nano lineage.mk
-    # Vendor security patch level
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.lineage.build.vendor_security_patch=2018-04-01
-
-## Add SafetyNet Patches
-# moto-msm8953/addison
+# SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
-# moto-msm8996/griffin
+## athene (Moto G4 / Moto G4 Plus)
+# clone device/kernel/proprietary files
+cd ~/android/lineage/oreo-mr1
+git clone -b lineage-15.1 https://github.com/sgspluss/android_device_motorola_athene device/motorola/athene
+git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952 kernel/motorola/msm8952
+git clone -b lineage-15.1 https://github.com/sgspluss/proprietary_vendor_motorola vendor/motorola
+
+# Define Vendor security patch level NPJS25.93-14.7-8
+cd ~/android/lineage/oreo-mr1/device/motorola/athene
+nano lineage.mk
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2018-04-01
+
+## griffin (Moto Z)
+# device files from LineageOS repos
+
+# SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
-# oneplus-msm8996/oneplus3
+## oneplus3 (Oneplus 3)
+# device files from LineageOS repos
+
+# SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8996
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit
 git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
+
+## pioneer (Xperia XA2)
+# device files from LineageOS repos
+
+# SafetyNet Patches
+cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
+git fetch https://github.com/franciscofranco/one_plus_3T
+git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
