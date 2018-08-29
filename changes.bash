@@ -33,6 +33,9 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/
 # unofficial Trust changes (vendor patch level)
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
 
+# Battery styles
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t battery_customisation
+
 # add fdroid and other pre-built apps to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
