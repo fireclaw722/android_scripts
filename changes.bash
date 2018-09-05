@@ -66,10 +66,10 @@ nano device_info_settings.xml
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 nano config.xml
     # edit in
-     <!-- The Google provider -->
-    <item>com.google.android.gms</item>
     <!-- The MicroG provider (UnifiedNlp) -->
     <item>org.microg.nlp</item>
+    <!-- The Google provider -->
+    <item>com.google.android.gms</item>
 
 
 # Change System icon-mask back to square
