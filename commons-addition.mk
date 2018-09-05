@@ -17,3 +17,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Fennec \
     Klar
+
+# UnifiedNlp (the +G-apps version, for compat.)
+PRODUCT_PACKAGES += \
+    UnifiedNlp
