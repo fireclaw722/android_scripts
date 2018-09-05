@@ -29,6 +29,15 @@ vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system
 # build :: 459
 vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
 
+# LineageOMS is a community supported ROM, and this is Lineage+OMS
+cd ~/android/lineage/oreo-mr1/vendor/lineage/build/core
+nano main_version.mk
+    # add
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.lineage.version=$(LINEAGE_VERSION) \
+    ro.lineageoms.version=$(LINEAGE_VERSION) \
+
+
 ## Extra System Changes
 # unofficial Trust changes (vendor patch level)
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
