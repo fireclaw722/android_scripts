@@ -96,6 +96,9 @@ git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addiso
 git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 kernel/motorola/msm8953
 git clone -b lineage-15.1 https://github.com/BtbN/proprietary_vendor_motorola vendor/motorola
 
+# greybus additions for Moto-Mods
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t kbd_mod -P kernel/motorola/msm8953
+
 # Define Vendor security patch level OPNS27.76-12-22-3
 cd ~/android/lineage/oreo-mr1/device/motorola/addison
 nano lineage.mk
