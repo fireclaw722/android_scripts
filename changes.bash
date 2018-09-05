@@ -37,7 +37,7 @@ vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t battery_customisation
 
 # Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
 # add fdroid and other pre-built apps to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
