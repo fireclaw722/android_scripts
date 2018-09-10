@@ -51,6 +51,8 @@ vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t mot
 
 # For MicroG Signature-Spoofing support (for reference)
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
+cd ~/android/lineage/lineage-15.1/frameworks/base
+git commit
 
 # add fdroid and other pre-built apps to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
