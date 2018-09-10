@@ -37,7 +37,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.lineage.version=$(LINEAGE_VERSION) \
     ro.lineageoms.version=$(LINEAGE_VERSION) \
 
-cd ~/android/lineage/lineage-15.1
+cd ~/android/lineage/oreo-mr1
 
 ## Extra System Changes
 # unofficial Trust changes (vendor patch level)
