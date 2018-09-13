@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fireclaw's LineageOMS Changelog</title>
+        <style>
+            h1, h2, h3, h4, h5 {
+                font-family:'Courier New', Courier, monospace;
+            }
+            
+            body {
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+
+            h1 {
+                border-bottom: 1px solid #111;
+                width: 70%;
+            }
+            .add {
+                color: #167c80;
+            }
+            .remove {
+                color: #B00020;
+            }
+            table.key {
+                border: 1px solid #888;
+            }
+            table.key tr th {
+                border: 1px solid #222;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            table.key tr th, table.key tr td {
+                text-align: center;
+                width: 33%;
+            }
+
+            hr.break {
+                width: 20%;
+                margin-right: 80%;
+            }
+
+            section {
+                padding-left: 1em;
+                padding-right: 1em;
+
+                width: 80%;
+                margin-left: 5%;
+            }
+
+            article.changes {
+                width: 60%;
+            }
+
+            article.changes:hover div.fold, article.changes:active div.fold, article.changes:focus div.fold {
+                opacity: 1;
+                max-height: 100%;
+            }
+
+            article.changes h2 {
+                padding-left: 1em;
+                border-bottom: #111 solid 1px;
+            }
+
+            div.fold {
+                display: hidden;
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: .35s ease-in-out .25s;
+                -webkit-transition: .35s ease-in-out .25s;
+                -moz-transition: .35s ease-in-out .25s;
+            }
+
+            div.fold h3 {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="/">&lt;&lt; Back to Downloads</a>
+
+        <hr class="break" />
+
+        <h1>Fireclaw's Changes for LineageOS</h1>
+
+        <section>
+            <article class="changes">
+                <h2>Substratum Changes</h2>
+                <div>
+                    <h3>OMS Commits</h3>
+                    <ul>
+                        <li>
+                            OMS commits for AOSP 8.1 taken from <a href="https://substratum.review">the Substratum Gerrit</a>
+                            <ul>
+                                <li>
+                                    frameworks/base changes 485, 487, 424, 448 do not merge cleanly
+                                </li>
+                                <li>
+                                    frameworks/base changes 500 and 501 are not included
+                                </li>
+                                <li>
+                                    packages/apps/Settings changes 473, 482, 447 do not merge cleanly
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>build property addition</h3>
+                    <ul>
+                        <li>OMS7 and the Substratum App considers LineageOMS community supported, so ro.lineageoms.version is set to ro.lineageos.version</li>
+                    </ul>
+
+                    <h3>Substratum App</h3>
+                    <ul>
+                        <li>The Substratum app is included as a pre-built application. APK taken from APKmirror, so the keys are unchanged so that the app can be updated from the Google Play Store</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="changes">
+                <h2>LineageOS Framework/SDK Changes</h2>
+                <div>
+                    <h3>Trust</h3>
+                    <ul>
+                        <li>
+                            Merge change #217171 from the <a href="https://review.lineageos.org">LineageOS Gerrit</a>. This change shows whether vendor-level security patches are considered current or out-of-date in the Trust interface.
+                        </li>
+                    </ul>
+
+                    <h3>Battery Styles</h3>
+                    <ul>
+                        <li>
+                            Topic battery_customisation was merged from the <a href="https://review.lineageos.org">LineageOS Gerrit</a>. 
+                            <ul>
+                                <li>The changes have been split and rebased onto AOSP/Lineage 9.0, so builds after Sept. 14, 2018 may not have those patches.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+            <article class="changes">
+                <h2>Android/AOSP Changes</h2>
+                <div>
+                    <h3>MicroG Signature Spoofing Patch</h3>
+                    <ul>
+                        <li>Builds on/after Sept. 10, 2018 include omnirom's patches for Signature Spoofing.</li>
+                    </ul>
+
+                    <h3>EmojiOne</h3>
+                    <ul>
+                        <li>EmojiOne fonts replace AOSP default emoji</li>
+                        <li>Builds before Sept. 6, 2018 include EmojiOne v3</li>
+                        <li>Builds on/after Sept. 6, 2018 include EmojiOne v4</li>
+                    </ul>
+
+                    <h3>F-Droid</h3>
+                    <ul>
+                        <li>F-Droid Privileged Extension is built with the ROM</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="changes">
+                <h2>System App Changes</h2>
+                <div>
+                    <h3>Previously Mentioned</h3>
+                    <ul>
+                        <li>Substratum is included</li>
+                        <li>F-Droid client is included</li>
+                    </ul>
+                    <h3>Moto Widgets</h3>
+                    <ul>
+                        <li>Moto CommandCenter widget, included on stock Moto Z Droid devices, is included in the ROM</li>
+                        <li>Moto TimeWeather, included with stock Moto G5 devices is included on builds that pre-date Aug. 14, 2018</li>
+                        <li>Moto TimeWeather, included with the stock Z3 Play, is included on builds on/after Aug. 14, 2018</li>
+                    </ul>
+
+                    <h3>Microsoft Apps</h3>
+                    <ul>
+                        <li>Builds before Aug. 14, 2018 include Microsoft Office, Bing, Cortana, and other Microsoft Apps. Builds after do not include any.</li>
+                    </ul>
+
+                    <h3>Firefox</h3>
+                    <ul>
+                        <li>Firefox/Fennec replaces system default browser Jelly. Fennec taken from Mozilla's website and is updatable from the Play Store.</li>
+                        <li>Firefox Klar, from F-Droid, is also included, and is updatable from F-Droid.</li>
+                    </ul>
+                </div>
+            </article>
+            <article class="changes">
+                <h2>Device-Specific Changes</h2>
+                <div>
+                    <h3>Efficiency Mode for Moto Mods</h3>
+                    <ul>
+                        <li>
+                            Merge topic moto-mods-battery-lineage-15.1 from the <a href="https://review.lineageos.org">LineageOS Gerrit</a>, for builds of devices that support Moto Mods. This includes:
+                            <ul>
+                                <li>Moto Z</li>
+                                <li>Moto Z2 Force</li>
+                                <li>Moto Z2 Play</li>
+                                <li class="remove">Moto Z Play not included because the device tree does not properly support Moto Mods</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>SafetyNet commits</h3>
+                    <ul>
+                        <li>
+                            Devices that build have merged patches that bypass safetynet checks. Certain device(s) do not build with these commits, and they aren't included:
+                            <ul>
+                                <li class="remove">Moto Z Play</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+            <article class="changes">
+                <h2>Work in Progress Devices</h2>
+                <div>
+                    <h3>Moto Z Play</h3>
+                    <p>
+                        Certain Devices are built using unofficial repos and include unofficial changes. All other devices are built using official <a href="https://github.com/LineageOS">LineageOS</a> and  <a href="https://github.com/TheMuppets">TheMuppets</a> github repos. They are summarized below.
+                    </p>
+                    <ul>
+                        <li>Built using <a href="https://github.com/BtbN/">BTbN's github repos</a></li>
+                        <li>May sometimes include changes to support Moto Mods, and those changes may be removed at will.</li>
+                        <li>Trust vendor patch level is set to 2018-06-01, which represents stock OPNS27.76-12-22-3</li>
+                    </ul>
+                    <h3>Moto G4/G4 Plus</h3>
+                    <ul>
+                        <li>
+                            Built using <a href="https://github.com/sgspluss/">sgspluss's github repos</a>
+                        </li>
+                        <li>Build Property changes for low RAM device, to run more smoothly on the 2GB RAM model.</li>
+                        <li>Trust vendor patch level is set to 2018-04-01, which represents stock NPJS25.93-14.7-8</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+    </body>
+</html>
