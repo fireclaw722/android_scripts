@@ -123,7 +123,7 @@ cd ~/android/lineage/oreo-mr1/device/motorola/addison
 nano lineage.mk
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2018-08-01
+    ro.lineage.build.vendor_security_patch=2018-04-01
 
 # SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
