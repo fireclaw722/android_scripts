@@ -46,6 +46,9 @@ vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
 # Battery styles
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t battery_customisation
 
+# Port DU Battery info on ambient display
+vendor/lineage/build/tools/repopick.py -f -g https://gerrit.dirtyunicorns.com 2472 -P frameworks/base/
+
 # Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
