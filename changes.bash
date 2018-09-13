@@ -44,7 +44,7 @@ cd ~/android/lineage/oreo-mr1
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
 
 # Battery styles
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t battery_customisation
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
 
 # Port DU Battery info on ambient display
 vendor/lineage/build/tools/repopick.py -f -g https://gerrit.dirtyunicorns.com 2472 -P frameworks/base/
