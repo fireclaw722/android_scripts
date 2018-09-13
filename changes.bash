@@ -114,12 +114,16 @@ git clone -b lineage-15.1 https://github.com/BtbN/proprietary_vendor_motorola ve
 # greybus additions for Moto-Mods
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t kbd_mod -P kernel/motorola/msm8953
 
-# Define Vendor security patch level OPNS27.76-12-22-3
+# Define Vendor security patch level 
+# OPN27.76-12-22 blobs used, but update as needed
+# 2018-08-01 OPNS27.76-12-22-9
+# 2018-06-01 OPNS27.76-12-22-3
+# * 2018-04-01 OPN27.76-12-22
 cd ~/android/lineage/oreo-mr1/device/motorola/addison
 nano lineage.mk
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2018-06-01
+    ro.lineage.build.vendor_security_patch=2018-08-01
 
 # SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
