@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7.3
+version=0.7.6
 device=
 builddate=
 updaterDate=
@@ -48,18 +48,11 @@ setupEnv() {
         elif [ "$RomName" == "Cerulean" ] ; then
                 export RELEASE_TYPE=RELEASE
         fi
-
-        # output datetime to text file for updater
-        touch datetime-for-updater.txt
-        echo "----" >> datetime-for-updater.txt
-        echo $device >> datetime-for-updater.txt
-        echo $updaterDate >> datetime-for-updater.txt
-        echo "" >> datetime-for-updater.txt
 }
 
 buildDevice() {
         # Start clean
-        cleanMka
+        #cleanMka
 
         cd ~/android/lineage/oreo-mr1
 
@@ -119,22 +112,15 @@ saveFiles() {
 
 addOTA() {
         # Add packaged update to the update backend
-        echo "Adding full OTA to list"
-        echo ""
-        cd ~/updater
+        echo "Adding OTA to list"
 
-        FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers.$builddate-$device -d $device -v $RomVers -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip
+        touch datetime-for-updater.txt
+        echo "----" >> datetime-for-updater.txt
+
+        echo FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers.$builddate-$device -d $device -v $RomVers -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip >> datetime-for-updater.txt
+        echo "" >> datetime-for-updater.txt
 
         echo "Full OTA added"
-
-        echo ""
-
-        # Restart the updater
-        echo "Restarting updater backend..."
-        echo ""
-        ./run.sh&
-        disown
-        echo "Updater backend restarted"
         echo ""
 }
 
@@ -183,6 +169,8 @@ case $1 in
                 buildOTA
 
                 saveFiles
+
+                addOTA
 
                 cleanMka
                 ;;
