@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7.6
+version=0.7.7
 device=
 builddate=
 updaterDate=
@@ -117,7 +117,7 @@ addOTA() {
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
-        echo FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers.$builddate-$device -d $device -v $RomVers -t "$updaterDate" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip >> datetime-for-updater.txt
+        echo FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers.$builddate-$device -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip >> datetime-for-updater.txt
         echo "" >> datetime-for-updater.txt
 
         echo "Full OTA added"
