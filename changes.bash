@@ -11,7 +11,7 @@ cd ~/android/lineage/oreo-mr1
 
 ## Extra System Changes
 # unofficial Trust changes (vendor patch level)
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org 217171
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 217171
 
 # Battery styles
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
