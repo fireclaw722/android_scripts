@@ -87,6 +87,9 @@ nano config.xml
     # remove
     <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
 
+    <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
+    <bool name="config_useRoundIcon">true</bool>
+
 # change Trebuchet icon-mask back to square
 cd ~/android/lineage/oreo-mr1/packages/apps/Trebuchet/res/values
 nano lineage_adaptive_icons.xml
