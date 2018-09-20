@@ -7,36 +7,6 @@ exit
 ##
 ## System-based changes
 ##
-
-cd ~/android/lineage/oreo-mr1/
-## Merge Substratum OMS changes from substratum gerrit
-# frameworks/base :: 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 [485] [487] 488 455 491 423 [424] 425 427 430 431 [448] 454 458 489 492 494 499
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 460 461 462 463 464 465 466 467 468 469 470 475 476 477 478 481 485
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 487
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 488 455 491 423 424
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 425 427 430 431 448
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 454 458 489 492 494 499
-
-# packages/apps/settings :: 471 472 [473] 479 [482] 484 [447] 495 496
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 471 472 473
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 479 482
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 484 447
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 495 496
-
-# system/sepolicy :: 432 450 493
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P system/sepolicy 432 450 493
-
-# build :: 459
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P build/target 459
-
-# LineageOMS is a community supported ROM, and this is Lineage+OMS
-cd ~/android/lineage/oreo-mr1/vendor/lineage/build/core
-nano main_version.mk
-    # add
-ADDITIONAL_BUILD_PROPERTIES += \
-    ro.lineage.version=$(LINEAGE_VERSION) \
-    ro.lineageoms.version=$(LINEAGE_VERSION) \
-
 cd ~/android/lineage/oreo-mr1
 
 ## Extra System Changes
