@@ -14,6 +14,10 @@ PRODUCT_PACKAGES += \
     Fennec \
     Klar
 
+# Substratum
+PRODUCT_PACKAGES += \
+    Substratum
+
 # UnifiedNlp (the +G-apps version, for compat.)
 PRODUCT_PACKAGES += \
     UnifiedNlp
