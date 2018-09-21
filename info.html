@@ -93,8 +93,7 @@
                     <h3>OMS Commits</h3>
                     <ul>
                         <li>
-                            OMS commits for AOSP 8.1 taken from <a href="https://substratum.review">the Substratum Gerrit</a>.
-                            <span class="remove">Oreo-based commits have been removed, so builds on or after Sept. 20, 2018 will not have OMS included.</span>
+                            OMS commits for AOSP 8.1 taken from <a href="https://substratum.review">the Substratum Gerrit</a>. After Sept. 20, 2018, commits will be pulled from <a href="https://github.com/SubstratumResources/">Github</a>, and I don't know which correspond to which, because the Substratum team has cleaned their Gerrit.
                             <ul>
                                 <li>
                                     frameworks/base changes 485, 487, 424, 448 do not merge cleanly
@@ -111,12 +110,12 @@
 
                     <h3>build property addition</h3>
                     <ul>
-                        <li>OMS7 and the Substratum App considers LineageOMS community supported, so ro.lineageoms.version is set to ro.lineageos.version</li>
+                        <li>OMS7 and the Substratum App considers LineageOMS community supported, so ro.lineageoms.version is set to ro.lineageos.version. This allows the Substratum app to consider the ROM "community supported."</li>
                     </ul>
 
                     <h3>Substratum App</h3>
                     <ul>
-                        <li>The Substratum app is included as a pre-built application. APK taken from APKmirror, so the keys are unchanged so that the app can be updated from the Google Play Store</li>
+                        <li>The Substratum app is included as a pre-built application. APK taken from APKmirror, and the keys are unchanged so that the app can be updated from the Google Play Store</li>
                     </ul>
                 </div>
             </article>
@@ -158,7 +157,7 @@
 
                     <h3>Battery info on Ambient Display</h3>
                     <ul>
-                        <li>Ambient/Always-On display battery info ported from DU,AICP, and other ROM projects</li>
+                        <li>Ambient/Always-On display battery info ported from.</li>
                     </ul>
                 </div>
             </article>
@@ -201,9 +200,9 @@
                             Merge topic moto-mods-battery-lineage-15.1 from the <a href="https://review.lineageos.org">LineageOS Gerrit</a>, for builds of devices that support Moto Mods. This includes:
                             <ul>
                                 <li>Moto Z</li>
+                                <li>Moto Z Play</li>
                                 <li>Moto Z2 Force</li>
                                 <li>Moto Z2 Play</li>
-                                <li class="remove">Moto Z Play not included because the device tree does not properly support Moto Mods</li>
                             </ul>
                         </li>
                     </ul>
@@ -211,10 +210,7 @@
                     <h3>SafetyNet commits</h3>
                     <ul>
                         <li>
-                            Devices that build have merged patches that bypass safetynet checks. Certain device(s) do not build with these commits, and they aren't included:
-                            <ul>
-                                <li class="remove">Moto Z Play</li>
-                            </ul>
+                            Devices have merged patches that bypass safetynet checks.
                         </li>
                     </ul>
                 </div>
@@ -228,9 +224,10 @@
 
                     <h3>Moto Z Play</h3>
                     <ul>
-                        <li>Built using <a href="https://github.com/BtbN/">BTbN's github repos</a></li>
-                        <li>May sometimes include changes to support Moto Mods, and those changes may be removed at will.</li>
+                        <li>Built using <a href="https://github.com/fireclaw722/">My github repos</a></li>
                         <li>Trust vendor patch level is set to 2018-04-01, which represents stock OPN27.76-12-22</li>
+                        <li>SafetyNet patches not included, because the device won't build with them included. Use Magisk</li>
+                        <li>SELinux is permissive.</li>
                     </ul>
                     <h3>Moto G4/G4 Plus</h3>
                     <ul>
@@ -239,7 +236,7 @@
                         </li>
                         <li>Build Property changes for low RAM device, to run more smoothly on the 2GB RAM model.</li>
                         <li>Trust vendor patch level is set to 2018-04-01, which represents stock NPJS25.93-14.7-8</li>
-                        <li>SELinux is set to permissive, otherwise it would not boot.</li>
+                        <li>SELinux is set to permissive</li>
                     </ul>
                 </div>
             </article>
