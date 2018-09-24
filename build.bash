@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7.7
+version=0.7.8
 device=
 builddate=
 updaterDate=
@@ -157,7 +157,7 @@ fi
 # now device
 case $1 in
         angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin|oneplus2|victara)
-                device=$1
+                export device=$1
                 
                 # run build
                 cd ~/android/lineage/oreo-mr1
