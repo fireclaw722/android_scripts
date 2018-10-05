@@ -78,11 +78,6 @@ git cherry-pick fd8a0ec2fc04b33e370b42564bd3cdaa028b83ea
 git cherry-pick 7022b6a39f8bd15293dffbcc149ce003cfe797a0
 git cherry-pick ad3b42ff306c5ca3036162f9b90e75f42fecaaa7
 
-# build
-cd ~/android/lineage/oreo-mr1/build/core
-git fetch https://github.com/SubstratumResources/platform_build o
-git cherry-pick 7f8f6603405bf092e8c6655647b0e1b5a0bd05fb
-
 # LineageOMS is a community supported ROM, and this is Lineage+OMS
 cd ~/android/lineage/oreo-mr1/vendor/lineage/build/core
 nano main_version.mk

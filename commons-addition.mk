@@ -16,7 +16,11 @@ PRODUCT_PACKAGES += \
 
 # Substratum
 PRODUCT_PACKAGES += \
-    Substratum
+    Substratum \
+    SubstratumService
+
+PRODUCT_SYSTEM_SERVER_APPS += \
+    SubstratumService
 
 # UnifiedNlp (the +G-apps version, for compat.)
 PRODUCT_PACKAGES += \
