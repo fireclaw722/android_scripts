@@ -134,15 +134,15 @@
                         <li>
                             Topic battery_customisation was merged from the <a href="https://review.lineageos.org">LineageOS Gerrit</a>. 
                             <ul>
-                                <li>The changes have been split and rebased onto AOSP 9 and Lineage 16, so builds after Sept. 14, 2018 may not have those patches.</li>
+                                <li>The changes have been split and rebased onto AOSP 9 and Lineage 16, so builds after Sept. 14, 2018 do not have those patches.</li>
                             </ul>
                         </li>
                     </ul>
 
                     <h3>Adaptive Icons</h3>
                     <ul>
-                        <li>Trebuchet's default icons were set to the "super-ellipse" icons, which closely match AOSP-style default icons</li>
-                        <li>System default adaptive icons were reset to AOSP-style icons.</li>
+                        <li>Trebuchet's default icons were set to the "super-ellipse" icons, which closely match AOSP-style, square, default icons</li>
+                        <li>System default adaptive icons were reset to AOSP-style, square, icons.</li>
                     </ul>
                 </div>
             </article>
@@ -151,7 +151,7 @@
                 <div>
                     <h3>MicroG Signature Spoofing Patch</h3>
                     <ul>
-                        <li>Builds on/after Sept. 10, 2018 include omnirom's patches for Signature Spoofing.</li>
+                        <li>Builds between Sept. 10, 2018 and October 5, 2018 include omnirom's patches for Signature Spoofing.</li>
                     </ul>
 
                     <h3>EmojiOne</h3>
@@ -163,7 +163,7 @@
 
                     <h3>Battery info on Ambient Display</h3>
                     <ul>
-                        <li>Ambient/Always-On display battery info ported from.</li>
+                        <li>Ambient/Always-On display battery info ported from Dirty Unicorns.</li>
                     </ul>
                 </div>
             </article>
@@ -200,19 +200,6 @@
             <article class="changes">
                 <h2>Device-Specific Changes</h2>
                 <div>
-                    <h3>Efficiency Mode for Moto Mods</h3>
-                    <ul>
-                        <li>
-                            Merge topic moto-mods-battery-lineage-15.1 from the <a href="https://review.lineageos.org">LineageOS Gerrit</a>, for builds of devices that support Moto Mods. This includes:
-                            <ul>
-                                <li>Moto Z</li>
-                                <li>Moto Z Play</li>
-                                <li>Moto Z2 Force</li>
-                                <li>Moto Z2 Play</li>
-                            </ul>
-                        </li>
-                    </ul>
-
                     <h3>SafetyNet commits</h3>
                     <ul>
                         <li>
@@ -230,10 +217,10 @@
 
                     <h3>Moto Z Play</h3>
                     <ul>
-                        <li>Built using <a href="https://github.com/fireclaw722/">My github repos</a></li>
+                        <li>Built using <a href="https://github.com/fireclaw722/">my github repos</a></li>
                         <li>Trust vendor patch level is set to 2018-04-01, which represents stock OPN27.76-12-22</li>
                         <li>SafetyNet patches not included, because the device won't build with them included. Use Magisk</li>
-                        <li>SELinux is permissive.</li>
+                        <li>SELinux is permissive in some builds and enforcing on others. SELinux worked out Sept 30, 2018</li>
                     </ul>
                     <h3>Moto G4/G4 Plus</h3>
                     <ul>
