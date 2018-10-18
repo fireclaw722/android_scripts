@@ -4,11 +4,6 @@ PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
     FDroid
 
-# Moto Widgets
-PRODUCT_PACKAGES += \
-    CommandCenter \
-    TimeWeather
-
 # Firefox
 PRODUCT_PACKAGES += \
     Fennec \
