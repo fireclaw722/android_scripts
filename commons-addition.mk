@@ -1,7 +1,7 @@
 ## Basic Extras
 # F-Droid
 PRODUCT_PACKAGES += \
-    F-DroidPrivilegedExtension \
+    FDroidPrivilegedExtension \
     FDroid
 
 # Firefox
