@@ -22,3 +22,7 @@ PRODUCT_PACKAGES += \
     UnifiedNlp \
     MozillaNlp \
     NominatimNlp
+
+# Weather app
+PRODUCT_PACKAGES += \
+    Weather
