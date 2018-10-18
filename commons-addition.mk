@@ -17,6 +17,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_SERVER_APPS += \
     SubstratumService
 
-# UnifiedNlp (the +G-apps version, for compat.)
+# MicroG's NLP with Mozilla and Nominatim backends
 PRODUCT_PACKAGES += \
-    UnifiedNlp
+    UnifiedNlp \
+    MozillaNlp \
+    NominatimNlp
