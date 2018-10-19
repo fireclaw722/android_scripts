@@ -26,3 +26,12 @@ PRODUCT_PACKAGES += \
 # Weather app
 PRODUCT_PACKAGES += \
     Weather
+
+# Google
+GAPPS_VARIANT := pico
+
+GAPPS_PRODUCT_PACKAGES += \
+    Maps \
+    PrebuiltBugle
+
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
