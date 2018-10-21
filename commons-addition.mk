@@ -27,7 +27,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Weather
 
-# Google
+##### Google Mobile Services #####
 GAPPS_VARIANT := pico
 
 GAPPS_PRODUCT_PACKAGES += \
@@ -35,3 +35,18 @@ GAPPS_PRODUCT_PACKAGES += \
     PrebuiltBugle
 
 $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+
+##### Microsoft Apps #####
+PRODUCT_PACKAGES += \
+    Bing \
+    Cortana \
+    Edge \
+    MicrosoftLauncher \
+    MicrosoftNews \
+    OfficeExcel \
+    OfficeOnenote \
+    OfficeOutlook \
+    OfficePowerpoint \
+    OfficeWord \
+    Skydrive \
+    Swiftkey
