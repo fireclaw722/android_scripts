@@ -91,19 +91,8 @@ cd ~/android/lineage/oreo-mr1
 # unofficial Trust changes (vendor patch level)
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 217171
 
-# Battery styles
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
-
 # Port DU Battery info on ambient display
 vendor/lineage/build/tools/repopick.py -f -g https://gerrit.dirtyunicorns.com 2472 -P frameworks/base/
-
-# Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
-
-# For MicroG Signature-Spoofing support (for reference)
-patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
-cd ~/android/lineage/oreo-mr1/frameworks/base
-git commit
 
 # add fdroid and other pre-built apps to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
@@ -154,6 +143,16 @@ sed -r 's/true/false/' defaults.xml
 cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
+## May or may not be included
+# Battery styles
+cd ~/android/lineage/oreo-mr1
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
+
+# For MicroG Signature-Spoofing support (for reference)
+patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
+cd ~/android/lineage/oreo-mr1/frameworks/base
+git commit
+
 ##
 ## Device Specific changes
 ##
@@ -164,6 +163,10 @@ cd ~/android/lineage/oreo-mr1
 git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison device/motorola/addison
 git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 kernel/motorola/msm8953
 git clone -b lineage-15.1 https://github.com/BtbN/proprietary_vendor_motorola vendor/motorola
+
+# Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
+cd ~/android/lineage/oreo-mr1
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
 # greybus additions for Moto-Mods
 vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t kbd_mod -P kernel/motorola/msm8953
@@ -200,6 +203,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ## griffin (Moto Z)
 # device files from LineageOS repos
+
+# Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
+cd ~/android/lineage/oreo-mr1
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
 # SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
