@@ -27,6 +27,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Weather
 
+# Citrus AOSP/CAF ROM's built-in theme
+PRODUCT_PACKAGES += \
+    Margarita
+
 ##### Google Mobile Services #####
 GAPPS_VARIANT := pico
 
