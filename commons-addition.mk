@@ -23,9 +23,15 @@ PRODUCT_PACKAGES += \
     MozillaNlp \
     NominatimNlp
 
-# Weather app
+# Weather app and cLock Weather packages
 PRODUCT_PACKAGES += \
-    Weather
+    Weather \
+    WeatherProviderYahoo \
+    WeatherProviderWunderground
+
+# Blisslauncher from /e/
+PRODUCT_PACKAGES += \
+    BlissLauncher
 
 # Citrus AOSP/CAF ROM's built-in theme
 PRODUCT_PACKAGES += \
