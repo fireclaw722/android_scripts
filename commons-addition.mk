@@ -23,9 +23,12 @@ PRODUCT_PACKAGES += \
     MozillaNlp \
     NominatimNlp
 
-# Weather app and cLock Weather packages
+# Weather app
 PRODUCT_PACKAGES += \
-    Weather \
+    Weather
+
+# cLock Weather packages
+PRODUCT_PACKAGES += \
     WeatherProviderYahoo \
     WeatherProviderWunderground
 
