@@ -6,7 +6,7 @@ PRODUCT_PACKAGES += \
 
 # Firefox
 PRODUCT_PACKAGES += \
-    Fennec \
+    Firefox \
     Klar
 
 # Substratum
@@ -17,45 +17,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_SERVER_APPS += \
     SubstratumService
 
-# MicroG's NLP with Mozilla and Nominatim backends
+# Weather app and provider
 PRODUCT_PACKAGES += \
-    UnifiedNlp \
-    MozillaNlp \
-    NominatimNlp
+    Weather \
+    YahooProvider
 
-# Weather app
+# MicroG for GMS Support
 PRODUCT_PACKAGES += \
-    Weather
-
-# cLock Weather packages
-PRODUCT_PACKAGES += \
-    WeatherProviderYahoo \
-    WeatherProviderWunderground
-
-# Blisslauncher from /e/
-PRODUCT_PACKAGES += \
-    BlissLauncher
-
-##### Google Mobile Services #####
-GAPPS_VARIANT := pico
-
-GAPPS_PRODUCT_PACKAGES += \
-    Maps \
-    PrebuiltBugle
-
-$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
-
-##### Microsoft Apps #####
-PRODUCT_PACKAGES += \
-    Bing \
-    Cortana \
-    Edge \
-    MicrosoftLauncher \
-    MicrosoftNews \
-    OfficeExcel \
-    OfficeOnenote \
-    OfficeOutlook \
-    OfficePowerpoint \
-    OfficeWord \
-    Skydrive \
-    Swiftkey
+   GmsCore \
+   GsfProxy \
+   Phonesky
