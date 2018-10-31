@@ -108,16 +108,6 @@ nano device_info_settings.xml
         lineage:requiresOwner="true"
         lineage:requiresPackage="org.lineageos.updater" />
 
-# add MicroG location provider to usable location providers
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
-nano config.xml
-    # edit in
-    <!-- The MicroG provider (UnifiedNlp) -->
-    <item>org.microg.nlp</item>
-    <!-- The Google provider -->
-    <item>com.google.android.gms</item>
-
-
 # Change System icon-mask back to square
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 nano config.xml
@@ -144,14 +134,28 @@ cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
 ## May or may not be included
-# Battery styles
-cd ~/android/lineage/oreo-mr1
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
-
 # For MicroG Signature-Spoofing support (for reference)
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
 cd ~/android/lineage/oreo-mr1/frameworks/base
 git commit
+
+# Battery Icon (pointy)
+git revert 6a600b8f628ddfbcaddc8dc281684b8edf294005
+# Other status bar icons
+git revert ac9fcf9f1cd85032c251850922ab943f3f86ccd4
+
+# Battery styles
+cd ~/android/lineage/oreo-mr1
+vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
+
+# add MicroG location provider to usable location providers
+cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
+nano config.xml
+    # edit in
+    <!-- The MicroG provider (UnifiedNlp) -->
+    <item>org.microg.nlp</item>
+    <!-- The Google provider -->
+    <item>com.google.android.gms</item>
 
 ##
 ## Device Specific changes
