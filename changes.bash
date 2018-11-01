@@ -126,8 +126,8 @@ nano lineage_adaptive_icons.xml
     <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
 
 # Turn LineageOS stats collection off
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/lineage-sdk/packages/LineageSettingsProvider/res/values/
-sed -r 's/true/false/' defaults.xml
+cd ~/android/lineage/oreo-mr1/packages/apps/LineageParts/res/values
+sed -r 's/stats.lineageos.org/blank.nourl.nothanks/' config.xml
 
 # Replace Android system emoji with EmojiOne
 cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
