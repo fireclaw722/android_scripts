@@ -157,6 +157,29 @@ nano config.xml
     <!-- The Google provider -->
     <item>com.google.android.gms</item>
 
+# Cerulean
+cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values
+sed -r 's/LineageOS/Cerulean/' strings.xml > strings.xml.new
+rm strings.xml 
+mv strings.xml.new strings.xml
+sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
+rm strings.xml 
+mv strings.xml.new strings.xml
+
+cd ~/android/lineage/oreo-mr1/packages/apps/Updater/res/values
+sed -r 's/LineageOS/Cerulean/' strings.xml > strings.xml.new
+rm strings.xml 
+mv strings.xml.new strings.xml
+sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
+rm strings.xml 
+mv strings.xml.new strings.xml
+
+# For user/production builds :: this might cause breakage
+cd ~/android/lineage/oreo-mr1/system/sepolicy/public
+# comment 250-260
+# remove on 413 & 416
+userdebug_or_eng
+
 ##
 ## Device Specific changes
 ##
