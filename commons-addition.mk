@@ -24,6 +24,7 @@ PRODUCT_PACKAGES += \
 
 # MicroG for GMS Support
 PRODUCT_PACKAGES += \
-   GmsCore \
-   GsfProxy \
-   Phonesky
+    DroidGuard \
+    GmsCore \
+    GsfProxy \
+    Phonesky
