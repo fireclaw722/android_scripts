@@ -133,29 +133,14 @@ sed -r 's/stats.lineageos.org/blank.nourl.nothanks/' config.xml
 cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
-## May or may not be included
-# For MicroG Signature-Spoofing support (for reference)
-patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
-cd ~/android/lineage/oreo-mr1/frameworks/base
-git commit
+# Blue Bootanimation
+cd ~/android/lineage/nougat-mr1/vendor/cm/bootanimation
+cp ~/Downloads/bootanimation.tar ./
 
 # Battery Icon (pointy)
 git revert 6a600b8f628ddfbcaddc8dc281684b8edf294005
 # Other status bar icons
 git revert ac9fcf9f1cd85032c251850922ab943f3f86ccd4
-
-# Battery styles
-cd ~/android/lineage/oreo-mr1
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t oreo-battery-styles
-
-# add MicroG location provider to usable location providers
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
-nano config.xml
-    # edit in
-    <!-- The MicroG provider (UnifiedNlp) -->
-    <item>org.microg.nlp</item>
-    <!-- The Google provider -->
-    <item>com.google.android.gms</item>
 
 # Cerulean
 cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values
@@ -174,6 +159,7 @@ sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
 rm strings.xml 
 mv strings.xml.new strings.xml
 
+# Make build-id and Lineage-version more configurable
 cd ~/android/lineage/oreo-mr1/build/make/core
 vi build_id.mk
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
@@ -200,29 +186,22 @@ userdebug_or_eng
 ##
 
 ## addison (Moto Z Play)
-# clone device/kernel/proprietary files
-cd ~/android/lineage/oreo-mr1
-git clone -b lineage-15.1 https://github.com/BtbN/android_device_motorola_addison device/motorola/addison
-git clone -b lineage-15.1 https://github.com/BtbN/android_kernel_motorola_msm8953 kernel/motorola/msm8953
-git clone -b lineage-15.1 https://github.com/BtbN/proprietary_vendor_motorola vendor/motorola
+# clone device/kernel/proprietary files from github.com/fireclaw722
 
 # Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
 cd ~/android/lineage/oreo-mr1
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
-# greybus additions for Moto-Mods
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t kbd_mod -P kernel/motorola/msm8953
-
 # Define Vendor security patch level 
 # OPN27.76-12-22 blobs used, but update as needed
 # 2018-08-01 OPNS27.76-12-22-9
 # 2018-06-01 OPNS27.76-12-22-3
-# * 2018-04-01 OPN27.76-12-22
+# 2018-04-01 OPN27.76-12-22
 cd ~/android/lineage/oreo-mr1/device/motorola/addison
 nano lineage.mk
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2018-04-01
+    ro.lineage.build.vendor_security_patch=2018-08-01
 
 # SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
@@ -230,11 +209,7 @@ git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 ## athene (Moto G4 / Moto G4 Plus)
-# clone device/kernel/proprietary files
-cd ~/android/lineage/oreo-mr1
-git clone -b lineage-15.1 https://github.com/sgspluss/android_device_motorola_athene device/motorola/athene
-git clone -b lineage-15.1 https://github.com/sgspluss/android_kernel_motorola_msm8952 kernel/motorola/msm8952
-git clone -b lineage-15.1 https://github.com/sgspluss/proprietary_vendor_motorola vendor/motorola
+# clone device/kernel/proprietary files from github.com/sgspluss
 
 # Define Vendor security patch level NPJS25.93-14.7-8
 cd ~/android/lineage/oreo-mr1/device/motorola/athene
@@ -242,18 +217,6 @@ nano lineage.mk
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2018-04-01
-
-## griffin (Moto Z)
-# device files from LineageOS repos
-
-# Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
-cd ~/android/lineage/oreo-mr1
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
-
-# SafetyNet Patches
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
-git fetch https://github.com/franciscofranco/one_plus_3T
-git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 ## oneplus3 (Oneplus 3)
 # device files from LineageOS repos
@@ -264,11 +227,3 @@ git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit
 git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
-
-## pioneer (Xperia XA2)
-# device files from LineageOS repos
-
-# SafetyNet Patches
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8996
-git fetch https://github.com/franciscofranco/one_plus_3T
-git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
