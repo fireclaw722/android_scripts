@@ -22,9 +22,11 @@ PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
-# MicroG for GMS Support
-PRODUCT_PACKAGES += \
-    DroidGuard \
-    GmsCore \
-    GsfProxy \
-    Phonesky
+# GMS
+GAPPS_VARIANT := pico
+
+GAPPS_PRODUCT_PACKAGES += \
+    Maps \
+    Wallet
+
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)

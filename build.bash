@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7.8
+version=8.0.0
 device=
 builddate=
 updaterDate=
@@ -13,11 +13,11 @@ showHelp() {
         echo "Usage: build <device> [romtype]"
         echo ""
         echo "Available devices are:"
-        echo "'griffin', 'oneplus3'"
+        echo "'addison', 'oneplus3'"
         echo ""
         echo "Available romtypes are:"
         echo "'cerulean', 'lineageoms'"
-        echo "default is 'lineageoms'"
+        echo "default is 'cerulean'"
         echo ""
         echo "using the 'help' subcommand shows this text"
         echo ""
@@ -42,12 +42,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
-        if [ "$RomName" == "LineageOMS" ] ; then
-                export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
-        elif [ "$RomName" == "Cerulean" ] ; then
-                export RELEASE_TYPE=RELEASE
-        fi
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=OMR1.L151.181105
 }
 
 buildDevice() {
@@ -145,9 +140,9 @@ if [ $# -eq 2 ] ; then
                         exit
         esac        
 elif [ $# -eq 1 ] ; then
-        releasetype=unofficial
-        RomName=LineageOMS
-        RomVers=15.1
+        releasetype=release
+        RomName=Cerulean
+        RomVers=8.1
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
@@ -156,7 +151,7 @@ fi
 
 # now device
 case $1 in
-        angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin|oneplus2|victara)
+        oneplus3|addison)
                 export device=$1
                 
                 # run build
