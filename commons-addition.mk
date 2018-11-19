@@ -18,10 +18,8 @@ PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
-# /e/'s BlissLauncher + IconPack and Lawnchair for choice
+# Lawnchair over Trebuchet
 PRODUCT_PACKAGES += \
-    BlissIconPack \
-    BlissLauncher \
     Lawnchair
 
 # GMS
