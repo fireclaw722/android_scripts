@@ -174,6 +174,21 @@ sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
 rm strings.xml 
 mv strings.xml.new strings.xml
 
+cd ~/android/lineage/oreo-mr1/build/make/core
+vi build_id.mk
+    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
+        export BUILD_ID=OPM7.181105.004
+    else
+        export BUILD_ID=$(TARGET_VENDOR_RELEASE_BUILD_ID) # dont forget to set at buildtime
+    endif
+
+cd ~/android/lineage/oreo-mr1/vendor/lineage/config
+vi common.mk
+    ifeq ($(TARGET_BUILD_VARIANT),user)
+        LINEAGE_VERSION := $(TARGET_VENDOR_RELEASE_BUILD_ID)
+    else
+
+
 # For user/production builds :: this might cause breakage
 cd ~/android/lineage/oreo-mr1/system/sepolicy/public
 # comment 250-260
