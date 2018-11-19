@@ -11,20 +11,22 @@ PRODUCT_PACKAGES += \
 
 # Substratum
 PRODUCT_PACKAGES += \
-    Substratum \
-    SubstratumService
-
-PRODUCT_SYSTEM_SERVER_APPS += \
-    SubstratumService
+    Substratum
 
 # Weather app and provider
 PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
-# MicroG for GMS Support
+# Lawnchair over Trebuchet
 PRODUCT_PACKAGES += \
-    DroidGuard \
-    GmsCore \
-    GsfProxy \
-    Phonesky
+    Lawnchair
+
+# GMS
+GAPPS_VARIANT := pico
+
+GAPPS_PRODUCT_PACKAGES += \
+    Maps \
+    Wallet
+
+$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)

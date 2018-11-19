@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.7.8
+version=7.0.0
 device=
 builddate=
 updaterDate=
@@ -13,11 +13,11 @@ showHelp() {
         echo "Usage: build <device> [romtype]"
         echo ""
         echo "Available devices are:"
-        echo "'griffin', 'oneplus3'"
+        echo "'addison' 'athene' 'victara'"
         echo ""
         echo "Available romtypes are:"
         echo "'cerulean', 'lineageoms'"
-        echo "default is 'lineageoms'"
+        echo "default is 'cerulean'"
         echo ""
         echo "using the 'help' subcommand shows this text"
         echo ""
@@ -25,7 +25,7 @@ showHelp() {
 }
 
 cleanMka(){
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/nougat-mr1
 
         if ! mka clobber ; then
                 make clobber
@@ -34,7 +34,7 @@ cleanMka(){
 }
 
 setupEnv() {
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/nougat-mr1
 
         cleanMka
 
@@ -42,23 +42,18 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S")
-        if [ "$RomName" == "LineageOMS" ] ; then
-                export TARGET_UNOFFICIAL_BUILD_ID=fireclaw
-        elif [ "$RomName" == "Cerulean" ] ; then
-                export RELEASE_TYPE=RELEASE
-        fi
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=NMR1.L141.181105
 }
 
 buildDevice() {
         # Start clean
         #cleanMka
 
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/nougat-mr1
 
         # Breakfast
-        if ! breakfast lineage_$device-userdebug ; then
-                echo "Error: Breakfast failed for lineage_$device-userdebug"
+        if ! breakfast lineage_$device-user ; then
+                echo "Error: Breakfast failed for lineage_$device-user"
                 exit
         fi
 
@@ -81,11 +76,7 @@ buildDevice() {
 }
 
 buildOTA() {
-        cd ~/android/lineage/oreo-mr1
-
-        # For some reason, brotli doesn't work unless "otatools" is ran
-        # so build "otatools" for future use
-        mka otatools
+        cd ~/android/lineage/nougat-mr1
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
@@ -95,7 +86,7 @@ buildOTA() {
 }
 
 saveFiles() {
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/nougat-mr1
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
@@ -114,6 +105,9 @@ addOTA() {
         # Add packaged update to the update backend
         echo "Adding OTA to list"
 
+        # Oreo is the WIP version, and the datetime-for-updater is kept there
+        cd ~/android/lineage/oreo-mr1
+
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
@@ -122,6 +116,9 @@ addOTA() {
 
         echo "Full OTA added"
         echo ""
+
+        # Return home
+        cd ~/android/lineage/nougat-mr1
 }
 
 ## Enter main()
@@ -131,12 +128,12 @@ if [ $# -eq 2 ] ; then
                 lineageoms)
                         releasetype=unofficial
                         RomName=LineageOMS
-                        RomVers=15.1
+                        RomVers=14.1
                         ;;
                 cerulean)
                         releasetype=release
                         RomName=Cerulean
-                        RomVers=8.1
+                        RomVers=7.1
                         ;;
                 *)
                         echo "Error: romtype not available"
@@ -145,9 +142,9 @@ if [ $# -eq 2 ] ; then
                         exit
         esac        
 elif [ $# -eq 1 ] ; then
-        releasetype=unofficial
-        RomName=LineageOMS
-        RomVers=15.1
+        releasetype=release
+        RomName=Cerulean
+        RomVers=7.1
 else
         echo "Error: Please use a codename for the device you wish to build."
         showHelp
@@ -156,11 +153,11 @@ fi
 
 # now device
 case $1 in
-        angler|bullhead|marlin|sailfish|oneplus3|addison|athene|griffin|oneplus2|victara)
+        addison|athene|victara)
                 export device=$1
                 
                 # run build
-                cd ~/android/lineage/oreo-mr1
+                cd ~/android/lineage/nougat-mr1
 
                 setupEnv
 
