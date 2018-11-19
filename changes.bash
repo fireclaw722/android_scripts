@@ -134,7 +134,7 @@ cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
 # Blue Bootanimation
-cd ~/android/lineage/nougat-mr1/vendor/cm/bootanimation
+cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
 # Battery Icon (pointy)
