@@ -42,7 +42,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=OMR1.L151.181105
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=OMR1.L151.181105
 }
 
 buildDevice() {
@@ -94,15 +94,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/builds/$device/img/$RomName-$RomVers.$builddate-$device.zip   
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/builds/$device/img/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip   
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/builds/$device/target_files/$RomName-$RomVers.$builddate-$device.zip
+        mv signed-target_files.zip ~/builds/$device/target_files/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip
+        mv signed-ota_update.zip ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip
 }
 
 addOTA() {
@@ -112,7 +112,7 @@ addOTA() {
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
-        echo FLASK_APP=updater/app.py flask addrom -f $RomName-$RomVers.$builddate-$device -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$RomVers.$builddate-$device.zip >> datetime-for-updater.txt
+        echo FLASK_APP=updater/app.py flask addrom -f $TARGET_VENDOR_RELEASE_BUILD_ID-$device -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip >> datetime-for-updater.txt
         echo "" >> datetime-for-updater.txt
 
         echo "Full OTA added"
