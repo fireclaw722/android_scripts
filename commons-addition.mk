@@ -22,6 +22,10 @@ PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
+# Lawnchair
+PRODUCT_PACKAGES += \
+    Lawnchair
+
 # GMS
 GAPPS_VARIANT := pico
 
