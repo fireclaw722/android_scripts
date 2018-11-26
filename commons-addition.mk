@@ -22,6 +22,11 @@ PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
+# Launcher from e.foundation
+PRODUCT_PACKAGES += \
+    BlissIconPack \
+    BlissLauncher
+
 # Lawnchair
 PRODUCT_PACKAGES += \
     Lawnchair
