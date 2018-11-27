@@ -111,7 +111,7 @@ addOTA() {
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
-        echo FLASK_APP=updater/app.py flask addrom -f $RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip | awk '{ print $1 }') -u https://updater.jwolfweb.com/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip >> datetime-for-updater.txt
+        echo FLASK_APP=updater/app.py flask addrom -f $RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip >> datetime-for-updater.txt
         echo "" >> datetime-for-updater.txt
 
         echo "Full OTA added"
