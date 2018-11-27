@@ -28,8 +28,8 @@ PRODUCT_PACKAGES += \
     BlissLauncher
 
 # Lawnchair
-PRODUCT_PACKAGES += \
-    Lawnchair
+#PRODUCT_PACKAGES += \
+#   Lawnchair
 
 # GMS
 GAPPS_VARIANT := pico
