@@ -42,7 +42,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date -u +%Y%m%d) updaterDate=$(date -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=NMR1.181105
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=NMR1.181105
 }
 
 buildDevice() {
