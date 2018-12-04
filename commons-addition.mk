@@ -18,15 +18,6 @@ PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
-# Lawnchair over Trebuchet
-PRODUCT_PACKAGES += \
-    Lawnchair
-
-# Launcher from e.foundation
-PRODUCT_PACKAGES += \
-    BlissIconPack \
-    BlissLauncher
-
 # GMS
 GAPPS_VARIANT := pico
 
