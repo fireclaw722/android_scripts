@@ -137,6 +137,7 @@ cp ~/Downloads/NotoColorEmoji.ttf ./
 cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
+cd ~/android/lineage/oreo-mr1/frameworks/base
 # Battery Icon (pointy)
 git revert 6a600b8f628ddfbcaddc8dc281684b8edf294005
 # Other status bar icons
@@ -177,9 +178,10 @@ vi common.mk
 
 # For user/production builds :: this might cause breakage
 cd ~/android/lineage/oreo-mr1/system/sepolicy/public
-# comment 250-260
-# remove on 413 & 416
-userdebug_or_eng
+vi domain.te
+    # comment 250-260
+    # remove on 413 & 416
+    userdebug_or_eng
 
 ##
 ## Device Specific changes
