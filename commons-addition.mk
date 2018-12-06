@@ -18,6 +18,11 @@ PRODUCT_PACKAGES += \
     Weather \
     YahooProvider
 
+# Better Messaging Apps
+PRODUCT_PACKAGES += \
+    QKSMS \
+    Signal
+
 # GMS
 GAPPS_VARIANT := pico
 
