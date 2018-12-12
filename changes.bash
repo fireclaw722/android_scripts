@@ -119,7 +119,7 @@ vi common.mk
 # device files from LineageOS repos
 
 # SafetyNet Patches
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8952
+cd ~/android/lineage/nougat-mr1/kernel/motorola/msm8952
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
@@ -127,6 +127,6 @@ git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e511
 # device files from LineageOS repos
 
 # SafetyNet Patches
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8974
+cd ~/android/lineage/nougat-mr1/kernel/motorola/msm8974
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
