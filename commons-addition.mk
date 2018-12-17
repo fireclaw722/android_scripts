@@ -1,13 +1,8 @@
-## Basic Extras
+## Basic Extras LineageOMS/Unofficial builds
 # F-Droid
 PRODUCT_PACKAGES += \
     FDroidPrivilegedExtension \
     FDroid
-
-# Firefox
-PRODUCT_PACKAGES += \
-    Firefox \
-    Klar
 
 # Substratum
 PRODUCT_PACKAGES += \
@@ -17,6 +12,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_SERVER_APPS += \
     SubstratumService
 
+## Personal Builds
+# Firefox
+PRODUCT_PACKAGES += \
+    Firefox \
+    Klar
+
 # Weather app and provider
 PRODUCT_PACKAGES += \
     Weather \
@@ -24,8 +25,7 @@ PRODUCT_PACKAGES += \
 
 # Better Messaging Apps
 PRODUCT_PACKAGES += \
-    QKSMS \
-    Signal
+    QKSMS
 
 # GMS
 GAPPS_VARIANT := pico
