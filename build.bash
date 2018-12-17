@@ -94,15 +94,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery, Boot, and System Images"
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/builds/$device/img/$fileName.zip   
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/android/builds/$device/img/$fileName.zip   
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/builds/$device/target_files/$fileName.zip
+        mv signed-target_files.zip ~/android/builds/$device/target_files/$fileName.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/builds/$device/full/$fileName.zip
+        mv signed-ota_update.zip ~/android/builds/$device/full/$fileName.zip
 }
 
 addOTA() {
@@ -112,7 +112,7 @@ addOTA() {
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
-        echo FLASK_APP=updater/app.py flask addrom -f $fileName -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$fileName.zip) -m $(md5sum ~/builds/$device/full/$fileName.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$fileName.zip >> datetime-for-updater.txt
+        echo FLASK_APP=updater/app.py flask addrom -f $fileName -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/android/builds/$device/full/$fileName.zip) -m $(md5sum ~/android/builds/$device/full/$fileName.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$fileName.zip >> datetime-for-updater.txt
         echo "" >> datetime-for-updater.txt
 
         echo "Full OTA added"
