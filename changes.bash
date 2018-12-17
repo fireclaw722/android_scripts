@@ -59,10 +59,6 @@ cat commons-additions.mk >> common.mk
 cd ~/android/lineage/nougat-mr1/vendor/cm/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
-# Turn LineageOS stats collection off
-cd ~/android/lineage/nougat-mr1/packages/apps/CMParts/res/values
-sed -r 's/stats.lineageos.org/blank.nourl.nothanks/' config.xml
-
 # Replace Android system emoji with EmojiOne
 cd ~/android/lineage/nougat-mr1/external/noto-fonts/other
 cp ~/Downloads/NotoColorEmoji.ttf ./
