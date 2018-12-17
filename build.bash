@@ -8,6 +8,7 @@ updaterDate=
 releasetype=unofficial
 RomName=LineageOMS
 RomVers=14.1
+fileName=
 
 showHelp() {
         echo "Usage: build <device>"
@@ -38,7 +39,10 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") TARGET_UNOFFICIAL_BUILD_ID=fireclaw LINEAGE_VERSION_APPEND_TIME_OF_DAY=true
+        # datetime info first
+        export builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") 
+
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C TARGET_UNOFFICIAL_BUILD_ID=fireclaw LINEAGE_VERSION_APPEND_TIME_OF_DAY=true fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
 }
 
 buildDevice() {
@@ -86,15 +90,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/builds/$device/img/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip   
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/builds/$device/img/$fileName.zip   
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/builds/$device/target_files/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip
+        mv signed-target_files.zip ~/builds/$device/target_files/$fileName.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip
+        mv signed-ota_update.zip ~/builds/$device/full/$fileName.zip
 }
 
 addOTA() {
@@ -107,7 +111,7 @@ addOTA() {
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
-        echo FLASK_APP=updater/app.py flask addrom -f $TARGET_VENDOR_RELEASE_BUILD_ID-$device -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip) -m $(md5sum ~/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$RomName-$TARGET_VENDOR_RELEASE_BUILD_ID-$device.zip >> datetime-for-updater.txt
+        echo FLASK_APP=updater/app.py flask addrom -f $fileName -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/builds/$device/full/$fileName.zip) -m $(md5sum ~/builds/$device/full/$fileName.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$fileName.zip >> datetime-for-updater.txt
         echo "" >> datetime-for-updater.txt
 
         echo "Full OTA added"
