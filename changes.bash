@@ -55,15 +55,9 @@ cd ~/android/lineage/nougat-mr1
 cd ~/android/lineage/nougat-mr1/vendor/cm/config/
 cat commons-additions.mk >> common.mk
 
-# Blue Bootanimation
+# Pixel-Blue Bootanimation
 cd ~/android/lineage/nougat-mr1/vendor/cm/bootanimation
 cp ~/Downloads/bootanimation.tar ./
-
-# Unofficial updater uses AOSP update settings location
-cd ~/android/lineage/nougat-mr1/packages/apps/Settings/res/xml
-nano device_info_settings.xml
-    # remove
-    <!-- LineageOS updates -->
 
 # Turn LineageOS stats collection off
 cd ~/android/lineage/nougat-mr1/packages/apps/CMParts/res/values
@@ -76,40 +70,8 @@ cp ~/Downloads/NotoColorEmoji.ttf ./
 ## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
-cd ~/android/lineage/oreo-mr1/frameworks/base
+cd ~/android/lineage/nougat-mr1/frameworks/base
 git commit
-
-# Cerulean
-cd ~/android/lineage/nougat-mr1/vendor/cmsdk/cm/res/res/values
-sed -r 's/LineageOS/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-
-cd ~/android/lineage/nougat-mr1/packages/apps/Updater/res/values
-sed -r 's/LineageOS/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-
-# Make Build-ID and Lineage-Version more configurable
-cd ~/android/lineage/nougat-mr1/build/core
-vi build_id.mk
-    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        export BUILD_ID=NJH47F
-    else
-        export BUILD_ID=$(TARGET_VENDOR_RELEASE_BUILD_ID) # dont forget to set at buildtime
-    endif
-
-cd ~/android/lineage/nougat-mr1/vendor/cm/config
-vi common.mk
-    ifeq ($(TARGET_BUILD_VARIANT),user)
-        LINEAGE_VERSION := $(TARGET_VENDOR_RELEASE_BUILD_ID)
-    else
 
 ##
 ## Device Specific changes
@@ -126,7 +88,4 @@ git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e511
 ## victara (Moto X 2014)
 # device files from LineageOS repos
 
-# SafetyNet Patches
-cd ~/android/lineage/nougat-mr1/kernel/motorola/msm8974
-git fetch https://github.com/franciscofranco/one_plus_3T
-git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
+# SafetyNet Patches not needed
