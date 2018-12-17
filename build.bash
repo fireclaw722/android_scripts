@@ -15,10 +15,6 @@ showHelp() {
         echo "Available devices are:"
         echo "'addison', 'oneplus3'"
         echo ""
-        echo "Available romtypes are:"
-        echo "'cerulean', 'lineageoms'"
-        echo "default is 'cerulean'"
-        echo ""
         echo "using the 'help' subcommand shows this text"
         echo ""
         echo "using the 'version' subcommand outputs version info"
@@ -42,7 +38,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") RELEASE_TYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=OMR1.181205
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") TARGET_UNOFFICIAL_BUILD_ID=fireclaw LINEAGE_VERSION_APPEND_TIME_OF_DAY=true
 }
 
 buildDevice() {
@@ -120,36 +116,7 @@ addOTA() {
 }
 
 ## Enter main()
-# take care of releasetype
-if [ $# -eq 2 ] ; then
-        case $2 in
-                lineageoms)
-                        releasetype=unofficial
-                        RomName=LineageOMS
-                        RomVers=15.1
-                        ;;
-                cerulean)
-                        releasetype=release
-                        RomName=Cerulean
-                        RomVers=8.1
-                        ;;
-                *)
-                        echo "Error: romtype not available"
-                        echo ""
-                        showHelp
-                        exit
-        esac        
-elif [ $# -eq 1 ] ; then
-        releasetype=release
-        RomName=Cerulean
-        RomVers=8.1
-else
-        echo "Error: Please use a codename for the device you wish to build."
-        showHelp
-        exit
-fi
-
-# now device
+# take care pf device
 case $1 in
         oneplus3|addison)
                 export device=$1
@@ -177,6 +144,7 @@ case $1 in
                 ;;
         *)
                 echo "Error: Codename not available for build."
+                echo "Device not set."
                 echo ""
                 showHelp
 esac
