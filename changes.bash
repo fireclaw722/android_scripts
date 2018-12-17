@@ -98,16 +98,6 @@ vendor/lineage/build/tools/repopick.py -f -g https://gerrit.dirtyunicorns.com 24
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
-# Unofficial updater uses AOSP update settings location
-cd ~/android/lineage/oreo-mr1/packages/apps/Settings/res/xml
-nano device_info_settings.xml
-    # remove
-    <!-- LineageOS updates -->
-    <org.lineageos.internal.preference.deviceinfo.LineageUpdatesPreference
-        android:key="lineage_updates"
-        lineage:requiresOwner="true"
-        lineage:requiresPackage="org.lineageos.updater" />
-
 # Change System icon-mask back to square
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 nano config.xml
@@ -125,10 +115,6 @@ nano lineage_adaptive_icons.xml
     # to
     <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
 
-# Turn LineageOS stats collection off
-cd ~/android/lineage/oreo-mr1/packages/apps/LineageParts/res/values
-sed -r 's/stats.lineageos.org/blank.nourl.nothanks/' config.xml
-
 # Replace Android system emoji with EmojiOne
 cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
@@ -142,39 +128,6 @@ cd ~/android/lineage/oreo-mr1/frameworks/base
 git revert 6a600b8f628ddfbcaddc8dc281684b8edf294005
 # Other status bar icons
 git revert ac9fcf9f1cd85032c251850922ab943f3f86ccd4
-
-# Cerulean
-cd ~/android/lineage/oreo-mr1/lineage-sdk/lineage/res/res/values
-sed -r 's/LineageOS/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-
-cd ~/android/lineage/oreo-mr1/packages/apps/Updater/res/values
-sed -r 's/LineageOS/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-sed -r 's/Lineage/Cerulean/' strings.xml > strings.xml.new
-rm strings.xml 
-mv strings.xml.new strings.xml
-
-# Make build-id and Lineage-version more configurable
-cd ~/android/lineage/oreo-mr1/build/make/core
-vi build_id.mk
-    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        export BUILD_ID=OPM7.181105.004
-    else
-        export BUILD_ID=$(TARGET_VENDOR_RELEASE_BUILD_ID) # dont forget to set at buildtime
-    endif
-
-cd ~/android/lineage/oreo-mr1/vendor/lineage/config
-vi common.mk
-    ifeq ($(TARGET_BUILD_VARIANT),user)
-        LINEAGE_VERSION := $(TARGET_VENDOR_RELEASE_BUILD_ID)
-    else
-
 
 # For user/production builds :: this might cause breakage
 cd ~/android/lineage/oreo-mr1/system/sepolicy/public
@@ -205,7 +158,7 @@ nano lineage.mk
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2018-08-01
 
-# SafetyNet Patches
+# SafetyNet Patches ## CURRENTLY BUILDS BUT DOESNT BOOT (WHY?)
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
