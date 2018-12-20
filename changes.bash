@@ -138,6 +138,7 @@ vi domain.te
 
 ## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
+cd ~/android/lineage/oreo-mr1/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
 cd ~/android/lineage/oreo-mr1/frameworks/base
 git commit
