@@ -65,6 +65,7 @@ cp ~/Downloads/NotoColorEmoji.ttf ./
 
 ## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
+cd ~/android/lineage/nougat-mr1/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-N.patch
 cd ~/android/lineage/nougat-mr1/frameworks/base
 git commit
