@@ -26,12 +26,13 @@ git pull https://github.com/LineageOMS/android_frameworks_base
 cd ~/android/lineage/nougat-mr1/frameworks/native
 git pull https://github.com/LineageOMS/android_frameworks_native
 
+# settings
+cd ~/android/lineage/nougat-mr1/packages/apps/Settings
+git pull https://github.com/LineageOMS/android_packages_apps_Settings
+
 # apps
 cd ~/android/lineage/nougat-mr1/packages/apps/Dialer
 git pull https://github.com/LineageOMS/android_packages_apps_Dialer
-
-cd ~/android/lineage/nougat-mr1/packages/apps/Settings
-git pull https://github.com/LineageOMS/android_packages_apps_Settings
 
 cd ~/android/lineage/nougat-mr1/packages/apps/ContactsCommon
 git pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon
