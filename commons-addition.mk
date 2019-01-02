@@ -28,14 +28,14 @@ PRODUCT_PACKAGES += \
     QKSMS
 
 ## GMS or MicroG
-# MicroG + Play Store
+# MicroG
 PRODUCT_PACKAGES += \
     DroidGuard \
+    FakeStore \
     GmsCore \
     GsfProxy \
     MozillaNlp \
-    NominatimNlp \
-    Phonesky
+    NominatimNlp
 
 # GMS
 GAPPS_VARIANT := pico
