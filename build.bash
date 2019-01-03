@@ -7,7 +7,7 @@ builddate=
 updaterDate=
 releasetype=unofficial
 RomName=LineageOMS
-RomVers=15.1
+RomVers=16.0
 fileName=
 
 showHelp() {
@@ -22,7 +22,7 @@ showHelp() {
 }
 
 cleanMka(){
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/pie
 
         if ! mka clobber ; then
                 make clobber
@@ -31,7 +31,7 @@ cleanMka(){
 }
 
 setupEnv() {
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/pie
 
         cleanMka
 
@@ -49,10 +49,10 @@ buildDevice() {
         # Start clean
         #cleanMka
 
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/pie
 
         # Breakfast
-        if ! breakfast lineage_$device-user ; then
+        if ! breakfast lineage_$device-userdebug ; then
                 echo "Error: Breakfast failed for lineage_$device-user"
                 exit
         fi
@@ -76,7 +76,7 @@ buildDevice() {
 }
 
 buildOTA() {
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/pie
 
         # For some reason, brotli doesn't work unless "otatools" is ran
         # so build "otatools" for future use
@@ -90,7 +90,7 @@ buildOTA() {
 }
 
 saveFiles() {
-        cd ~/android/lineage/oreo-mr1
+        cd ~/android/lineage/pie
 
         # Save Recovery (and boot)
         echo "Saving Recovery, Boot, and System Images"
@@ -126,7 +126,7 @@ case $1 in
                 export device=$1
 
                 # run build
-                cd ~/android/lineage/oreo-mr1
+                cd ~/android/lineage/pie
 
                 setupEnv
 

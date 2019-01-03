@@ -7,11 +7,11 @@ exit
 ##
 ## System-based changes
 ##
-cd ~/android/lineage/oreo-mr1
+cd ~/android/lineage/pie
 
 ## Merge Substratum OMS changes from SubstratumResources github
 # frameworks/base
-cd ~/android/lineage/oreo-mr1/frameworks/base
+cd ~/android/lineage/pie/frameworks/base
 git fetch https://github.com/SubstratumResources/platform_frameworks_base o
 git cherry-pick f18f319d6b262c13dae2469183be1d0dd863c72f
 git cherry-pick 4b857261936d3e4fea4beac85ce7ab0466e019a6
@@ -56,7 +56,7 @@ git cherry-pick dd3ce110fed39186ea569b62dea569cb307024c1
 git cherry-pick 7c3c62f855145447f78e0b71cf574c688ea6b8b2
 
 # packages/apps/settings
-cd ~/android/lineage/oreo-mr1/packages/apps/Settings
+cd ~/android/lineage/pie/packages/apps/Settings
 git fetch https://github.com/SubstratumResources/platform_packages_apps_settings o
 git cherry-pick bdd99f47d2d6d74af0effef2e5e4182c439e4089
 git cherry-pick 1d592e80281cb42a9d654f2bbe8854ab13812121
@@ -72,14 +72,14 @@ git cherry-pick a850bf91529624b3b2ca4b7181156998ea6eac13
 git cherry-pick 7d3bd74f49eb70e0d6689551eb0c2c125f23e6c9
 
 # system/sepolicy
-cd ~/android/lineage/oreo-mr1/system/sepolicy
+cd ~/android/lineage/pie/system/sepolicy
 git fetch https://github.com/SubstratumResources/platform_system_sepolicy o
 git cherry-pick fd8a0ec2fc04b33e370b42564bd3cdaa028b83ea
 git cherry-pick 7022b6a39f8bd15293dffbcc149ce003cfe797a0
 git cherry-pick ad3b42ff306c5ca3036162f9b90e75f42fecaaa7
 
 # LineageOMS is a community supported ROM, and this is Lineage+OMS
-cd ~/android/lineage/oreo-mr1/vendor/lineage/build/core
+cd ~/android/lineage/pie/vendor/lineage/build/core
 nano main_version.mk
     # add
 ADDITIONAL_BUILD_PROPERTIES += \
@@ -87,7 +87,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.lineageoms.version=$(LINEAGE_VERSION) \
 
 ## Extra System Changes
-cd ~/android/lineage/oreo-mr1
+cd ~/android/lineage/pie
 # unofficial Trust changes (vendor patch level)
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 217171
 
@@ -95,11 +95,11 @@ vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 217171
 vendor/lineage/build/tools/repopick.py -f -g https://gerrit.dirtyunicorns.com 2472 -P frameworks/base/
 
 # add fdroid and other pre-built apps to build process
-cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
+cd ~/android/lineage/pie/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
 # Change System icon-mask back to square
-cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
+cd ~/android/lineage/pie/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 nano config.xml
     # remove
     <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
@@ -108,7 +108,7 @@ nano config.xml
     <bool name="config_useRoundIcon">true</bool>
 
 # change Trebuchet icon-mask back to square
-cd ~/android/lineage/oreo-mr1/packages/apps/Trebuchet/res/values
+cd ~/android/lineage/pie/packages/apps/Trebuchet/res/values
 nano lineage_adaptive_icons.xml
     # edit
     <string name="icon_shape_default" translatable="false">@string/mask_path_circle</string>
@@ -116,21 +116,21 @@ nano lineage_adaptive_icons.xml
     <string name="icon_shape_default" translatable="false">@string/mask_path_super_ellipse</string>
 
 # Replace Android system emoji with EmojiOne
-cd ~/android/lineage/oreo-mr1/external/noto-fonts/emoji
+cd ~/android/lineage/pie/external/noto-fonts/emoji
 cp ~/Downloads/NotoColorEmoji.ttf ./
 
 # Blue Bootanimation
-cd ~/android/lineage/oreo-mr1/vendor/lineage/bootanimation
+cd ~/android/lineage/pie/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
-cd ~/android/lineage/oreo-mr1/frameworks/base
+cd ~/android/lineage/pie/frameworks/base
 # Battery Icon (pointy)
 git revert 6a600b8f628ddfbcaddc8dc281684b8edf294005
 # Other status bar icons
 git revert ac9fcf9f1cd85032c251850922ab943f3f86ccd4
 
 # For user/production builds :: this might cause breakage
-cd ~/android/lineage/oreo-mr1/system/sepolicy/public
+cd ~/android/lineage/pie/system/sepolicy/public
 vi domain.te
     # comment 250-260
     # remove on 413 & 416
@@ -138,9 +138,9 @@ vi domain.te
 
 ## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
-cd ~/android/lineage/oreo-mr1/
+cd ~/android/lineage/pie/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
-cd ~/android/lineage/oreo-mr1/frameworks/base
+cd ~/android/lineage/pie/frameworks/base
 git commit
 
 ##
@@ -151,7 +151,7 @@ git commit
 # clone device/kernel/proprietary files from github.com/fireclaw722
 
 # Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
-cd ~/android/lineage/oreo-mr1
+cd ~/android/lineage/pie
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
 
 # Define Vendor security patch level 
@@ -159,14 +159,14 @@ vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t mot
 # 2018-08-01 OPNS27.76-12-22-9
 # 2018-06-01 OPNS27.76-12-22-3
 # 2018-04-01 OPN27.76-12-22
-cd ~/android/lineage/oreo-mr1/device/motorola/addison
+cd ~/android/lineage/pie/device/motorola/addison
 nano lineage.mk
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lineage.build.vendor_security_patch=2018-08-01
 
 # SafetyNet Patches ## CURRENTLY BUILDS BUT DOESNT BOOT (WHY?)
-cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
+cd ~/android/lineage/pie/kernel/motorola/msm8953
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
@@ -174,7 +174,7 @@ git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e511
 # clone device/kernel/proprietary files from github.com/sgspluss
 
 # Define Vendor security patch level NPJS25.93-14.7-8
-cd ~/android/lineage/oreo-mr1/device/motorola/athene
+cd ~/android/lineage/pie/device/motorola/athene
 nano lineage.mk
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -184,7 +184,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # device files from LineageOS repos
 
 # SafetyNet Patches
-cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8996
+cd ~/android/lineage/pie/kernel/oneplus/msm8996
 git fetch https://github.com/franciscofranco/one_plus_3T
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit

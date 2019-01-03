@@ -6,11 +6,7 @@ PRODUCT_PACKAGES += \
 
 # Substratum
 PRODUCT_PACKAGES += \
-    Substratum \
-    SubstratumService
-
-PRODUCT_SYSTEM_SERVER_APPS += \
-    SubstratumService
+    Substratum
 
 ## Personal Builds
 # Firefox
