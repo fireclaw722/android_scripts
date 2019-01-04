@@ -16,8 +16,7 @@ PRODUCT_PACKAGES += \
 
 # Weather app and provider
 PRODUCT_PACKAGES += \
-    Weather \
-    YahooProvider
+    Weather
 
 # Better Messaging Apps
 PRODUCT_PACKAGES += \
@@ -31,7 +30,8 @@ PRODUCT_PACKAGES += \
     GmsCore \
     GsfProxy \
     MozillaNlp \
-    NominatimNlp
+    NominatimNlp \
+    YalpStore
 
 # GMS
 GAPPS_VARIANT := pico
