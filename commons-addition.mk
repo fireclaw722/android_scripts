@@ -35,7 +35,8 @@ PRODUCT_PACKAGES += \
     GmsCore \
     GsfProxy \
     MozillaNlp \
-    NominatimNlp
+    NominatimNlp \
+    YalpStore
 
 # GMS
 GAPPS_VARIANT := pico
