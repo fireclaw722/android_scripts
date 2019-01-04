@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=8.0.0
+version=9.0.0
 device=
 builddate=
 updaterDate=
@@ -109,11 +109,17 @@ addOTA() {
         # Add packaged update to the update backend
         echo "Adding OTA to list"
 
+        # Oreo is the WIP version, and the datetime-for-updater is kept there
+        cd ~/android/lineage/oreo-mr1
+
         touch datetime-for-updater.txt
         echo "----" >> datetime-for-updater.txt
 
         echo FLASK_APP=updater/app.py flask addrom -f $fileName -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/android/builds/$device/full/$fileName.zip) -m $(md5sum ~/android/builds/$device/full/$fileName.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$fileName.zip >> datetime-for-updater.txt
         echo "" >> datetime-for-updater.txt
+
+        # Return home
+        cd ~/android/lineage/pie
 
         echo "Full OTA added"
         echo ""
