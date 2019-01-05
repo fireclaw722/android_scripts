@@ -94,6 +94,12 @@ vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 217171
 # Port DU Battery info on ambient display
 vendor/lineage/build/tools/repopick.py -f -g https://gerrit.dirtyunicorns.com 2472 -P frameworks/base/
 
+# battery customization
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 220407 220422
+vendor/lineage/build/tools/repopick.py -f https://review.lineageos.org/c/LineageOS/android_packages_apps_LineageParts/+/221756/3 -P packages/apps/LineageParts
+vendor/lineage/build/tools/repopick.py -f https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/221716/18 -P frameworks/base/
+vendor/lineage/build/tools/repopick.py -f 219299 -P packages/apps/Settings/
+
 # add fdroid and other pre-built apps to build process
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
