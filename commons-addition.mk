@@ -14,10 +14,9 @@ PRODUCT_PACKAGES += \
     Firefox \
     Klar
 
-# Weather app and provider
+# Weather app
 PRODUCT_PACKAGES += \
-    Weather \
-    YahooProvider
+    Weather
 
 # Better Messaging Apps
 PRODUCT_PACKAGES += \
