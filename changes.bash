@@ -143,7 +143,7 @@ vi domain.te
     userdebug_or_eng
 
 # revert "Make A/B backuptool permissive" because that breaks user builds by making a domain permissive
-cd ~/android/lineage/oreo-mr1/system/sepolicy/
+cd ~/android/lineage/oreo-mr1/device/lineage/sepolicy
 git revert 9c28a0dfb91bb468515e123b1aaf3fcfc007b82f
 
 cd ~/android/lineage/oreo-mr1/system/update_engine/
