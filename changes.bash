@@ -142,8 +142,14 @@ vi domain.te
     # remove on 413 & 416
     userdebug_or_eng
 
-## May or may not be included
-# For MicroG Signature-Spoofing support (for reference)
+# revert "Make A/B backuptool permissive" because that breaks user builds by making a domain permissive
+cd ~/android/lineage/oreo-mr1/system/sepolicy/
+git revert 9c28a0dfb91bb468515e123b1aaf3fcfc007b82f
+
+cd ~/android/lineage/oreo-mr1/system/update_engine/
+git revert eb9d3414cf991ffe387e4d6adcb8efbef17639c8
+
+# MicroG Signature-Spoofing support
 cd ~/android/lineage/oreo-mr1/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
 cd ~/android/lineage/oreo-mr1/frameworks/base
