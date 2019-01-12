@@ -27,12 +27,11 @@ PRODUCT_PACKAGES += \
 # MicroG
 PRODUCT_PACKAGES += \
     DroidGuard \
-    FakeStore \
     GmsCore \
     GsfProxy \
     MozillaNlp \
     NominatimNlp \
-    YalpStore
+    Phonesky
 
 # GMS
 GAPPS_VARIANT := pico
