@@ -7,7 +7,7 @@ builddate=
 updaterDate=
 releasetype=unofficial
 RomName=LineageOMS
-RomVers=15.1
+RomVers=8.1
 fileName=
 
 showHelp() {
