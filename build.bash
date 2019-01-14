@@ -39,10 +39,15 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        # time/date info first
-        export builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S")
+        if [ "$releasetype" == "snapshot" ] ; then
+                export RELEASE_TYPE=SNAPSHOT builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") LINEAGE_EXTRAVERSION=fireclaw
 
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C TARGET_UNOFFICIAL_BUILD_ID=fireclaw LINEAGE_VERSION_APPEND_TIME_OF_DAY=true fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
+                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
+        elif [ "$releasetype" == "unofficial" ] ; then
+                export builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S")
+                
+                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C TARGET_UNOFFICIAL_BUILD_ID=fireclaw LINEAGE_VERSION_APPEND_TIME_OF_DAY=true fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
+        fi
 }
 
 buildDevice() {
