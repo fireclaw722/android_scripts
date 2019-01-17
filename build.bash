@@ -40,7 +40,7 @@ setupEnv() {
 
         # export vars
         if [ "$releasetype" == "snapshot" ] ; then
-                export RELEASE_TYPE=SNAPSHOT builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") LINEAGE_EXTRAVERSION=fireclaw
+                export RELEASE_TYPE=SNAPSHOT builddate=$(date --date="4 hours ago" -u +%Y%m%d) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") LINEAGE_EXTRAVERSION=fireclaw
 
                 export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
         elif [ "$releasetype" == "unofficial" ] ; then
