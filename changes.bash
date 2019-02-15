@@ -104,6 +104,20 @@ vendor/lineage/build/tools/repopick.py -f 219299 -P packages/apps/Settings/
 cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
 
+# match AOSP versioning
+cd ~/android/lineage/oreo-mr1/vendor/lineage/config/
+vi common.mk
+    # change 
+    PRODUCT_VERSION_MAJOR = 15
+    PRODUCT_VERSION_MINOR = 1
+    PRODUCT_VERSION_MAINTENANCE := 0
+    # to 
+    PRODUCT_VERSION_MAJOR = 8
+    PRODUCT_VERSION_MINOR = 1
+    PRODUCT_VERSION_MAINTENANCE := 0
+
+
+
 # Change System icon-mask back to square
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 nano config.xml
