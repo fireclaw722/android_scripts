@@ -56,6 +56,18 @@ cd ~/android/lineage/nougat-mr1
 cd ~/android/lineage/nougat-mr1/vendor/cm/config/
 cat commons-additions.mk >> common.mk
 
+# match AOSP versioning
+cd ~/android/lineage/nougat-mr1/vendor/cm/config/
+vi common.mk
+    # change 
+    PRODUCT_VERSION_MAJOR = 14
+    PRODUCT_VERSION_MINOR = 1
+    PRODUCT_VERSION_MAINTENANCE := 0
+    # to 
+    PRODUCT_VERSION_MAJOR = 7
+    PRODUCT_VERSION_MINOR = 1
+    PRODUCT_VERSION_MAINTENANCE := 0
+
 # Pixel-Blue Bootanimation
 cd ~/android/lineage/nougat-mr1/vendor/cm/bootanimation
 cp ~/Downloads/bootanimation.tar ./
