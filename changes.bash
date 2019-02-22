@@ -68,6 +68,20 @@ vi common.mk
     PRODUCT_VERSION_MINOR = 1
     PRODUCT_VERSION_MAINTENANCE := 0
 
+# updater url for cerulean
+cd ~/android/lineage/nougat-mr1/packages/apps/Updater/res/values
+vi string.xml
+    https://updater.ceruleanfire.com/api/v1/{device}/{type}/{incr}
+    # to
+    https://rctest.ceruleanfire.com/ota/api/v1/{device}/{type}/{incr}
+
+# build-id
+cd ~/android/lineage/nougat-mr1/build/core
+vi build_id.mk
+    export BUILD_ID=NJH47F
+    # to
+    export BUILD_ID=NMR1.YYMMDD #replace with actual security date info
+
 # Pixel-Blue Bootanimation
 cd ~/android/lineage/nougat-mr1/vendor/cm/bootanimation
 cp ~/Downloads/bootanimation.tar ./
@@ -92,7 +106,7 @@ git commit
 
 # SafetyNet Patches
 cd ~/android/lineage/nougat-mr1/kernel/motorola/msm8952
-git fetch https://github.com/franciscofranco/one_plus_3T
+git fetch https://github.com/franciscofranco/one_plus_3T oreo-mr1
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 ## victara (Moto X 2014)
