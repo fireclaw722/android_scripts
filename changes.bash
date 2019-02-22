@@ -205,7 +205,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # SafetyNet Patches ## CURRENTLY BUILDS BUT DOESNT BOOT (WHY?)
 cd ~/android/lineage/oreo-mr1/kernel/motorola/msm8953
-git fetch https://github.com/franciscofranco/one_plus_3T
+git fetch https://github.com/franciscofranco/one_plus_3T oreo-mr1
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
 
 ## athene (Moto G4 / Moto G4 Plus)
@@ -223,7 +223,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # SafetyNet Patches
 cd ~/android/lineage/oreo-mr1/kernel/oneplus/msm8996
-git fetch https://github.com/franciscofranco/one_plus_3T
+git fetch https://github.com/franciscofranco/one_plus_3T oreo-mr1
 git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60
 git commit
 git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db
