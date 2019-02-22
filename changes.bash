@@ -117,18 +117,18 @@ vi common.mk
     PRODUCT_VERSION_MAINTENANCE := 0
 
 # updater url for cerulean
-cd ~/android/lineage/nougat-mr1/packages/apps/Updater/res/values
+cd ~/android/lineage/oreo-mr1/packages/apps/Updater/res/values
 vi string.xml
     https://updater.ceruleanfire.com/api/v1/{device}/{type}/{incr}
     # to
     https://rctest.ceruleanfire.com/ota/api/v1/{device}/{type}/{incr}
 
 # build-id
-cd ~/android/lineage/nougat-mr1/build/core
+cd ~/android/lineage/oreo-mr1/build/core
 vi build_id.mk
-    export BUILD_ID=NJH47F
+    export BUILD_ID=
     # to
-    export BUILD_ID=NMR1.YYMMDD #replace with actual security date info
+    export BUILD_ID=OMR1.YYMMDD #replace with actual security date info
 
 # Change System icon-mask back to square
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
