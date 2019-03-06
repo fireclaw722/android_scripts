@@ -32,12 +32,6 @@ vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 237740
 # battery styles
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t pie-battery-styles
 
-# kernel header #####
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 234748
-
-# qcom sepolicy #####
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 228572 228573 228582 228583 228576 228578
-
 # add fdroid and other pre-built apps to build process
 cd ~/android/lineage/pie/vendor/lineage/config/
 cat commons-additions.mk >> common.mk
@@ -66,12 +60,6 @@ cp ~/Downloads/NotoColorEmoji.ttf ./
 # Blue Bootanimation
 cd ~/android/lineage/pie/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
-
-cd ~/android/lineage/pie/frameworks/base
-# Battery Icon (pointy)
-git revert 6a600b8f628ddfbcaddc8dc281684b8edf294005
-# Other status bar icons
-git revert ac9fcf9f1cd85032c251850922ab943f3f86ccd4
 
 ## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
