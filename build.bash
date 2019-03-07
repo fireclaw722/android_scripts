@@ -5,21 +5,10 @@ version=8.0.0
 device=
 builddate=
 updaterDate=
-releasetype=unofficial
-RomName=LineageOMS
+releasetype=release
+RomName=cerulean
 RomVers=8.1
 fileName=
-
-showHelp() {
-        echo "Usage: build <device> [romtype]"
-        echo ""
-        echo "Available devices are:"
-        echo "'addison', 'oneplus3'"
-        echo ""
-        echo "using the 'help' subcommand shows this text"
-        echo ""
-        echo "using the 'version' subcommand outputs version info"
-}
 
 cleanMka(){
         cd ~/android/lineage/oreo-mr1
@@ -39,15 +28,9 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        if [ "$releasetype" == "snapshot" ] ; then
-                export RELEASE_TYPE=SNAPSHOT builddate=$(date --date="4 hours ago" -u +%Y%m%d) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S") LINEAGE_EXTRAVERSION=fireclaw
+        export RELEASE_TYPE=RELEASE builddate=$(date --date="4 hours ago" -u +%Y%m%d)
 
-                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
-        elif [ "$releasetype" == "unofficial" ] ; then
-                export builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S) updaterDate=$(date --date="4 hours ago" -u "+%Y-%m-%d %H:%M:%S")
-                
-                export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C TARGET_UNOFFICIAL_BUILD_ID=fireclaw LINEAGE_VERSION_APPEND_TIME_OF_DAY=true fileName=$RomName-$RomVers-$builddate-$releasetype-fireclaw-$device
-        fi
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-$device
 }
 
 buildDevice() {
@@ -110,50 +93,16 @@ saveFiles() {
         mv signed-ota_update.zip ~/android/builds/$device/full/$fileName.zip
 }
 
-addOTA() {
-        # Add packaged update to the update backend
-        echo "Adding OTA to list"
-
-        touch datetime-for-updater.txt
-        echo "----" >> datetime-for-updater.txt
-
-        echo FLASK_APP=updater/app.py flask addrom -f $fileName -d $device -v $RomVers -t \"$updaterDate\" -r $releasetype -s $(stat --printf="%s" ~/android/builds/$device/full/$fileName.zip) -m $(md5sum ~/android/builds/$device/full/$fileName.zip | awk '{ print $1 }') -u https://updater.ceruleanfire.com/builds/$device/full/$fileName.zip >> datetime-for-updater.txt
-        echo "" >> datetime-for-updater.txt
-
-        echo "Full OTA added"
-        echo ""
-}
-
 ## Enter main()
-# take care pf device
-case $1 in
-        oneplus3|addison)
-                export device=$1
+#ONEPLUS3
+export device=oneplus3
 
-                # run build
-                cd ~/android/lineage/oreo-mr1
+# run build
+cd ~/android/lineage/oreo-mr1
+setupEnv
+buildDevice
+buildOTA
+saveFiles
 
-                setupEnv
-
-                buildDevice
-
-                buildOTA
-
-                saveFiles
-
-                addOTA
-
-                cleanMka
-                ;;
-        help|-h|--help)
-                showHelp
-                ;;
-        version|-v|--version)
-                echo "Version: "$version
-                ;;
-        *)
-                echo "Error: Codename not available for build."
-                echo "Device not set."
-                echo ""
-                showHelp
-esac
+## ADDISON
+# filed under moto-mod devices
