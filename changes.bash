@@ -97,6 +97,9 @@ patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downlo
 cd ~/android/lineage/nougat-mr1/frameworks/base
 git commit
 
+## Update for new security patches
+vendor/cm/build/tools/repopick.py -g https://review.lineageos.org -t asb-2019.03-cm14
+
 ##
 ## Device Specific changes
 ##
