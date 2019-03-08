@@ -23,12 +23,6 @@ cd ~/android/lineage/pie
 # unofficial Trust changes (vendor patch level)
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 229389
 
-# dark mode patch
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 237742
-
-# dark mode on low battery change
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org 237740 237741 237743
-
 # battery styles
 vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t pie-battery-styles
 
