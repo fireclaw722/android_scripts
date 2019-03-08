@@ -37,6 +37,7 @@ PRODUCT_PACKAGES += \
 GAPPS_VARIANT := pico
 
 GAPPS_PRODUCT_PACKAGES += \
+    DigitalWellbeing \
     Maps \
     Wallet
 
