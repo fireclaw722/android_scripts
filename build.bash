@@ -105,4 +105,11 @@ buildOTA
 saveFiles
 
 ## ADDISON
-# filed under moto-mod devices
+export device=addison
+
+# run build
+cd ~/android/lineage/oreo-mr1
+setupEnv
+buildDevice
+buildOTA
+saveFiles
