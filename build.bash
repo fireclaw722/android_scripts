@@ -95,6 +95,12 @@ saveFiles() {
 
 ## Enter main()
 
+# ADDISON
+## Not available
+
+# ATHENE
+## Not available
+
 # ONEPLUS3
 cd ~/android/lineage/pie
 
@@ -105,5 +111,6 @@ buildDevice
 buildOTA
 saveFiles
 
-# ADDISON
+# VICTARA
 ## Not available
+
