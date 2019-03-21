@@ -94,15 +94,8 @@ saveFiles() {
 }
 
 ## Enter main()
-#ONEPLUS3
-export device=oneplus3
-
-# run build
-cd ~/android/lineage/oreo-mr1
-setupEnv
-buildDevice
-buildOTA
-saveFiles
+## ATHENE
+# Not available
 
 ## ADDISON
 export device=addison
@@ -113,3 +106,16 @@ setupEnv
 buildDevice
 buildOTA
 saveFiles
+
+#ONEPLUS3
+export device=oneplus3
+
+# run build
+cd ~/android/lineage/oreo-mr1
+setupEnv
+buildDevice
+buildOTA
+saveFiles
+
+## VICTARA
+
