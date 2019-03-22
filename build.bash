@@ -78,15 +78,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/android/builds/$device/img/$fileName.zip
+        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/android/builds/img/$fileName.zip
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/android/builds/$device/target_files/$fileName.zip
+        mv signed-target_files.zip ~/android/builds/target_files/$fileName.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/android/builds/$device/full/$fileName.zip
+        mv signed-ota_update.zip ~/android/builds/full/$fileName.zip
 }
 
 ## Enter main()
