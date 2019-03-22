@@ -132,7 +132,7 @@ vi build_id.mk
 
 # Change System icon-mask back to square
 cd ~/android/lineage/oreo-mr1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
-nano config.xml
+vi config.xml
     # remove
     <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
 
@@ -141,7 +141,7 @@ nano config.xml
 
 # change Trebuchet icon-mask back to square
 cd ~/android/lineage/oreo-mr1/packages/apps/Trebuchet/res/values
-nano lineage_adaptive_icons.xml
+vi lineage_adaptive_icons.xml
     # edit
     <string name="icon_shape_default" translatable="false">@string/mask_path_circle</string>
     # to
