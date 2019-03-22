@@ -97,16 +97,6 @@ saveFiles() {
 ## ATHENE
 # Not available
 
-## ADDISON
-export device=addison
-
-# run build
-cd ~/android/lineage/oreo-mr1
-setupEnv
-buildDevice
-buildOTA
-saveFiles
-
 #ONEPLUS3
 export device=oneplus3
 
@@ -118,4 +108,28 @@ buildOTA
 saveFiles
 
 ## VICTARA
+# Not available
 
+## Moto-mods devices
+cd ~/android/lineage/oreo-mr1
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
+cd ~/android/lineage/oreo-mr1/frameworks/base
+git commit -a --no-edit
+cd ~/android/lineage/oreo-mr1
+vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
+
+## ADDISON
+export device=addison
+
+# setup
+cp -r /mnt/hgfs/fireclaw722/device_motorola_addison/ ~/android/lineage/oreo-mr1/device/motorola/addison
+
+# run build
+cd ~/android/lineage/oreo-mr1
+setupEnv
+buildDevice
+buildOTA
+saveFiles
+
+# cleanup
+rm -rf ~/android/lineage/oreo-mr1/device/motorola/addison
