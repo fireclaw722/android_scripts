@@ -95,7 +95,23 @@ saveFiles() {
 
 ## Enter main()
 ## ATHENE
-# Not available
+export device=athene
+
+# setup
+cp -r /mnt/hgfs/fireclaw722/android_device_motorola_athene/ ~/android/lineage/oreo-mr1/device/motorola/athene
+cp -r /mnt/hgfs/fireclaw722/proprietary_vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
+
+# run build
+cd ~/android/lineage/oreo-mr1
+setupEnv
+export RELEASE_TYPE=SNAPSHOT
+buildDevice
+buildOTA
+saveFiles
+
+# cleanup
+rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
+rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
 
 #ONEPLUS3
 export device=oneplus3
@@ -135,6 +151,7 @@ export device=addison
 
 # setup
 cp -r /mnt/hgfs/fireclaw722/device_motorola_addison/ ~/android/lineage/oreo-mr1/device/motorola/addison
+cp -r /mnt/hgfs/fireclaw722/vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
 
 # run build
 cd ~/android/lineage/oreo-mr1
@@ -145,3 +162,4 @@ saveFiles
 
 # cleanup
 rm -rf ~/android/lineage/oreo-mr1/device/motorola/addison
+rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
