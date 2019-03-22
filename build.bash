@@ -112,11 +112,23 @@ saveFiles
 
 ## Moto-mods devices
 cd ~/android/lineage/oreo-mr1
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
-cd ~/android/lineage/oreo-mr1/frameworks/base
-git commit -a --no-edit
-cd ~/android/lineage/oreo-mr1
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
+if ! vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1 ; then
+        cd ~/android/lineage/oreo-mr1/frameworks/base
+        
+        if ! git commit -a --no-edit ; then
+                echo "Error: Commit failed in frameworks/base"
+                echo "Including Moto Mod support failed"
+                exit
+        fi
+        
+        cd ~/android/lineage/oreo-mr1
+
+        if ! vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1 ; then
+                echo "Error: Commit failed after frameworks/base"
+                echo "Including Moto Mod support failed"
+                exit
+        fi
+fi
 
 ## ADDISON
 export device=addison
