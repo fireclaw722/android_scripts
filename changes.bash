@@ -70,7 +70,7 @@ vi common.mk
 
 # updater url for cerulean
 cd ~/android/lineage/nougat-mr1/packages/apps/Updater/res/values
-vi string.xml
+vi strings.xml
     https://updater.ceruleanfire.com/api/v1/{device}/{type}/{incr}
     # to
     https://rctest.ceruleanfire.com/ota/api/v1/{device}/{type}/{incr}
