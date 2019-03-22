@@ -20,11 +20,10 @@ PRODUCT_PACKAGES += \
 
 # Better Messaging Apps
 PRODUCT_PACKAGES += \
-    QKSMS
+    QKSMS \
+    Signal
 
-
-## GMS or MicroG
-# MicroG
+# MicroG Services
 PRODUCT_PACKAGES += \
     DroidGuard \
     GmsCore \
@@ -33,7 +32,13 @@ PRODUCT_PACKAGES += \
     NominatimNlp \
     Phonesky
 
-# GMS
+# Nextcloud sync Apps
+PRODUCT_PACKAGES += \
+    DavDroid \
+    Nextcloud \
+    NextcloudNotes
+
+# GMS --for reference--
 GAPPS_VARIANT := pico
 
 GAPPS_PRODUCT_PACKAGES += \
