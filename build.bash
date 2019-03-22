@@ -28,14 +28,14 @@ setupEnv() {
 
         # export vars
         # time/date info first
-        export builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S)
+        export RELEASE_TYPE=SNAPSHOT builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S)
 
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C RELEASE_TYPE=SNAPSHOT LINEAGE_VERSION_APPEND_TIME_OF_DAY=true fileName=$RomName-$RomVers-$builddate-$releasetype-$device
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-$device
 }
 
 buildDevice() {
         # Start clean
-        #cleanMka
+        cleanMka
 
         cd ~/android/lineage/pie
 
@@ -82,15 +82,15 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery, Boot, and System Images"
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/android/builds/$device/img/$fileName.zip
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/android/builds/img/$fileName.zip
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/android/builds/$device/target_files/$fileName.zip
+        mv signed-target_files.zip ~/android/builds/target_files/$fileName.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/android/builds/$device/full/$fileName.zip
+        mv signed-ota_update.zip ~/android/builds/full/$fileName.zip
 }
 
 ## Enter main()
