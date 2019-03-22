@@ -105,6 +105,7 @@ cp -r /mnt/hgfs/fireclaw722/proprietary_vendor_motorola/ ~/android/lineage/oreo-
 cd ~/android/lineage/oreo-mr1
 setupEnv
 export RELEASE_TYPE=SNAPSHOT
+releasetype=experimental
 buildDevice
 buildOTA
 saveFiles
@@ -112,6 +113,7 @@ saveFiles
 # cleanup
 rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
 rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
+releasetype=release
 
 #ONEPLUS3
 export device=oneplus3
