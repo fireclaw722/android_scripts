@@ -21,8 +21,6 @@ cleanMka(){
 setupEnv() {
         cd ~/android/lineage/pie
 
-        cleanMka
-
         # Setup build environment
         source build/envsetup.sh
 
@@ -34,9 +32,6 @@ setupEnv() {
 }
 
 buildDevice() {
-        # Start clean
-        cleanMka
-
         cd ~/android/lineage/pie
 
         # Breakfast
@@ -110,6 +105,9 @@ setupEnv
 buildDevice
 buildOTA
 saveFiles
+
+# cleanup
+cleanMka
 
 # VICTARA
 ## Not available
