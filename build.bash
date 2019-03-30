@@ -22,8 +22,6 @@ cleanMka(){
 setupEnv() {
         cd ~/android/lineage/nougat-mr1
 
-        cleanMka
-
         # Setup build environment
         source build/envsetup.sh
 
@@ -34,9 +32,6 @@ setupEnv() {
 }
 
 buildDevice() {
-        # Start clean
-        cleanMka
-
         cd ~/android/lineage/nougat-mr1
 
         # Breakfast
@@ -100,6 +95,9 @@ buildDevice
 buildOTA
 saveFiles
 
+# cleanup
+cleanMka
+
 # VICTARA
 export device=victara
 
@@ -109,3 +107,6 @@ setupEnv
 buildDevice
 buildOTA
 saveFiles
+
+# cleanup
+cleanMka
