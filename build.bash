@@ -22,8 +22,6 @@ cleanMka(){
 setupEnv() {
         cd ~/android/lineage/oreo-mr1
 
-        cleanMka
-
         # Setup build environment
         source build/envsetup.sh
 
@@ -34,9 +32,6 @@ setupEnv() {
 }
 
 buildDevice() {
-        # Start clean
-        #cleanMka
-
         cd ~/android/lineage/oreo-mr1
 
         # Breakfast
@@ -111,6 +106,7 @@ buildOTA
 saveFiles
 
 # cleanup
+cleanMka
 rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
 rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
 releasetype=release
@@ -124,6 +120,9 @@ setupEnv
 buildDevice
 buildOTA
 saveFiles
+
+# cleanup
+cleanMka
 
 ## VICTARA
 # Not available
@@ -163,5 +162,6 @@ buildOTA
 saveFiles
 
 # cleanup
+cleanMka
 rm -rf ~/android/lineage/oreo-mr1/device/motorola/addison
 rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
