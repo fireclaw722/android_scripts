@@ -5,7 +5,7 @@ version=7.0.0
 device=
 builddate=
 updaterDate=
-releasetype=release
+releasetype=
 RomName=cerulean
 RomVers=7.1
 fileName=
@@ -17,6 +17,15 @@ cleanMka(){
                 make clobber
                 make clean
         fi
+
+        # clean vars
+        device=
+        builddate=
+        updaterDate=
+        releasetype=
+        RomName=cerulean
+        RomVers=7.1
+        fileName=
 }
 
 setupEnv() {
@@ -26,7 +35,14 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        export RELEASE_TYPE=RELEASE builddate=$(date --date="4 hours ago" -u +%Y%m%d)
+        if [ "$releasetype" == "release" ] ; then
+                export RELEASE_TYPE=RELEASE
+        elif [ "$releasetype" == "snapshot" ] ; then
+                export RELEASE_TYPE=SNAPSHOT LINEAGE_EXTRAVERSION=fireclaw
+        else
+                exit
+        fi
+        export builddate=$(date --date="4 hours ago" -u +%Y%m%d)
 
         export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-$device
 }
@@ -86,7 +102,8 @@ saveFiles() {
 
 ## Enter main()
 # ATHENE
-export device=athene
+device=athene
+releasetype=release
 
 # run build
 cd ~/android/lineage/nougat-mr1
@@ -99,7 +116,8 @@ saveFiles
 cleanMka
 
 # VICTARA
-export device=victara
+device=victara
+releasetype=release
 
 # run build
 cd ~/android/lineage/nougat-mr1
