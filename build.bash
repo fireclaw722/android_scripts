@@ -51,10 +51,21 @@ buildDevice() {
         cd ~/android/lineage/oreo-mr1
 
         # Breakfast
-        if ! breakfast lineage_$device-user ; then
-                echo "Error: Breakfast failed for lineage_$device-user"
+        if [ "$releasetype" == "release" ] ; then
+                if ! breakfast lineage_$device-user ; then
+                        echo "Error: Breakfast failed for lineage_$device-user"
+                        exit
+                fi
+        elif [ "$releasetype" == "snapshot" ] ; then
+                if ! breakfast lineage_$device-userdebug ; then
+                        echo "Error: Breakfast failed for lineage_$device-userdebug"
+                        exit
+                fi
+        else
+                echo "Error: Breakfast failed"
                 exit
         fi
+        
 
         # Run build
         if ! mka target-files-package dist ; then
