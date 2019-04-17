@@ -37,8 +37,8 @@ setupEnv() {
         # export vars
         if [ "$releasetype" == "release" ] ; then
                 export RELEASE_TYPE=RELEASE
-        elif [ "$releasetype" == "snapshot" ] ; then
-                export RELEASE_TYPE=SNAPSHOT LINEAGE_EXTRAVERSION=fireclaw
+        elif [ "$releasetype" == "experimental" ] ; then
+                export RELEASE_TYPE=SNAPSHOT
         else
                 exit
         fi
@@ -56,7 +56,7 @@ buildDevice() {
                         echo "Error: Breakfast failed for lineage_$device-user"
                         exit
                 fi
-        elif [ "$releasetype" == "snapshot" ] ; then
+        elif [ "$releasetype" == "experimental" ] ; then
                 if ! breakfast lineage_$device-userdebug ; then
                         echo "Error: Breakfast failed for lineage_$device-userdebug"
                         exit
@@ -118,7 +118,7 @@ saveFiles() {
 ## Enter main()
 ## ATHENE
 export device=athene
-releasetype=snapshot
+releasetype=experimental
 
 # setup
 cp -r /mnt/hgfs/fireclaw722/android_device_motorola_athene/ ~/android/lineage/oreo-mr1/device/motorola/athene
