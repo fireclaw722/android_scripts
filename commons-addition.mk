@@ -4,14 +4,6 @@ PRODUCT_PACKAGES += \
     FDroidPrivilegedExtension \
     FDroid
 
-# Substratum
-PRODUCT_PACKAGES += \
-    Substratum \
-    SubstratumService
-
-PRODUCT_SYSTEM_SERVER_APPS += \
-    SubstratumService
-
 ## Personal Builds
 # Firefox
 PRODUCT_PACKAGES += \
