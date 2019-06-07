@@ -5,7 +5,7 @@ version=9.0.0
 device=
 builddate=
 updaterDate=
-releasetype=experimental
+releasetype=
 RomName=cerulean
 RomVers=9.0
 fileName=
@@ -25,8 +25,14 @@ setupEnv() {
         source build/envsetup.sh
 
         # export vars
-        # time/date info first
-        export RELEASE_TYPE=SNAPSHOT builddate=$(date --date="4 hours ago" -u +%Y%m%d_%H%M%S)
+        if [ "$releasetype" == "release" ] ; then
+                export RELEASE_TYPE=RELEASE
+        elif [ "$releasetype" == "experimental" ] ; then
+                export RELEASE_TYPE=SNAPSHOT
+        else
+                exit
+        fi
+        export LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d)
 
         export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-$device
 }
@@ -100,6 +106,7 @@ saveFiles() {
 cd ~/android/lineage/pie
 
 export device=oneplus3
+releasetype=release
 # run build
 setupEnv
 buildDevice
