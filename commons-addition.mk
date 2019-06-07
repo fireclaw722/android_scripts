@@ -3,11 +3,6 @@
 PRODUCT_PACKAGES += \
     FDroidPrivilegedExtension \
     FDroid
-
-# Substratum
-PRODUCT_PACKAGES += \
-    Substratum
-
 ## Personal Builds
 # Firefox
 PRODUCT_PACKAGES += \
@@ -18,20 +13,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Weather
 
-# Better Messaging Apps
+# Better Messaging App
 PRODUCT_PACKAGES += \
-    QKSMS
-
-## GMS or MicroG
-# MicroG
-PRODUCT_PACKAGES += \
-    DroidGuard \
-    FakeStore \
-    GmsCore \
-    GsfProxy \
-    MozillaNlp \
-    NominatimNlp \
-    YalpStore
+    Signal
 
 # GMS
 GAPPS_VARIANT := pico

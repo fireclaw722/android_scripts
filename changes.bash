@@ -9,15 +9,6 @@ exit
 ##
 cd ~/android/lineage/pie
 
-## Merge Substratum OMS changes from https://substratum.review
-# frameworks/base
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P frameworks/base 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 20 21 22 
-
-# packages/apps/settings
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 16 17 
-
-vendor/lineage/build/tools/repopick.py -f -g https://substratum.review -P packages/apps/Settings 18 19
-
 ## Extra System Changes
 cd ~/android/lineage/pie
 # unofficial Trust changes (vendor patch level)
