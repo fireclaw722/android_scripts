@@ -4,10 +4,6 @@ PRODUCT_PACKAGES += \
     FDroidPrivilegedExtension \
     FDroid
 
-# Substratum
-PRODUCT_PACKAGES += \
-    Substratum
-
 ## Personal builds
 # Firefox
 PRODUCT_PACKAGES += \
@@ -20,17 +16,7 @@ PRODUCT_PACKAGES += \
 
 # Better Messaging Apps
 PRODUCT_PACKAGES += \
-    QKSMS \
     Signal
-
-# MicroG Services
-PRODUCT_PACKAGES += \
-    DroidGuard \
-    GmsCore \
-    GsfProxy \
-    MozillaNlp \
-    NominatimNlp \
-    Phonesky
 
 # Nextcloud sync Apps
 PRODUCT_PACKAGES += \

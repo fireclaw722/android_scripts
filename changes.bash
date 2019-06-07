@@ -9,46 +9,6 @@ exit
 ##
 cd ~/android/lineage/nougat-mr1
 
-## Substratum/OMS7 changes
-# system/sepolicy
-cd ~/android/lineage/nougat-mr1/system/sepolicy
-git pull https://github.com/LineageOMS/android_system_sepolicy
-
-# vendor/cm
-cd ~/android/lineage/nougat-mr1/vendor/cm
-git pull https://github.com/LineageOMS/android_vendor_cm
-
-# frameworks/base
-cd ~/android/lineage/nougat-mr1/frameworks/base
-git pull https://github.com/LineageOMS/android_frameworks_base
-
-# frameworks/native
-cd ~/android/lineage/nougat-mr1/frameworks/native
-git pull https://github.com/LineageOMS/android_frameworks_native
-
-# settings
-cd ~/android/lineage/nougat-mr1/packages/apps/Settings
-git pull https://github.com/LineageOMS/android_packages_apps_Settings
-
-# apps
-cd ~/android/lineage/nougat-mr1/packages/apps/Dialer
-git pull https://github.com/LineageOMS/android_packages_apps_Dialer
-
-cd ~/android/lineage/nougat-mr1/packages/apps/ContactsCommon
-git pull https://github.com/LineageOMS/android_packages_apps_ContactsCommon
-
-cd ~/android/lineage/nougat-mr1/packages/apps/PhoneCommon
-git pull https://github.com/LineageOMS/android_packages_apps_PhoneCommon
-
-cd ~/android/lineage/nougat-mr1/packages/apps/Contacts
-git pull https://github.com/LineageOMS/android_packages_apps_Contacts
-
-cd ~/android/lineage/nougat-mr1/packages/apps/ExactCalculator
-git pull https://github.com/LineageOMS/android_packages_apps_ExactCalculator
-
-cd ~/android/lineage/nougat-mr1/packages/apps/PackageInstaller
-git pull https://github.com/LineageOMS/android_packages_apps_PackageInstaller
-
 ## Extra System Changes
 cd ~/android/lineage/nougat-mr1
 
