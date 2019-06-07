@@ -42,9 +42,9 @@ setupEnv() {
         else
                 exit
         fi
-        export builddate=$(date --date="4 hours ago" -u +%Y%m%d)
+        export LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d)
 
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-$device
+        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" fileName=$RomName-$RomVers-$builddate-$releasetype-$device
 }
 
 buildDevice() {
