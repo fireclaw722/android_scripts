@@ -14,19 +14,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Weather
 
-# Better Messaging Apps
+# Better Messaging App
 PRODUCT_PACKAGES += \
-    QKSMS \
     Signal
-
-# MicroG Services
-PRODUCT_PACKAGES += \
-    DroidGuard \
-    GmsCore \
-    GsfProxy \
-    MozillaNlp \
-    NominatimNlp \
-    Phonesky
 
 # Nextcloud sync Apps
 PRODUCT_PACKAGES += \
