@@ -137,7 +137,18 @@ rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
 rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
 
 #ONEPLUS3
-# Pie is safe for release
+export device=oneplus3
+releasetype=release
+
+# run build
+cd ~/android/lineage/oreo-mr1
+setupEnv
+buildDevice
+buildOTA
+saveFiles
+
+# cleanup
+cleanMka
 
 ## VICTARA
 # Not available
