@@ -121,8 +121,8 @@ export device=athene
 releasetype=experimental
 
 # setup
-cp -r /mnt/hgfs/fireclaw722/android_device_motorola_athene/ ~/android/lineage/oreo-mr1/device/motorola/athene
-cp -r /mnt/hgfs/fireclaw722/proprietary_vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
+cp -r ~/android/fireclaw722/android_device_motorola_athene/ ~/android/lineage/oreo-mr1/device/motorola/athene
+cp -r ~/android/fireclaw722/proprietary_vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
 
 # run build
 cd ~/android/lineage/oreo-mr1
@@ -167,8 +167,8 @@ export device=addison
 releasetype=release
 
 # setup
-cp -r /mnt/hgfs/fireclaw722/device_motorola_addison/ ~/android/lineage/oreo-mr1/device/motorola/addison
-cp -r /mnt/hgfs/fireclaw722/vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
+cp -r ~/android/fireclaw722/device_motorola_addison/ ~/android/lineage/oreo-mr1/device/motorola/addison
+cp -r ~/android/fireclaw722/vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
 
 # run build
 cd ~/android/lineage/oreo-mr1
