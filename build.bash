@@ -121,12 +121,17 @@ export device=athene
 releasetype=experimental
 
 # setup
-if [ ! -d "~/android/lineage/oreo-mr1/device/motorola/athene" ]; then
-        cp -r ~/android/fireclaw722/android_device_motorola_athene/ ~/android/lineage/oreo-mr1/device/motorola/athene
+cd ~/android/lineage/oreo-mr1
+if [ -d "device/motorola/athene/" ]; then
+        rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
 fi
-if [ ! -d "~/android/lineage/oreo-mr1/vendor/motorola" ]; then
-        cp -r ~/android/fireclaw722/proprietary_vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
+
+if [ -d "vendor/motorola" ]; then
+        rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
 fi
+
+cp -r /opt/android/fireclaw722/android_device_motorola_athene/ ~/android/lineage/oreo-mr1/device/motorola/athene
+cp -r /opt/android/fireclaw722/proprietary_vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
 
 # run build
 cd ~/android/lineage/oreo-mr1
@@ -137,12 +142,8 @@ saveFiles
 
 # cleanup
 cleanMka
-if [ -d "~/android/lineage/oreo-mr1/device/motorola/athene" ]; then
-        rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
-fi
-if [ -d "~/android/lineage/oreo-mr1/vendor/motorola" ]; then
-        rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
-fi
+rm -rf ~/android/lineage/oreo-mr1/device/motorola/athene
+rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
 
 #ONEPLUS3
 export device=oneplus3
@@ -186,12 +187,17 @@ export device=addison
 releasetype=release
 
 # setup
-if [ ! -d "~/android/lineage/oreo-mr1/device/motorola/addison" ]; then
-        cp -r ~/android/fireclaw722/device_motorola_addison/ ~/android/lineage/oreo-mr1/device/motorola/addison
+cd ~/android/lineage/oreo-mr1
+if [ -d "device/motorola/addison/" ]; then
+        rm -rf ~/android/lineage/oreo-mr1/device/motorola/addison/
 fi
-if [ ! -d "~/android/lineage/oreo-mr1/vendor/motorola" ]; then
-        cp -r ~/android/fireclaw722/vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
+
+if [ -d "vendor/motorola" ]; then
+        rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
 fi
+
+cp -r /opt/android/fireclaw722/device_motorola_addison/ ~/android/lineage/oreo-mr1/device/motorola/addison
+cp -r /opt/android/fireclaw722/vendor_motorola/ ~/android/lineage/oreo-mr1/vendor/motorola
 
 # run build
 cd ~/android/lineage/oreo-mr1
@@ -202,9 +208,5 @@ saveFiles
 
 # cleanup
 cleanMka
-if [ -d "~/android/lineage/oreo-mr1/device/motorola/addison" ]; then
-        rm -rf ~/android/lineage/oreo-mr1/device/motorola/addison
-fi
-if [ -d "~/android/lineage/oreo-mr1/vendor/motorola" ]; then
-        rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
-fi
+rm -rf ~/android/lineage/oreo-mr1/device/motorola/addison
+rm -rf ~/android/lineage/oreo-mr1/vendor/motorola
