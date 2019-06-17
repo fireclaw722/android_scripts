@@ -89,7 +89,7 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery and Boot Images"
-        ./build/tools/releasetools/img_from_target_files -z signed-target_files.zip ~/android/builds/img/$fileName.zip
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/android/builds/img/$fileName.zip
 
         # Save target_files
         echo "Saving Build Files"
