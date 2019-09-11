@@ -25,7 +25,7 @@ PRODUCT_PACKAGES += \
     GmsCore \
     GsfProxy \
     MozillaNlp \
-    MozillaNlp \
+    NominatimNlp \
     Phonesky
 
 # GMS --for reference--
