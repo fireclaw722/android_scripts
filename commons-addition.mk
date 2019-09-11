@@ -7,22 +7,26 @@ PRODUCT_PACKAGES += \
 ## Personal Builds
 # Firefox
 PRODUCT_PACKAGES += \
-    Firefox \
     Klar
 
 # Weather app
 PRODUCT_PACKAGES += \
     Weather
 
-# Better Messaging App
-PRODUCT_PACKAGES += \
-    Signal
-
 # Nextcloud sync Apps
 PRODUCT_PACKAGES += \
     DavDroid \
     Nextcloud \
     NextcloudNotes
+
+# MicroG GMS
+PRODUCT_PACKAGES += \
+    DroidGuard \
+    GmsCore \
+    GsfProxy \
+    MozillaNlp \
+    MozillaNlp \
+    Phonesky
 
 # GMS --for reference--
 GAPPS_VARIANT := pico
