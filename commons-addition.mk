@@ -6,16 +6,20 @@ PRODUCT_PACKAGES += \
 ## Personal Builds
 # Firefox
 PRODUCT_PACKAGES += \
-    Firefox \
     Klar
 
 # Weather app and provider
 PRODUCT_PACKAGES += \
     Weather
 
-# Better Messaging App
+# MicroG GMS
 PRODUCT_PACKAGES += \
-    Signal
+    DroidGuard \
+    GmsCore \
+    GsfProxy \
+    MozillaNlp \
+    MozillaNlp \
+    Phonesky
 
 # GMS
 GAPPS_VARIANT := pico
