@@ -11,7 +11,7 @@ RomVers=17.1
 fileName=
 
 cleanMka(){
-        cd ~/android/lineage/pie
+        cd ~/android/lineage/17.1
 
         if ! mka clean ; then
                 make clean
@@ -38,7 +38,7 @@ setupEnv() {
 }
 
 buildDevice() {
-        cd ~/android/lineage/pie
+        cd ~/android/lineage/17.1
 
         # Breakfast
         if ! breakfast lineage_$device-userdebug ; then
@@ -61,7 +61,7 @@ buildDevice() {
 }
 
 buildOTA() {
-        cd ~/android/lineage/pie
+        cd ~/android/lineage/17.1
 
         # For some reason, brotli doesn't work unless "otatools" is ran
         # so build "otatools" for future use
@@ -75,7 +75,7 @@ buildOTA() {
 }
 
 saveFiles() {
-        cd ~/android/lineage/pie
+        cd ~/android/lineage/17.1
 
         # Save Recovery (and boot)
         echo "Saving Recovery, Boot, and System Images"
@@ -102,7 +102,7 @@ saveFiles() {
 ## Not available
 
 # ONEPLUS3
-cd ~/android/lineage/pie
+cd ~/android/lineage/17.1
 
 export device=oneplus3
 releasetype=release
