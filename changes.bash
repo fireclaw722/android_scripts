@@ -20,19 +20,13 @@ vi common.mk
 # Change System icon-mask back to square
 cd ~/android/lineage/17.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values/
 vi config.xml
-    # remove
+    # change
     <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
-
+    <string name="config_icon_mask" translatable="false">"M0,20C0,8.954 8.954,0 20,0H80C91.046,0 100,8.954 100,20V80C100,91.046 91.046,100 80,100H20C8.954,100 0,91.046 0,80V20Z"</string>
+    
+    # remove
     <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
     <bool name="config_useRoundIcon">true</bool>
-
-# change Trebuchet icon-mask back to square
-cd ~/android/lineage/17.1/packages/apps/Trebuchet/res/values
-vi lineage_adaptive_icons.xml
-    # edit
-    <string name="icon_shape_default" translatable="false">@string/mask_path_circle</string>
-    # to
-    <string name="icon_shape_default" translatable="false">@string/mask_path_square</string>
 
 # Replace Android system emoji with EmojiOne
 cd ~/android/lineage/17.1/external/noto-fonts/emoji
@@ -45,43 +39,6 @@ cp ~/Downloads/bootanimation.tar ./
 ## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
 cd ~/android/lineage/17.1/
-patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-P.patch
+patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-Q.patch
 cd ~/android/lineage/17.1/frameworks/base
 git commit
-
-##
-## Device Specific changes
-##
-
-## addison (Moto Z Play)
-# clone device/kernel/proprietary files from github.com/fireclaw722
-
-# Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
-cd ~/android/lineage/17.1
-
-
-# Define Vendor security patch level 
-# OPN27.76-12-22 blobs used, but update as needed
-# 2018-08-01 OPNS27.76-12-22-9
-# 2018-06-01 OPNS27.76-12-22-3
-# 2018-04-01 OPN27.76-12-22
-cd ~/android/lineage/17.1/device/motorola/addison
-nano lineage.mk
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2018-08-01
-
-# SafetyNet Patches ## CURRENTLY BUILDS BUT DOESNT BOOT (WHY?)
-cd ~/android/lineage/17.1/kernel/motorola/msm8953
-git fetch https://github.com/franciscofranco/one_plus_3T oreo-mr1
-git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 da7787b36a4d5ed8646e5110aecf1015ca1591db
-
-## athene (Moto G4 / Moto G4 Plus)
-# clone device/kernel/proprietary files from github.com/sgspluss
-
-## oneplus3 (Oneplus 3)
-# device files from LineageOS repos
-git fetch https://github.com/franciscofranco/one_plus_3T oreo-mr1
-git cherry-pick b50f418ddd549e22d32377c09f289439bb0f0d60 
-
-git cherry-pick da7787b36a4d5ed8646e5110aecf1015ca1591db

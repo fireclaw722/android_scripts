@@ -67,8 +67,11 @@ buildOTA() {
         # so build "otatools" for future use
         mka otatools
 
+        # or this
+        #make -j20 brillo_update_payload
+
         # Package Full OTA
-        if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
+        if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
                 echo "Error: Creating Full OTA failed"
                 exit
         fi
