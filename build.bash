@@ -6,8 +6,8 @@ device=
 builddate=
 updaterDate=
 releasetype=
-RomName=cerulean
-RomVers=9.0
+RomName=lineage
+RomVers=17.1
 fileName=
 
 cleanMka(){
@@ -19,7 +19,7 @@ cleanMka(){
 }
 
 setupEnv() {
-        cd ~/android/lineage/pie
+        cd ~/android/lineage/17.1
 
         # Setup build environment
         source build/envsetup.sh
@@ -54,13 +54,9 @@ buildDevice() {
         fi
 
         # Sign Build
-        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
-                echo "Error: Signing failed. Re-input the passwords for second attempt."
-                rm signed-target_files.zip
-                 if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
-                        echo "Error: Signing failed, again. Exiting..."
-                        exit
-                fi
+        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/android/graphene/10/keys/sargo/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/android/graphene/10/keys/sargo/avb.pem --avb_system_algorithm SHA256_RSA2048 out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
+                echo "Error: Signing failed, again. Exiting..."
+                exit
         fi
 }
 
@@ -92,6 +88,9 @@ saveFiles() {
         # Save OTA files
         echo "Saving OTA update"
         mv signed-ota_update.zip ~/android/builds/full/$fileName.zip
+
+        # UPDATER SCRIPT
+        #./addrom.py --filename $filename --device $device --version $RomVers --romtype unofficial --md5sum $(md5sum /mnt/share/full/$filename | awk '{ print $1 }') --romsize 667175697 --url "https://updater.ceruleanfire.com/builds/full/$filename" --datetime $(date --date="$builddate" +%s)
 }
 
 ## Enter main()
