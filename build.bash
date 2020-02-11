@@ -47,7 +47,7 @@ buildDevice() {
         fi
 
         # Run build
-        if ! mka target-files-package dist ; then
+        if ! mka target-files-package otatools ; then
                 echo "Error: Make failed"
                 echo "Revert last change and try again."
                 exit
@@ -65,7 +65,7 @@ buildOTA() {
 
         # For some reason, brotli doesn't work unless "otatools" is ran
         # so build "otatools" for future use
-        mka otatools
+        # mka otatools
 
         # or this
         #make -j20 brillo_update_payload
