@@ -43,6 +43,10 @@ patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downlo
 cd ~/android/lineage/17.1/frameworks/base
 git commit
 
+# Updater URL
+cd ~/android/lineage/17.1/packages/apps/Updater/res/values/
+vi strings.xml
+
 # Device-specfic commits
 # Sargo (first fix bootloop; second fix bluetooth)
 source build/envsetup.sh
