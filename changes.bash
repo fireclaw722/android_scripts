@@ -42,3 +42,9 @@ cd ~/android/lineage/17.1/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-Q.patch
 cd ~/android/lineage/17.1/frameworks/base
 git commit
+
+# Device-specfic commits
+# Sargo (first fix bootloop; second fix bluetooth)
+source build/envsetup.sh
+repopick 263927
+repopick 268545
