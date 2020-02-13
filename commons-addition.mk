@@ -1,27 +1,20 @@
-## Basic Extras LineageOMS/Unofficial builds
-# F-Droid
+## Basic Extras Unofficial builds
 PRODUCT_PACKAGES += \
-    FDroidPrivilegedExtension \
-    FDroid
-## Personal Builds
-# Firefox
-PRODUCT_PACKAGES += \
-    Klar
-
-# Weather app and provider
-PRODUCT_PACKAGES += \
-    Weather
+    Cloud \
+    FDroid \
+    F-DroidPrivilegedExtension \
+    Notes
 
 # MicroG GMS
 PRODUCT_PACKAGES += \
-    DroidGuard \
     GmsCore \
     GsfProxy \
-    MozillaNlp \
-    NominatimNlp \
     Phonesky
 
-# GMS
+# MindtheGapps GMS
+$(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
+
+# OpenGapps GMS
 GAPPS_VARIANT := pico
 
 GAPPS_PRODUCT_PACKAGES += \
