@@ -49,6 +49,7 @@ vi strings.xml
 
 # Device-specfic commits
 # Sargo (first fix bootloop; second fix bluetooth)
+cd ~/android/lineage/17.1/
 source build/envsetup.sh
 repopick 263927
-repopick 268545
+repopick 268545 -P device/google/bonito/
