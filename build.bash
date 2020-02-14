@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Variables
-version=9.0.0
+version=0.1
 device=
 builddate=
 updaterDate=
-releasetype=
+releasetype=unofficial
 RomName=lineage
 RomVers=17.1
 fileName=
@@ -58,17 +58,6 @@ buildDevice() {
                 echo "Error: Signing failed, again. Exiting..."
                 exit
         fi
-}
-
-buildOTA() {
-        cd ~/android/lineage/17.1
-
-        # For some reason, brotli doesn't work unless "otatools" is ran
-        # so build "otatools" for future use
-        # mka otatools
-
-        # or this
-        #make -j20 brillo_update_payload
 
         # Package Full OTA
         if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
@@ -93,31 +82,29 @@ saveFiles() {
         mv signed-ota_update.zip /mnt/share/full/$fileName.zip
 
         # UPDATER SCRIPT
-        #echo ./addrom.py --filename $fileName --device $device --version $RomVers --romtype $releasetype --md5sum $(md5sum /mnt/share/full/$filename.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$filename.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$filename.zip" --datetime $(date --date="$builddate" +%s)
+        echo ./addrom.py --filename $fileName --device $device --version $RomVers --romtype $releasetype --md5sum $(md5sum /mnt/share/full/$filename.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$filename.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$filename.zip" --datetime $(date --date="$builddate" +%s) >> /mnt/share/update
 }
 
 ## Enter main()
+# supported devices
+if [ "$1" == "bonito" ] ; then
+        export device=bonito
+elif [ "$1" == "oneplus3" ] ; then
+        export device=oneplus3
+elif [ "$1" == "sargo" ] ; then
+        export device=sargo
+else
+        echo "Device " $1 " is currently not supported"
+        echo "please enter a supported device and try again"
+fi
 
-# ADDISON
-## Not available
-
-# ATHENE
-## Not available
-
-# ONEPLUS3
 cd ~/android/lineage/17.1
 
-export device=oneplus3
-releasetype=release
 # run build
 setupEnv
 buildDevice
-buildOTA
 saveFiles
 
 # cleanup
 cleanMka
-
-# VICTARA
-## Not available
 
