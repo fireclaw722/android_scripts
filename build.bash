@@ -54,7 +54,7 @@ buildDevice() {
         fi
 
         # Sign Build
-        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/android/graphene/10/keys/sargo/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/android/graphene/10/keys/sargo/avb.pem --avb_system_algorithm SHA256_RSA2048 out/dist/*$device-target_files-*.zip signed-target_files.zip ; then
+        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/android/graphene/10/keys/sargo/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/android/graphene/10/keys/sargo/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
                 echo "Error: Signing failed, again. Exiting..."
                 exit
         fi
@@ -82,18 +82,18 @@ saveFiles() {
 
         # Save Recovery (and boot)
         echo "Saving Recovery, Boot, and System Images"
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip ~/android/builds/img/$fileName.zip
+        ./build/tools/releasetools/img_from_target_files signed-target_files.zip /mnt/share/img/$fileName.zip
 
         # Save target_files
         echo "Saving Build Files"
-        mv signed-target_files.zip ~/android/builds/target_files/$fileName.zip
+        mv signed-target_files.zip /mnt/share/target_files/$fileName.zip
 
         # Save OTA files
         echo "Saving OTA update"
-        mv signed-ota_update.zip ~/android/builds/full/$fileName.zip
+        mv signed-ota_update.zip /mnt/share/full/$fileName.zip
 
         # UPDATER SCRIPT
-        #./addrom.py --filename $filename --device $device --version $RomVers --romtype unofficial --md5sum $(md5sum /mnt/share/full/$filename | awk '{ print $1 }') --romsize 667175697 --url "https://updater.ceruleanfire.com/builds/full/$filename" --datetime $(date --date="$builddate" +%s)
+        #echo ./addrom.py --filename $fileName --device $device --version $RomVers --romtype $releasetype --md5sum $(md5sum /mnt/share/full/$filename.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$filename.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$filename.zip" --datetime $(date --date="$builddate" +%s)
 }
 
 ## Enter main()
