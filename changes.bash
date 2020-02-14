@@ -36,7 +36,6 @@ cp ~/Downloads/NotoColorEmoji.ttf ./
 cd ~/android/lineage/17.1/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
-## May or may not be included
 # For MicroG Signature-Spoofing support (for reference)
 cd ~/android/lineage/17.1/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-Q.patch
@@ -47,9 +46,13 @@ git commit
 cd ~/android/lineage/17.1/packages/apps/Updater/res/values/
 vi strings.xml
 
-# Device-specfic commits
-# Sargo (first fix bootloop; second fix bluetooth)
-cd ~/android/lineage/17.1/
-source build/envsetup.sh
-repopick 263927
-repopick 268545 -P device/google/bonito/
+##
+## Device-specfic commits
+##
+# Sargo bootloop issue
+cd ~/android/lineage/17.1/kernel/google/msm-4.9
+git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/27/263927/2 && git cherry-pick FETCH_HEAD
+
+# Sargo Bluetooth issue
+cd ~/android/lineage/17.1/device/google/bonito
+git fetch "https://github.com/LineageOS/android_device_google_bonito" refs/changes/45/268545/1 && git cherry-pick FETCH_HEAD
