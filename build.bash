@@ -74,7 +74,7 @@ saveFiles() {
         mv signed-ota_update.zip /mnt/share/full/$fileName.zip
 
         # UPDATER SCRIPT
-        echo ./addrom.py --filename $fileName --device $device --version $RomVers --romtype $releasetype --md5sum $(md5sum /mnt/share/full/$filename.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$filename.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$filename.zip" --datetime $(date --date="$builddate" +%s) >> /mnt/share/update
+        echo ./addrom.py --filename $fileName --device $device --version $RomVers --romtype $releasetype --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $(date --date="$builddate" +%s) >> /mnt/share/update
 }
 
 ## Enter main()
