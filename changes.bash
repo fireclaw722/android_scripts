@@ -56,3 +56,7 @@ git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/chan
 # Sargo Bluetooth issue
 cd ~/android/lineage/17.1/device/google/bonito
 git fetch "https://github.com/LineageOS/android_device_google_bonito" refs/changes/45/268545/1 && git cherry-pick FETCH_HEAD
+
+# Sargo Performance improvements
+cd kernel/google/msm-4.9
+git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/40/263940/1 && git cherry-pick FETCH_HEAD
