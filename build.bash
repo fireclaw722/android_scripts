@@ -1,14 +1,7 @@
 #!/bin/bash
 
 # Variables
-version=0.1
-device=
-builddate=
-updaterDate=
-releasetype=unofficial
-RomName=lineage
-RomVers=17.1
-fileName=
+export version=0.2 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
 
 cleanMka(){
         cd ~/android/lineage/17.1
@@ -23,10 +16,15 @@ setupEnv() {
 
         # Setup build environment
         source build/envsetup.sh
-        
-        export LC_ALL=C builddate=$(date --date="4 hours ago" -u +%Y%m%d)
 
-        export USE_CCACHE=0 CCACHE_DISABLE=1 ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G" LC_ALL=C fileName=$RomName-$RomVers-$builddate-$releasetype-$device
+        # Set buildtime and disable ccache
+        export updaterDate=updaterDate=$(date --date="4 hours ago" -u +%s) buildDate=$(date --date="4 hours ago" -u +%Y%m%d) USE_CCACHE=0 CCACHE_DISABLE=1
+
+        # Ubuntu 16.04+ fix
+        export LC_ALL=C
+
+        # Set Filename
+        export fileName=$romName-$romVers-$buildDate-$releaseType-$device
 }
 
 buildDevice() {
@@ -34,7 +32,7 @@ buildDevice() {
 
         # Breakfast
         if ! breakfast lineage_$device-userdebug ; then
-                echo "Error: Breakfast failed for lineage_$device-user"
+                echo "Error: Breakfast failed for lineage_$device-userdebug"
                 exit
         fi
 
@@ -46,7 +44,7 @@ buildDevice() {
         fi
 
         # Sign Build
-        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/android/graphene/10/keys/sargo/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/android/graphene/10/keys/sargo/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
+        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/.android-certs/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/.android-certs/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
                 echo "Error: Signing failed, again. Exiting..."
                 exit
         fi
@@ -56,25 +54,72 @@ buildDevice() {
                 echo "Error: Creating Full OTA failed"
                 exit
         fi
+
+        # Package Images zip
+        if ! ./build/tools/releasetools/img_from_target_files signed-target_files.zip signed-images.zip ; then
+                echo "Error: Exporting Recovery, Boot, and System Images failed"
+                exit
+        fi
+
+        # also include the AVB Public key bin
+        cp ~/.android-certs/avb_pkmd.bin ./
+        zip signed-images.zip avb_pkmd.bin
+        rm avb_pkmd.bin
 }
 
 saveFiles() {
         cd ~/android/lineage/17.1
 
-        # Save Recovery (and boot)
-        echo "Saving Recovery, Boot, and System Images"
-        ./build/tools/releasetools/img_from_target_files signed-target_files.zip /mnt/share/img/$fileName.zip
+        if [ –f /mnt/share/update ] ; then
+                # Save all Images
+                echo "Saving Recovery, Boot, and System Images"
+                mv signed-images.zip /mnt/share/img/$fileName.zip
 
-        # Save target_files
-        echo "Saving Build Files"
-        mv signed-target_files.zip /mnt/share/target_files/$fileName.zip
+                # Save target_files
+                echo "Saving Build Files"
+                mv signed-target_files.zip /mnt/share/target_files/$fileName.zip
 
-        # Save OTA files
-        echo "Saving OTA update"
-        mv signed-ota_update.zip /mnt/share/full/$fileName.zip
+                # Save Full OTA
+                echo "Saving OTA update"
+                mv signed-ota_update.zip /mnt/share/full/$fileName.zip
 
-        # UPDATER SCRIPT
-        echo ./addrom.py --filename $fileName --device $device --version $RomVers --romtype $releasetype --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $(date --date="$builddate" +%s) >> /mnt/share/update
+                # output updater info
+                echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> /mnt/share/update
+        else
+                if touch /mnt/share/update ; then
+                        # Save all Images
+                        echo "Saving Recovery, Boot, and System Images"
+                        mv signed-images.zip /mnt/share/img/$fileName.zip
+
+                        # Save target_files
+                        echo "Saving Build Files"
+                        mv signed-target_files.zip /mnt/share/target_files/$fileName.zip
+
+                        # Save Full OTA
+                        echo "Saving OTA update"
+                        mv signed-ota_update.zip /mnt/share/full/$fileName.zip
+
+                        # output updater info
+                        echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> /mnt/share/update
+                else
+                        echo "Shared Directory isn't mounted"
+                        echo "Saving to build folder instead"
+                        echo ""
+                        echo "Saving Recovery, Boot, and System Images"
+                        mv signed-images.zip $fileName.zip
+
+                        # Save target_files
+                        echo "Saving Build Files"
+                        mv signed-target_files.zip $fileName.zip
+
+                        # Save Full OTA
+                        echo "Saving OTA update"
+                        mv signed-ota_update.zip $fileName.zip
+
+                        # output updater info
+                        echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> update
+                fi
+        fi
 }
 
 ## Enter main()
@@ -99,4 +144,3 @@ saveFiles
 
 # cleanup
 cleanMka
-
