@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.2.1 device buildDate updaterDate releaseType=unofficial romName=lineage romVers=17.1 fileName
+export version=0.2.2 device buildDate updaterDate releaseType=unofficial romName=lineage romVers=17.1 fileName
 
 cleanMka(){
         cd ~/android/lineage/17.1
@@ -18,7 +18,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # Set buildtime and disable ccache
-        export updaterDate=updaterDate=$(date --date="4 hours ago" -u +%s) buildDate=$(date --date="4 hours ago" -u +%Y%m%d) USE_CCACHE=0 CCACHE_DISABLE=1
+        export updaterDate=$(date --date="4 hours ago" -u +%s) buildDate=$(date --date="4 hours ago" -u +%Y%m%d) USE_CCACHE=0 CCACHE_DISABLE=1
 
         # Ubuntu 16.04+ fix
         export LC_ALL=C
