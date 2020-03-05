@@ -79,7 +79,7 @@ buildDevice() {
 saveFiles() {
         cd ~/android/lineage/17.1
 
-        if [ –f /mnt/share/update ] ; then
+        if [ -f /mnt/share/update ] ; then
                 # Save all Images
                 echo "Saving Recovery, Boot, and System Images"
                 mv signed-images.zip /mnt/share/img/$fileName.zip
