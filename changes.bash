@@ -35,8 +35,9 @@ cd ~/android/lineage/17.1/kernel/google/msm-4.9
 git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/27/263927/2 && git cherry-pick FETCH_HEAD
 
 # Sargo Bluetooth issue
-cd ~/android/lineage/17.1/device/google/bonito
-git fetch "https://github.com/LineageOS/android_device_google_bonito" refs/changes/45/268545/1 && git cherry-pick FETCH_HEAD
+vendor/lineage/build/tools/repopick.py 268545 -P device/google/bonito/
+vendor/lineage/build/tools/repopick.py 270242 -P device/google/bonito/
+vendor/lineage/build/tools/repopick.py 268686 -P device/google/bonito/
 
 # Sargo Performance improvements
 cd  ~/android/lineage/17.1/kernel/google/msm-4.9
