@@ -39,9 +39,10 @@ buildDevice() {
         cd ~/android/lineage/17.1
 
         # Breakfast
-        if ! breakfast lineage_$device-userdebug ; then
-                echo "Error: Breakfast failed for lineage_$device-userdebug"
-                exit
+        if [ "$releaseType" == "release" ] ; then
+                breakfast lineage_$device-user
+        else
+                breakfast lineage_$device-userdebug 
         fi
 
         # Run build
