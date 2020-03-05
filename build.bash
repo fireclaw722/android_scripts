@@ -1,13 +1,17 @@
 #!/bin/bash
 
 # Variables
-export version=0.2.2 device buildDate updaterDate releaseType=unofficial romName=lineage romVers=17.1 fileName
+export version=0.3 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
 
 cleanMka(){
         cd ~/android/lineage/17.1
 
         if ! mka clean ; then
                 make clean
+        fi
+
+        if ! mka clobber ; then
+                make clobber
         fi
 }
 
@@ -24,13 +28,18 @@ setupEnv() {
         export LC_ALL=C
 
         # Set Filename
-        export fileName=$romName-$romVers-$buildDate-$releaseType-$device
+        if [ "$releaseType" == "experimental" ] ; then
+                export fileName=$romName-$romVers-$buildDate-$releaseType-$device
+        else
+                export fileName=$romName-$romVers-$buildDate-$releaseType-cerulean-$device
+        fi
 }
 
 buildDevice() {
         cd ~/android/lineage/17.1
 
         # Breakfast
+        if
         if ! breakfast lineage_$device-userdebug ; then
                 echo "Error: Breakfast failed for lineage_$device-userdebug"
                 exit
@@ -133,6 +142,23 @@ elif [ "$1" == "sargo" ] ; then
 else
         echo "Device " $1 " is currently not supported"
         echo "please enter a supported device and try again"
+        exit
+fi
+
+if [ "$2" == "experimental" ] ; then
+        export LINEAGE_BUILDTYPE=SNAPSHOT releaseType=experimental
+elif [ "$2" == "snapshot" ] ; then
+        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean releaseType=snapshot
+elif [ "$2" == "release" ] ; then
+        if [ "$3" == "" ] ; then
+                echo "Release build type requires TARGET_VENDOR_RELEASE_BUILD_ID to be set"
+                echo "include vendor release id and try again"
+                exit
+        fi
+
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$3 releaseType=release
+else
+        export LINEAGE_EXTRAVERSION=cerulean releaseType=unofficial
 fi
 
 cd ~/android/lineage/17.1
