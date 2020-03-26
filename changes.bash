@@ -36,8 +36,8 @@ git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/chan
 
 # Sargo Bluetooth issue
 cd ~/android/lineage/17.1/
-vendor/lineage/build/tools/repopick.py 268545 -P device/google/bonito/
-vendor/lineage/build/tools/repopick.py 270242 -P device/google/bonito/
+vendor/lineage/build/tools/repopick.py 268545 -f -P device/google/bonito/
+vendor/lineage/build/tools/repopick.py 270242 -f -P device/google/bonito/
 vendor/lineage/build/tools/repopick.py 268686 -P device/google/bonito/
 
 # Sargo Performance improvements
