@@ -30,16 +30,16 @@ vi strings.xml
 ##
 ## Device-specfic commits
 ##
-# Sargo bootloop issue
+# Sargo bootloop issue (merged)
 cd ~/android/lineage/17.1/kernel/google/msm-4.9
-git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/27/263927/2 && git cherry-pick FETCH_HEAD
+#git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/27/263927/2 && git cherry-pick FETCH_HEAD
 
 # Sargo Bluetooth issue
 cd ~/android/lineage/17.1/
 #vendor/lineage/build/tools/repopick.py 268545 -f -P device/google/bonito/
 #vendor/lineage/build/tools/repopick.py 270242 -f -P device/google/bonito/
 #vendor/lineage/build/tools/repopick.py 268686 -P device/google/bonito/
-vendor/lineage/build/tools/repopick.py 271139 -P device/google/bonito/ 
+#vendor/lineage/build/tools/repopick.py 271139 -P device/google/bonito/ 
 
 # Sargo Performance improvements
 cd ~/android/lineage/17.1/kernel/google/msm-4.9
