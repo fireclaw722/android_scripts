@@ -7,9 +7,9 @@ PRODUCT_PACKAGES += \
 
 # MicroG GMS
 PRODUCT_PACKAGES += \
-    GmsCore \
-    GsfProxy \
-    Phonesky
+    microGmsCore \
+    microGsfProxy \
+    microPhonesky
 
 # ARM64 MindtheGapps GMS
 $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
