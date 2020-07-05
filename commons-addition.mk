@@ -1,15 +1,11 @@
 ## Basic Extras Unofficial builds
+# Owncloud and S.Notes
 PRODUCT_PACKAGES += \
     Cloud \
-    FDroid \
-    F-DroidPrivilegedExtension \
     Notes
 
-# MicroG GMS
-PRODUCT_PACKAGES += \
-    microGmsCore \
-    microGsfProxy \
-    microPhonesky
+# MicroG GMS, F-Droid, Aurora
+$(call inherit-product, packages/apps/prebuilt/microg.mk)
 
 # ARM64 MindtheGapps GMS
 $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
