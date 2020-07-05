@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.3 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
+export version=0.3.1 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
 
 cleanMka(){
         cd ~/android/lineage/17.1
@@ -39,11 +39,11 @@ buildDevice() {
         cd ~/android/lineage/17.1
 
         # Breakfast
-        if [ "$releaseType" == "release" ] ; then
+        #if [ "$releaseType" == "release" ] ; then
                 breakfast lineage_$device-user
-        else
-                breakfast lineage_$device-userdebug 
-        fi
+        #else
+        #        breakfast lineage_$device-userdebug 
+        #fi
 
         # Run build
         if ! mka target-files-package otatools ; then
