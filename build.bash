@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.3.1 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
+export version=0.3.3 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
 
 cleanMka(){
         cd ~/android/lineage/17.1
@@ -79,56 +79,22 @@ buildDevice() {
 saveFiles() {
         cd ~/android/lineage/17.1
 
-        if [ -f /mnt/share/update ] ; then
-                # Save all Images
-                echo "Saving Recovery, Boot, and System Images"
-                mv signed-images.zip /mnt/share/img/$fileName.zip
+        echo "Saving Recovery, Boot, and System Images"
+        mv signed-images.zip ~/builds/img/$fileName.zip
 
-                # Save target_files
-                echo "Saving Build Files"
-                mv signed-target_files.zip /mnt/share/target_files/$fileName.zip
+        # Save target_files
+        echo "Saving Build Files"
+        mv signed-target_files.zip ~/builds/target_files/$fileName.zip
 
-                # Save Full OTA
-                echo "Saving OTA update"
-                mv signed-ota_update.zip /mnt/share/full/$fileName.zip
+        # Save Full OTA
+        echo "Saving OTA update"
+        mv signed-ota_update.zip ~/builds/full/$fileName.zip
 
-                # output updater info
-                echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> /mnt/share/update
-        else
-                if touch /mnt/share/update ; then
-                        # Save all Images
-                        echo "Saving Recovery, Boot, and System Images"
-                        mv signed-images.zip /mnt/share/img/$fileName.zip
-
-                        # Save target_files
-                        echo "Saving Build Files"
-                        mv signed-target_files.zip /mnt/share/target_files/$fileName.zip
-
-                        # Save Full OTA
-                        echo "Saving OTA update"
-                        mv signed-ota_update.zip /mnt/share/full/$fileName.zip
-
-                        # output updater info
-                        echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> /mnt/share/update
-                else
-                        echo "Shared Directory isn't mounted"
-                        echo "Saving to build folder instead"
-                        echo ""
-                        echo "Saving Recovery, Boot, and System Images"
-                        mv signed-images.zip $fileName.zip
-
-                        # Save target_files
-                        echo "Saving Build Files"
-                        mv signed-target_files.zip $fileName.zip
-
-                        # Save Full OTA
-                        echo "Saving OTA update"
-                        mv signed-ota_update.zip $fileName.zip
-
-                        # output updater info
-                        echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum /mnt/share/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l /mnt/share/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> update
-                fi
-        fi
+        # output updater info
+        cd ~/simple_lineage_updater
+        echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum ~/builds/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l ~/builds/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> update
+        
+        ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum ~/builds/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l ~/builds/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate
 }
 
 ## Enter main()
@@ -139,6 +105,8 @@ elif [ "$1" == "oneplus3" ] ; then
         export device=oneplus3
 elif [ "$1" == "sargo" ] ; then
         export device=sargo
+elif [ "$1" == "victara" ] ; then
+        export device=victara
 else
         echo "Device " $1 " is currently not supported"
         echo "please enter a supported device and try again"
@@ -164,6 +132,7 @@ fi
 cd ~/android/lineage/17.1
 
 # run build
+cleanMka
 setupEnv
 buildDevice
 saveFiles
