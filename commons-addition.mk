@@ -1,9 +1,3 @@
-## Basic Extras Unofficial builds
-# Owncloud and S.Notes
-PRODUCT_PACKAGES += \
-    Cloud \
-    Notes
-
 # MicroG GMS, F-Droid, Aurora
 $(call inherit-product, packages/apps/prebuilt/microg.mk)
 
