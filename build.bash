@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.3.3 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
+export version=0.3.3 device buildDate updaterDate releaseType romName=lineage romVers=18.0 fileName
 
 cleanMka(){
         cd ~/android/lineage/18.0
