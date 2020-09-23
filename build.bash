@@ -39,11 +39,12 @@ buildDevice() {
         cd ~/android/lineage/17.1
 
         # Breakfast
-        #if [ "$releaseType" == "release" ] ; then
+        #breakfast lineage_$device-user
+        if [ "$device" == "victara" ] ; then
+                breakfast lineage_$device-userdebug
+        else
                 breakfast lineage_$device-user
-        #else
-        #        breakfast lineage_$device-userdebug 
-        #fi
+        fi
 
         # Run build
         if ! mka target-files-package otatools ; then
