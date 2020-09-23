@@ -7,46 +7,46 @@ exit
 ##
 ## System-based changes
 ##
-cd ~/android/lineage/17.1
+cd ~/android/lineage/18.0
 
 # add fdroid and other pre-built apps to build process (from commons-addition.mk)
-cd ~/android/lineage/17.1/vendor/lineage/config/
+cd ~/android/lineage/18.0/vendor/lineage/config/
 vi common.mk
 
 # Blue Bootanimation
-cd ~/android/lineage/17.1/vendor/lineage/bootanimation
+cd ~/android/lineage/18.0/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
 # For MicroG Signature-Spoofing support (for reference)
-cd ~/android/lineage/17.1/
+cd ~/android/lineage/18.0/
 patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-Q.patch
-cd ~/android/lineage/17.1/frameworks/base
+cd ~/android/lineage/18.0/frameworks/base
 git commit
 
 # Updater URL
-cd ~/android/lineage/17.1/packages/apps/Updater/res/values/
+cd ~/android/lineage/18.0/packages/apps/Updater/res/values/
 vi strings.xml
 
 ##
 ## Device-specfic commits
 ##
 # Sargo bootloop issue (merged)
-cd ~/android/lineage/17.1/kernel/google/msm-4.9
+cd ~/android/lineage/18.0/kernel/google/msm-4.9
 #git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/27/263927/2 && git cherry-pick FETCH_HEAD
 
 # Sargo Bluetooth issue
-cd ~/android/lineage/17.1/
+cd ~/android/lineage/18.0/
 #vendor/lineage/build/tools/repopick.py 268545 -f -P device/google/bonito/
 #vendor/lineage/build/tools/repopick.py 270242 -f -P device/google/bonito/
 #vendor/lineage/build/tools/repopick.py 268686 -P device/google/bonito/
 #vendor/lineage/build/tools/repopick.py 271139 -P device/google/bonito/ 
 
 # Sargo Performance improvements
-cd ~/android/lineage/17.1/kernel/google/msm-4.9
+cd ~/android/lineage/18.0/kernel/google/msm-4.9
 git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/40/263940/1 && git cherry-pick FETCH_HEAD
 
 # google_msm-4.9 Safetynet
-cd ~/android/lineage/17.1/kernel/google/msm-4.9
+cd ~/android/lineage/18.0/kernel/google/msm-4.9
 git fetch https://github.com/flar2/Bluecross 
 git cherry-pick 27823dd5b1bc55f6ae3b09bcd321d2e2614c28a1
 git cherry-pick 978aa6865137c3a7cf7c05415dbeb30ad3e82052

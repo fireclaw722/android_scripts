@@ -4,7 +4,7 @@
 export version=0.3.3 device buildDate updaterDate releaseType romName=lineage romVers=17.1 fileName
 
 cleanMka(){
-        cd ~/android/lineage/17.1
+        cd ~/android/lineage/18.0
 
         if ! mka clean ; then
                 make clean
@@ -16,7 +16,7 @@ cleanMka(){
 }
 
 setupEnv() {
-        cd ~/android/lineage/17.1
+        cd ~/android/lineage/18.0
 
         # Setup build environment
         source build/envsetup.sh
@@ -36,7 +36,7 @@ setupEnv() {
 }
 
 buildDevice() {
-        cd ~/android/lineage/17.1
+        cd ~/android/lineage/18.0
 
         # Breakfast
         #breakfast lineage_$device-user
@@ -78,7 +78,7 @@ buildDevice() {
 }
 
 saveFiles() {
-        cd ~/android/lineage/17.1
+        cd ~/android/lineage/18.0
 
         echo "Saving Recovery, Boot, and System Images"
         mv signed-images.zip ~/builds/img/$fileName.zip
@@ -130,7 +130,7 @@ else
         export LINEAGE_EXTRAVERSION=cerulean releaseType=unofficial
 fi
 
-cd ~/android/lineage/17.1
+cd ~/android/lineage/18.0
 
 # run build
 cleanMka
