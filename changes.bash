@@ -50,3 +50,11 @@ cd ~/android/lineage/17.1/kernel/google/msm-4.9
 git fetch https://github.com/flar2/Bluecross 
 git cherry-pick 27823dd5b1bc55f6ae3b09bcd321d2e2614c28a1
 git cherry-pick 978aa6865137c3a7cf7c05415dbeb30ad3e82052
+
+# IF INCLUDING GMS
+# Revert patches that deal with dynamic partitions for GMS
+cd ~/android/lineage/17.1/device/google/bonito
+git revert aea747957260922a8d4659f704b25eececcaf549
+git revert b770e63bfdaaf8d1caec1656d9943db9149470c0
+git revert 6762054fd706537a2daf1c7d715a1ea7b6b5b71c
+git revert 85c719b7307cd41396955a91d2c2ba5a0648ee8a
