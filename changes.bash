@@ -19,9 +19,9 @@ cd ~/android/lineage/16.0
 ##
 cd ~/android/lineage/17.1
 
-## System-based changes
+### System-based changes
 
-# add fdroid and other pre-built apps to build process (from commons-addition.mk)
+# add pre-built apps to build process (see commons-addition.mk for options)
 cd ~/android/lineage/17.1/vendor/lineage/config/
 vi common.mk
 
@@ -39,25 +39,13 @@ git commit
 cd ~/android/lineage/17.1/packages/apps/Updater/res/values/
 vi strings.xml
 
-##
-## Device-specfic commits
-##
-# Sargo bootloop issue (merged)
-cd ~/android/lineage/17.1/kernel/google/msm-4.9
-#git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/27/263927/2 && git cherry-pick FETCH_HEAD
-
-# Sargo Bluetooth issue
-cd ~/android/lineage/17.1/
-#vendor/lineage/build/tools/repopick.py 268545 -f -P device/google/bonito/
-#vendor/lineage/build/tools/repopick.py 270242 -f -P device/google/bonito/
-#vendor/lineage/build/tools/repopick.py 268686 -P device/google/bonito/
-#vendor/lineage/build/tools/repopick.py 271139 -P device/google/bonito/ 
-
+### Device-specfic commits
 # Sargo Performance improvements
 cd ~/android/lineage/17.1/kernel/google/msm-4.9
 git fetch "https://github.com/LineageOS/android_kernel_google_msm-4.9" refs/changes/40/263940/1 && git cherry-pick FETCH_HEAD
 
-# google_msm-4.9 Safetynet
+## Bootloader status masking
+# google_msm-4.9 Safetynet 
 cd ~/android/lineage/17.1/kernel/google/msm-4.9
 git fetch https://github.com/flar2/Bluecross 
 git cherry-pick 27823dd5b1bc55f6ae3b09bcd321d2e2614c28a1
