@@ -100,7 +100,7 @@ saveFiles() {
 
 ## Enter main()
 # supported devices
-if [[ "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
+if [[ "$1" = "addison" || "$1" = "athene"  || "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
         export device=$1
 else
         echo "Device" $1 "is currently not supported"
@@ -118,10 +118,17 @@ else
 fi
 
 # device per version
-if [[ "$device" = "bonito" || "$device" = "sargo" ]] ; then
+if [[ "$device" = "bonito" || "$device" = "oneplus3" || "$device" = "sargo" || "$device" = "victara" ]] ; then
         if ! [[ "$romVers" = "17.1" ]] ; then
                 echo "Build Version isn't supported for this device"
-                echo $device " only supports version 17.1"
+                echo $device "only supports version 17.1"
+                exit
+        fi
+elif [[ "$device" = "addison" || "$device" = "athene" ]] ; then
+        if ! [[ "$romVers" = "15.1" ]] ; then
+                echo "Build Version isn't supported for this device"
+                echo $device "only supports version 15.1"
+                exit
         fi
 fi
 
