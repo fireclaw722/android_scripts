@@ -28,7 +28,7 @@ setupEnv() {
         export LC_ALL=C
 
         # Set Filename
-        if [ "$releaseType" == "experimental" ] ; then
+        if [[ "$releaseType" = "experimental" ]] ; then
                 export fileName=$romName-$romVers-$buildDate-$releaseType-$device
         else
                 export fileName=$romName-$romVers-$buildDate-$releaseType-cerulean-$device
@@ -40,7 +40,7 @@ buildDevice() {
 
         # Breakfast
         #breakfast lineage_$device-user
-        if [ "$device" == "victara" ] ; then
+        if [[ "$device" = "victara" ]] ; then
                 breakfast lineage_$device-userdebug
         else
                 breakfast lineage_$device-user
@@ -100,44 +100,47 @@ saveFiles() {
 
 ## Enter main()
 # supported devices
-if [ "$1" == "bonito" ] ; then
-        export device=bonito
-elif [ "$1" == "oneplus3" ] ; then
-        export device=oneplus3
-elif [ "$1" == "sargo" ] ; then
-        export device=sargo
-elif [ "$1" == "victara" ] ; then
-        export device=victara
+if [[ "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
+        export device=$1
 else
-        echo "Device " $1 " is currently not supported"
+        echo "Device" $1 "is currently not supported"
         echo "please enter a supported device and try again"
         exit
 fi
 
 # supported lineage versions
-if [ "$2" == "15.1" ] || [ "$2" == "16.0" ] || [ "$2" == "17.1" ] || [ "$2" == "18.0" ] ; then
+if [[ "$2" = "15.1" || "$2" = "16.0" || "$2" = "17.1" || "$2" = "18.0" ]] ; then
         export romVers=$2
 else
         echo "Build version is required"
-        echo "Supported versions include 15.1 : 16.0 : 17.1 : 18.0"
+        echo "Supported versions include 15.1 | 16.0 | 17.1 | 18.0"
         exit
 fi
 
 # supported build-types
-if [ "$3" == "experimental" ] ; then
-        export LINEAGE_BUILDTYPE=SNAPSHOT releaseType=experimental
-elif [ "$3" == "snapshot" ] ; then
-        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean releaseType=snapshot
-elif [ "$3" == "release" ] ; then
-        if [ "$4" == "" ] ; then
+if [[ "$3" = "experimental" || "$3" = "snapshot" || "$3" = "release" || "$3" = "unofficial" ]] ; then
+        export releaseType=$3
+else
+        echo "Release Type is not supported"
+        echo "Supported types are experimental | snapshot | release | unofficial"
+        exit
+fi
+
+# extra build-type work
+if [[ "$releaseType" = "experimental" ]] ; then
+        export LINEAGE_BUILDTYPE=SNAPSHOT
+elif [[ "$releaseType" = "snapshot" ]] ; then
+        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean
+elif [[ "$releaseType" = "release" ]] ; then
+        if [[ "$4" = "" ]] ; then
                 echo "Release build type requires TARGET_VENDOR_RELEASE_BUILD_ID to be set"
                 echo "include vendor release id and try again"
                 exit
         fi
 
-        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 releaseType=release
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4
 else
-        export LINEAGE_EXTRAVERSION=cerulean releaseType=unofficial
+        export LINEAGE_EXTRAVERSION=cerulean
 fi
 
 cd ~/android/lineage/$romVers
