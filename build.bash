@@ -40,7 +40,7 @@ buildDevice() {
 
         # Breakfast
         #breakfast lineage_$device-user
-        if [[ "$device" = "victara" ]] ; then
+        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" ]] ; then
                 breakfast lineage_$device-userdebug
         else
                 breakfast lineage_$device-user
