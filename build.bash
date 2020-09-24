@@ -114,18 +114,28 @@ else
         exit
 fi
 
-if [ "$2" == "experimental" ] ; then
+# supported lineage versions
+if [ "$2" == "15.1" ] || [ "$2" == "16.0" ] || [ "$2" == "17.1" ] || [ "$2" == "18.0" ] ; then
+        export romVers=$2
+else
+        echo "Build version is required"
+        echo "Supported versions include 15.1 : 16.0 : 17.1 : 18.0"
+        exit
+fi
+
+# supported build-types
+if [ "$3" == "experimental" ] ; then
         export LINEAGE_BUILDTYPE=SNAPSHOT releaseType=experimental
-elif [ "$2" == "snapshot" ] ; then
+elif [ "$3" == "snapshot" ] ; then
         export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean releaseType=snapshot
-elif [ "$2" == "release" ] ; then
-        if [ "$3" == "" ] ; then
+elif [ "$3" == "release" ] ; then
+        if [ "$4" == "" ] ; then
                 echo "Release build type requires TARGET_VENDOR_RELEASE_BUILD_ID to be set"
                 echo "include vendor release id and try again"
                 exit
         fi
 
-        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$3 releaseType=release
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 releaseType=release
 else
         export LINEAGE_EXTRAVERSION=cerulean releaseType=unofficial
 fi
