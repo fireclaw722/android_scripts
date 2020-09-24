@@ -117,6 +117,14 @@ else
         exit
 fi
 
+# device per version
+if [[ "$device" = "bonito" || "$device" = "sargo" ]] ; then
+        if ! [[ "$romVers" = "17.1" ]] ; then
+                echo "Build Version isn't supported for this device"
+                echo $device " only supports version 17.1"
+        fi
+fi
+
 # supported build-types
 if [[ "$3" = "experimental" || "$3" = "snapshot" || "$3" = "release" || "$3" = "unofficial" ]] ; then
         export releaseType=$3
