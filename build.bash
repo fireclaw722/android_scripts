@@ -109,11 +109,11 @@ else
 fi
 
 # supported lineage versions
-if [[ "$2" = "15.1" || "$2" = "16.0" || "$2" = "17.1" || "$2" = "18.0" ]] ; then
+if [[ "$2" = "15.1" || "$2" = "16.0" || "$2" = "17.1" ]] ; then
         export romVers=$2
 else
         echo "Build version is required"
-        echo "Supported versions include 15.1 | 16.0 | 17.1 | 18.0"
+        echo "Supported versions include 15.1 | 16.0 | 17.1"
         exit
 fi
 
