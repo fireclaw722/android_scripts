@@ -5,9 +5,21 @@
 exit
 
 ##
-## System-based changes
+## Android 8.1 / Lineage 15.1 (Oreo)
+##
+cd ~/android/lineage/15.1
+
+##
+## Android 9 / Lineage 16.0 (Pie)
+##
+cd ~/android/lineage/16.0
+
+##
+## Android 10 / Lineage 17.1 (Q)
 ##
 cd ~/android/lineage/17.1
+
+## System-based changes
 
 # add fdroid and other pre-built apps to build process (from commons-addition.mk)
 cd ~/android/lineage/17.1/vendor/lineage/config/
@@ -50,3 +62,8 @@ cd ~/android/lineage/17.1/kernel/google/msm-4.9
 git fetch https://github.com/flar2/Bluecross 
 git cherry-pick 27823dd5b1bc55f6ae3b09bcd321d2e2614c28a1
 git cherry-pick 978aa6865137c3a7cf7c05415dbeb30ad3e82052
+
+##
+## Android 11 / Lineage 18.0 (R)
+##
+cd ~/android/lineage/18.0
