@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-    <!-- New Updater -->
-    <remove-project name="LineageOS/android_packages_apps_Updater" />
-    <project path="packages/apps/Updater" name="fireclaw722/android_packages_apps_Updater" />
-</manifest>

@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <!-- Vendor Blobs -->
-    <project name="TheMuppets/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="lineage-15.1" />
-    <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="lineage-15.1" />
-
-    <!-- (addison) Motorola Moto Z Play -->
-    <project name="BtbN/android_device_motorola_addison" path="device/motorola/addison" remote="github" />
-    <project name="BtbN/android_kernel_motorola_msm8953" path="kernel/motorola/msm8953" remote="github" />
-
-
-    <!-- (athene) Motorola Moto G4/G4 Plus -->
-    <project name="sgspluss/android_device_motorola_athene" path="device/motorola/athene" remote="github" />
-    <project name="sgspluss/android_kernel_motorola_msm8952" path="kernel/motorola/msm8952" remote="github" />
-
-    <!-- (griffin) Motorola Moto Z -->
-    <project name="LineageOS/android_device_motorola_griffin" path="device/motorola/griffin" remote="github" revision="lineage-15.1" />
-    <project name="LineageOS/android_kernel_motorola_msm8996" path="kernel/motorola/msm8996" remote="github" revision="lineage-15.1" />
+    <!-- (bonito) Google Pixel 3a -->
+    <project name="LineageOS/android_device_google_bonito" path="device/google/bonito" remote="github" revision="lineage-17.1" />
+    <project name="LineageOS/android_kernel_google_msm-4.9" path="kernel/google/msm-4.9" remote="github" revision="lineage-17.1" />
 
     <!-- (oneplus3) OnePlus 3 / 3T -->
-    <project name="LineageOS/android_device_oneplus_oneplus3" path="device/oneplus/oneplus3" remote="github" revision="lineage-15.1" />
-    <project name="LineageOS/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="lineage-15.1" />
+    <project name="LineageOS/android_device_oneplus_oneplus3" path="device/oneplus/oneplus3" remote="github" revision="lineage-17.1" />
+    <project name="LineageOS/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="lineage-17.1" />
 
-    <!-- Extra/Commons -->
-    <project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" revision="lineage-15.1" />
-    <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" />
-    <project name="LineageOS/android_external_bson" path="external/bson" remote="github" />
-    <project name="LineageOS/android_external_stlport" path="external/stlport" remote="github" />
+    <!-- (sargo) Google Pixel 3a -->
+    <project name="LineageOS/android_device_google_sargo" path="device/google/sargo" remote="github" revision="lineage-17.1" />
 </manifest>
