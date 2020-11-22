@@ -15,5 +15,8 @@ ifeq ($(WITH_GMS),true)
 endif
 
 # include on Pixel devices
-GAPPS_PRODUCT_PACKAGES += \
-    GoogleCamera
+# in their device.mk or device-common.mk
+ifeq ($(WITH_GMS),true)
+    GAPPS_PRODUCT_PACKAGES += \
+        GoogleCamera
+endif
