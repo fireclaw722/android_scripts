@@ -8,16 +8,12 @@ $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
 $(call inherit-product, vendor/gapps/arm/arm-vendor.mk)
 
 # OpenGapps GMS
-GAPPS_VARIANT := pico
-
-GAPPS_PRODUCT_PACKAGES += \
-    DigitalWellbeing \
-    Maps \
-    PrebuiltBugle \
-    Wallet
+# replace in partner_gms.mk
+ifeq ($(WITH_GMS),true)
+    GAPPS_VARIANT := pico
+    $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+endif
 
 # include on Pixel devices
 GAPPS_PRODUCT_PACKAGES += \
     GoogleCamera
-
-$(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)

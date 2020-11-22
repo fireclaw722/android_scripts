@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.4 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.4.1 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/lineage/$romVers
@@ -145,7 +145,7 @@ fi
 if [[ "$releaseType" = "experimental" ]] ; then
         export LINEAGE_BUILDTYPE=SNAPSHOT
 elif [[ "$releaseType" = "snapshot" ]] ; then
-        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean
+        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean WITH_GAPPS=true
 elif [[ "$releaseType" = "release" ]] ; then
         if [[ "$4" = "" ]] ; then
                 echo "Release build type requires TARGET_VENDOR_RELEASE_BUILD_ID to be set"
@@ -153,7 +153,7 @@ elif [[ "$releaseType" = "release" ]] ; then
                 exit
         fi
 
-        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 LINEAGE_EXTRAVERSION=cerulean WITH_GAPPS=true
 else
         export LINEAGE_EXTRAVERSION=cerulean
 fi
@@ -161,7 +161,7 @@ fi
 cd ~/android/lineage/$romVers
 
 # run build
-cleanMka
+#cleanMka
 setupEnv
 buildDevice
 saveFiles
