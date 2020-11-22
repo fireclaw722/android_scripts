@@ -20,3 +20,7 @@ ifeq ($(WITH_GMS),true)
     GAPPS_PRODUCT_PACKAGES += \
         GoogleCamera
 endif
+
+# FOSS Extras
+PRODUCT_PACKAGES += \
+    AuroraServices
