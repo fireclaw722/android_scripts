@@ -1,5 +1,12 @@
-# MicroG GMS, F-Droid, Aurora
-$(call inherit-product, packages/apps/prebuilt/microg.mk)
+# MicroG GMS
+PRODUCT_PACKAGES += \
+    MGmsCore \
+    MGsfProxy \
+    FakeStore
+
+# FOSS Extras
+PRODUCT_PACKAGES += \
+    AuroraServices
 
 # ARM64 MindtheGapps GMS
 $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
@@ -21,6 +28,3 @@ ifeq ($(WITH_GMS),true)
         GoogleCamera
 endif
 
-# FOSS Extras
-PRODUCT_PACKAGES += \
-    AuroraServices
