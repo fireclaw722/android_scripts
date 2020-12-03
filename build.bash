@@ -145,7 +145,7 @@ fi
 if [[ "$releaseType" = "experimental" ]] ; then
         export LINEAGE_BUILDTYPE=SNAPSHOT
 elif [[ "$releaseType" = "snapshot" ]] ; then
-        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean WITH_GAPPS=true
+        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean WITH_GMS=true
 elif [[ "$releaseType" = "release" ]] ; then
         if [[ "$4" = "" ]] ; then
                 echo "Release build type requires TARGET_VENDOR_RELEASE_BUILD_ID to be set"
@@ -153,7 +153,7 @@ elif [[ "$releaseType" = "release" ]] ; then
                 exit
         fi
 
-        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 LINEAGE_EXTRAVERSION=cerulean WITH_GAPPS=true
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 LINEAGE_EXTRAVERSION=cerulean WITH_GMS=true
 else
         export LINEAGE_EXTRAVERSION=cerulean
 fi
