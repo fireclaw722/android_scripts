@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.4.1 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.5.0 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/lineage/$romVers
@@ -109,25 +109,19 @@ else
 fi
 
 # supported lineage versions
-if [[ "$2" = "15.1" || "$2" = "16.0" || "$2" = "17.1" ]] ; then
+if [[ "$2" = "18.1" ]] ; then
         export romVers=$2
 else
         echo "Build version is required"
-        echo "Supported versions include 15.1 | 16.0 | 17.1"
+        echo "Supported versions include 18.1"
         exit
 fi
 
 # device per version
 if [[ "$device" = "bonito" || "$device" = "oneplus3" || "$device" = "sargo" || "$device" = "victara" ]] ; then
-        if ! [[ "$romVers" = "17.1" ]] ; then
+        if ! [[ "$romVers" = "18.1" ]] ; then
                 echo "Build Version isn't supported for this device"
-                echo $device "only supports version 17.1"
-                exit
-        fi
-elif [[ "$device" = "addison" || "$device" = "athene" ]] ; then
-        if ! [[ "$romVers" = "15.1" ]] ; then
-                echo "Build Version isn't supported for this device"
-                echo $device "only supports version 15.1"
+                echo $device "only supports version 18.1"
                 exit
         fi
 fi
