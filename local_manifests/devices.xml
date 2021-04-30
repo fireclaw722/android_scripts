@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <!-- (bonito) Google Pixel 3a -->
-    <project name="LineageOS/android_device_google_bonito" path="device/google/bonito" remote="github" revision="lineage-17.1" />
-    <project name="LineageOS/android_kernel_google_msm-4.9" path="kernel/google/msm-4.9" remote="github" revision="lineage-17.1" />
+    <!-- (bonito) Google Pixel 3a XL -->
+    <project name="LineageOS/android_device_google_bonito" path="device/google/bonito" remote="github" revision="lineage-18.1" />
+    <project name="LineageOS/android_kernel_google_msm-4.9" path="kernel/google/msm-4.9" remote="github" revision="lineage-18.1" />
 
     <!-- (oneplus3) OnePlus 3 / 3T -->
-    <project name="LineageOS/android_device_oneplus_oneplus3" path="device/oneplus/oneplus3" remote="github" revision="lineage-17.1" />
-    <project name="LineageOS/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="lineage-17.1" />
+    <project name="LineageOS/android_device_oneplus_oneplus3" path="device/oneplus/oneplus3" remote="github" revision="lineage-18.1" />
+    <project name="LineageOS/android_kernel_oneplus_msm8996" path="kernel/oneplus/msm8996" remote="github" revision="lineage-18.1" />
 
     <!-- (sargo) Google Pixel 3a -->
-    <project name="LineageOS/android_device_google_sargo" path="device/google/sargo" remote="github" revision="lineage-17.1" />
+    <project name="LineageOS/android_device_google_sargo" path="device/google/sargo" remote="github" revision="lineage-18.1" />
 </manifest>
