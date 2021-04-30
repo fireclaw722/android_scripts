@@ -109,27 +109,27 @@ git cherry-pick 27823dd5b1bc55f6ae3b09bcd321d2e2614c28a1
 git cherry-pick 978aa6865137c3a7cf7c05415dbeb30ad3e82052
 
 ##
-## Android 11 / Lineage 18.0 (R)
+## Android 11 / Lineage 18.1 (R)
 ##
-cd ~/android/lineage/18.0
+cd ~/android/lineage/18.1
 
 ### System-based changes
 
 # add pre-built apps to build process (see commons-addition.mk for options)
-cd ~/android/lineage/18.0/vendor/lineage/config/
+cd ~/android/lineage/18.1/vendor/lineage/config/
 vi common.mk
 
 # Blue Bootanimation
-cd ~/android/lineage/18.0/vendor/lineage/bootanimation
+cd ~/android/lineage/18.1/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
 # For MicroG Signature-Spoofing support (for reference)
 # DOES NOT EXIST YET
-#cd ~/android/lineage/18.0/
+#cd ~/android/lineage/18.1/
 #patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-P.patch
-#cd ~/android/lineage/18.0/frameworks/base
+#cd ~/android/lineage/18.1/frameworks/base
 #git commit
 
 # Updater URL
-cd ~/android/lineage/18.0/packages/apps/Updater/res/values/
+cd ~/android/lineage/18.1/packages/apps/Updater/res/values/
 vi strings.xml
