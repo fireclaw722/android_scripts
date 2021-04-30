@@ -94,13 +94,11 @@ saveFiles() {
         # output updater info
         cd ~/simple_lineage_updater
         echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum ~/builds/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l ~/builds/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> ~/builds/update
-        
-        ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum ~/builds/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l ~/builds/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate
 }
 
 ## Enter main()
 # supported devices
-if [[ "$1" = "addison" || "$1" = "athene"  || "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
+if [[ "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
         export device=$1
 else
         echo "Device" $1 "is currently not supported"
