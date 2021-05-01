@@ -118,6 +118,15 @@ cd ~/android/lineage/18.1
 # add pre-built apps to build process (see commons-addition.mk for options)
 cd ~/android/lineage/18.1/vendor/lineage/config/
 vi common.mk
+# or do by device
+cd ~/android/lineage/18.1/device/google/bonito
+vi device-common.mk
+
+cd ~/android/lineage/18.1/device/oneplus/oneplus3
+vi device.mk
+
+cd ~/android/lineage/18.1/device/motorola/victara
+vi device.mk
 
 # Blue Bootanimation
 cd ~/android/lineage/18.1/vendor/lineage/bootanimation
