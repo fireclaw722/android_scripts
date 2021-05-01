@@ -142,3 +142,8 @@ cp ~/Downloads/bootanimation.tar ./
 # Updater URL
 cd ~/android/lineage/18.1/packages/apps/Updater/res/values/
 vi strings.xml
+
+### Device-specfic commits
+# Comment out reserved space for GApps if you build w/ GApps
+cd ~/android/lineage/18.1/device/google/bonito
+vi BoardConfigLineage.mk
