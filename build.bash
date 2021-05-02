@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.5.0 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.5.2 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/lineage/$romVers
@@ -60,13 +60,13 @@ buildDevice() {
         fi
 
         # Package Full OTA
-        if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
+        if ! ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
                 echo "Error: Creating Full OTA failed"
                 exit
         fi
 
         # Package Images zip
-        if ! ./build/tools/releasetools/img_from_target_files signed-target_files.zip signed-images.zip ; then
+        if ! img_from_target_files signed-target_files.zip signed-images.zip ; then
                 echo "Error: Exporting Recovery, Boot, and System Images failed"
                 exit
         fi
@@ -137,7 +137,7 @@ fi
 if [[ "$releaseType" = "experimental" ]] ; then
         export LINEAGE_BUILDTYPE=SNAPSHOT
 elif [[ "$releaseType" = "snapshot" ]] ; then
-        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean WITH_GMS=true
+        export LINEAGE_BUILDTYPE=SNAPSHOT LINEAGE_EXTRAVERSION=cerulean
 elif [[ "$releaseType" = "release" ]] ; then
         if [[ "$4" = "" ]] ; then
                 echo "Release build type requires TARGET_VENDOR_RELEASE_BUILD_ID to be set"
@@ -145,7 +145,7 @@ elif [[ "$releaseType" = "release" ]] ; then
                 exit
         fi
 
-        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 LINEAGE_EXTRAVERSION=cerulean WITH_GMS=true
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 LINEAGE_EXTRAVERSION=cerulean
 else
         export LINEAGE_EXTRAVERSION=cerulean
 fi
