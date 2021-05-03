@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.5.0 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.5.2 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/lineage/$romVers
@@ -54,19 +54,19 @@ buildDevice() {
         fi
 
         # Sign Build
-        if ! ./build/tools/releasetools/sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/.android-certs/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/.android-certs/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
+        if ! sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/.android-certs/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/.android-certs/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
                 echo "Error: Signing failed, again. Exiting..."
                 exit
         fi
 
         # Package Full OTA
-        if ! ./build/tools/releasetools/ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
+        if ! ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
                 echo "Error: Creating Full OTA failed"
                 exit
         fi
 
         # Package Images zip
-        if ! ./build/tools/releasetools/img_from_target_files signed-target_files.zip signed-images.zip ; then
+        if ! img_from_target_files signed-target_files.zip signed-images.zip ; then
                 echo "Error: Exporting Recovery, Boot, and System Images failed"
                 exit
         fi
