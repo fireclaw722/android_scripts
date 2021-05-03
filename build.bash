@@ -40,11 +40,11 @@ buildDevice() {
 
         # Breakfast
         #breakfast lineage_$device-user
-        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" ]] ; then
+        #if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" ]] ; then
                 breakfast lineage_$device-userdebug
-        else
-                breakfast lineage_$device-user
-        fi
+        #else
+        #        breakfast lineage_$device-user
+        #fi
 
         # Run build
         if ! mka target-files-package otatools ; then
