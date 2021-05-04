@@ -133,11 +133,10 @@ cd ~/android/lineage/18.1/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
 # For MicroG Signature-Spoofing support (for reference)
-# DOES NOT EXIST YET
-#cd ~/android/lineage/18.1/
-#patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-P.patch
-#cd ~/android/lineage/18.1/frameworks/base
-#git commit
+cd ~/android/lineage/18.1/
+patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-R.patch
+cd ~/android/lineage/18.1/frameworks/base
+git commit
 
 # Updater URL
 cd ~/android/lineage/18.1/packages/apps/Updater/res/values/
