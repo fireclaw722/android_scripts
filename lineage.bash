@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Variables
-export version=0.5.2 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.6.0 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
-        cd ~/android/lineage/$romVers
+        cd ~/android/$romName/$romVers
 
         if ! mka clean ; then
                 make clean
@@ -16,7 +16,7 @@ cleanMka(){
 }
 
 setupEnv() {
-        cd ~/android/lineage/$romVers
+        cd ~/android/$romName/$romVers
 
         # Setup build environment
         source build/envsetup.sh
@@ -36,7 +36,7 @@ setupEnv() {
 }
 
 buildDevice() {
-        cd ~/android/lineage/$romVers
+        cd ~/android/$romName/$romVers
 
         # Breakfast
         #breakfast lineage_$device-user
@@ -78,7 +78,7 @@ buildDevice() {
 }
 
 saveFiles() {
-        cd ~/android/lineage/$romVers
+        cd ~/android/$romName/$romVers
 
         echo "Saving Recovery, Boot, and System Images"
         mv signed-images.zip ~/builds/img/$fileName.zip
@@ -150,7 +150,7 @@ else
         export LINEAGE_EXTRAVERSION=cerulean
 fi
 
-cd ~/android/lineage/$romVers
+cd ~/android/$romName/$romVers
 
 # run build
 #cleanMka

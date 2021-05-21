@@ -18,3 +18,6 @@ $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 GAPPS_PRODUCT_PACKAGES += \
     GoogleCamera
 
+# for Active Edge on Graphene
+PRODUCT_PACKAGES += \
+    ElmyraService

@@ -146,3 +146,43 @@ vi strings.xml
 # Comment out reserved space for GApps if you build w/ GApps
 cd ~/android/lineage/18.1/device/google/bonito
 vi BoardConfigLineage.mk
+
+##
+## Android 11 / Graphene 11 (R)
+##
+cd ~/android/graphene/11
+
+## get vendor imgs
+cd ~/android/graphene/11
+vendor/android-prepare-vendor/execute-all.sh -d $DEVICE -b $BUILD_ID -o vendor/android-prepare-vendor
+mkdir -p vendor/google_devices
+rm -rf vendor/google_devices/$DEVICE
+mv vendor/android-prepare-vendor/$DEVICE/$BUILD_ID/vendor/google_devices/* vendor/google_devices/
+
+## add pre-built apps to build process (see commons-addition.mk)
+cd ~/android/graphene/11/build/target/product
+vi handheld_system.mk
+
+## bootanim
+# .zip pulled from https://github.com/GrapheneOS/os-issue-tracker/pull/174
+# change bonito to your $device
+cd ~/android/graphene/11/device/google/bonito
+mkdir bootanimation
+cp ~/Downloads/boot-graphene-fancy.zip bootanimation/bootanimation.zip
+git add bootanimation/
+vi device-common.mk
+# adds
+    PRODUCT_COPY_FILES += device/google/bonito/bootanimation/bootanimation.zip:system/media/bootanimation.zip
+
+## Elmyra for Active Edge
+# will not boot without first change
+# https://github.com/ProtonAOSP/android_frameworks_base/commit/2b950e103e865aa6a1fe8a917964e0069d4c4037
+# https://github.com/ProtonAOSP/android_frameworks_base/commit/013c590411435569077228aacf1e246678c366ab
+cd ~/android/graphene/11/packages/apps/ElmyraService
+vi res/values/config.xml
+
+cd ~/android/graphene/11/device/google/bonito
+vi device-common.mk
+
+## Unofficial Updater URL
+cd packages/apps/Updater/res/values/config.xml
