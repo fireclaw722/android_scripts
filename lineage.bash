@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.6.0 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.6.1 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -92,7 +92,6 @@ saveFiles() {
         mv signed-ota_update.zip ~/builds/full/$fileName.zip
 
         # output updater info
-        cd ~/simple_lineage_updater
         echo ./addrom.py --filename $fileName --device $device --version $romVers --romtype $releaseType --md5sum $(md5sum ~/builds/full/$fileName.zip | awk '{ print $1 }') --romsize $(ls -l ~/builds/full/$fileName.zip | awk '{ print $5 }') --url "https://updater.ceruleanfire.com/builds/full/$fileName.zip" --datetime $updaterDate >> ~/builds/update
 }
 
@@ -153,7 +152,7 @@ fi
 cd ~/android/$romName/$romVers
 
 # run build
-#cleanMka
+cleanMka
 setupEnv
 buildDevice
 saveFiles
