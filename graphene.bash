@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.6.0 device buildDate updaterDate releaseType romName=graphene romVers fileName
+export version=0.6.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
 
 cleanMka() {
     # Clean ROM build
@@ -163,6 +163,7 @@ fi
 cd ~/android/$romName/$romVers
 
 # run build
+setupEnv
 cleanMka
 setupEnv
 buildKernel
