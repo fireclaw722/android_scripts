@@ -185,4 +185,5 @@ cd ~/android/graphene/11/device/google/bonito
 vi device-common.mk
 
 ## Unofficial Updater URL
-cd packages/apps/Updater/res/values/config.xml
+cd ~/android/graphene/11/packages/apps/Updater/res/values/
+vi config.xml
