@@ -161,7 +161,7 @@ mv vendor/android-prepare-vendor/$DEVICE/$BUILD_ID/vendor/google_devices/* vendo
 
 ## add pre-built apps to build process (see commons-addition.mk)
 cd ~/android/graphene/11/build/target/product
-vi handheld_system.mk
+vi base_system.mk
 
 ## bootanim
 # .zip pulled from https://github.com/GrapheneOS/os-issue-tracker/pull/174
@@ -178,6 +178,10 @@ vi device-common.mk
 # will not boot without first change
 # https://github.com/ProtonAOSP/android_frameworks_base/commit/2b950e103e865aa6a1fe8a917964e0069d4c4037
 # https://github.com/ProtonAOSP/android_frameworks_base/commit/013c590411435569077228aacf1e246678c366ab
+cd ~/android/graphene/11/frameworks/base
+git fetch https://github.com/ProtonAOSP/android_frameworks_base
+git cherry-pick cbca90bdb0ed7e88770c2c5856ee22f859a7a997
+git cherry-pick 384e97d04780733ca4df2beb65a077269a41b58d
 cd ~/android/graphene/11/packages/apps/ElmyraService
 vi res/values/config.xml
 
