@@ -180,8 +180,8 @@ vi device-common.mk
 # https://github.com/ProtonAOSP/android_frameworks_base/commit/013c590411435569077228aacf1e246678c366ab
 cd ~/android/graphene/11/frameworks/base
 git fetch https://github.com/ProtonAOSP/android_frameworks_base
-git cherry-pick cbca90bdb0ed7e88770c2c5856ee22f859a7a997
-git cherry-pick 384e97d04780733ca4df2beb65a077269a41b58d
+git cherry-pick 267b0981195af3865202e8fadda0b1070f24ab48
+git cherry-pick a5b3d251c712fb9fe7e50941ed60444d857b98b8
 cd ~/android/graphene/11/packages/apps/ElmyraService
 vi res/values/config.xml
 
