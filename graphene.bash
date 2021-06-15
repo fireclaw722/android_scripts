@@ -118,16 +118,6 @@ saveFiles() {
         exit
     fi
 
-    i=2
-    while [[ "$(ls releases | tail -n$i | head -n1 | grep donotuse)" = "donotuse" && $i -lt 20 ]] ; do
-        i++
-    done
-    if [[ $i = 20 ]] ; then
-        echo "too many bad builds"
-        echo "either the script is broken, or you need to delete some unusable builds"
-        exit
-    fi
-
     mkdir ~/android/$romName/$romVers/releases/$BUILD_NUMBER/
 
     if ! mv out/release-$device-$BUILD_NUMBER/ releases/$BUILD_NUMBER/release-$device-$BUILD_NUMBER/ ; then
@@ -137,7 +127,7 @@ saveFiles() {
 
     # Don't generate incremental for experimental builds
     if [[ "$releaseType" = "release" ]] ; then
-        if ! script/generate_delta.sh $device $(ls releases | tail -n$i | head -n1) $BUILD_NUMBER ; then
+        if ! script/generate_delta.sh $device $(ls releases | tail -n2 | head -n1) $BUILD_NUMBER ; then
             exit
         fi
     fi
