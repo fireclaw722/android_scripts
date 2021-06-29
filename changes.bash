@@ -4,60 +4,6 @@
 ####
 exit
 
-##
-## Android 8.1 / Lineage 15.1 (Oreo)
-##
-cd ~/android/lineage/15.1
-
-### System-based changes
-
-# add pre-built apps to build process (see commons-addition.mk for options)
-cd ~/android/lineage/15.1/vendor/lineage/config/
-vi common.mk
-
-# Blue Bootanimation
-cd ~/android/lineage/15.1/vendor/lineage/bootanimation
-cp ~/Downloads/bootanimation.tar ./
-
-# Updater URL
-cd ~/android/lineage/15.1/packages/apps/Updater/res/values/
-vi strings.xml
-
-# MicroG Signature-Spoofing support
-cd ~/android/lineage/15.1/
-patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-O.patch
-cd ~/android/lineage/15.1/frameworks/base
-git commit
-
-# Update for new security patches
-vendor/lineage/build/tools/repopick.py -g https://review.lineageos.org -t #O_asb_XXXX-XX
-
-### Device-based changes
-# Moto Mod Battery Efficiency Mode (run twice because it doesn't merge cleanly)
-cd ~/android/lineage/15.1
-vendor/lineage/build/tools/repopick.py -f -g https://review.lineageos.org -t moto-mods-battery-lineage-15.1
-
-##
-## Android 9 / Lineage 16.0 (Pie)
-##
-cd ~/android/lineage/16.0
-
-### System-based changes
-
-# add pre-built apps to build process (see commons-addition.mk for options)
-cd ~/android/lineage/16.0/vendor/lineage/config/
-vi common.mk
-
-# Blue Bootanimation
-cd ~/android/lineage/16.0/vendor/lineage/bootanimation
-cp ~/Downloads/bootanimation.tar ./
-
-# For MicroG Signature-Spoofing support (for reference)
-cd ~/android/lineage/16.0/
-patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-P.patch
-cd ~/android/lineage/16.0/frameworks/base
-git commit
-
 # Updater URL
 cd ~/android/lineage/16.0/packages/apps/Updater/res/values/
 vi strings.xml
@@ -152,6 +98,10 @@ vi BoardConfigLineage.mk
 ##
 cd ~/android/graphene/11
 
+## Unofficial Updater URL
+cd ~/android/graphene/11/packages/apps/Updater/res/values/
+vi config.xml
+
 ## get vendor imgs
 cd ~/android/graphene/11
 vendor/android-prepare-vendor/execute-all.sh -d $DEVICE -b $BUILD_ID -o vendor/android-prepare-vendor
@@ -163,16 +113,12 @@ mv vendor/android-prepare-vendor/$DEVICE/$BUILD_ID/vendor/google_devices/* vendo
 cd ~/android/graphene/11/build/target/product
 vi base_system.mk
 
-## bootanim
-# .zip pulled from https://github.com/GrapheneOS/os-issue-tracker/pull/174
-# change bonito to your $device
 cd ~/android/graphene/11/device/google/bonito
-mkdir bootanimation
-cp ~/Downloads/boot-graphene-fancy.zip bootanimation/bootanimation.zip
-git add bootanimation/
 vi device-common.mk
-# adds
-    PRODUCT_COPY_FILES += device/google/bonito/bootanimation/bootanimation.zip:system/media/bootanimation.zip
+
+## bootanim 
+## !! doesn't work, haven't been using / Removed until bootanim can be properly implemented
+# .zip pulled from https://github.com/GrapheneOS/os-issue-tracker/pull/174
 
 ## Elmyra for Active Edge
 # will not boot without first change
@@ -182,12 +128,5 @@ cd ~/android/graphene/11/frameworks/base
 git fetch https://github.com/ProtonAOSP/android_frameworks_base
 git cherry-pick 267b0981195af3865202e8fadda0b1070f24ab48
 git cherry-pick a5b3d251c712fb9fe7e50941ed60444d857b98b8
-cd ~/android/graphene/11/packages/apps/ElmyraService
+cd ~/android/graphene/11/external/ElmyraService
 vi res/values/config.xml
-
-cd ~/android/graphene/11/device/google/bonito
-vi device-common.mk
-
-## Unofficial Updater URL
-cd ~/android/graphene/11/packages/apps/Updater/res/values/
-vi config.xml
