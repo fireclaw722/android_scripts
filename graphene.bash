@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.6.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
+export version=0.7.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
 
 cleanMka() {
     # Clean ROM build
@@ -38,15 +38,8 @@ cleanMka() {
 setupEnv() {
     cd ~/android/$romName/$romVers
     source script/envsetup.sh
-
-    # Experimental builds can get some breaking changes
-    # so run build as debug
-    if [[ "$releaseType" = "experimental" ]] ; then
-        choosecombo release aosp_$device userdebug
-    else
-        choosecombo release aosp_$device user
-        export OFFICIAL_BUILD=true
-    fi
+    choosecombo release aosp_$device user
+    export OFFICIAL_BUILD=true
 }
 
 buildKernel() {
@@ -140,15 +133,6 @@ else
     echo "please enter a supported device and try again"
     exit
 fi
-
-if [[ "$2" = "experimental" || "$2" = "release" ]] ; then
-        export releaseType=$2
-else
-        echo "Release Type is not supported"
-        echo "Supported types are experimental | release"
-        exit
-fi
-
 
 cd ~/android/$romName/$romVers
 
