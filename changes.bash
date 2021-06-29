@@ -102,6 +102,11 @@ cd ~/android/graphene/11
 cd ~/android/graphene/11/packages/apps/Updater/res/values/
 vi config.xml
 
+## For Bromite WebView to work, the frameworks/base commit needs to either be reverted, or com.android.webview needs to be re-added
+## Vanadium isn't kept, so revert for now
+cd ~/android/graphene/11/frameworks/base
+git revert 6c2d2c234a9ca81b3d9f22d1078f874207b6e8dd
+
 ## get vendor imgs
 cd ~/android/graphene/11
 vendor/android-prepare-vendor/execute-all.sh -d $DEVICE -b $BUILD_ID -o vendor/android-prepare-vendor

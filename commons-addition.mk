@@ -1,7 +1,3 @@
-# FOSS Extras
-PRODUCT_PACKAGES += \
-    AuroraServices
-
 # ARM64 MindtheGapps GMS
 $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
 
@@ -18,6 +14,17 @@ $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 GAPPS_PRODUCT_PACKAGES += \
     GoogleCamera
 
-# for Active Edge on Graphene
+# Graphene extras and replacements to make the system usable
 PRODUCT_PACKAGES += \
-    ElmyraService
+    AuroraDroid \
+    AuroraServices \
+    AuroraStore \
+    Bromite \
+    BromiteWebView \
+    ElmyraService \
+    Etar \
+    LineageCalculator \
+    LineageClock \
+    LineageEleven \
+    LineageGallery \
+    QKSMS
