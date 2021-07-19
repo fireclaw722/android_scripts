@@ -14,17 +14,21 @@ $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
 GAPPS_PRODUCT_PACKAGES += \
     GoogleCamera
 
-# Graphene extras and replacements to make the system usable
+# Graphene extras and replacements
+# Product
+PRODUCT_PACKAGES += \
+    Bromite \
+    BromiteWebView
+
+# System
 PRODUCT_PACKAGES += \
     AuroraDroid \
     AuroraServices \
     AuroraStore \
-    Bromite \
-    BromiteWebView \
-    ElmyraService \
     Etar \
-    LineageCalculator \
-    LineageClock \
-    LineageEleven \
-    LineageGallery \
-    QKSMS
+    QKSMS \
+    Vinyl
+
+# Device-specific
+PRODUCT_PACKAGES += \
+    ElmyraService

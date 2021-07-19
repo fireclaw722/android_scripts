@@ -116,6 +116,7 @@ mv vendor/android-prepare-vendor/$DEVICE/$BUILD_ID/vendor/google_devices/* vendo
 
 ## add pre-built apps to build process (see commons-addition.mk)
 cd ~/android/graphene/11/build/target/product
+vi base_product.mk
 vi base_system.mk
 
 cd ~/android/graphene/11/device/google/bonito
