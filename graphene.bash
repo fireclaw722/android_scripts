@@ -1,14 +1,24 @@
 #!/bin/bash
 
 # Variables
-export version=0.7.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
+export version=0.8.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
 
 cleanMka() {
-    # Clean ROM build
     cd ~/android/$romName/$romVers
+
+    # Save build_date and build_number for multi-device builds
+    # delete them manually to run with new build-number/date
+    mv out/build_date.txt ./
+    mv out/build_number.txt ./
+
+    # Clean ROM build
     if ! make clean ; then
         m clean
     fi
+
+    # Restore build_date and build_number
+    mv build_date.txt out/
+    mv build_number.txt out/
 
     # Clean 4 series
     cd ~/android/$romName/$romVers/kernel/google/coral
