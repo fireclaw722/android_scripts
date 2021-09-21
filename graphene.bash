@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.8.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
+export version=0.9.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
 
 cleanMka() {
     cd ~/android/$romName/$romVers
@@ -43,12 +43,18 @@ cleanMka() {
     if ! make clean ; then
         m clean
     fi
+
+    # Clean 5a
+    cd ~/android/$romName/$romVers/kernel/google/barbet
+    if ! make clean ; then
+        m clean
+    fi
 }
 
 setupEnv() {
     cd ~/android/$romName/$romVers
     source script/envsetup.sh
-    choosecombo release aosp_$device user
+    choosecombo release $device user
     export OFFICIAL_BUILD=true
 }
 
@@ -66,7 +72,7 @@ buildKernel() {
             echo "Ensure that the right tags have been synced, or try syncing the dev branch"
             exit
         fi
-    elif [[ "$device" = "sunfish" ]] ; then
+    elif [[ "$device" = "sunfish" || "$device" = "barbet" ]] ; then
         if ! cd ~/android/$romName/$romVers/kernel/google/$device ; then
             echo "Kernel directory does not exist"
             echo "Ensure that the right tags have been synced, or try syncing the dev branch"
@@ -85,7 +91,7 @@ buildKernel() {
     git submodule update --init --recursive
 
     # Build
-    if [[ "$device" = "blueline" || "$device" = "bonito" || "$device" = "crosshatch" || "$device" = "coral" || "$device" = "sunfish" || "$device" = "bramble" || "$device" = "redfin" ]] ; then
+    if [[ "$device" = "blueline" || "$device" = "bonito" || "$device" = "crosshatch" || "$device" = "coral" || "$device" = "sunfish" || "$device" = "bramble" || "$device" = "redfin" || "$device" = "barbet" ]] ; then
         if ! ./build.sh $device ; then
             exit
         fi
@@ -136,7 +142,7 @@ saveFiles() {
     fi
 }
 # supported devices
-if [[ "$1" = "blueline" || "$1" = "bonito" || "$1" = "crosshatch" || "$1" = "coral" || "$1" = "sunfish" || "$1" = "bramble" || "$1" = "redfin" || "$1" = "sargo" || "$1" = "flame" ]] ; then
+if [[ "$1" = "blueline" || "$1" = "bonito" || "$1" = "crosshatch" || "$1" = "coral" || "$1" = "sunfish" || "$1" = "bramble" || "$1" = "redfin" || "$1" = "sargo" || "$1" = "flame" || "$device" = "barbet" ]] ; then
     export device=$1
 else
     echo "Device" $1 "is currently not supported"
