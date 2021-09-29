@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.6.1 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.7 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -52,17 +52,35 @@ buildDevice() {
                 echo "Revert last change and try again."
                 exit
         fi
-
+        
         # Sign Build
-        if ! sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/.android-certs/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/.android-certs/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
-                echo "Error: Signing failed, again. Exiting..."
-                exit
+        # only Pixels get AVB
+        if [[ "$device" = "bonito" || "$device" = "sargo" ]] ; then        
+                if ! sign_target_files_apks -o -d ~/.android-certs --avb_vbmeta_key ~/.android-certs/avb.pem --avb_vbmeta_algorithm SHA256_RSA2048 --avb_system_key ~/.android-certs/avb.pem --avb_system_algorithm SHA256_RSA2048 $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
+                        echo "Error: Signing failed, again. Exiting..."
+                        exit
+                fi
+        else
+                if ! sign_target_files_apks -o -d ~/.android-certs $OUT/obj/PACKAGING/target_files_intermediates/*-target_files-*.zip signed-target_files.zip ; then
+                        echo "Error: Signing failed, again. Exiting..."
+                        exit
+                fi
         fi
 
+        
+
         # Package Full OTA
-        if ! ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
-                echo "Error: Creating Full OTA failed"
-                exit
+        # Only Pixels use dynamic partitions
+        if [[ "$device" = "bonito" || "$device" = "sargo" ]] ; then
+                if ! ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
+                        echo "Error: Creating Full OTA failed"
+                        exit
+                fi
+        else
+                if ! ota_from_target_files -k ~/.android-certs/releasekey --block --backup=true signed-target_files.zip signed-ota_update.zip ; then
+                        echo "Error: Creating Full OTA failed"
+                        exit
+                fi
         fi
 
         # Package Images zip
@@ -71,10 +89,13 @@ buildDevice() {
                 exit
         fi
 
-        # also include the AVB Public key bin
-        cp ~/.android-certs/avb_pkmd.bin ./
-        zip signed-images.zip avb_pkmd.bin
-        rm avb_pkmd.bin
+        # include AVB key for Pixels
+        if [[ "$device" = "bonito" || "$device" = "sargo" ]] ; then
+                cp ~/.android-certs/avb_pkmd.bin ./
+                zip signed-images.zip avb_pkmd.bin
+                rm avb_pkmd.bin
+        fi
+        
 }
 
 saveFiles() {
