@@ -71,7 +71,7 @@ buildDevice() {
 
         # Package Full OTA
         # Only Pixels use dynamic partitions
-        if [[ "$device" = "bonito" || "$device" = "sargo" ]] ; then
+        if [[ "$device" = "barbet" || "$device" = "bonito" || "$device" = "sargo" ]] ; then
                 if ! ota_from_target_files -k ~/.android-certs/releasekey --block --retrofit_dynamic_partitions signed-target_files.zip signed-ota_update.zip ; then
                         echo "Error: Creating Full OTA failed"
                         exit
