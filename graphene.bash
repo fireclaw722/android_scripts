@@ -142,7 +142,7 @@ saveFiles() {
     fi
 }
 # supported devices
-if [[ "$1" = "blueline" || "$1" = "bonito" || "$1" = "crosshatch" || "$1" = "coral" || "$1" = "sunfish" || "$1" = "bramble" || "$1" = "redfin" || "$1" = "sargo" || "$1" = "flame" || "$device" = "barbet" ]] ; then
+if [[ "$1" = "blueline" || "$1" = "bonito" || "$1" = "crosshatch" || "$1" = "coral" || "$1" = "sunfish" || "$1" = "bramble" || "$1" = "redfin" || "$1" = "sargo" || "$1" = "flame" || "$1" = "barbet" ]] ; then
     export device=$1
 else
     echo "Device" $1 "is currently not supported"
