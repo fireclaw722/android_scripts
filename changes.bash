@@ -88,6 +88,23 @@ git commit
 cd ~/android/lineage/18.1/packages/apps/Updater/res/values/
 vi strings.xml
 
+# GMS Compat from ProtonAOSP and GrapheneOS
+# pulled from https://github.com/sn-00-x/lineage-gmscompat
+cd ~/android/lineage/18.1/frameworks/base
+for i in ~/Downloads/lineage-gmscompat/src/gmscompat_patches/frameworks/base/*.patch ; do
+    patch --quiet --force -p1 < $i
+done
+
+cd ~/android/lineage/18.1/libcore
+for i in ~/Downloads/lineage-gmscompat/src/gmscompat_patches/libcore/*.patch ; do
+    patch --quiet --force -p1 < $i
+done
+
+cd ~/android/lineage/18.1/bionic
+for i in ~/Downloads/lineage-gmscompat/src/gmscompat_patches/bionic/*.patch ; do
+    patch --quiet --force -p1 < $i
+done
+
 ### Device-specfic commits
 # Comment out reserved space for GApps if you build w/ GApps
 cd ~/android/lineage/18.1/device/google/bonito
