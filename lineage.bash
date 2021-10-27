@@ -165,7 +165,7 @@ elif [[ "$releaseType" = "release" ]] ; then
                 exit
         fi
 
-        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4 LINEAGE_EXTRAVERSION=cerulean
+        export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4
 else
         export LINEAGE_EXTRAVERSION=cerulean
 fi
