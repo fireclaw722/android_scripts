@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.9.0 device buildDate updaterDate releaseType romName=graphene romVers=11 fileName
+export version=0.9.1 device buildDate updaterDate releaseType romName=graphene romVers fileName
 
 cleanMka() {
     cd ~/android/$romName/$romVers
@@ -147,6 +147,15 @@ if [[ "$1" = "blueline" || "$1" = "bonito" || "$1" = "crosshatch" || "$1" = "cor
 else
     echo "Device" $1 "is currently not supported"
     echo "please enter a supported device and try again"
+    exit
+fi
+
+# versions
+if [[ "$2" = "11" || "$2" = "12" ]] ; then
+    export romVers=$2
+else
+    echo "Version" $2 "is currently not supported"
+    echo "please enter a supported version and try again"
     exit
 fi
 

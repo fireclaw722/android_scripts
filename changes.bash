@@ -136,3 +136,30 @@ git cherry-pick 267b0981195af3865202e8fadda0b1070f24ab48
 git cherry-pick a5b3d251c712fb9fe7e50941ed60444d857b98b8
 cd ~/android/graphene/11/external/ElmyraService
 vi res/values/config.xml
+
+##
+## Android 12 / Graphene 12 (S)
+##
+## Unofficial Updater URL
+cd ~/android/graphene/12/packages/apps/Updater/res/values/
+vi config.xml
+
+## For Bromite WebView to work, the frameworks/base commit needs to either be reverted, or com.android.webview needs to be re-added
+## Vanadium isn't kept, so revert for now
+cd ~/android/graphene/12/frameworks/base
+git revert 6c2d2c234a9ca81b3d9f22d1078f874207b6e8dd
+
+## get vendor imgs
+cd ~/android/graphene/12
+vendor/android-prepare-vendor/execute-all.sh -d $DEVICE -b $BUILD_ID -o vendor/android-prepare-vendor
+mkdir -p vendor/google_devices
+rm -rf vendor/google_devices/$DEVICE
+mv vendor/android-prepare-vendor/$DEVICE/$BUILD_ID/vendor/google_devices/* vendor/google_devices/
+
+## add pre-built apps to build process (see commons-addition.mk)
+cd ~/android/graphene/12/build/target/product
+vi base_product.mk
+vi base_system.mk
+
+cd ~/android/graphene/12/device/google/bonito
+vi device-common.mk
