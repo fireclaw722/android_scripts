@@ -110,6 +110,21 @@ done
 cd ~/android/lineage/18.1/device/google/bonito
 vi BoardConfigLineage.mk
 
+## AVB Pixels
+# 3a
+cd ~/android/lineage/18.1/device/google/bonito
+# Comment out disabling vbmeta
+vi BoardConfigLineage.mk
+# Edit key file to point to key
+vi BoardConfig-common.mk
+
+# 5a
+cd ~/android/lineage/18.1/device/google/redbull
+# Comment out disabling vbmeta
+vi BoardConfigLineage.mk
+# Edit key file to point to key
+vi BoardConfig-common.mk
+
 ##
 ## Android 11 / Graphene 11 (R)
 ##
