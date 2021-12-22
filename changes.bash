@@ -145,7 +145,11 @@ git cherry-pick 55f4cb6cd74191178263a492fecab2419c19715f
 
 ### Device-specfic commits
 # Comment out reserved space for GApps if you build w/ GApps
+# 3a
 cd ~/android/lineage/18.1/device/google/bonito
+vi BoardConfigLineage.mk
+# 5a
+cd ~/android/lineage/18.1/device/google/redbull
 vi BoardConfigLineage.mk
 
 ## AVB Pixels
