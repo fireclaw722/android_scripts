@@ -157,8 +157,12 @@ vi BoardConfigLineage.mk
 cd ~/android/lineage/18.1/device/google/bonito
 # Comment out disabling vbmeta
 vi BoardConfigLineage.mk
-# Edit key file to point to key
+# Add lines to point to avb key file
 vi BoardConfig-common.mk
+    # described here: (https://forum.xda-developers.com/t/guide-re-locking-the-bootloader-on-the-oneplus-8t-with-a-self-signed-build-of-los-18-1.4259409/)
+    BOARD_AVB_ALGORITHM := SHA256_RSA2048
+    BOARD_AVB_KEY_PATH := /home/<user>/.android-certs/avb.pem
+
 
 # 5a
 cd ~/android/lineage/18.1/device/google/redbull
@@ -166,6 +170,9 @@ cd ~/android/lineage/18.1/device/google/redbull
 vi BoardConfigLineage.mk
 # Edit key file to point to key
 vi BoardConfig-common.mk
+    # redbull (Pixel 4a 5G and 5a 5G) differences
+    BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := /home/<user>/.android-certs/avb.pem
+    BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 
 ##
 ## Android 11 / Graphene 11 (R)
