@@ -177,3 +177,31 @@ vi BoardConfig-common.mk
 ##
 ## Android 12 / Lineage 19.0 (S)
 ##
+# GMS Compat from ProtonAOSP and GrapheneOS
+# pulled from https://github.com/ProtonAOSP/android_frameworks_base/commit/05c0673d57ea9183eb04ef31573a96a9306c3b74
+cd ~/android/lineage/19.0/frameworks/base
+git fetch https://github.com/ProtonAOSP/android_frameworks_base
+git cherry-pick 8da5059b4b2e5f3422e0d9c88885857074381917 # err
+git cherry-pick 519097a839b8fe526d1860141f36ad982ffce100
+git cherry-pick 401af71cdb20fa1a2f27015050f4f95287164a00
+git cherry-pick 0ec99f729d622b1866a5ccc2f26475332b052acf # err
+git cherry-pick 1cc1ccdb774d652f7d7691676eaf8a336d56b057
+git cherry-pick 04fd4c0bb1b422a7c80407e71b35f6dfed0f2269
+git cherry-pick 2f07969b2f5659d6918df99790d929dd489ddba3
+git cherry-pick 439c9f8d2d0657607736c2d0106454eee51ada4a
+git cherry-pick 505e01a6c432a4cf626c1f3b8db685f464691cb6
+git cherry-pick 44ff930193adbc15eaca4c0a0eb13dafaa6ae0bc
+git cherry-pick f34f2af98d3dec63125b8547a455d8674931e238
+
+cd ~/android/lineage/19.0/libcore
+git fetch https://github.com/ProtonAOSP/android_libcore
+git cherry-pick 103e189e6c29cc4aea636d0b74c3b77251d1fd26
+git cherry-pick 7efa2d4e3d614200c67e6bc49574245f2bb191fc
+
+cd ~/android/lineage/19.0/packages/modules/Wifi
+git fetch https://github.com/ProtonAOSP/android_packages_modules_Wifi
+git cherry-pick 987265c71a27646196c55b827ca3b3577bfa5e6b
+
+cd ~/android/lineage/19.0/packages/modules/Connectivity
+git fetch https://github.com/ProtonAOSP/android_packages_modules_Connectivity
+git cherry-pick 2e336733833d75cd045f7bc8babfa5ffeed980cc
