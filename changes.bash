@@ -177,6 +177,9 @@ vi BoardConfig-common.mk
 ##
 ## Android 12 / Lineage 19.0 (S)
 ##
+
+### System-based changes
+
 # GMS Compat from ProtonAOSP and GrapheneOS
 # pulled from https://github.com/ProtonAOSP/android_frameworks_base/commit/05c0673d57ea9183eb04ef31573a96a9306c3b74
 cd ~/android/lineage/19.0/frameworks/base
@@ -205,3 +208,50 @@ git cherry-pick 987265c71a27646196c55b827ca3b3577bfa5e6b
 cd ~/android/lineage/19.0/packages/modules/Connectivity
 git fetch https://github.com/ProtonAOSP/android_packages_modules_Connectivity
 git cherry-pick 2e336733833d75cd045f7bc8babfa5ffeed980cc
+
+cd ~/android/lineage/19.0/packages/providers/DownloadProvider/
+git fetch https://github.com/ProtonAOSP/android_packages_providers_DownloadProvider
+git cherry-pick a4754df46fb1ee70b4d11a17462fde5ae769918d
+
+# add pre-built apps to build process (see commons-addition.mk for options)
+cd ~/android/lineage/19.0/vendor/lineage/config/
+vi common.mk
+
+# Blue Bootanimation
+cd ~/android/lineage/19.0/vendor/lineage/bootanimation
+cp ~/Downloads/bootanimation.tar ./
+
+# Updater URL
+cd ~/android/lineage/19.0/packages/apps/Updater/res/values/
+vi strings.xml
+
+### Device-specfic commits
+# Comment out reserved space for GApps if you build w/ GApps
+# 3a
+cd ~/android/lineage/19.0/device/google/bonito
+vi BoardConfigLineage.mk
+# 5a
+cd ~/android/lineage/19.0/device/google/redbull
+vi BoardConfigLineage.mk
+
+## AVB Pixels
+# 3a
+cd ~/android/lineage/19.0/device/google/bonito
+# Comment out disabling vbmeta
+vi BoardConfigLineage.mk
+# Add lines to point to avb key file
+vi BoardConfig-common.mk
+    # described here: (https://forum.xda-developers.com/t/guide-re-locking-the-bootloader-on-the-oneplus-8t-with-a-self-signed-build-of-los-18-1.4259409/)
+    BOARD_AVB_ALGORITHM := SHA256_RSA2048
+    BOARD_AVB_KEY_PATH := /home/<user>/.android-certs/avb.pem
+
+
+# 5a
+cd ~/android/lineage/19.0/device/google/redbull
+# Comment out disabling vbmeta
+vi BoardConfigLineage.mk
+# Edit key file to point to key
+vi BoardConfig-common.mk
+    # redbull (Pixel 4a 5G and 5a 5G) differences
+    BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := /home/<user>/.android-certs/avb.pem
+    BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
