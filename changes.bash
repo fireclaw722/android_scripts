@@ -196,6 +196,10 @@ git cherry-pick 505e01a6c432a4cf626c1f3b8db685f464691cb6
 git cherry-pick 44ff930193adbc15eaca4c0a0eb13dafaa6ae0bc
 git cherry-pick f34f2af98d3dec63125b8547a455d8674931e238
 
+# unremovable account bug
+git fetch https://github.com/GrapheneOS/platform_frameworks_base
+git cherry-pick 9c31dc89965361415bc4544feea5d2d90c84e912
+
 cd ~/android/lineage/19.0/libcore
 git fetch https://github.com/ProtonAOSP/android_libcore
 git cherry-pick 103e189e6c29cc4aea636d0b74c3b77251d1fd26
