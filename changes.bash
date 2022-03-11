@@ -191,7 +191,26 @@ git cherry-pick 2f07969b2f5659d6918df99790d929dd489ddba3
 git cherry-pick 439c9f8d2d0657607736c2d0106454eee51ada4a
 git cherry-pick 505e01a6c432a4cf626c1f3b8db685f464691cb6
 git cherry-pick 44ff930193adbc15eaca4c0a0eb13dafaa6ae0bc
-git cherry-pick f34f2af98d3dec63125b8547a455d8674931e238
+#git cherry-pick f34f2af98d3dec63125b8547a455d8674931e238
+
+git cherry-pick 5ed31495029d728adb217c51dd882a2a375c43a4
+git cherry-pick 701aed8396ded71c4e3c26e2f7d1a4ae2c6f51da
+git cherry-pick 6761f7eaf7720fba8142d19ecc1e8dc36ae9536e
+git cherry-pick 974c79da215bd55cb853da554012b3bf2e92cca6
+#git cherry-pick dbbe3e667ad12ed37c612a0a8c3e43d54c9f579b # Reverts f34f2a.. above
+git cherry-pick bbce77d8185f8708a37e4cd50864c57f65f34655
+git cherry-pick 155abca751aa8aeffd2a5b5d21eccfc1235fd0b2
+git cherry-pick 52d4af04a9f61af5a2e4d45b44aaf53a17b9a4a9
+git cherry-pick 6474ed8b3a2d8effa7741ecaae9ca4afed1ae9dd
+git cherry-pick ef7ad2ce3d191fb8040d81e26cbd7735d3df057d
+git cherry-pick 93814811282c3d00ded5dc24e06ca3d8c09810a1
+git cherry-pick cb40262fc07d1a86c542f85afeca0b35c067ed5f
+git cherry-pick b32793e8afa76539ddae66dab7ceb12917d4d0fe
+git cherry-pick 2eba4763238d56f24b2206019e767a46ac04feb3
+git cherry-pick 0895bbfc97803ad0ed8a8b42d3566bc1d68d4443
+git cherry-pick df41fcc5a11e72cbd942f2e6aaa3592e28a6a95f
+git cherry-pick 771d1568acc22f347a99fc7f141206a7c3e2edec
+git cherry-pick fcf80599c7b8dbcaa1af28550e3673da726e940b
 
 # unremovable account bug
 git fetch https://github.com/GrapheneOS/platform_frameworks_base
@@ -223,6 +242,11 @@ cd ~/android/lineage/19.0/vendor/lineage/overlay/common/frameworks/base/core/res
 vi config_webview_packages.xml
     # add
     <webviewprovider description="Bromite System Webview" packageName="org.bromite.webview" availableByDefault="true" />
+
+# Not-yet-merged LOS additions
+cd ~/android/lineage/19.0/
+vendor/lineage/build/tools/repopick.py -t twelve-monet
+vendor/lineage/build/tools/repopick.py -t qti-usb-1.3
 
 # Blue Bootanimation
 cd ~/android/lineage/19.0/vendor/lineage/bootanimation
