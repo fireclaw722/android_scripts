@@ -15,20 +15,27 @@ GAPPS_PRODUCT_PACKAGES += \
     GoogleCamera
 
 # Graphene extras and replacements
-# Product
+# Bromite
 PRODUCT_PACKAGES += \
     Bromite \
     BromiteWebView
 
-# System
+# Aurora
 PRODUCT_PACKAGES += \
     AuroraDroid \
     AuroraServices \
-    AuroraStore \
+    AuroraStore
+
+# Repainter integration
+PRODUCT_PACKAGES += \
+    RepainterServicePriv
+
+# Graphene Replacements
+PRODUCT_PACKAGES += \
     Etar \
     QKSMS \
     Vinyl
 
-# Device-specific
+# Pixel Active Edge (Graphene)
 PRODUCT_PACKAGES += \
     ElmyraService
