@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.7.1 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.8 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -22,7 +22,7 @@ setupEnv() {
         source build/envsetup.sh
 
         # Set buildtime and disable ccache
-        export updaterDate=$(date --date="4 hours ago" -u +%s) buildDate=$(date --date="4 hours ago" -u +%Y%m%d) USE_CCACHE=0 CCACHE_DISABLE=1
+        export updaterDate=$(date --date="4 hours ago" -u +%s) buildDate=$(date --date="4 hours ago" -u +%Y%m%d%H) USE_CCACHE=0 CCACHE_DISABLE=1 LINEAGE_VERSION_APPEND_TIME_OF_DAY=true
 
         # Ubuntu 16.04+ fix
         export LC_ALL=C
@@ -42,7 +42,7 @@ buildDevice() {
 
         # Breakfast
         #breakfast lineage_$device-user
-        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" ]] ; then
+        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" || "$romVers" = "19.1" ]] ; then
                 breakfast lineage_$device-userdebug
         else
                 breakfast lineage_$device-user
@@ -126,29 +126,45 @@ else
 fi
 
 # supported lineage versions
-if [[ "$2" = "18.1" ]] ; then
+if [[ "$2" = "18.1" || "$2" = "19.1" ]] ; then
         export romVers=$2
 else
         echo "Build version is required"
-        echo "Supported versions include 18.1"
+        echo "Supported versions include 18.1 | 19.1"
         exit
 fi
 
 # device per version
-if [[ "$device" = "barbet" || "$device" = "bonito" || "$device" = "oneplus3" || "$device" = "sargo" || "$device" = "victara" ]] ; then
+if [[ "$device" = "bonito" || "$device" = "oneplus3" || "$device" = "sargo" || "$device" = "victara" ]] ; then
         if ! [[ "$romVers" = "18.1" ]] ; then
                 echo "Build Version isn't supported for this device"
                 echo $device "only supports version 18.1"
                 exit
         fi
+elif [[ "$device" = "barbet" ]] ; then
+        if ! [[ "$romVers" = "18.1" || "$romVers" = "19.1" ]] ; then
+                echo "Build Version isn't supported for this device"
+                echo $device "supports versions 18.1 & 19.1"
+                exit
+        fi
 fi
 
 # supported build-types
-if [[ "$3" = "experimental" || "$3" = "snapshot" || "$3" = "release" || "$3" = "unofficial" ]] ; then
+if [[ "$3" = "experimental" || "$3" = "snapshot" || "$3" = "release" ]] ; then
+        if [[ "$romVers" = "19.1" ]] ; then
+                echo "Build type isn't supported for this version"
+                echo $device "version 19.1 only supports unofficial releasetype"
+                exit
+        fi
+        export releaseType=$3
+elif [[ "$3" = "unofficial" ]] ; then
         export releaseType=$3
 else
         echo "Release Type is not supported"
+        echo "For 18.1: "
         echo "Supported types are experimental | snapshot | release | unofficial"
+        echo "For 19.1: "
+        echo "Supported type is unofficial"
         exit
 fi
 
@@ -166,6 +182,9 @@ elif [[ "$releaseType" = "release" ]] ; then
 
         export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4
 else
+        if ! [[ "$romVers" = "19.1" ]] ; then
+                export TARGET_UNOFFICIAL_BUILD_ID=cerulean
+        fi
         export LINEAGE_EXTRAVERSION=cerulean
 fi
 

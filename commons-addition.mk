@@ -26,6 +26,10 @@ PRODUCT_PACKAGES += \
     AuroraServices \
     AuroraStore
 
+# GMSCompat
+PRODUCT_PACKAGES += \
+    GmsCompat
+
 # Repainter integration
 PRODUCT_PACKAGES += \
     RepainterServicePriv

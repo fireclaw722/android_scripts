@@ -104,8 +104,8 @@ git cherry-pick 7a420d2e0f5a710d194c714d111402e021379617
 git cherry-pick d59f9e0c7401484d5a617e55900a6b474a94a21e
 git cherry-pick ac61e010f27ad4f9f9bdacbfad824909dc219883
 # fix merge error
-# remove ONE of the lines containing "newPkg.isForceQueryable()"
-# remove ONE of the lines containing "newPkgSetting.forceQueryableOverride"
+# remove last of the lines containing "newPkg.isForceQueryable()"
+# remove first of the lines containing "newPkgSetting.forceQueryableOverride"
 ## keep the other (of both)
 git cherry-pick 100407a57ef4018a507931e51d80c15bed2b153a
 git cherry-pick 9723fa311dc82c546028f20f1c6766692bc36a59
@@ -127,7 +127,7 @@ git cherry-pick 68603ce63a90d452f233731e4ddf9b12d68c1749
 git cherry-pick 3aff70d2b02cc68540208f132d9f8178ecc4c2f9
 git cherry-pick 2646990f914c8ad38f925bfd73249b9b803e229f
 git cherry-pick 02044c1fb2c740f180a77bec5896a61a37325b96
-# fix merge error
+# fix merge error; may not be a merge error depending on first error changes/fixes
 # Same issue as ac61e010f27ad4f9f9bdacbfad824909dc219883
 # fix the same way; remove the extra calls
 
@@ -139,6 +139,11 @@ cd ~/android/lineage/18.1/libcore
 git fetch https://github.com/ProtonAOSP/android_libcore rvc
 git cherry-pick af740ed9fae7d6ec494b98b7eb6960ccd49b4076
 git cherry-pick 55f4cb6cd74191178263a492fecab2419c19715f
+
+# Secondary User Logout
+cd ~/android/lineage/18.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t RQ3A.211001.001.2021100606
+git cherry-pick f1d6d41b4fa836b7b0953eb3b24f3af6e1d5cbcf
 
 ### Device-specfic commits
 # Comment out reserved space for GApps if you build w/ GApps
@@ -172,113 +177,125 @@ vi BoardConfig-common.mk
     BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 
 ##
-## Android 12 / Lineage 19.0 (S)
+## Android 12/12L / Lineage 19.1 (S)
 ##
 
 ### System-based changes
 
 # GMS Compat from ProtonAOSP and GrapheneOS
 # pulled from https://github.com/ProtonAOSP/android_frameworks_base/commit/05c0673d57ea9183eb04ef31573a96a9306c3b74
-cd ~/android/lineage/19.0/frameworks/base
-git fetch https://github.com/ProtonAOSP/android_frameworks_base
-git cherry-pick 8da5059b4b2e5f3422e0d9c88885857074381917 # err
-git cherry-pick 519097a839b8fe526d1860141f36ad982ffce100
-git cherry-pick 401af71cdb20fa1a2f27015050f4f95287164a00
-git cherry-pick 0ec99f729d622b1866a5ccc2f26475332b052acf # err
-git cherry-pick 1cc1ccdb774d652f7d7691676eaf8a336d56b057
-git cherry-pick 04fd4c0bb1b422a7c80407e71b35f6dfed0f2269
-git cherry-pick 2f07969b2f5659d6918df99790d929dd489ddba3
-git cherry-pick 439c9f8d2d0657607736c2d0106454eee51ada4a
-git cherry-pick 505e01a6c432a4cf626c1f3b8db685f464691cb6
-git cherry-pick 44ff930193adbc15eaca4c0a0eb13dafaa6ae0bc
-#git cherry-pick f34f2af98d3dec63125b8547a455d8674931e238
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ1D.220205.004.2022030501 # update with each Graphene release
+git cherry-pick 099977ecc80c71bcfe4f5e4003481c237757360f 
+# fix merge error
+# remove line containing "OTHER_SENSORS" AS WELL AS the following line
+## That is a GrapheneOS and ProtonAOSP addition
+git cherry-pick 7118b63e37b9f328a20084c72c888ec01a86461b
+git cherry-pick fd7495bab4b70eb4f86cb207462bc21b156ac8a5
+git cherry-pick 6458e6bbd97cb4192e15b811394d640563018e3a
+git cherry-pick 8ec12395dfc539ac3e49ae2e4e6f1543ff8e5e39 # reverted by 6626ff
+git cherry-pick 322690e13b30bb9f4524464ba19bb3a56cbabd49
+# fix merge error
+# remove line containing "OTHER_SENSORS" AS WELL AS the following line
+## That is a GrapheneOS and ProtonAOSP addition
+git cherry-pick 8e051beb9781669aa6de37a6a105fca27a3cd957
+git cherry-pick 6b3a0475e7b35141a087ed8b56235629a821247a
+git cherry-pick d8b69c204c52fdcaee89f403a652c577400a475d
+git cherry-pick deb1c004cad431d3a966722b50167078b595cb92
+git cherry-pick e5c80d6237d8b55a234855ceceedd3c7b2de738f
+git cherry-pick 7c7c63e5638fcbf550f69413a47adc8d386f8d1c
+git cherry-pick 57dbb9c579454b1bc88502f807a46035afdda0d0
+git cherry-pick c156cdeb52f376aa3e064dd118830a75ad6a7586
+git cherry-pick ec7fad7e831007ee10a62d972fd7c8279fc63b68
+git cherry-pick 31226f9c6e22cf1a24579c0e68957d4842285496
+git cherry-pick efee7d2516c3c6d763811a8c4acc5599f5836ede
+git cherry-pick 347eb2ba09aa7cd48eefa88c3bd962c5e667c5f7
+git cherry-pick eedd80c79e618d887f43068226054e6d9dc58c74
+git cherry-pick 6626ff410e1b0b3b29be3b873019f693f4745a13 # reverts 8ec123
+git cherry-pick eb02b7b09dbfc8f6a02bdbd4fa195640fc5d2fe0
+git cherry-pick dcfab8a72e7eb4f5847a60bdcf66e1998b0d1a30
+git cherry-pick 79b22b7620fcf29f3a2934a548f748a1a97bc1c8
+git cherry-pick 4691391765e0de8de9d28efe90d1305810f20671
+git cherry-pick f374104b4242247d38bd716a5b11c222459df445
+git cherry-pick 7828951be236d6fe152c12b0e1859d8c1a3517e1
+git cherry-pick 8232983fd09711fd383b551437dea7d88700c145
+git cherry-pick d195c986c64e05684008e549d25ca3a796573428
+git cherry-pick 08e2baa5899e58b55479f8199ef0896690256f2d
+git cherry-pick 925b7efa1794796b63145525e1306bb5834edd71
+git cherry-pick 9e3add169c32edce3c19678073578158aeb79e60
+git cherry-pick d5d83811fcafa537dea71f920f9c6d792c15a234
 
-git cherry-pick 5ed31495029d728adb217c51dd882a2a375c43a4
-git cherry-pick 701aed8396ded71c4e3c26e2f7d1a4ae2c6f51da
-git cherry-pick 6761f7eaf7720fba8142d19ecc1e8dc36ae9536e
-git cherry-pick 974c79da215bd55cb853da554012b3bf2e92cca6
-#git cherry-pick dbbe3e667ad12ed37c612a0a8c3e43d54c9f579b # Reverts f34f2a.. above
-git cherry-pick bbce77d8185f8708a37e4cd50864c57f65f34655
-git cherry-pick 155abca751aa8aeffd2a5b5d21eccfc1235fd0b2
-git cherry-pick 52d4af04a9f61af5a2e4d45b44aaf53a17b9a4a9
-git cherry-pick 6474ed8b3a2d8effa7741ecaae9ca4afed1ae9dd
-git cherry-pick ef7ad2ce3d191fb8040d81e26cbd7735d3df057d
-git cherry-pick 93814811282c3d00ded5dc24e06ca3d8c09810a1
-git cherry-pick cb40262fc07d1a86c542f85afeca0b35c067ed5f
-git cherry-pick b32793e8afa76539ddae66dab7ceb12917d4d0fe
-git cherry-pick 2eba4763238d56f24b2206019e767a46ac04feb3
-git cherry-pick 0895bbfc97803ad0ed8a8b42d3566bc1d68d4443
-git cherry-pick df41fcc5a11e72cbd942f2e6aaa3592e28a6a95f
-git cherry-pick 771d1568acc22f347a99fc7f141206a7c3e2edec
-git cherry-pick fcf80599c7b8dbcaa1af28550e3673da726e940b
+cd ~/android/lineage/19.1/packages/providers/DownloadProvider/
+git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SQ1D.220205.004.2022030501
+git cherry-pick 602698c1de0df91d84df6f602831b1937a59d004
 
-# unremovable account bug
-git fetch https://github.com/GrapheneOS/platform_frameworks_base
-git cherry-pick 9c31dc89965361415bc4544feea5d2d90c84e912
+cd ~/android/lineage/19.1/libcore
+git fetch https://github.com/GrapheneOS/platform_libcore -t SQ1D.220205.004.2022030501
+git cherry-pick 413f7c0a51f9909d8c9ba87f26826ed5ab3ccafd
+git cherry-pick ce58113a964026773cf5547442fd4575540b3496
 
-cd ~/android/lineage/19.0/libcore
-git fetch https://github.com/ProtonAOSP/android_libcore
-git cherry-pick 103e189e6c29cc4aea636d0b74c3b77251d1fd26
-git cherry-pick 7efa2d4e3d614200c67e6bc49574245f2bb191fc
+cd ~/android/lineage/19.1/packages/modules/Wifi
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Wifi -t SQ1D.220205.004.2022030501
+git cherry-pick 19700fedec1372a5baf32a2537cbb3c7a0dc30ba
 
-cd ~/android/lineage/19.0/packages/modules/Wifi
-git fetch https://github.com/ProtonAOSP/android_packages_modules_Wifi
-git cherry-pick 987265c71a27646196c55b827ca3b3577bfa5e6b
+cd ~/android/lineage/19.1/packages/modules/Connectivity
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Connectivity -t SQ1D.220205.004.2022030501
+git cherry-pick 9bc95db37f123fd8258f3f32105872df62cda74a
 
-cd ~/android/lineage/19.0/packages/modules/Connectivity
-git fetch https://github.com/ProtonAOSP/android_packages_modules_Connectivity
-git cherry-pick 2e336733833d75cd045f7bc8babfa5ffeed980cc
+# Privacy Indicator for Location
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ1D.220205.004.2022030501
+git cherry-pick bc4accfb0b546112d670a15e977684acf9710b7a
 
-cd ~/android/lineage/19.0/packages/providers/DownloadProvider/
-git fetch https://github.com/ProtonAOSP/android_packages_providers_DownloadProvider
-git cherry-pick a4754df46fb1ee70b4d11a17462fde5ae769918d
+# Secondary User Logout
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ1D.220205.004.2022030501
+git cherry-pick efc1a391132e9ab103b04c9df8a71880a9a4bfed
+
+# Not-yet-merged LOS additions
+cd ~/android/lineage/19.1/
+vendor/lineage/build/tools/repopick.py -t apps-material-you # LatinIME fails
+vendor/lineage/build/tools/repopick.py -t qti-usb-1.3
+vendor/lineage/build/tools/repopick.py -t twelve-suw-redesign # external-setupcompat fails
+    vendor/lineage/build/tools/repopick.py -P external/setupcompat/ 326705
+    vendor/lineage/build/tools/repopick.py -P external/setupcompat/ 326706
+    vendor/lineage/build/tools/repopick.py -P external/setupcompat/ 326707
+vendor/lineage/build/tools/repopick.py -t trust-restrict-usb
+vendor/lineage/build/tools/repopick.py 324844 # Gestures over 3-button Nav
+
+# Raise maximum users from 4 to 16
+cd ~/android/lineage/19.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values
+vi config.xml
+    # Edit
+    <integer name="config_multiuserMaximumUsers">16</integer>
 
 # add pre-built apps to build process (see commons-addition.mk for options)
-cd ~/android/lineage/19.0/vendor/lineage/config/
+cd ~/android/lineage/19.1/vendor/lineage/config/
 vi common.mk
 
 # Allow Bromite Webview (since package name change)
-cd ~/android/lineage/19.0/vendor/lineage/overlay/common/frameworks/base/core/res/res/xml
+cd ~/android/lineage/19.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/xml
 vi config_webview_packages.xml
     # add
     <webviewprovider description="Bromite System Webview" packageName="org.bromite.webview" availableByDefault="true" />
 
-# Not-yet-merged LOS additions
-cd ~/android/lineage/19.0/
-vendor/lineage/build/tools/repopick.py -t twelve-monet
-vendor/lineage/build/tools/repopick.py -t qti-usb-1.3
-
 # Blue Bootanimation
-cd ~/android/lineage/19.0/vendor/lineage/bootanimation
+cd ~/android/lineage/19.1/vendor/lineage/bootanimation
 cp ~/Downloads/bootanimation.tar ./
 
 # Updater URL
-cd ~/android/lineage/19.0/packages/apps/Updater/res/values/
+cd ~/android/lineage/19.1/packages/apps/Updater/res/values/
 vi strings.xml
 
 ### Device-specfic commits
 # Comment out reserved space for GApps if you build w/ GApps
-# 3a
-cd ~/android/lineage/19.0/device/google/bonito
-vi BoardConfigLineage.mk
 # 5a
-cd ~/android/lineage/19.0/device/google/redbull
+cd ~/android/lineage/19.1/device/google/redbull
 vi BoardConfigLineage.mk
 
 ## AVB Pixels
-# 3a
-cd ~/android/lineage/19.0/device/google/bonito
-# Comment out disabling vbmeta
-vi BoardConfigLineage.mk
-# Add lines to point to avb key file
-vi BoardConfig-common.mk
-    # described here: (https://forum.xda-developers.com/t/guide-re-locking-the-bootloader-on-the-oneplus-8t-with-a-self-signed-build-of-los-18-1.4259409/)
-    BOARD_AVB_ALGORITHM := SHA256_RSA2048
-    BOARD_AVB_KEY_PATH := /home/<user>/.android-certs/avb.pem
-
-
 # 5a
-cd ~/android/lineage/19.0/device/google/redbull
+cd ~/android/lineage/19.1/device/google/redbull
 # Comment out disabling vbmeta
 vi BoardConfigLineage.mk
 # Edit key file to point to key
