@@ -185,62 +185,84 @@ vi BoardConfig-common.mk
 # GMS Compat from ProtonAOSP and GrapheneOS
 # pulled from https://github.com/ProtonAOSP/android_frameworks_base/commit/05c0673d57ea9183eb04ef31573a96a9306c3b74
 cd ~/android/lineage/19.1/frameworks/base
-git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ1D.220205.004.2022030501 # update with each Graphene release
-git cherry-pick 099977ecc80c71bcfe4f5e4003481c237757360f 
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SP2A.220505.002.2022051100 # update with each Graphene release
+git cherry-pick 0a2af569df39511922d90fd5aeefe1cc5960244e 
 # fix merge error
 # remove line containing "OTHER_SENSORS" AS WELL AS the following line
 ## That is a GrapheneOS and ProtonAOSP addition
-git cherry-pick 7118b63e37b9f328a20084c72c888ec01a86461b
-git cherry-pick fd7495bab4b70eb4f86cb207462bc21b156ac8a5
-git cherry-pick 6458e6bbd97cb4192e15b811394d640563018e3a
-git cherry-pick 8ec12395dfc539ac3e49ae2e4e6f1543ff8e5e39 # reverted by 6626ff
-git cherry-pick 322690e13b30bb9f4524464ba19bb3a56cbabd49
+git cherry-pick 0d8be8cd6849f33f97effde15410c718eedbe480
+git cherry-pick c33b8d439dc8ff2a75b37743cf32e4480a484dd4
+git cherry-pick c529ce04fb37a4b64198dc0aaa2d8f9f9dc1cfe5
+git cherry-pick 8fa2eb15669e5fe62557573c360580fc5839a48f
+git cherry-pick 80f8c1f71b8d631e16979545d72739ca60fd457f
 # fix merge error
 # remove line containing "OTHER_SENSORS" AS WELL AS the following line
 ## That is a GrapheneOS and ProtonAOSP addition
-git cherry-pick 8e051beb9781669aa6de37a6a105fca27a3cd957
-git cherry-pick 6b3a0475e7b35141a087ed8b56235629a821247a
-git cherry-pick d8b69c204c52fdcaee89f403a652c577400a475d
-git cherry-pick deb1c004cad431d3a966722b50167078b595cb92
-git cherry-pick e5c80d6237d8b55a234855ceceedd3c7b2de738f
-git cherry-pick 7c7c63e5638fcbf550f69413a47adc8d386f8d1c
-git cherry-pick 57dbb9c579454b1bc88502f807a46035afdda0d0
-git cherry-pick c156cdeb52f376aa3e064dd118830a75ad6a7586
-git cherry-pick ec7fad7e831007ee10a62d972fd7c8279fc63b68
-git cherry-pick 31226f9c6e22cf1a24579c0e68957d4842285496
-git cherry-pick efee7d2516c3c6d763811a8c4acc5599f5836ede
-git cherry-pick 347eb2ba09aa7cd48eefa88c3bd962c5e667c5f7
-git cherry-pick eedd80c79e618d887f43068226054e6d9dc58c74
-git cherry-pick 6626ff410e1b0b3b29be3b873019f693f4745a13 # reverts 8ec123
-git cherry-pick eb02b7b09dbfc8f6a02bdbd4fa195640fc5d2fe0
-git cherry-pick dcfab8a72e7eb4f5847a60bdcf66e1998b0d1a30
-git cherry-pick 79b22b7620fcf29f3a2934a548f748a1a97bc1c8
-git cherry-pick 4691391765e0de8de9d28efe90d1305810f20671
-git cherry-pick f374104b4242247d38bd716a5b11c222459df445
-git cherry-pick 7828951be236d6fe152c12b0e1859d8c1a3517e1
-git cherry-pick 8232983fd09711fd383b551437dea7d88700c145
-git cherry-pick d195c986c64e05684008e549d25ca3a796573428
-git cherry-pick 08e2baa5899e58b55479f8199ef0896690256f2d
-git cherry-pick 925b7efa1794796b63145525e1306bb5834edd71
-git cherry-pick 9e3add169c32edce3c19678073578158aeb79e60
-git cherry-pick d5d83811fcafa537dea71f920f9c6d792c15a234
+git cherry-pick 730a12600232e5527685a0a966f06c78c16a5567
+git cherry-pick 56ffc332d5fc82ffa9f51b2023172723b7e1cea1
+git cherry-pick 0db65e613ef1ee8c25e944a9b8de619ff85d6c2f
+git cherry-pick 0d1c7681f1208a711a1b2c6b54cbe5d46bc52c2c
+git cherry-pick 85b761a7f04b0d594e89403f3566d31765634bc4
+git cherry-pick 30cfe2ea46ea24be4becbc7e0f36286c21dbe7e3
+git cherry-pick e53b8dbdb9494dbbd3e5e637d7cb6010132a3c63
+git cherry-pick 0c2fb7574bff3a9a2bef30b232aa8ee4b2ccf59b
+git cherry-pick 4bc376622e41d26cc955139ddf2da0b9ad3570ae
+git cherry-pick c5712c74553c51490e4b23f0bdaf5965fc1a8159
+git cherry-pick 224f6a33ff86836a6326497880799f25c9efed32
+git cherry-pick 22f279d202ea8737f157a4647aeaf0dabb2c58f6
+git cherry-pick 93934b97ab7291c9491b27f2b6b9440aa9afdef8
+git cherry-pick 82d072125312fdd482d6abb3e6ca2a345d4a863a
+git cherry-pick d4c3d5926d45d4211c422c8526425ded1558a5f6
+git cherry-pick 462fe6e78dcfd6668113b6e9e3cf5949b7a1da97
+git cherry-pick fe2b588c467ebace6f9fce86e9e9caeb52108851
+git cherry-pick 5a2e4a5d0d6a1c276d9845110c02df54f5b45994
+git cherry-pick 74176bc724f83ecea19f6c6655a36a205e4d5469
+git cherry-pick 252dad3d0cff70e555fb4ea528602d5be6e9ec12
+git cherry-pick e5c749c8d7806a6c3f0732c4a288952e56e45e91
+git cherry-pick 97551c5d7f2fa3f7135939ffc072a16d5bead1bf
+git cherry-pick 169ae107d1850d2dfdc9403bf4a4d26c6b837273
+git cherry-pick 6417b476dd38c754fb8e606aeb38e607ea3f1117
+git cherry-pick 0081b26c8a7aa31eff30f0f7d69144384f293e01
+git cherry-pick c5d85edd04d69adb47d0b8d924a973a0d8038e5d
+git cherry-pick 422a6cf6502027216164c2e64d055991c08b0b6a
+git cherry-pick 59aeb4b41aaeafb80c3bc8ae4a2dde9af6a3ddba
+git cherry-pick 04d67ab3f1cf01a7e9545f15bdd1b131edcc7681
+git cherry-pick 014097b47058bbcea082fb986ffc6dbf4a1498a3
+git cherry-pick 9b3bf71dc66b00747eebffa95d51f3790ae59480
+git cherry-pick c3572c5232446eb12c1c09a74d21a1810444a9c5
+git cherry-pick 5d6ed286c3255414b7ff25b744be9d93fb709d72
+git cherry-pick 3ffd351b28e4f12ee01437ebed0f554e1fb461f0
+git cherry-pick 3dcbc786046a2e62e583ef84b99961070456ade2
+git cherry-pick ce75428f5bc1be480bf5bffcc93fad3043be43bf
+git cherry-pick 484e2e0fbc57193814c55cf6da554aa920786992
+git cherry-pick 24aaaf84e4f3f942265e1d90c10cd5e65ee28c8b
+git cherry-pick 13f84229d04e2ce29715569064116fbf9b576175
 
 cd ~/android/lineage/19.1/packages/providers/DownloadProvider/
-git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SQ1D.220205.004.2022030501
-git cherry-pick 602698c1de0df91d84df6f602831b1937a59d004
+git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SP2A.220505.002.2022051100
+git cherry-pick 0bec1645c6f4cbcb3e58b1ff24c40479a0119c5f
 
 cd ~/android/lineage/19.1/libcore
-git fetch https://github.com/GrapheneOS/platform_libcore -t SQ1D.220205.004.2022030501
-git cherry-pick 413f7c0a51f9909d8c9ba87f26826ed5ab3ccafd
-git cherry-pick ce58113a964026773cf5547442fd4575540b3496
+git fetch https://github.com/GrapheneOS/platform_libcore -t SP2A.220505.002.2022051100
+git cherry-pick 5567b6158b4b6e8f27515d3d05cd54fb62c0f60d
+git cherry-pick 20cd53d3ffcc4e627d04b9aa3ac40ec7d4b34ef7
+git cherry-pick 38c7f627556d68e78630ed811007794f3c1940ff
+git cherry-pick 31343fb1678d12b219cca2f0b7f0648622a3f3be
+git cherry-pick a7f85eea061d7db75fe89e68ce6ad7fddb7bfab9
+git cherry-pick 1cee508a6ec5f51f3c84d0b4bd9579ba1e1aeecd
 
 cd ~/android/lineage/19.1/packages/modules/Wifi
-git fetch https://github.com/GrapheneOS/platform_packages_modules_Wifi -t SQ1D.220205.004.2022030501
-git cherry-pick 19700fedec1372a5baf32a2537cbb3c7a0dc30ba
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Wifi -t SP2A.220505.002.2022051100
+git cherry-pick 7ddba360b5e0a617cf884a4e75cd8afb7e0534de
+git cherry-pick 0b69608634b97ecad9b0545d1b9ca0e901e9ed0f
 
 cd ~/android/lineage/19.1/packages/modules/Connectivity
-git fetch https://github.com/GrapheneOS/platform_packages_modules_Connectivity -t SQ1D.220205.004.2022030501
-git cherry-pick 9bc95db37f123fd8258f3f32105872df62cda74a
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Connectivity -t SP2A.220505.002.2022051100
+git cherry-pick 039c4ab8f52da3142581bcf54a7719b47a360045
+
+cd ~/android/lineage/19.1/packages/modules/Permission
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Permission -t SP2A.220505.002.2022051100
+git cherry-pick 158f190dd2586dc3f24dfb69083e96e2f2f43a0e
 
 # Privacy Indicator for Location
 cd ~/android/lineage/19.1/frameworks/base
@@ -249,8 +271,8 @@ git cherry-pick bc4accfb0b546112d670a15e977684acf9710b7a
 
 # Secondary User Logout
 cd ~/android/lineage/19.1/frameworks/base
-git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ1D.220205.004.2022030501
-git cherry-pick efc1a391132e9ab103b04c9df8a71880a9a4bfed
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SP2A.220505.002.2022051100
+git cherry-pick 37acbdd4ed80a6f753982e58665eaa20a619f455
 
 # Not-yet-merged LOS additions
 cd ~/android/lineage/19.1/
