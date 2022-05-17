@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <!-- Vendor Blobs -->
-    <project name="TheMuppets/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" revision="lineage-18.1" />
-    <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" revision="lineage-18.1" />
-    <project name="TheMuppets/proprietary_vendor_google" path="vendor/google" remote="github" revision="lineage-18.1" />
+    <project name="TheMuppets/proprietary_vendor_oneplus" path="vendor/oneplus" remote="github" />
+    <project name="TheMuppets/proprietary_vendor_motorola" path="vendor/motorola" remote="github" />
+    <project name="TheMuppets/proprietary_vendor_google" path="vendor/google" remote="github" />
 </manifest>
