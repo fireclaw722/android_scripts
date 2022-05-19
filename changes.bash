@@ -198,6 +198,7 @@ git cherry-pick 80f8c1f71b8d631e16979545d72739ca60fd457f
 # fix merge error
 # remove line containing "OTHER_SENSORS" AS WELL AS the following line
 ## That is a GrapheneOS and ProtonAOSP addition
+git cherry-pick 9a6fa6beec787bf42f3db836094d8379fcef539a
 git cherry-pick 730a12600232e5527685a0a966f06c78c16a5567
 git cherry-pick 56ffc332d5fc82ffa9f51b2023172723b7e1cea1
 git cherry-pick 0db65e613ef1ee8c25e944a9b8de619ff85d6c2f
@@ -237,6 +238,45 @@ git cherry-pick ce75428f5bc1be480bf5bffcc93fad3043be43bf
 git cherry-pick 484e2e0fbc57193814c55cf6da554aa920786992
 git cherry-pick 24aaaf84e4f3f942265e1d90c10cd5e65ee28c8b
 git cherry-pick 13f84229d04e2ce29715569064116fbf9b576175
+git cherry-pick 0f11747125192aaf592a8ba8d5537cf815a755dc
+git cherry-pick e5e7a1b50f2d37c17b4fdb953451a00fcda8d6ce
+git cherry-pick b736eebf900f85b3dc59a5b1e9364ee30fad4d18
+git cherry-pick 9eda6555257bcdc30a9b2fdcb334b1505dca9034
+git cherry-pick cafeae91c017e53f662b743c26769b17b1cc9798
+git cherry-pick 03143bde4dc8dad89d34cc8a637e0746d1d3f922
+git cherry-pick 70b2b47dcdcdcea4ebcb6c7589d56ea92e1ffae2
+git cherry-pick 5611e97b8fb1e3c52e908fe1bb4b0b36b1eb728c
+git cherry-pick 22583ba16fe4c73151795b53082f694d75382154
+git cherry-pick 020010d3a0c89aea8ebb061215321def68992eae
+git cherry-pick 24c85c579377d94b18dfb042ff3f1d646d4f735f
+git cherry-pick 9e73778b0e2830ef1722a1b6faecac9f40e342b0
+git cherry-pick 5467d304e405ee2c3aeeaa371621794e49b846aa
+git cherry-pick c87f3134acc25dc722a9d6f723726df9f86b83bd
+git cherry-pick 7e6ea7c22d24975a7daa22debfd9c61bfa7ee993
+git cherry-pick 845f037b8c848cbc5772255a5971094e34aced84
+git cherry-pick d8713709cdbb4746ccb86ff5f680637b6a94e087
+git cherry-pick 94af229d3d558781cfad09324542d43ca59b1356
+git cherry-pick a8c45f0c5fb3fd3b2c875aeeafccaa5784b78c1c
+git cherry-pick 85b499d3f00af2e0061a05e6f501f409f11a6ec7
+git cherry-pick f7a43fbaa081eb94184f85ad5fb98d7ea5a36d96
+git cherry-pick ed42b8c6b0a54610440cbd39073a7006a0939771
+git cherry-pick a380397b3660ab37386e17da76c161608b9bb116
+git cherry-pick ceead9329eddf99da69b7492f4965a63fd9c7cce
+git cherry-pick 9b3ab2f5e2f997f3b69cfd0271384be33e83baa2
+git cherry-pick 32d2c34ba1673e4865247ccfdf8ac9072132691e
+git cherry-pick fdd43fd6a33795aa68d46effbfdd9375dcae688c
+git cherry-pick 2227de8b7d8e0b67b895c15be054c656c3ee128e
+git cherry-pick 7c08368758295296262901be989b9870d078cbbb
+git cherry-pick 8fb8ee704c9ad5c4057e6991f9edc2fbfae2ad8a
+git cherry-pick 2e4645698be51a34b755367cb46053120b633bc6
+git cherry-pick b4203210568835751d5dd0bebb8e53bf58833f10
+git cherry-pick 1a3741770ea3f486d0989f729b4dea1f61c6669e
+git cherry-pick e262ed16669c0ae314f276e3bbcc9b506df415fe
+git cherry-pick 1f88e98b91d41282716669903930ab239d0b8379
+git cherry-pick 75a7cc382f70cd5173cd581d67e5ba3238f9b479
+git cherry-pick 41a47ed8ae5061eaf8e18281467890c55d9f9c85
+git cherry-pick 71e23bc32d12464f4a003fb5832d582b6c1e4c04
+git cherry-pick a1c4a51f2601e805dfb2bc910e81042557171616
 
 cd ~/android/lineage/19.1/packages/providers/DownloadProvider/
 git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SP2A.220505.002.2022051100
