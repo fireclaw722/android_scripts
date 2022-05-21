@@ -219,6 +219,7 @@ git cherry-pick fe2b588c467ebace6f9fce86e9e9caeb52108851
 git cherry-pick 5a2e4a5d0d6a1c276d9845110c02df54f5b45994
 git cherry-pick 74176bc724f83ecea19f6c6655a36a205e4d5469
 git cherry-pick 252dad3d0cff70e555fb4ea528602d5be6e9ec12
+git cherry-pick 2f48a174de97045550a3b4d5774afacbbf08fc88
 git cherry-pick e5c749c8d7806a6c3f0732c4a288952e56e45e91
 git cherry-pick 97551c5d7f2fa3f7135939ffc072a16d5bead1bf
 git cherry-pick 169ae107d1850d2dfdc9403bf4a4d26c6b837273
@@ -238,11 +239,11 @@ git cherry-pick ce75428f5bc1be480bf5bffcc93fad3043be43bf
 git cherry-pick 484e2e0fbc57193814c55cf6da554aa920786992
 git cherry-pick 24aaaf84e4f3f942265e1d90c10cd5e65ee28c8b
 git cherry-pick 13f84229d04e2ce29715569064116fbf9b576175
+git cherry-pick cafeae91c017e53f662b743c26769b17b1cc9798
 git cherry-pick 0f11747125192aaf592a8ba8d5537cf815a755dc
 git cherry-pick e5e7a1b50f2d37c17b4fdb953451a00fcda8d6ce
 git cherry-pick b736eebf900f85b3dc59a5b1e9364ee30fad4d18
 git cherry-pick 9eda6555257bcdc30a9b2fdcb334b1505dca9034
-git cherry-pick cafeae91c017e53f662b743c26769b17b1cc9798
 git cherry-pick 03143bde4dc8dad89d34cc8a637e0746d1d3f922
 git cherry-pick 70b2b47dcdcdcea4ebcb6c7589d56ea92e1ffae2
 git cherry-pick 5611e97b8fb1e3c52e908fe1bb4b0b36b1eb728c
@@ -306,8 +307,8 @@ git cherry-pick 158f190dd2586dc3f24dfb69083e96e2f2f43a0e
 
 # Privacy Indicator for Location
 cd ~/android/lineage/19.1/frameworks/base
-git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ1D.220205.004.2022030501
-git cherry-pick bc4accfb0b546112d670a15e977684acf9710b7a
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SP2A.220505.002.2022051100
+git cherry-pick ba676eb0fb3b1baf5149a8135169143b2dcc52bd
 
 # Secondary User Logout
 cd ~/android/lineage/19.1/frameworks/base
