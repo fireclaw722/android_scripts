@@ -26,9 +26,13 @@ PRODUCT_PACKAGES += \
     AuroraServices \
     AuroraStore
 
-# GMSCompat
+# GMSCompat from GrapheneOS
 PRODUCT_PACKAGES += \
     GmsCompat
+
+# GrapheneOS Apps
+PRODUCT_PACKAGES += \
+    GrapheneApps
 
 # Repainter integration
 PRODUCT_PACKAGES += \

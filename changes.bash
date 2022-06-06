@@ -315,17 +315,6 @@ cd ~/android/lineage/19.1/frameworks/base
 git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SP2A.220505.002.2022051100
 git cherry-pick 37acbdd4ed80a6f753982e58665eaa20a619f455
 
-# Not-yet-merged LOS additions
-cd ~/android/lineage/19.1/
-vendor/lineage/build/tools/repopick.py -t apps-material-you # LatinIME fails
-vendor/lineage/build/tools/repopick.py -t qti-usb-1.3
-vendor/lineage/build/tools/repopick.py -t twelve-suw-redesign # external-setupcompat fails
-    vendor/lineage/build/tools/repopick.py -P external/setupcompat/ 326705
-    vendor/lineage/build/tools/repopick.py -P external/setupcompat/ 326706
-    vendor/lineage/build/tools/repopick.py -P external/setupcompat/ 326707
-vendor/lineage/build/tools/repopick.py -t trust-restrict-usb
-vendor/lineage/build/tools/repopick.py 324844 # Gestures over 3-button Nav
-
 # Raise maximum users from 4 to 16
 cd ~/android/lineage/19.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values
 vi config.xml
@@ -344,7 +333,7 @@ vi config_webview_packages.xml
 
 # Blue Bootanimation
 cd ~/android/lineage/19.1/vendor/lineage/bootanimation
-cp ~/Downloads/bootanimation.tar ./
+cp ~/Downloads/bootanimation.tar ./bootanimation.tar 
 
 # Updater URL
 cd ~/android/lineage/19.1/packages/apps/Updater/res/values/

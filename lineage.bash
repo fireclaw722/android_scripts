@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.8 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.8.3 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -27,6 +27,12 @@ setupEnv() {
         # Ubuntu 16.04+ fix
         export LC_ALL=C
 
+        # Beckham hates Aurora Store and Aurora Store only
+        # Throws error
+        if [[ "$device" = "beckham" ]] ; then
+                export RELAX_USES_LIBRARY_CHECK=true
+        fi
+
         # Set Filename
         if [[ "$releaseType" = "experimental" ]] ; then
                 export fileName=$romName-$romVers-$buildDate-$releaseType-$device
@@ -42,7 +48,7 @@ buildDevice() {
 
         # Breakfast
         #breakfast lineage_$device-user
-        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" || "$romVers" = "19.1" ]] ; then
+        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" || "$device" = "beckham" ]] ; then
                 breakfast lineage_$device-userdebug
         else
                 breakfast lineage_$device-user
@@ -117,7 +123,7 @@ saveFiles() {
 
 ## Enter main()
 # supported devices
-if [[ "$1" = "barbet" || "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
+if [[ "$1" = "barbet" || "$1" = "beckham" || "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
         export device=$1
 else
         echo "Device" $1 "is currently not supported"
@@ -135,13 +141,13 @@ else
 fi
 
 # device per version
-if [[ "$device" = "bonito" || "$device" = "oneplus3" || "$device" = "sargo" || "$device" = "victara" ]] ; then
+if [[ "$device" = "oneplus3" || "$device" = "victara" ]] ; then
         if ! [[ "$romVers" = "18.1" ]] ; then
                 echo "Build Version isn't supported for this device"
                 echo $device "only supports version 18.1"
                 exit
         fi
-elif [[ "$device" = "barbet" ]] ; then
+elif [[ "$device" = "barbet" || "$device" = "beckham" || "$device" = "bonito" || "$device" = "sargo" ]] ; then
         if ! [[ "$romVers" = "18.1" || "$romVers" = "19.1" ]] ; then
                 echo "Build Version isn't supported for this device"
                 echo $device "supports versions 18.1 & 19.1"
@@ -197,4 +203,4 @@ buildDevice
 saveFiles
 
 # cleanup
-cleanMka
+#cleanMka
