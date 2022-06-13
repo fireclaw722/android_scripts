@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.8.3 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.8.4 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -123,7 +123,7 @@ saveFiles() {
 
 ## Enter main()
 # supported devices
-if [[ "$1" = "barbet" || "$1" = "beckham" || "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
+if [[ "$1" = "addison" || "$1" = "barbet" || "$1" = "beckham" || "$1" = "bonito" || "$1" = "oneplus3" || "$1" = "sargo" || "$1" = "victara" ]] ; then
         export device=$1
 else
         echo "Device" $1 "is currently not supported"
@@ -141,7 +141,7 @@ else
 fi
 
 # device per version
-if [[ "$device" = "oneplus3" || "$device" = "victara" ]] ; then
+if [[ "$1" = "addison" || "$device" = "oneplus3" || "$device" = "victara" ]] ; then
         if ! [[ "$romVers" = "18.1" ]] ; then
                 echo "Build Version isn't supported for this device"
                 echo $device "only supports version 18.1"
