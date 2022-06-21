@@ -355,3 +355,13 @@ vi BoardConfig-common.mk
     # redbull (Pixel 4a 5G and 5a 5G) differences
     BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := /home/<user>/.android-certs/avb.pem
     BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+
+# 3a
+cd ~/android/lineage/19.1/device/google/bonito
+# Comment out disabling vbmeta
+vi BoardConfigLineage.mk
+# Add lines to point to avb key file
+vi BoardConfig-common.mk
+    # described here: (https://forum.xda-developers.com/t/guide-re-locking-the-bootloader-on-the-oneplus-8t-with-a-self-signed-build-of-los-18-1.4259409/)
+    BOARD_AVB_ALGORITHM := SHA256_RSA2048
+    BOARD_AVB_KEY_PATH := /home/<user>/.android-certs/avb.pem
