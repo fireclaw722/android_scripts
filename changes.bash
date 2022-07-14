@@ -189,7 +189,7 @@ git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.
 git cherry-pick 8127a03fd0de2fefe9f15975a552713f42dc15ca
 git cherry-pick 22f2b3565819fda659c0208307fac06a26290b7a
 git cherry-pick 49f3fdb8d2ee46ed4e13bca615449dbbc702efc6
-git cherry-pick 267e24ac499d2165883fc1b4316cda0c0efea1cb
+#git cherry-pick 267e24ac499d2165883fc1b4316cda0c0efea1cb
 
 cd ~/android/lineage/19.1/packages/providers/DownloadProvider/
 git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SQ3A.220705.003.A1.2022070800
