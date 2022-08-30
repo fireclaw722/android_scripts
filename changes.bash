@@ -61,29 +61,30 @@ cd ~/android/lineage/18.1
 
 ### System-based changes
 
-# add pre-built apps to build process (see commons-addition.mk for options)
-cd ~/android/lineage/18.1/vendor/lineage/config/
-vi common.mk
-
-# Allow Bromite Webview (since package name change)
-cd ~/android/lineage/18.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/xml
-vi config_webview_packages.xml
-    # add
-    <webviewprovider description="Bromite System Webview" packageName="org.bromite.webview" availableByDefault="true" />
-
-# Blue Bootanimation
-cd ~/android/lineage/18.1/vendor/lineage/bootanimation
-cp ~/Downloads/bootanimation.tar ./
-
-# For MicroG Signature-Spoofing support (for reference)
-cd ~/android/lineage/18.1/
-patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-R.patch
+# Secondary User Logout
 cd ~/android/lineage/18.1/frameworks/base
-git commit
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t RQ3A.211001.001.2021100606
+git cherry-pick f1d6d41b4fa836b7b0953eb3b24f3af6e1d5cbcf
 
-# Updater URL
-cd ~/android/lineage/18.1/packages/apps/Updater/res/values/
-vi strings.xml
+# SystemUI: Require unlocking to use sensitive QS tiles
+cd ~/android/lineage/18.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t RQ3A.211001.001.2021100606
+git cherry-pick fb872c6b60560e5d29f630f692df1ab13eed063b
+git cherry-pick 6f815982c3970378da2d5744ac4c18e9bbbc64e2
+git cherry-pick 226f63786fd70943dea5c973e039548a9af89df7
+git cherry-pick f9cdb1c823a8c6abccedf5b73b83a0995cef82bb
+git cherry-pick 8bbf513ef2cc207dd8bfadb0b05f5583f6472696
+git cherry-pick 9a2aa0b64c801dadeb7c9210c330444211d15786
+git cherry-pick d535ed4b7e7ca8674f267f0b73278a2932f00848
+git cherry-pick ac513e3540a0e9d293ec90c9afdfc1d0e72721ce
+git cherry-pick 83b2f897d575c1e647a5c3457948f72d346aa57c
+git cherry-pick 2e872d2e2537d6a53be160f7ac35c83847b68868
+
+# WiFi and Bluetooth auto turn-off
+cd ~/android/lineage/18.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t RQ3A.211001.001.2021100606
+git cherry-pick e9d17cd4807dbfa837b16296b3a2e4434c060002
+git cherry-pick 423f3e151beae0c608881d4bf16b8dff22b5efc6
 
 # GMS Compat from ProtonAOSP and GrapheneOS
 # pulled from https://github.com/ProtonAOSP/android_frameworks_base/commit/05c0673d57ea9183eb04ef31573a96a9306c3b74
@@ -140,10 +141,35 @@ git fetch https://github.com/ProtonAOSP/android_libcore rvc
 git cherry-pick af740ed9fae7d6ec494b98b7eb6960ccd49b4076
 git cherry-pick 55f4cb6cd74191178263a492fecab2419c19715f
 
-# Secondary User Logout
+# add pre-built apps to build process (see commons-addition.mk for options)
+cd ~/android/lineage/18.1/vendor/lineage/config/
+vi common.mk
+
+# Allow Bromite Webview (since package name change)
+cd ~/android/lineage/18.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/xml
+vi config_webview_packages.xml
+    # add
+    <webviewprovider description="Bromite System Webview" packageName="org.bromite.webview" availableByDefault="true" />
+
+# Blue Bootanimation
+cd ~/android/lineage/18.1/vendor/lineage/bootanimation
+cp ~/Downloads/bootanimation.tar ./
+
+# Raise maximum users from 4 to 16
+cd ~/android/lineage/18.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values
+vi config.xml
+    # Edit
+    <integer name="config_multiuserMaximumUsers">16</integer>
+
+# For MicroG Signature-Spoofing support (for reference)
+cd ~/android/lineage/18.1/
+patch --no-backup-if-mismatch --strip='1' --directory=frameworks/base < ~/Downloads/GmsCore-android_frameworks_base-R.patch
 cd ~/android/lineage/18.1/frameworks/base
-git fetch https://github.com/GrapheneOS/platform_frameworks_base -t RQ3A.211001.001.2021100606
-git cherry-pick f1d6d41b4fa836b7b0953eb3b24f3af6e1d5cbcf
+git commit
+
+# Updater URL
+cd ~/android/lineage/18.1/packages/apps/Updater/res/values/
+vi strings.xml
 
 ### Device-specfic commits
 # Comment out reserved space for GApps if you build w/ GApps
@@ -182,53 +208,73 @@ vi BoardConfig-common.mk
 
 ### System-based changes
 
-# GMS Compat from ProtonAOSP and GrapheneOS
-# pulled from https://github.com/ProtonAOSP/android_frameworks_base/commit/05c0673d57ea9183eb04ef31573a96a9306c3b74
+# Secondary User Logout
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022081800
+git cherry-pick 8722e3a9484863146cd9d787a79ba4510b78ee96
+
+# SystemUI: Require unlocking to use sensitive QS tiles
 cd ~/android/lineage/19.1/frameworks/base
 git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022070800
-git cherry-pick 8127a03fd0de2fefe9f15975a552713f42dc15ca
-git cherry-pick 22f2b3565819fda659c0208307fac06a26290b7a
-git cherry-pick 49f3fdb8d2ee46ed4e13bca615449dbbc702efc6
-#git cherry-pick 267e24ac499d2165883fc1b4316cda0c0efea1cb
+git cherry-pick 6f7cde6351b1ba2fb0513d713ad20d42e7f18745
+
+# WiFi and Bluetooth auto turn-off
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022070800
+git cherry-pick 21129623994a43464b95f148762b9e8931149179
+git cherry-pick 4dc91f9a8faf944eb8b3c88b80fbbd82ff3902c9
+
+# Support forwarding notifications from other users
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022070800
+git cherry-pick 074cbbedd81cbf5e34b4c25835fc300500926b87
+
+# GMS Compat from ProtonAOSP and GrapheneOS
+# Requires https://github.com/fireclaw722/platform_packages_apps_GmsCompat/tree/12.1
+# ^-- forked from GrapheneOS/platform_packages_apps_GmsCompat/tree/12.1 w/ commit added moving to system_ext partition
+
+cd ~/android/lineage/19.1/frameworks/base
+git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022081800
+git cherry-pick 986c55b83b7b860a073d4e9666e22086dec2765d
+git cherry-pick 4419afb8a18934b92b8e7ae6051b8d491f1aada2
+git cherry-pick e8ec2e09e6686b53065749867b74aee52db87b78
+git cherry-pick 4e2a0c5c75423f5dff6edd22b25cda13fe16f0d7
+git cherry-pick bbdccc887e5c745b97192c159c3523652c1a5d07
+git cherry-pick 625c3f447eb894b6feafba15a7fb33e396c6a6c2
+git cherry-pick 43771e3de08cbccc8a6ee88428667cdd9a3139a1
 
 cd ~/android/lineage/19.1/packages/providers/DownloadProvider/
-git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SQ3A.220705.003.A1.2022070800
+git fetch https://github.com/GrapheneOS/platform_packages_providers_DownloadProvider -t SQ3A.220705.003.A1.2022081800
 git cherry-pick 7544c3812f60e84cc3f4de7c6642ef79cbf5ecfd
 
 cd ~/android/lineage/19.1/libcore
-git fetch https://github.com/GrapheneOS/platform_libcore -t SQ3A.220705.003.A1.2022070800
+git fetch https://github.com/GrapheneOS/platform_libcore -t SQ3A.220705.003.A1.2022081800
 git cherry-pick e9a5a851cb467d7ed3d8da8d0d6c9d6b24e92fd2
 git cherry-pick ac55ac2b7ed3b82cae97d269a18144d3a65189bb
 
 cd ~/android/lineage/19.1/bionic
-git fetch https://github.com/GrapheneOS/platform_bionic -t SQ3A.220705.003.A1.2022070800
-git cherry-pick 900778a9b7e49af2fec93187b8f3f0af47b58eca # fix merge error
+git fetch https://github.com/GrapheneOS/platform_bionic -t SQ3A.220705.003.A1.2022081800
+git cherry-pick bba168f4197155767b4e09758f033c3971e8610b
+git cherry-pick 900778a9b7e49af2fec93187b8f3f0af47b58eca # fix merge error...maybe
 
 cd ~/android/lineage/19.1/packages/modules/Wifi
-git fetch https://github.com/GrapheneOS/platform_packages_modules_Wifi -t SQ3A.220705.003.A1.2022070800
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Wifi -t SQ3A.220705.003.A1.2022081800
 git cherry-pick c911c43213d20e300545f5951febafc866a9e4c4
+git cherry-pick 9eca3d8d62376ae035ea5eaa950147c2e5dab370
 
 cd ~/android/lineage/19.1/packages/modules/Connectivity
-git fetch https://github.com/GrapheneOS/platform_packages_modules_Connectivity -t SQ3A.220705.003.A1.2022070800
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Connectivity -t SQ3A.220705.003.A1.2022081800
 git cherry-pick 9b6814d58e4e8f594af9a822226e5c7d59941eca
 
 cd ~/android/lineage/19.1/packages/modules/Permission
-git fetch https://github.com/GrapheneOS/platform_packages_modules_Permission -t SQ3A.220705.003.A1.2022070800
+git fetch https://github.com/GrapheneOS/platform_packages_modules_Permission -t SQ3A.220705.003.A1.2022081800
 git cherry-pick b88c34c3f2887b48e7a7cf6b585acc598434f445
 
 cd ~/android/lineage/19.1/art
-git fetch https://github.com/GrapheneOS/platform_art -t SQ3A.220705.003.A1.2022070800
-git cherry-pick 433aef188cea2349dcadfb43d420dfd21adb4659
+git fetch https://github.com/GrapheneOS/platform_art -t SQ3A.220705.003.A1.2022081800
+git cherry-pick 3b39f26e3cf9c8f16d2fde8fda5b2269e8f372fd
+git cherry-pick 433aef188cea2349dcadfb43d420dfd21adb4659 # fix merge error...maybe
 
-# Privacy Indicator for Location
-cd ~/android/lineage/19.1/frameworks/base
-git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022070800
-git cherry-pick c1127b48c4df9dbdb2ba25128661294839dee723
-
-# Secondary User Logout
-cd ~/android/lineage/19.1/frameworks/base
-git fetch https://github.com/GrapheneOS/platform_frameworks_base -t SQ3A.220705.003.A1.2022070800
-git cherry-pick 47fc1cfe83bc45a63661c59eb009ee5b8e61a431
 
 # Raise maximum users from 4 to 16
 cd ~/android/lineage/19.1/vendor/lineage/overlay/common/frameworks/base/core/res/res/values
