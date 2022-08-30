@@ -34,16 +34,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     GrapheneApps
 
-# Repainter integration
-PRODUCT_PACKAGES += \
-    RepainterServicePriv
-
 # Graphene Replacements
 PRODUCT_PACKAGES += \
     Etar \
     QKSMS \
     Vinyl
 
-# Pixel Active Edge (Graphene)
+# Pixel Active Edge
+# in their device.mk or device-common.mk
 PRODUCT_PACKAGES += \
     ElmyraService
