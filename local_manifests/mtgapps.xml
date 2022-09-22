@@ -5,5 +5,5 @@
 	<project path="vendor/gapps"
            name="vendor_gapps.git" remote="mtgapps"
            revision="$AndroidVers" />
-    <!-- $AndroidVers = pi / rho / qoppa / tau / sigma -->
+    <!-- $AndroidVers = pi / qoppa / rho / sigma / tau -->
 </manifest>
