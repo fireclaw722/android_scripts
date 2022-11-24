@@ -20,27 +20,11 @@ PRODUCT_PACKAGES += \
     Bromite \
     BromiteWebView
 
-# Aurora
+# Aurora Store
 PRODUCT_PACKAGES += \
-    AuroraDroid \
     AuroraServices \
     AuroraStore
 
-# GMSCompat from GrapheneOS
+# F-Droid
 PRODUCT_PACKAGES += \
-    GmsCompat
-
-# GrapheneOS Apps
-PRODUCT_PACKAGES += \
-    GrapheneApps
-
-# Graphene Replacements
-PRODUCT_PACKAGES += \
-    Etar \
-    QKSMS \
-    Vinyl
-
-# Pixel Active Edge
-# in their device.mk or device-common.mk
-PRODUCT_PACKAGES += \
-    ElmyraService
+    F-DroidPrivilegedExtension
