@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.8.4 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.9 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -132,11 +132,11 @@ else
 fi
 
 # supported lineage versions
-if [[ "$2" = "18.1" || "$2" = "19.1" ]] ; then
+if [[ "$2" = "18.1" || "$2" = "20" ]] ; then
         export romVers=$2
 else
         echo "Build version is required"
-        echo "Supported versions include 18.1 | 19.1"
+        echo "Supported versions include 18.1 | 20"
         exit
 fi
 
@@ -148,18 +148,18 @@ if [[ "$1" = "addison" || "$device" = "oneplus3" || "$device" = "victara" ]] ; t
                 exit
         fi
 elif [[ "$device" = "barbet" || "$device" = "beckham" || "$device" = "bonito" || "$device" = "sargo" ]] ; then
-        if ! [[ "$romVers" = "18.1" || "$romVers" = "19.1" ]] ; then
+        if ! [[ "$romVers" = "18.1" || "$romVers" = "20" ]] ; then
                 echo "Build Version isn't supported for this device"
-                echo $device "supports versions 18.1 & 19.1"
+                echo $device "supports versions 18.1 & 20"
                 exit
         fi
 fi
 
 # supported build-types
 if [[ "$3" = "experimental" || "$3" = "snapshot" || "$3" = "release" ]] ; then
-        if [[ "$romVers" = "19.1" ]] ; then
+        if [[ "$romVers" = "20" ]] ; then
                 echo "Build type isn't supported for this version"
-                echo $device "version 19.1 only supports unofficial releasetype"
+                echo $device "version 20 only supports unofficial releasetype"
                 exit
         fi
         export releaseType=$3
@@ -169,7 +169,7 @@ else
         echo "Release Type is not supported"
         echo "For 18.1: "
         echo "Supported types are experimental | snapshot | release | unofficial"
-        echo "For 19.1: "
+        echo "For 20: "
         echo "Supported type is unofficial"
         exit
 fi
