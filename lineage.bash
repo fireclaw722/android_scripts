@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-export version=0.9 device buildDate updaterDate releaseType romName=lineage romVers fileName
+export version=0.9.1 device buildDate updaterDate releaseType romName=lineage romVers fileName
 
 cleanMka(){
         cd ~/android/$romName/$romVers
@@ -48,7 +48,7 @@ buildDevice() {
 
         # Breakfast
         #breakfast lineage_$device-user
-        if [[ "$romVers" = "15.1" || "$romVers" = "16.0" || "$device" = "victara" || "$device" = "beckham" ]] ; then
+        if [[ "$device" = "victara" || "$device" = "beckham" ]] ; then
                 breakfast lineage_$device-userdebug
         else
                 breakfast lineage_$device-user
@@ -188,7 +188,7 @@ elif [[ "$releaseType" = "release" ]] ; then
 
         export LINEAGE_BUILDTYPE=RELEASE TARGET_VENDOR_RELEASE_BUILD_ID=$4
 else
-        if ! [[ "$romVers" = "19.1" ]] ; then
+        if ! [[ "$romVers" = "20" ]] ; then
                 export TARGET_UNOFFICIAL_BUILD_ID=cerulean
         fi
         export LINEAGE_EXTRAVERSION=cerulean
